@@ -1,9 +1,9 @@
-package travle.DTO;
+package travel.DTO;
 
 public class ManagerDTO {
 	
 	private String user_id;
-	private String rank;
+	private String rank; // test
 	
 	public ManagerDTO() {}
 	public ManagerDTO(String user_id, String rank) {

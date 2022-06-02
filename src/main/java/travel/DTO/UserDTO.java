@@ -1,4 +1,4 @@
-package travle.DTO;
+package travel.DTO;
 
 import java.sql.Date;
 

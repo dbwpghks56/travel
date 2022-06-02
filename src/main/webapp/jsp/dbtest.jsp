@@ -22,5 +22,6 @@
 	<h2>again</h2>
 	<%= message %>
 	<h1>test</h1>
+	<h2>min test</h2>
 </body>
 </html>

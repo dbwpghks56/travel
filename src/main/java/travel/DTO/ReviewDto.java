@@ -1,4 +1,4 @@
-package travle.DTO;
+package travel.DTO;
 
 public class ReviewDto {
 	private int review_id;

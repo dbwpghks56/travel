@@ -1,4 +1,4 @@
-package travle.DTO;
+package travel.DTO;
 
 public class RoomDto {
 	private int room_id;

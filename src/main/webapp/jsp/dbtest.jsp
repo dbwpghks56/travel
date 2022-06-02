@@ -21,5 +21,6 @@
 	<h1>DB Test</h1>
 	<h2>again</h2>
 	<%= message %>
+	<h1>test</h1>
 </body>
 </html>

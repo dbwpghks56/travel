@@ -19,6 +19,7 @@
 </head>
 <body>
 	<h1>DB Test</h1>
+	<h2>again</h2>
 	<%= message %>
 </body>
 </html>

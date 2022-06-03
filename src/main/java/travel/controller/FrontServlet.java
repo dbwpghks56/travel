@@ -18,6 +18,8 @@ public class FrontServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
 		String method = req.getMethod(); // "GET of "POST"
 		System.out.println(req.getRequestURI());
 		System.out.println(req.getContextPath());
@@ -31,8 +33,10 @@ public class FrontServlet extends HttpServlet {
 		
 		if(uri.equals("/jsp/search.do")) {
 			command = new searchContreller();
-		} else if(uri.equals("/jsp/login.do")) {
+		} else if(uri.equals("/user/login.do")) {
 			command = new LoginUserController();
+		} else if(uri.equals("/user/signup.do")) {
+			command = new SignUpController();
 		}
 		
 		page = command.execute(req);

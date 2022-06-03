@@ -19,15 +19,17 @@ public class UserDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("INSERT INTO users values(?, ?, ?, '', ?, ?, ?, ?, 0, ?, '', 0);");
+			pst = conn.prepareStatement("INSERT INTO users values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, 0)");
 			pst.setString(1, user.getUser_id());
 			pst.setString(2, user.getUser_pass());
 			pst.setString(3, user.getUser_name());
-			pst.setString(4, user.getUser_email());
-			pst.setString(5, user.getNickname());
-			pst.setString(6, user.getUser_phone());
-			pst.setInt(7, user.getHost());
-			pst.setDate(8, user.getBirth());
+			pst.setString(4, user.getU_image_path());
+			pst.setString(5, user.getUser_email());
+			pst.setString(6, user.getNickname());
+			pst.setString(7, user.getUser_phone());
+			pst.setInt(8, user.getHost());
+			pst.setDate(9, user.getBirth());
+			pst.setString(10, user.getFavorite());
 			
 			result = pst.executeUpdate();
 			

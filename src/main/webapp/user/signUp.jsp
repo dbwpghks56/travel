@@ -64,7 +64,7 @@
 			<label>favorite</label> <input class="form-control" type="text"
 				name="favorite"> <br>
 		</div>
-
+		
 		<input type="submit" value="확인"> <input type="reset"
 			value="취소">
 		</div>

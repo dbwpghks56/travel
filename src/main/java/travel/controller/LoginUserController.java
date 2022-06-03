@@ -6,14 +6,14 @@ import javax.servlet.http.HttpSession;
 import travel.DTO.UserDTO;
 import travel.model.UserService;
 
-public class LoginUser implements Command {
+public class LoginUserController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
 		UserService service = new UserService();
 		
-		String user_id = request.getParameter("user_id");
-		String user_pass = request.getParameter("user_pass");
+		String user_id = request.getParameter("id");
+		String user_pass = request.getParameter("password");
 		
 		UserDTO user = service.loginUser(user_id, user_pass);
 		

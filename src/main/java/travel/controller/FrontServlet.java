@@ -32,7 +32,7 @@ public class FrontServlet extends HttpServlet {
 		if(uri.equals("/jsp/search.do")) {
 			command = new searchContreller();
 		} else if(uri.equals("/jsp/login.do")) {
-			
+			command = new LoginUserController();
 		}
 		
 		page = command.execute(req);

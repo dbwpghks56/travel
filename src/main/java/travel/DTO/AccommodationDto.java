@@ -1,17 +1,61 @@
 package travel.DTO;
 
 public class AccommodationDto {
+	@Override
+	public String toString() {
+		return "AccommodationDto [Accommodation_id=" + Accommodation_id + ", user_id=" + user_id
+				+ ", Accommodation_name=" + Accommodation_name + ", address=" + address + ", location_detail="
+				+ location_detail + ", cleaning_star=" + cleaning_star + ", location_star=" + location_star
+				+ ", satisfied_star=" + satisfied_star + ", a_image_path=" + a_image_path + ", a_option=" + a_option
+				+ ", mail_num=" + mail_num + ", new_mail_num=" + new_mail_num + ", x=" + x + ", y=" + y
+				+ ", new_address=" + new_address + "]";
+	}
 	private int Accommodation_id;
 	private String user_id;
 	private String Accommodation_name;
-	private String location;
+	private String address;
 	private String location_detail;
 	private int cleaning_star;
 	private int location_star;
 	private int satisfied_star;
 	private String a_image_path;
 	private String a_option;
+	private int mail_num;
+	private int new_mail_num;
+	private float x;
+	private float y;
+	private String new_address;
 		
+	public int getMail_num() {
+		return mail_num;
+	}
+	public void setMail_num(int mail_num) {
+		this.mail_num = mail_num;
+	}
+	public int getNew_mail_num() {
+		return new_mail_num;
+	}
+	public void setNew_mail_num(int new_mail_num) {
+		this.new_mail_num = new_mail_num;
+	}
+	public float getX() {
+		return x;
+	}
+	public void setX(float x) {
+		this.x = x;
+	}
+	public float getY() {
+		return y;
+	}
+	public void setY(float y) {
+		this.y = y;
+	}
+	public String getNew_address() {
+		return new_address;
+	}
+	public void setNew_address(String new_address) {
+		this.new_address = new_address;
+	}
 	public int getAccommodation_id() {
 		return Accommodation_id;
 	}
@@ -30,11 +74,11 @@ public class AccommodationDto {
 	public void setAccommodation_name(String accommodation_name) {
 		Accommodation_name = accommodation_name;
 	}
-	public String getLocation() {
-		return location;
+	public String getAddress() {
+		return address;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getLocation_detail() {
 		return location_detail;

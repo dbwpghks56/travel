@@ -35,9 +35,12 @@ input {
 	border : 0;
 	
 }
+#search:hover {
+	cursor: pointer;
+}
 
 
-</style>
+</style> 
 </head>
 <body>
  	<div class="search">

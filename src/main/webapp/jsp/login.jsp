@@ -12,17 +12,16 @@
 	<h1> &emsp; ID 로그인</h1>
 	<form action="login.do" method="post">
 	
-	
-	<label>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
-		<input type="text" name="id" > <br>
-	
-	<label>비밀번호 &nbsp;</label>	
-		<input type="password" name="password"> <br>
-	
-	<input type = "submit" value = "로그인">     
-	<input type = "button" value = "회원가입">
-	<input type = "reset" value = "취소">
-	 
+		<label>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
+			<input type="text" name="id" > <br>
+		
+		<label>비밀번호 &nbsp;</label>	
+			<input type="password" name="password"> <br>
+		
+		<input type = "submit" value = "로그인">     
+		<input type = "button" value = "회원가입">
+		<input type = "reset" value = "취소">
+
 	</form>
 	
 </body>

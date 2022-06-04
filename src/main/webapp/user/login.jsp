@@ -19,7 +19,7 @@
 			<input type="password" name="password"> <br>
 		
 		<input type = "submit" value = "로그인">     
-		<input type = "button" value = "회원가입">
+		<input type = "button" value = "회원가입"><a href="signUp.jsp">회원가입</a>
 		<input type = "reset" value = "취소">
 
 	</form>

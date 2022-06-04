@@ -13,7 +13,7 @@ import travel.DTO.AccommodationDto;
 import travel.model.AccommodationService;
 import travel.util.DateUtil;
 
-public class searchContreller implements Command{
+public class SearchController implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request) {

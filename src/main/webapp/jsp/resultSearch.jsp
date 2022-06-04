@@ -19,15 +19,19 @@
 		
 	}
 </style>
+
 </head>
 <body>
 	
 	<c:forEach items = "${accommoList}" var = "acco">
 		<div class = "acco">
-		<img alt="숙소이미지" src="../images/acco1.webp" width = "250px" height="250px">
-		${acco.accommodation_name}
+		<c:set var = "accId" value = "${acco.accommodation_id }"/>
+		
+		<img src="../accoImages/${accId }_1.jfif" width = "250px" height="250px">
+		<a href = "selectRoom.do">${acco.accommodation_name}</a>
 		</div>
 	</c:forEach>
+	<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 </body>
 </html>

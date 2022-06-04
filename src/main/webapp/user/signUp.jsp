@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <style>
@@ -12,6 +13,27 @@
 	width: 200px;
 }
 </style>
+<script type="text/javascript">
+	$(() => {
+		$(".deptDetailView").click(function() {
+			let bno_data = $(this).attr("data-bno");
+			$.ajax({
+				type: "post",
+				async: false,
+				url : "board2.do",
+				data: {boardid : bno_data},
+				success: (data) => {
+					let obj = JSON.parse(data);
+					$("#board_id").val(obj["board_id"]);
+					$("#board_title").val(obj["board_title"]);
+					$("#board_content").val(obj["board_content"]);
+					$("#board_writer").val(obj["board_writer"]);
+				},
+			});
+		});
+	});
+	
+</script>
 </head>
 <body>
 	<h1>회원가입</h1>

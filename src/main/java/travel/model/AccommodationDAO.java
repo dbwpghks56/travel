@@ -1,6 +1,7 @@
 package travel.model;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import travel.DTO.AccommodationDto;
 import travel.util.DBUtil;
@@ -111,5 +115,28 @@ public class AccommodationDAO {
 		}
 		
 		return accommo;
+	}
+	public JSONArray makeJsonArray(List<AccommodationDto> list) {
+		JSONArray jArray = new JSONArray();
+		for (int j = 0; j < list.size(); j++) {
+			JSONObject sObject = new JSONObject();// 배열 내에 들어갈 json
+			sObject.put("accommodation_id", list.get(j).getAccommodation_id());
+			sObject.put("user_id", list.get(j).getUser_id());
+			sObject.put("accommodation_name", list.get(j).getAccommodation_name());
+			sObject.put("new_address", list.get(j).getNew_address());
+			sObject.put("address", list.get(j).getAddress());
+			sObject.put("a_option", list.get(j).getA_option());
+			sObject.put("cleaning_stars", list.get(j).getCleaning_star());
+			sObject.put("location_stars", list.get(j).getLocation_star());
+			sObject.put("satisfied_stars", list.get(j).getSatisfied_star());
+			sObject.put("a_image_path", list.get(j).getA_image_path());
+			sObject.put("mail_num", list.get(j).getMail_num());
+			sObject.put("new_mail_nume", list.get(j).getNew_mail_num());
+			sObject.put("x", list.get(j).getX());
+			sObject.put("y", list.get(j).getY());
+			jArray.add(sObject);
+
+		}
+		return jArray;
 	}
 }

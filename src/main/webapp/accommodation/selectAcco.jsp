@@ -29,7 +29,7 @@ input {
 
 #search{
 	background-color:white;
-	background-image:url("./searchIcon.png");
+	background-image:url("../images/icons/searchIcon.png");
 	background-size: cover;
 	width : 40px;
 	height: 40px;

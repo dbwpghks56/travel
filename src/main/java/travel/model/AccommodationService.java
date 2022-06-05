@@ -3,6 +3,9 @@ package travel.model;
 import java.sql.Date;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import travel.DTO.AccommodationDto;
 
 public class AccommodationService {
@@ -17,5 +20,8 @@ public class AccommodationService {
 
 	public List<AccommodationDto> selectByDate(Date check_in, Date check_out){
 		return accommoDAO.selectByDate(check_in, check_out);
+	}
+	public JSONArray makeJsonArray(List<AccommodationDto> list) {
+		return accommoDAO.makeJsonArray(list);
 	}
 }

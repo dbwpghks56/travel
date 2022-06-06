@@ -1,16 +1,41 @@
 package travel.DTO;
 
+import java.sql.Date;
+
 public class ReviewDto {
 	private int review_id;
 	private int accommodation_id;
 	private String user_id;
 	private String host_id;
 	private String content;
-	private int cleaning_stars;
-	private int location_stars;
-	private int satisfied_stars;
+	private float cleaning_stars;
+	private float location_stars;
+	private float satisfied_stars;
 	private int report_number;
+	private String r_image_path;
+	private Date r_regdate;
 	
+	public String getR_image_path() {
+		return r_image_path;
+	}
+	public void setR_image_path(String r_image_path) {
+		this.r_image_path = r_image_path;
+	}
+	public Date getR_regdate() {
+		return r_regdate;
+	}
+	public void setR_regdate(Date r_regdate) {
+		this.r_regdate = r_regdate;
+	}
+	public void setCleaning_stars(float cleaning_stars) {
+		this.cleaning_stars = cleaning_stars;
+	}
+	public void setLocation_stars(float location_stars) {
+		this.location_stars = location_stars;
+	}
+	public void setSatisfied_stars(float satisfied_stars) {
+		this.satisfied_stars = satisfied_stars;
+	}
 	public int getReview_id() {
 		return review_id;
 	}
@@ -41,23 +66,14 @@ public class ReviewDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getCleaning_stars() {
+	public float getCleaning_stars() {
 		return cleaning_stars;
 	}
-	public void setCleaning_stars(int cleaning_stars) {
-		this.cleaning_stars = cleaning_stars;
-	}
-	public int getLocation_stars() {
+	public float getLocation_stars() {
 		return location_stars;
 	}
-	public void setLocation_stars(int location_stars) {
-		this.location_stars = location_stars;
-	}
-	public int getSatisfied_stars() {
+	public float getSatisfied_stars() {
 		return satisfied_stars;
-	}
-	public void setSatisfied_stars(int satisfied_stars) {
-		this.satisfied_stars = satisfied_stars;
 	}
 	public int getReport_number() {
 		return report_number;

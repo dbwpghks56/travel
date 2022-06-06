@@ -33,7 +33,7 @@
 	<div class = "searchResult">
 	<c:forEach items = "${accommoList}" var = "acco">
 		<div class = "acco">
-		<img src="../accoImages/Seoul_Chungchung/${acco.accommodation_id}_1.jfif" width = "50%" height="50%">
+		<img src="../accoImages/Seoul_Chungchung/acco${acco.accommodation_id}_1.jfif" width = "50%" height="50%">
 		<a href = "selectRoom.do">${acco.accommodation_name}</a>
 		</div>
 	</c:forEach>

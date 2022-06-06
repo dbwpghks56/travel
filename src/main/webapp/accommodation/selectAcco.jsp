@@ -19,7 +19,7 @@
     margin: 0 auto;
 }
 input {
-    width: 30%;
+    width: 20%;
     border-radius: 20px;
     border: 1px solid #bbb;
     margin: 10px 0;
@@ -48,6 +48,8 @@ input {
  	<form action ="search.do" >
       <input type="date" name = "check_in" required="required">
       <input type="date" name = "check_out" required="required">
+      <input type="text" name = "loc" required="required">
+      <input type="number" name = "person" required="required">
       <input type = "submit" value = "" id = "search">
       </form>
     </div>

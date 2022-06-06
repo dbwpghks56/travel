@@ -8,43 +8,94 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	body{
-		margin : 0 auto;
-		
-	}
-	.searchResult{
-		width :40%;
-		float:left;
-	}
-	.acco{
-		display: inline-block;
-		margin-left: 20px;
-		margin-right: 20px;
-		width : 15%;
-		
-	}
-	.map{
-		float: right;
-	}
+	*{
+  margin: 1%;
+}
+li{
+	list-style: none;
+}
+.slides{
+	width: 500px;
+	height:500px;
+	position: relative;
+	float:left;
+	margin:0 auto;
+}
+.slides input[type = radio]{
+	display : none;
+}
+ul.imgs{
+	padding:0;
+	margin:0;
+	list-style: none;
+	position: center;
+}
+ul.imgs li{
+	position: absolute;
+	left 500px;
+	transition-delay: 1s;
+	padding:0;
+	margin:0;
+	overflow: hidden;
+}
+.bullets{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	bottom: 20px;
+	z-index: 2;
+}
+.bullets label{
+	display: inline-block;
+	border-radius: 50%;
+	background-color: rgba(0,0,0,0.55);
+	 width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.prev{
+	position: left;
+}
+.next{
+	position: right;
+}
+.map{
+	width : 60%;
+	float: right;
+}
 </style>
 
 </head>
 <body>
-	<div class = "searchResult">
-	<c:forEach items = "${accommoList}" var = "acco">
-		<div class = "acco">
-		<img src="../accoImages/Seoul_Chungchung/${acco.accommodation_id}_1.jfif" width = "50%" height="50%">
-		<a href = "selectRoom.do">${acco.accommodation_name}</a>
+	
+		<div class = "slides">
+		<c:forEach items = "${accommoList}" var = "acco">
+		<span class="prev">&lang;</span>
+		<ul class = "imghorder" class = "imgs">
+		<c:forEach items ="${acco.a_image_path }" var = "image" >
+				<input type = "radio" name = "slide">
+				<li><img src="../accoImages/${image }" width = "100%" height="100%"></li>
+		</c:forEach>
+		</ul>
+		<div class = "bullets">
+		<c:forEach items = "${acco.a_image_path }" var = "image">
+			<label for = "slide">&nbsp;</label>
+		</c:forEach>
 		</div>
-	</c:forEach>
-	</div>
+		<span class="next">&rang;</span>
+    	<a href = "selectRoom.do?acco_id=${acco.accommodation_id}&acco_name=${acco.accommodation_name}">${acco.accommodation_name}</a>
+		</c:forEach>
+    	</div>
+		
+	
+    
+    
 	<div id="map" style="width:500px;height:400px;"></div>
 	<script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type = "text/javascript" src= "//dapi.kakao.com/v2/maps/sdk.js?appkey=1fbbb242c8d8813685c061dffd5629cc"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js" type="text/javascript"></script>
 	<script>
 		var accoArray = ${jArray};
-		
 		
 		
 		var divMap = document.querySelector("#map");

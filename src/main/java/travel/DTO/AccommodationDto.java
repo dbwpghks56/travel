@@ -1,5 +1,7 @@
 package travel.DTO;
 
+import java.sql.Date;
+
 public class AccommodationDto {
 	@Override
 	public String toString() {
@@ -10,6 +12,8 @@ public class AccommodationDto {
 				+ ", mail_num=" + mail_num + ", new_mail_num=" + new_mail_num + ", x=" + x + ", y=" + y
 				+ ", new_address=" + new_address + "]";
 	}
+	
+
 	private int Accommodation_id;
 	private String user_id;
 	private String Accommodation_name;
@@ -18,13 +22,14 @@ public class AccommodationDto {
 	private int cleaning_star;
 	private int location_star;
 	private int satisfied_star;
-	private String a_image_path;
+	private String[] a_image_path;
 	private String a_option;
 	private int mail_num;
 	private int new_mail_num;
 	private float x;
 	private float y;
 	private String new_address;
+	
 		
 	public int getMail_num() {
 		return mail_num;
@@ -104,10 +109,10 @@ public class AccommodationDto {
 	public void setSatisfied_star(int satisfied_star) {
 		this.satisfied_star = satisfied_star;
 	}
-	public String getA_image_path() {
+	public String[] getA_image_path() {
 		return a_image_path;
 	}
-	public void setA_image_path(String a_image_path) {
+	public void setA_image_path(String[] a_image_path) {
 		this.a_image_path = a_image_path;
 	}
 	public String getA_option() {
@@ -116,6 +121,5 @@ public class AccommodationDto {
 	public void setA_option(String a_option) {
 		this.a_option = a_option;
 	}
-	
 	
 }

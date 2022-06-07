@@ -2,7 +2,9 @@ package travel.DTO;
 
 import java.sql.Date;
 
+
 public class AccommodationDto {
+	
 	@Override
 	public String toString() {
 		return "AccommodationDto [Accommodation_id=" + Accommodation_id + ", user_id=" + user_id
@@ -10,7 +12,8 @@ public class AccommodationDto {
 				+ location_detail + ", cleaning_star=" + cleaning_star + ", location_star=" + location_star
 				+ ", satisfied_star=" + satisfied_star + ", a_image_path=" + a_image_path + ", a_option=" + a_option
 				+ ", mail_num=" + mail_num + ", new_mail_num=" + new_mail_num + ", x=" + x + ", y=" + y
-				+ ", new_address=" + new_address + "]";
+				+ ", new_address=" + new_address + ", phone=" + phone + ", Accommodation_type=" + Accommodation_type
+				+ "]";
 	}
 	
 
@@ -22,15 +25,37 @@ public class AccommodationDto {
 	private int cleaning_star;
 	private int location_star;
 	private int satisfied_star;
-	private String[] a_image_path;
+	private String a_image_path;
 	private String a_option;
 	private int mail_num;
 	private int new_mail_num;
 	private float x;
 	private float y;
 	private String new_address;
-	
+	private String phone;
+	private String Accommodation_type;
 		
+	
+	
+	public AccommodationDto() {
+		super();
+	}
+
+	public AccommodationDto(int accommodation_id, String user_id, String accommodation_name, String address,
+			String location_detail, int cleaning_star, int location_star, int satisfied_star, String a_image_path,
+			String a_option, int mail_num, int new_mail_num, float x, float y, String new_address, String phone,
+			String accommodation_type) {
+		super();
+		this.Accommodation_id = accommodation_id;
+		this.user_id = user_id;
+		this.Accommodation_name = accommodation_name;
+		this.address = address;
+		this.new_address = new_address;
+		this.a_option = a_option;
+		this.phone = phone;
+		this.Accommodation_type = accommodation_type;
+	}
+	
 	public int getMail_num() {
 		return mail_num;
 	}
@@ -109,10 +134,10 @@ public class AccommodationDto {
 	public void setSatisfied_star(int satisfied_star) {
 		this.satisfied_star = satisfied_star;
 	}
-	public String[] getA_image_path() {
+	public String getA_image_path() {
 		return a_image_path;
 	}
-	public void setA_image_path(String[] a_image_path) {
+	public void setA_image_path(String a_image_path) {
 		this.a_image_path = a_image_path;
 	}
 	public String getA_option() {
@@ -120,6 +145,18 @@ public class AccommodationDto {
 	}
 	public void setA_option(String a_option) {
 		this.a_option = a_option;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAccommodation_type() {
+		return Accommodation_type;
+	}
+	public void setAccommodation_type(String accommodation_type) {
+		Accommodation_type = accommodation_type;
 	}
 	
 }

@@ -9,6 +9,7 @@ public class RoomDto {
 	private int max_day;
 	private int price_by_day;
 	private String room_name;
+<<<<<<< HEAD
 	@Override
 	public String toString() {
 		return "RoomDto [room_id=" + room_id + ", Accommodation_id=" + Accommodation_id + ", min_personnel="
@@ -16,6 +17,8 @@ public class RoomDto {
 				+ ", price_by_day=" + price_by_day + ", romm_name=" + room_name + ", r_image_path=" + r_image_path
 				+ ", r_option=" + r_option + "]";
 	}
+=======
+>>>>>>> refs/remotes/origin/Min
 	private String r_image_path;
 	private String r_option;
 	public int getRoom_id() {

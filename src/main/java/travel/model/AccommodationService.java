@@ -25,7 +25,12 @@ public class AccommodationService {
 	public List<Integer> selectByDate(Date check_in, Date check_out){
 		return accommoDAO.selectByDate(check_in, check_out);
 	}
-	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
+	
+	public int InsertAcco (AccommodationDto acco) {
+		return accommoDAO.InsertAcco(acco);
+	}
+	
+	public JSONArray makeJsonArray(List<AccommodationDto> list) {
 		return accommoDAO.makeJsonArray(list);
 	}
 	public List<InteAccoDTO> selectByOption(String loc, int person){

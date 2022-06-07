@@ -42,6 +42,8 @@ public class RoomDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
 		}
 		return accoList;
 	}
@@ -63,6 +65,8 @@ public class RoomDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
 		}
 		return accoList;
 	}

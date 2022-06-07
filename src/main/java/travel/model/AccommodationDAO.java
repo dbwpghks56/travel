@@ -15,27 +15,33 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import travel.DTO.InteAccoDTO;
+import travel.DTO.AccommodationDto;
+import travel.DTO.RoomDto;
 import travel.util.DBUtil;
 
 public class AccommodationDAO {
 	private static final String SQL_SELECT_ALL = "select * from accommodation";
 	private static final String SQL_SELECT_LIKE = "select * from accommodation where address like '%?%'";
-	private static final String SQL_SELECT_DATE = "SELECT room_id \r\n"
-			+ "FROM  ACCOMMODATION JOIN ROOM using(accommodation_id)\r\n"
-			+ "	JOIN RESERVATION using(room_id)\r\n"
-			+ "WHERE (check_in>= ? AND check_in<= ? )\r\n"
-			+ " OR (check_out>= ? AND check_out<= ? )\r\n";
 	private static final String SQL_SELECT_OPTION = "select * from\r\n"
 			+ "ACCOMMODATION join room using(accommodation_id)\r\n"
 			+ "where (ADDRESS  like '%'||?||'%')\r\n"
 			+ "and (max_personnel >= ? and min_personnel <= ?)";
+	private static final String SQL_SELECT_DATE = "SELECT Accommodation_id \r\n"
+			+ "FROM  ACCOMMODATION JOIN ROOM using(accommodation_id)\r\n" + "	JOIN RESERVATION using(room_id)\r\n"
+			+ "WHERE (check_in>= ? AND check_in<= ? )\r\n" + " OR (CHECK_out >= ? AND check_out<= ? )\r\n";
+	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
+			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
 	
+	private static final String SQL_INSERT_ROOM = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
+			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
+
 	Connection conn;
 	PreparedStatement pst;
 	Statement st;
 	ResultSet rs;
 	
-	public List<InteAccoDTO> selectAllaccommo(){
+
+	public List<InteAccoDTO> selectAllaccommo() {
 		List<InteAccoDTO> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
@@ -48,12 +54,13 @@ public class AccommodationDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			DBUtil.dbClose(rs, st, conn);
 		}
 		return accoList;
 	}
-	public List<InteAccoDTO> selectByAddress(String address){
+
+	public List<InteAccoDTO> selectByAddress(String address) {
 		List<InteAccoDTO> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
@@ -73,8 +80,8 @@ public class AccommodationDAO {
 		return accoList;
 	}
 
-	public List<Integer> selectByDate(Date check_in, Date check_out){
-		List<Integer> rList = new ArrayList<>(); 
+	public List<Integer> selectByDate(Date check_in, Date check_out) {
+		List<Integer> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_DATE);
@@ -84,7 +91,7 @@ public class AccommodationDAO {
 			pst.setDate(4, check_out);
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				rList.add(rs.getInt("room_id"));
+				accoList.add(rs.getInt("room_id"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -92,7 +99,7 @@ public class AccommodationDAO {
 		}finally {
 			DBUtil.dbClose(rs, pst, conn);
 		}
-		return rList;
+		return accoList;
 	}
 	public List<InteAccoDTO> selectByOption(String loc, int person){
 		List<InteAccoDTO> accoList = new ArrayList<>();
@@ -138,17 +145,75 @@ public class AccommodationDAO {
 			accommo.setRoom_id(rs2.getInt("room_id"));
 		
 			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return accommo;
 	}
-	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
+
+	public int InsertAcco(AccommodationDto acco) {
+		int result = 0;
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_INSERT_ACCO);
+			/* pst.setInt(1, acco.getAccommodation_id()); */
+			pst.setString(1, acco.getUser_id());
+			pst.setString(2, acco.getAccommodation_name());
+			pst.setString(3, acco.getAddress());
+			pst.setString(4, acco.getNew_address());
+			pst.setString(5, acco.getA_image_path());
+			pst.setString(6, acco.getA_option());
+			pst.setString(7, acco.getPhone());
+			pst.setString(8, acco.getAccommodation_type());
+
+			result = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
+	}
+	public int InsertRoom(RoomDto room) {
+		int result = 0;
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_INSERT_ROOM);
+			/* pst.setInt(1, acco.getAccommodation_id()); */
+			pst.setInt(1, room.getRoom_id());
+			pst.setInt(2, room.getMin_personnel());
+			pst.setInt(3, room.getMax_personnel());
+			pst.setInt(4, room.getMin_day());
+			pst.setInt(5, room.getMax_day());
+			pst.setInt(6, room.getPrice_by_day());
+			/*
+			 * pst.setString(7, room.getPhone()); pst.setString(8,
+			 * room.getAccommodation_type());
+			 */
+
+			result = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public JSONArray makeJsonArray(List<AccommodationDto> list) {
 		JSONArray jArray = new JSONArray();
 		for (int j = 0; j < list.size(); j++) {
-			JSONObject sObject = new JSONObject();// �迭 ���� �� json
+			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json
 			sObject.put("accommodation_id", list.get(j).getAccommodation_id());
 			sObject.put("user_id", list.get(j).getUser_id());
 			sObject.put("accommodation_name", list.get(j).getAccommodation_name());
@@ -167,4 +232,5 @@ public class AccommodationDAO {
 		}
 		return jArray;
 	}
+
 }

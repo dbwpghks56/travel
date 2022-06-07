@@ -44,7 +44,7 @@ public class SignUpController implements Command {
 		user.setUser_name(params.get("name"));
 		user.setU_image_path(potos.get(0));
 		user.setUser_email(params.get("email"));
-		user.setNickname(params.get("nickname"));
+		user.setNickname(params.get("nickname"));                                                
 		user.setUser_phone(params.get("phone"));
 		user.setBirth(DateUtil.convertToDate(params.get("birth")));
 		user.setFavorite(params.get("favorite"));

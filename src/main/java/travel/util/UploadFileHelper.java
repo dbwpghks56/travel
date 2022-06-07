@@ -17,7 +17,7 @@ public class UploadFileHelper {
 	//�Ķ���͵� 
 	//{"photos":["aa.png","bb.png"], "params": {"param1":"aa", "param2":"bb", "param3":"cc"}}
 	public static Map<String, Object> uploadFile(String UPLOAD_DIR, HttpServletRequest multi) {		
-		
+		System.out.println(UPLOAD_DIR + "aaaa");
 		Map<String, Object> map = new HashMap<>();
 		Map<String, String> mapParams = new HashMap<>();
 		

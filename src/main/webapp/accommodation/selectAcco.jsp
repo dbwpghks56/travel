@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,7 @@ input {
 
 #search{
 	background-color:white;
-	background-image:url("./searchIcon.png");
+	background-image:url("../images/icons/searchIcon.png");
 	background-size: cover;
 	width : 40px;
 	height: 40px;

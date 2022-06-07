@@ -67,8 +67,6 @@ ul.imgs li{
 
 </head>
 <body>
-<<<<<<< HEAD
-	
 		<div class = "slides">
 		<c:forEach items = "${accommoList}" var = "acco">
 		<span class="prev">&lang;</span>

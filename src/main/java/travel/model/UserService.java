@@ -24,4 +24,8 @@ public class UserService {
 	public int updateUser(String user_id) {
 		return userdao.updateUser(user_id);
 	}
+	
+	public String nickToId(String user_id) {
+		return userdao.nickToId(user_id);
+	}
 }

@@ -76,9 +76,9 @@
 </script>
 </head>
 <body>
-	<c:forEach items = "${reviews}" var = "review">
+	<c:forEach items = "${reviews}" var = "review" varStatus="status">
 		<div class="container mt-3">
-			<h2>${review.user_id }</h2>
+			<h2>${nicks.get(status.index) }</h2>
 				<p>${review.host_id }</p>
 				<div class="card" style="width:400px"  data-length=${reviews.size() }>
 					<img class="card-img-top" src="../uploads/${review.r_image_path}" alt="Card image" style="width:100%">

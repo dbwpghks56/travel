@@ -28,14 +28,14 @@ public class ReservationDAO {
 		
 		//insert into RESERVATION values(rsv_no, user_id, room_id, check_in, check_out, rsv_date, personnel, request, rsv_status);
 		try {
-			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, ?)");
-			pst.setString(1, rsv.getUsre_id());
+			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '예약완료')");
+			pst.setString(1, rsv.getUser_id());
 			pst.setInt(2, rsv.getRoom_id());
 			pst.setDate(3, rsv.getCheck_in());
 			pst.setDate(4, rsv.getCheck_out());
 			pst.setInt(5, rsv.getPersonnel());
 			pst.setString(6, rsv.getRequest());
-			pst.setString(7, rsv.getRsv_status());
+			
 
 			result = pst.executeUpdate(); 
 		} catch (SQLException e) {
@@ -87,14 +87,16 @@ public class ReservationDAO {
 	
 	
 	//예약 전체 조회하기(최근 예약순으로) //select문 수정 해야함
-	public List<ReservationDTO> rsvAll(){
+	public List<ReservationDTO> rsvAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		
 		//select * from reservation order by desc
 		try {
-			st = conn.createStatement();
-			rs = st.executeQuery("select * from reservation order by desc");
+			pst = conn.prepareStatement("select * from reservation where user_id=? order by rsv_no desc");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			
 			while(rs.next()) {
 				rsvList.add(makeRsv(rs));
 			}
@@ -109,17 +111,40 @@ public class ReservationDAO {
 		return rsvList;
 		
 	}
+	
+	public ReservationDTO selectByRsvNo(int rsv_no) {
+		ReservationDTO rsv = null;
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("select * from reservation where rsv_no=?");
+			pst.setInt(1, rsv_no);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv = makeRsv(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsv;
+	}
 
 	private ReservationDTO makeRsv(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();
 		rsv.setRsv_no(rs.getInt("Rsv_no"));
-		rsv.setUsre_id(rs.getString("Usre_id"));
+		rsv.setUser_id(rs.getString("User_id"));
 		rsv.setRoom_id(rs.getInt("Room_id"));
 		rsv.setCheck_in(rs.getDate("Check_in"));
 		rsv.setCheck_out(rs.getDate("Check_out"));
 		rsv.setRsv_date(rs.getDate("Rsv_date"));
 		rsv.setPersonnel(rs.getInt("Personnel"));
-		rsv.setRequest(rs.getString("Personnel"));
+		rsv.setRequest(rs.getString("Request"));
 		rsv.setRsv_status(rs.getString("Rsv_status"));
 		return rsv;
 	}

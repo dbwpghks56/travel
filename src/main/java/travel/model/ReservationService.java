@@ -25,7 +25,12 @@ public class ReservationService {
 	}
 	
 	//예약 전체 조회하기(최근 예약순으로)
-	public List<ReservationDTO> rsvAll(){
-		return rDAO.rsvAll();
+	public List<ReservationDTO> rsvAll(String user_id){
+		return rDAO.rsvAll(user_id);
+	}
+	
+
+	public ReservationDTO selectByRsvNo(int rsv_no) {
+		return rDAO.selectByRsvNo(rsv_no);
 	}
 }

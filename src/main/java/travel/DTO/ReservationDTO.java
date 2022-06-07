@@ -6,7 +6,7 @@ public class ReservationDTO {
 	
 	@Override
 	public String toString() {
-		return "ReservationDTO [rsv_no=" + rsv_no + ", usre_id=" + usre_id + ", room_id=" + room_id + ", check_in="
+		return "ReservationDTO [rsv_no=" + rsv_no + ", user_id=" + user_id + ", room_id=" + room_id + ", check_in="
 				+ check_in + ", check_out=" + check_out + ", rsv_date=" + rsv_date + ", personnel=" + personnel
 				+ ", request=" + request + ", rsv_status=" + rsv_status + "]";
 	}

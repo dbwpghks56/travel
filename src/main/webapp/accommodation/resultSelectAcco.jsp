@@ -67,6 +67,7 @@ ul.imgs li{
 
 </head>
 <body>
+<<<<<<< HEAD
 	
 		<div class = "slides">
 		<c:forEach items = "${accommoList}" var = "acco">
@@ -77,10 +78,17 @@ ul.imgs li{
 				<li><img src="../accoImages/${image }" width = "100%" height="100%"></li>
 		</c:forEach>
 		</ul>
+		</c:forEach>
 		<div class = "bullets">
 		<c:forEach items = "${acco.a_image_path }" var = "image">
 			<label for = "slide">&nbsp;</label>
 		</c:forEach>
+		
+	<div class = "searchResult">
+	<c:forEach items = "${accommoList}" var = "acco">
+		<div class = "acco">
+		<img src="../accoImages/Seoul_Chungchung/acco${acco.accommodation_id}_1.jfif" width = "50%" height="50%">
+		<a href = "selectRoom.do">${acco.accommodation_name}</a>
 		</div>
 		<span class="next">&rang;</span>
     	<a href = "selectRoom.do?acco_id=${acco.accommodation_id}&acco_name=${acco.accommodation_name}">${acco.accommodation_name}</a>

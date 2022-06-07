@@ -9,7 +9,7 @@
 <body>
 	<h1>숙소 등록</h1>
 	<h2>로그인하고 시도해주세용</h2>
-	<form action="insertAcco.do" enctype="multipart/form-data">
+	<form action="insertAcco.do" method = "post" enctype="multipart/form-data">
 		user_id : ${user.user_id } <br>
 		<input type="hidden" name="user_id" value="${user.user_id }">
 		숙소 이름 : <input type="text" name="acco_name"> <br>

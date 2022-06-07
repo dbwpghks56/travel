@@ -8,7 +8,14 @@ public class RoomDto {
 	private int min_day;
 	private int max_day;
 	private int price_by_day;
-	private String romm_name;
+	private String room_name;
+	@Override
+	public String toString() {
+		return "RoomDto [room_id=" + room_id + ", Accommodation_id=" + Accommodation_id + ", min_personnel="
+				+ min_personnel + ", max_personnel=" + max_personnel + ", min_day=" + min_day + ", max_day=" + max_day
+				+ ", price_by_day=" + price_by_day + ", romm_name=" + room_name + ", r_image_path=" + r_image_path
+				+ ", r_option=" + r_option + "]";
+	}
 	private String r_image_path;
 	private String r_option;
 	public int getRoom_id() {
@@ -53,11 +60,11 @@ public class RoomDto {
 	public void setPrice_by_day(int price_by_day) {
 		this.price_by_day = price_by_day;
 	}
-	public String getRomm_name() {
-		return romm_name;
+	public String getRoom_name() {
+		return room_name;
 	}
-	public void setRomm_name(String romm_name) {
-		this.romm_name = romm_name;
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
 	}
 	public String getR_image_path() {
 		return r_image_path;

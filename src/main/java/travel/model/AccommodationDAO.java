@@ -25,9 +25,6 @@ public class AccommodationDAO {
 			+ "WHERE (check_in>= ? AND check_in<= ? )\r\n" + " OR (CHECK_out >= ? AND check_out<= ? )\r\n";
 	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
-	
-	private static final String SQL_INSERT_ROOM = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
-			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
 
 	Connection conn;
 	PreparedStatement pst;
@@ -137,35 +134,6 @@ public class AccommodationDAO {
 			pst.setString(6, acco.getA_option());
 			pst.setString(7, acco.getPhone());
 			pst.setString(8, acco.getAccommodation_type());
-
-			result = pst.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbClose(rs, pst, conn);
-		}
-
-		return result;
-	}
-	//방 등록
-	public int InsertRoom(RoomDto room) {
-		int result = 0;
-		conn = DBUtil.getConnection();
-		try {
-			pst = conn.prepareStatement(SQL_INSERT_ROOM);
-			/* pst.setInt(1, acco.getAccommodation_id()); */
-			pst.setInt(1, room.getRoom_id());
-			pst.setInt(2, room.getMin_personnel());
-			pst.setInt(3, room.getMax_personnel());
-			pst.setInt(4, room.getMin_day());
-			pst.setInt(5, room.getMax_day());
-			pst.setInt(6, room.getPrice_by_day());
-			/*
-			 * pst.setString(7, room.getPhone()); pst.setString(8,
-			 * room.getAccommodation_type());
-			 */
 
 			result = pst.executeUpdate();
 

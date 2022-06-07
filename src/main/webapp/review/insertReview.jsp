@@ -38,14 +38,14 @@
 </style>
  <script type="text/javascript">
 	$(()=> {
-		$("input[name=reviewStar]").click(() => {
-			let vals = $("input[name=reviewStar]:checked").val();
+		$("input[name=cleaning_stars]").click(() => {
+			let vals = $("input[name=cleaning_stars]:checked").val();
 			$("#starscore").val(vals);
 			console.log(vals);
 		});
-		$("input[name=reviewStar2]").click(() => {
-			$(".starscore").html($("input[name=reviewStar2]:checked").val());
-			console.log($("input[name=reviewStar2]:checked").val());
+		$("input[name=location_stars]").click(() => {
+			$(".starscore").html($("input[name=location_stars]:checked").val());
+			console.log($("input[name=location_stars]:checked").val());
 		});
 	});
 </script>
@@ -59,28 +59,28 @@
 		내용 : <input type="text" name="content"> <br>
 		깔끔별점 : <input type="number" name="cleaning_stars">
 		<fieldset>
-			<input type="radio" name="reviewStar" value="5" id="rate1"><label
+			<input type="radio" name="cleaning_stars" value="5" id="rate1"><label
 				for="rate1">★</label>
-			<input type="radio" name="reviewStar" value="4" id="rate2"><label
+			<input type="radio" name="cleaning_stars" value="4" id="rate2"><label
 				for="rate2">★</label>
-			<input type="radio" name="reviewStar" value="3" id="rate3"><label
+			<input type="radio" name="cleaning_stars" value="3" id="rate3"><label
 				for="rate3">★</label>
-			<input type="radio" name="reviewStar" value="2" id="rate4"><label
+			<input type="radio" name="cleaning_stars" value="2" id="rate4"><label
 				for="rate4">★</label>
-			<input type="radio" name="reviewStar" value="1" id="rate5"><label
+			<input type="radio" name="cleaning_stars" value="1" id="rate5"><label
 				for="rate5">★</label>
 		</fieldset> <input id="starscore" type="number" disabled="disabled" value="0"> <br>
 		위치별점 : <input type="number" name="location_stars">
 		<fieldset>
-			<input type="radio" name="reviewStar2" value="5" id="rate6"><label
+			<input type="radio" name="location_stars" value="5" id="rate6"><label
 				for="rate6">★</label>
-			<input type="radio" name="reviewStar2" value="4" id="rate7"><label
+			<input type="radio" name="location_stars" value="4" id="rate7"><label
 				for="rate7">★</label>
-			<input type="radio" name="reviewStar2" value="3" id="rate8"><label
+			<input type="radio" name="location_stars" value="3" id="rate8"><label
 				for="rate8">★</label>
-			<input type="radio" name="reviewStar2" value="2" id="rate9"><label
+			<input type="radio" name="location_stars" value="2" id="rate9"><label
 				for="rate9">★</label>
-			<input type="radio" name="reviewStar2" value="1" id="rate10"><label
+			<input type="radio" name="location_stars" value="1" id="rate10"><label
 				for="rate10">★</label>
 		</fieldset>  <br>
 		안전? 별점 : <input type="number" name="satisfied_stars"> <br>

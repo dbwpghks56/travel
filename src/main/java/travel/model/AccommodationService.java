@@ -18,4 +18,8 @@ public class AccommodationService {
 	public List<AccommodationDto> selectByDate(Date check_in, Date check_out){
 		return accommoDAO.selectByDate(check_in, check_out);
 	}
+	
+	public int InsertAcco (AccommodationDto acco) {
+		return accommoDAO.InsertAcco(acco);
+	}
 }

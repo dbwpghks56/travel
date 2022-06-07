@@ -28,6 +28,7 @@ public class UploadFileHelper {
 				 
 				if (part.getName().equalsIgnoreCase("photos")) {
 					String fileName = getFileName(part);
+					System.out.println(fileName);
 					fileNames.add(fileName);
 					String applicationPath = multi.getServletContext().getRealPath("");
 					//File.separator�� /, \\

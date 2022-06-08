@@ -12,6 +12,16 @@ $(function(){
 	$("#rsvList").click(function(){
 		location.href="rsvlist.do"
 	});
+	
+	$("#delete").click(function(){
+		var cf = confirm("예약을 취소하시겠습니까?");
+		if(!cf){
+			return false;
+		}else{
+			return;
+		}
+	});
+
 }); 
 </script>
 </head>
@@ -19,8 +29,8 @@ $(function(){
 <h1>예약 내용 상세보기</h1>
 	<form action="rsvdetail.do" method="post">
 		예약번호 : ${rsv.rsv_no}<input type="hidden" name="rsv_no" value="${rsv.rsv_no}"> <br>
-		호텔이름 : <input type="hidden" name="accommodation_name" >  <br>
-		룸이름 :<input type="hidden" name="room_name" > <br> 
+		숙소이름 : <input type="hidden" name="accommodation_name">  <br>
+		룸이름 :  <input type="hidden" name="room_name"> <br> 
 		체크인 : ${rsv.check_in}<input type="hidden" name="check_in"> <br>
 		체크아웃 :${rsv.check_out} <input type="hidden" name="chech_out">  <br>
 		인원 : ${rsv.personnel}<input type="hidden" name="personnel" >  <br>
@@ -30,7 +40,7 @@ $(function(){
 	</form>
 	<form action="rsvdelete.do" method="post">
 		<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">
-		<input type="submit" value="삭제">
+		<input type="submit" value="예약취소" id="delete"> 
 	</form>
 
 

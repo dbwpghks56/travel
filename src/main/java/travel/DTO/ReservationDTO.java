@@ -4,8 +4,14 @@ import java.sql.Date;
 
 public class ReservationDTO {
 	
+	@Override
+	public String toString() {
+		return "ReservationDTO [rsv_no=" + rsv_no + ", user_id=" + user_id + ", room_id=" + room_id + ", check_in="
+				+ check_in + ", check_out=" + check_out + ", rsv_date=" + rsv_date + ", personnel=" + personnel
+				+ ", request=" + request + ", rsv_status=" + rsv_status + "]";
+	}
 	private int rsv_no;
-	private String usre_id;
+	private String user_id;
 	private int room_id;
 	private Date check_in;
 	private Date check_out;
@@ -15,11 +21,11 @@ public class ReservationDTO {
 	private String rsv_status;
 	
 	public ReservationDTO() {}
-	public ReservationDTO(int rsv_no, String usre_id, int room_id, Date check_in, Date check_out, Date rsv_date,
+	public ReservationDTO(int rsv_no, String user_id, int room_id, Date check_in, Date check_out, Date rsv_date,
 			int personnel, String request, String rsv_status) {
 		super();
 		this.rsv_no = rsv_no;
-		this.usre_id = usre_id;
+		this.user_id = user_id;
 		this.room_id = room_id;
 		this.check_in = check_in;
 		this.check_out = check_out;
@@ -35,11 +41,13 @@ public class ReservationDTO {
 	public void setRsv_no(int rsv_no) {
 		this.rsv_no = rsv_no;
 	}
-	public String getUsre_id() {
-		return usre_id;
+
+
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUsre_id(String usre_id) {
-		this.usre_id = usre_id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public int getRoom_id() {
 		return room_id;

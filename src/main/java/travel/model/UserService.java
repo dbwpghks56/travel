@@ -24,4 +24,8 @@ public class UserService {
 	public int updateUser(String user_id) {
 		return userdao.updateUser(user_id);
 	}
+	//아이디 중복체크
+	public int selectByID(String id) {
+		return userdao.selectByID(id);
+	}
 }

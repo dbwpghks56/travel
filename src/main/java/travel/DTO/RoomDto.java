@@ -9,6 +9,15 @@ public class RoomDto {
 	private int max_day;
 	private int price_by_day;
 	private String room_name;
+
+	@Override
+	public String toString() {
+		return "RoomDto [room_id=" + room_id + ", Accommodation_id=" + Accommodation_id + ", min_personnel="
+				+ min_personnel + ", max_personnel=" + max_personnel + ", min_day=" + min_day + ", max_day=" + max_day
+				+ ", price_by_day=" + price_by_day + ", romm_name=" + room_name + ", r_image_path=" + r_image_path
+				+ ", r_option=" + r_option + "]";
+	}
+
 	private String r_image_path;
 	private String r_option;
 	

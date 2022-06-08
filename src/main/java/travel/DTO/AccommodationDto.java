@@ -1,5 +1,8 @@
 package travel.DTO;
 
+import java.sql.Date;
+
+
 public class AccommodationDto {
 	
 	@Override
@@ -13,6 +16,7 @@ public class AccommodationDto {
 				+ "]";
 	}
 	
+
 	private int Accommodation_id;
 	private String user_id;
 	private String Accommodation_name;
@@ -154,6 +158,5 @@ public class AccommodationDto {
 	public void setAccommodation_type(String accommodation_type) {
 		Accommodation_type = accommodation_type;
 	}
-	
 	
 }

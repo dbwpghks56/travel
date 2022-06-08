@@ -45,6 +45,8 @@ public class FrontServlet extends HttpServlet {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {
 			command = new InsertAccoController();
+		} else if (uri.equals("/accommodation/insertRoom.do")) {
+			command = new InsertRoomController();
 		} else if(uri.equals("/reservation/reservation.do")) {
 			command = new RsvController();
 		} else if(uri.equals("/reservation/rsvlist.do")) {

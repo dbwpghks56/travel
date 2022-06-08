@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import oracle.security.crypto.core.PrivateKeyPKCS8;
 import travel.DTO.UserDTO;
 import travel.util.DBUtil;
-import travel.util.DateUtil;
 
 public class UserDAO {
 	private static final String SQL_SELECT_IMAGE = "select u_image_path from users where user_id = ?";
@@ -183,7 +182,27 @@ public class UserDAO {
 		
 		return user;
 	}
-
+	
+	//아이디 중복체크
+	
+	public int selectByID(String id) {
+		int result = 0;
+		conn = DBUtil.getConnection();
+	 try {
+			pst = conn.prepareStatement("select count(*)  from users where user_id = ?");
+			pst.setString(1, id); 
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return result;
+}
 }
 
 

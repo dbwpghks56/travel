@@ -35,4 +35,7 @@ public class UserService {
 	public String selectImg(String user_id) {
 		return userdao.selectImg(user_id);
 	}
+	public int selectByID(String id) {
+		return userdao.selectByID(id);
+	}
 }

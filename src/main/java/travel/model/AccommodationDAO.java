@@ -180,10 +180,9 @@ public class AccommodationDAO {
 		return result;
 	}
 
-	
 
-
-	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
+	@SuppressWarnings("unchecked")
+	public JSONArray makeJsonArray(List<AccommodationDto> list) {
 		JSONArray jArray = new JSONArray();
 		for (int j = 0; j < list.size(); j++) {
 			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json

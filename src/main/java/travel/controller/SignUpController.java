@@ -28,7 +28,7 @@ public class SignUpController implements Command {
 		
 		request.setAttribute("result", result);
 		
-		return "login.jsp";
+		return "confirmlogin.jsp";
 	}
 
 	private UserDTO makeUser(Map<String, Object> map) {

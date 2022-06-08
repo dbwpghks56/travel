@@ -6,19 +6,22 @@ import java.util.List;
 import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
 
+
+
 public class RoomService {
+	RoomDAO roomdao = new RoomDAO();
 	
-	RoomDAO roomDAO = new RoomDAO();
+
 	public List<InteAccoDTO> selectByName(int accoId, int person) {
-		return roomDAO.selectByName(accoId, person);
+		return roomdao.selectByName(accoId, person);
 	}
 	public List<InteAccoDTO> selectByDate(int accoId, Date check_in, Date check_out){
-		return roomDAO.selectByDate(accoId, check_in, check_out);
+		return roomdao.selectByDate(accoId, check_in, check_out);
 	}
 	
 	public int InsertRoom(RoomDto room) {
 		
-		return roomDAO.InsertRoom(room);
+		return roomdao.InsertRoom(room);
 	}
 }
 

@@ -10,6 +10,7 @@ import travel.util.DBUtil;
 import travel.util.DateUtil;
 
 public class UserDAO {
+	private static final String SQL_SELECT_NICK = "select nick_name from users where user_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -124,6 +125,21 @@ public class UserDAO {
 		}
 		
 		return result;
+	}
+	public String selectNick(String user_id) {
+		conn = DBUtil.getConnection();
+		String nick = null;
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_NICK);
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			rs.next();
+			nick = rs.getString("nick_name");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nick;
 	}
 	
 	private UserDTO makeUser(ResultSet rs2) throws SQLException {

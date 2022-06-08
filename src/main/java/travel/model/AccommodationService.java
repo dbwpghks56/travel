@@ -30,10 +30,11 @@ public class AccommodationService {
 		return accommoDAO.InsertAcco(acco);
 	}
 	
-	public JSONArray makeJsonArray(List<AccommodationDto> list) {
+	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
 		return accommoDAO.makeJsonArray(list);
 	}
 	public List<InteAccoDTO> selectByOption(String loc, int person){
 		return accommoDAO.selectByOption(loc, person);
 	}
+	
 }

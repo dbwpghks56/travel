@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import travel.DTO.InteAccoDTO;
 import travel.model.RoomService;
+import travel.model.UserService;
 import travel.util.DateUtil;
 
 public class SelectRoomController implements Command {
@@ -35,11 +36,17 @@ public class SelectRoomController implements Command {
 				}
 			}
 		}
+		UserService uService = new UserService();
+		String nickName = uService.selectNick(roomList.get(0).getUser_id());
+		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", roomList.get(0).getAddress());
 		request.setAttribute("user_id", roomList.get(0).getUser_id());
-		request.setAttribute("aImges", roomList.get(0).getA_image_path()[0]);
+		request.setAttribute("a_image_path", roomList.get(0).getA_image_path());
 		request.setAttribute("roomList", roomList);
+		request.setAttribute("nickName", nickName);
+		request.setAttribute("accoName", roomList.get(0).getAccommodation_name());
+		request.setAttribute("max", roomList);
 		
 		return "selectRoom.jsp";
 	}

@@ -21,8 +21,8 @@ public class UserService {
 		return userdao.confirmNickname(nickname);
 	}
 	
-	public int updateUser(String user_id) {
-		return userdao.updateUser(user_id);
+	public int updateUser(UserDTO user, String user_id) {
+		return userdao.updateUser(user, user_id);
 	}
 	
 	public String nickToId(String user_id) {

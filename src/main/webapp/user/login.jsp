@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
 	<h1> &emsp; ID 로그인</h1>
@@ -21,6 +20,7 @@
 		<input type = "submit" value = "로그인">     
 		<input type = "button" value = "회원가입"><a href="signUp.jsp">회원가입</a>
 		<input type = "reset" value = "취소">
+		2d503e5862c5829d5794c838da38c231
 
 	</form>
 	

@@ -41,10 +41,16 @@ public class FrontServlet extends HttpServlet {
 			command = new InsertReview();
 		} else if(uri.equals("/review/listReview.do")) {
 			command = new ListReview();
-		}else if(uri.equals("/accommodation/selectRoom.do")) {
+		} else if(uri.equals("/accommodation/selectRoom.do")) {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {
 			command = new InsertAccoController();
+		} else if(uri.equals("/accommodation/insertRoomInquiry.do")) {
+			command = new InsertRoomInquiryController();
+		} else if(uri.equals("/accommodation/listRoomInquiry.do")) {
+			command = new ListRoomInquiryController();
+		} else if(uri.equals("/accommodation/answerInquiry.do")) {
+			command = new AnswerInquiry();
 		}
 
 		page = command.execute(req);

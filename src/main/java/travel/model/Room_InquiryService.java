@@ -26,4 +26,7 @@ public class Room_InquiryService {
 	public List<Room_InquiryDto> selectHostRinquiry(String host_id) {
 		return rinquirydao.selectHostRinquiry(host_id);
 	}
+	public int insertAnswerInquiry(int inquiry_id, String answer) {
+		return rinquirydao.insertAnswerInquiry(inquiry_id, answer);
+	}
 }

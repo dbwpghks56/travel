@@ -122,6 +122,11 @@ public class RoomDAO {
 			room.setY(rs2.getFloat("y"));
 			String[] aImges= rs2.getString("a_image_path").split(",");
 			room.setA_image_path(aImges);
+			room.setAccommodation_type(rs2.getString("accommodation_type"));
+			room.setPhone(rs2.getString("phone"));
+			String[] aOptions = rs2.getString("a_option").split(",");
+			room.setA_option(aOptions);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -39,7 +39,6 @@ body{
 
 </head>
 <body>
-<<<<<<< HEAD
 	
 	<div id="map" ></div>
 	
@@ -126,7 +125,7 @@ body{
 
 			var icon = new kakao.maps.MarkerImage(
 					'../images/icons/makerIcon.png',
-					new kakao.maps.Size(31, 35),
+					new kakao.maps.Size(70, 35),
 					{
 						offset : new kakao.maps.Point(16, 34),
 						alt : "마커 이미지",

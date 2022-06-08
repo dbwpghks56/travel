@@ -13,7 +13,7 @@ public class ReservationService {
 		return rDAO.resevation(rsv);
 	}
 	
-	//
+	
 	public int rsvUpdate(ReservationDTO rsv) {
 		return rDAO.rsvUpdate(rsv);
 	}
@@ -32,5 +32,9 @@ public class ReservationService {
 
 	public ReservationDTO selectByRsvNo(int rsv_no) {
 		return rDAO.selectByRsvNo(rsv_no);
+	}
+	
+	public int insertAfterRsv() {
+		return rDAO.insertAfterRsv();
 	}
 }

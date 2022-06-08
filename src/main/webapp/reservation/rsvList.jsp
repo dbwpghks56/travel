@@ -19,6 +19,7 @@ padding: 10px;
 </head>
 <body>
 <h1>예약목록</h1>
+<a href="reservation.do">예약하기</a>
 	<table>
 		<tr>
 			<td>예약번호</td>
@@ -36,7 +37,7 @@ padding: 10px;
 		<tr>
 		<td><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">${rsv.rsv_no}</a></td>
 		<td>숙소이름</td>
-		<td>${rsv.room_id}</td>
+		<td>룸이름</td>
 		<td>${rsv.check_in} / ${rsv.check_out}</td>
 		<td>${rsv.rsv_date}</td>
 		<td>${rsv.rsv_status}</td>

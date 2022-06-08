@@ -19,11 +19,18 @@ function count(type)  {
 	  }
 	  resultElement.value = num;
 	}
+	
+function nullCheck(){
+
+}
+	
+
+
 </script>
 </head>
 <body>
 	<h1>예약하기</h1>
-	<form action="reservation.do" method="post">
+	<form name="frm" action="reservation.do" method="post" onsubmit="nullCheck()">
 	
 		<label>숙소이름</label>
 		<%-- ${ }  --%>
@@ -35,13 +42,14 @@ function count(type)  {
 		<input type="text" name="user_id" value="${user.user_id }" disabled="disabled" >
 		<input type="text" name="room_id" value="26"><br>
 		
-		<label>체크인</label> <input type="date" name="check_in" ><br> 
+		<label>체크인</label> <input type="date" name="check_in" id="check_in" ><br> 
 		
-		<label>체크아웃</label> <input type="date" name="check_out" ><br>
+		<label>체크아웃</label> <input type="date" name="check_out" id="check_out" ><br>
 		
 		<label>인원</label> 
 		<input type='button' onclick='count("minus")' value='-' /> 
-		<input type="number" name="personnel" min="0" id="result" value="0"> 
+		<input type="number" name="personnel" min="0" id="result" value="0" > 
+		<!-- max="${room.max_personnel}" 넣으면 되지 않을까...? -->
 		<input type='button' onclick='count("plus")' value='+' /><br>  
 		
 		<!-- <input type="number" name="personnel" min="0"> <br> -->

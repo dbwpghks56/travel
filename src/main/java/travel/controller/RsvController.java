@@ -25,7 +25,10 @@ public class RsvController implements Command {
 			int result = rService.resevation(rsv);
 			reQuest.setAttribute("message", result>0?"성공":"실패");
 			
-			page="result.jsp";
+			int rsv_no = rService.insertAfterRsv();
+			reQuest.setAttribute("rsv_no",rsv_no);
+			
+			page="rsvResult.jsp";
 		}
 		return page;
 	}

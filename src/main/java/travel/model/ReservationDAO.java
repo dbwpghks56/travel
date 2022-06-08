@@ -74,6 +74,7 @@ public class ReservationDAO {
 			//delete from reservation where rsv_no = ?;
 			pst = conn.prepareStatement("delete from reservation where rsv_no = ?");
 			pst.setInt(1, rsv_no);
+			result = pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,7 +87,7 @@ public class ReservationDAO {
 	
 	
 	
-	//예약 전체 조회하기(최근 예약순으로) //select문 수정 해야함
+	//예약 전체 조회하기(최근 예약순으로) 
 	public List<ReservationDTO> rsvAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -134,6 +135,28 @@ public class ReservationDAO {
 		
 		return rsv;
 	}
+	
+	public int insertAfterRsv() {
+		
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("select max(rsv_no) from reservation");
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return result;
+	}
 
 	private ReservationDTO makeRsv(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();
@@ -148,4 +171,5 @@ public class ReservationDAO {
 		rsv.setRsv_status(rs.getString("Rsv_status"));
 		return rsv;
 	}
+
 }

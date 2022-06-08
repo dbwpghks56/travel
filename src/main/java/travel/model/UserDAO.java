@@ -45,6 +45,27 @@ public class UserDAO {
 		return result;
 	}
 	
+	public String nickToId(String user_id) {
+		conn = DBUtil.getConnection();
+		String nickname = "";
+		
+		try {
+			pst = conn.prepareStatement("select nickname from users where user_id = ?");
+			
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				nickname = rs.getString("nickname");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return nickname;
+	}
+	
 	public UserDTO loginUser(String user_id, String user_pass) {
 		conn = DBUtil.getConnection();
 		UserDTO user = new UserDTO();

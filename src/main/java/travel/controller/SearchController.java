@@ -41,7 +41,7 @@ public class SearchController implements Command {
 				}
 			}
 		}
-		JSONArray jArray = service.makeJsonArray(accommoList);
+//		JSONArray jArray = service.makeJsonArray(accommoList);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("check_in", check_in);
@@ -51,7 +51,7 @@ public class SearchController implements Command {
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("initCenterX", accommoList.get(0).getX());
 		request.setAttribute("initCenterY", accommoList.get(0).getY());
-		request.setAttribute("jArray", jArray);
+//		request.setAttribute("jArray", jArray);
 		return "resultSelectAcco.jsp";
 	}
 

@@ -26,9 +26,11 @@ public class AccommodationDAO {
 			+ "ACCOMMODATION join room using(accommodation_id)\r\n"
 			+ "where (ADDRESS  like '%'||?||'%')\r\n"
 			+ "and (max_personnel >= ? and min_personnel <= ?)";
-	private static final String SQL_SELECT_DATE = "SELECT Accommodation_id \r\n"
-			+ "FROM  ACCOMMODATION JOIN ROOM using(accommodation_id)\r\n" + "	JOIN RESERVATION using(room_id)\r\n"
-			+ "WHERE (check_in>= ? AND check_in<= ? )\r\n" + " OR (CHECK_out >= ? AND check_out<= ? )\r\n";
+	private static final String SQL_SELECT_DATE = "SELECT room_id \r\n"
+			+ "FROM  ACCOMMODATION JOIN ROOM using(accommodation_id)\r\n" 
+			+ "	JOIN RESERVATION using(room_id)\r\n"
+			+ "WHERE (check_in>= ? AND check_in<= ? )\r\n" 
+			+ " OR (CHECK_out >= ? AND check_out<= ? )\r\n";
 	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
 	
@@ -209,8 +211,7 @@ public class AccommodationDAO {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
-	public JSONArray makeJsonArray(List<AccommodationDto> list) {
+	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
 		JSONArray jArray = new JSONArray();
 		for (int j = 0; j < list.size(); j++) {
 			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json
@@ -219,7 +220,6 @@ public class AccommodationDAO {
 			sObject.put("accommodation_name", list.get(j).getAccommodation_name());
 			sObject.put("new_address", list.get(j).getNew_address());
 			sObject.put("address", list.get(j).getAddress());
-			sObject.put("a_option", list.get(j).getA_option());
 			sObject.put("cleaning_stars", list.get(j).getCleaning_star());
 			sObject.put("location_stars", list.get(j).getLocation_star());
 			sObject.put("satisfied_stars", list.get(j).getSatisfied_star());

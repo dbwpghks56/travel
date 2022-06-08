@@ -1,5 +1,7 @@
 package travel.DTO;
 
+import java.sql.Date;
+
 public class Room_InquiryDto {
 	private int r_inquiry_id;
 	private int accommodation_id;
@@ -10,7 +12,14 @@ public class Room_InquiryDto {
 	private String answer;
 	private String host_id;
 	private int answer_confirm;
+	private Date ri_regdate;
 	
+	public Date getRi_regdate() {
+		return ri_regdate;
+	}
+	public void setRi_regdate(Date ri_regdate) {
+		this.ri_regdate = ri_regdate;
+	}
 	public int getR_inquiry_id() {
 		return r_inquiry_id;
 	}

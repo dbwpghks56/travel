@@ -37,6 +37,10 @@ public class FrontServlet extends HttpServlet {
 			command = new LoginUserController();
 		} else if (uri.equals("/user/signup.do")) {
 			command = new SignUpController();
+		} else if(uri.equals("/review/insertReview.do")) {
+			command = new InsertReview();
+		} else if(uri.equals("/review/listReview.do")) {
+			command = new ListReview();
 		}else if(uri.equals("/accommodation/selectRoom.do")) {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {

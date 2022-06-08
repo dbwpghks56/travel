@@ -1,9 +1,8 @@
 package travel.model;
 
-import java.sql.SQLException;
+
 
 import travel.DTO.UserDTO;
-import travel.util.DBUtil;
 
 public class UserService {
 	UserDAO userdao = new UserDAO();
@@ -29,5 +28,8 @@ public class UserService {
 	}
 	public String selectNick(String user_id) {
 		return userdao.selectNick(user_id);
+	}
+	public String nickToId(String user_id) {
+		return userdao.nickToId(user_id);
 	}
 }

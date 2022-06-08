@@ -45,6 +45,7 @@ public class FrontServlet extends HttpServlet {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {
 			command = new InsertAccoController();
+<<<<<<< HEAD
 		} else if(uri.equals("/reservation/reservation.do")) {
 			command = new RsvController();
 		} else if(uri.equals("/reservation/rsvlist.do")) {
@@ -53,7 +54,12 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvDetailController();
 		} else if(uri.equals("/reservation/rsvdelete.do")) {
 			command = new RsvDeleteController();
+=======
+		} else if (uri.equals("/accommodation/insertRoom.do")) {
+			command = new InsertRoomController();
+>>>>>>> refs/remotes/origin/Min
 		}
+				
 
 		page = command.execute(req);
 

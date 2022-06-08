@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import travel.DTO.InteAccoDTO;
+import travel.DTO.RoomDto;
 
 public class RoomService {
 	
@@ -14,4 +15,10 @@ public class RoomService {
 	public List<InteAccoDTO> selectByDate(int accoId, Date check_in, Date check_out){
 		return roomDAO.selectByDate(accoId, check_in, check_out);
 	}
+	
+	public int InsertRoom(RoomDto room) {
+		
+		return roomDAO.InsertRoom(room);
+	}
 }
+

@@ -1,6 +1,7 @@
 package travel.model;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import travel.DTO.InteAccoDTO;
+import travel.DTO.RoomDto;
 import travel.util.DBUtil;
 
 public class RoomDAO {
@@ -18,6 +20,7 @@ public class RoomDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet rs;
+	private static final String SQL_INSERT_ROOM = "INSERT INTO Room VALUES (seq_room.nextval,? , ? , ? , ? , ? , ? , ? , ? , ?)";
 	private static final String SQL_SELECT_BY_NAME = "select * from room\r\n"
 			+ "join accommodation using(accommodation_id)\r\n" + "where accommodation_id = ?\r\n"
 			+ "and (min_personnel<=? and max_personnel>= ?)\r\n";
@@ -70,6 +73,33 @@ public class RoomDAO {
 		}
 		return accoList;
 	}
+	
+	public int InsertRoom(RoomDto room) {
+		int result = 0;
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_INSERT_ROOM);
+			pst.setInt(1, room.getAccommodation_id());
+			pst.setInt(2, room.getMin_personnel());
+			pst.setInt(3, room.getMax_personnel());
+			pst.setInt(4, room.getMin_day());
+			pst.setInt(5, room.getMax_day());
+			pst.setInt(6, room.getPrice_by_day());
+			pst.setString(7, room.getRoom_name());
+			pst.setString(8, room.getR_image_path());
+			pst.setString(9, room.getR_option());
+
+			result = pst.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
+	}
 	private InteAccoDTO makeRoom(ResultSet rs2) {
 		InteAccoDTO room = new InteAccoDTO();
 		try {
@@ -99,3 +129,5 @@ public class RoomDAO {
 		return room;
 	}
 }
+
+

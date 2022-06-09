@@ -1,6 +1,7 @@
 package travel.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -65,13 +66,25 @@ public class FrontServlet extends HttpServlet {
 			command = new InsertRoomController();
 		} else if(uri.equals("/accommodation/updateReport.do")) {
 			command = new updateReportController();
+		} else if(uri.equals("/user/UserCheck.do")) {
+			command = new UserCheckController();
 		}
 				
-
+		
 		page = command.execute(req);
-
-		RequestDispatcher rd = req.getRequestDispatcher(page);
-		rd.forward(req, resp);
+		
+		// "rest:10", "rest:0"
+		if(page.contains("rest:")) {
+			String[] mulstr = page.split(":"); // "rest", "10", "0"
+			int result = Integer.parseInt(mulstr[1]); // 10, 0
+			PrintWriter out = resp.getWriter(); 
+			out.print(result == 0 ? 0 : 1);
+		}
+		
+		else {
+			RequestDispatcher rd = req.getRequestDispatcher(page);
+			rd.forward(req, resp);
+		}
 
 	}
 }

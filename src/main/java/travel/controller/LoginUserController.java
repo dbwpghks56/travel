@@ -9,7 +9,7 @@ import travel.model.UserService;
 public class LoginUserController implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request) { //테스트
 		UserService service = new UserService();
 		
 		String user_id = request.getParameter("id");

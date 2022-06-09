@@ -208,12 +208,12 @@ public class AccommodationDAO {
 
 		return result;
 	}
-
+//
 	@SuppressWarnings("unchecked")
-	public JSONArray makeJsonArray(List<AccommodationDto> list) {
+	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
 		JSONArray jArray = new JSONArray();
 		for (int j = 0; j < list.size(); j++) {
-			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json
+			JSONObject sObject = new JSONObject();// �뜝�띁�뿴 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕雍됵옙 json
 			sObject.put("accommodation_id", list.get(j).getAccommodation_id());
 			sObject.put("user_id", list.get(j).getUser_id());
 			sObject.put("accommodation_name", list.get(j).getAccommodation_name());

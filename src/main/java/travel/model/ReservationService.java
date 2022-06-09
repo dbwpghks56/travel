@@ -37,4 +37,8 @@ public class ReservationService {
 	public int insertAfterRsv() {
 		return rDAO.insertAfterRsv();
 	}
+	
+	public List<ReservationDTO> hostRsvAll(String user_id) {
+		return rDAO.hostRsvAll(user_id);
+	}
 }

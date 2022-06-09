@@ -31,7 +31,7 @@ public class FrontServlet extends HttpServlet {
 
 		Command command = null;
 
-		if (uri.equals("/jsp/search.do")) {
+		if (uri.equals("/accommodation/search.do")) {
 			command = new SearchController();
 		} else if (uri.equals("/user/login.do")) {
 			command = new LoginUserController();
@@ -51,7 +51,22 @@ public class FrontServlet extends HttpServlet {
 			command = new ListRoomInquiryController();
 		} else if(uri.equals("/accommodation/answerInquiry.do")) {
 			command = new AnswerInquiry();
+		} else if (uri.equals("/accommodation/insertRoom.do")) {
+			command = new InsertRoomController();
+		} else if(uri.equals("/reservation/reservation.do")) {
+			command = new RsvController();
+		} else if(uri.equals("/reservation/rsvlist.do")) {
+			command = new RsvListController();
+		} else if(uri.equals("/reservation/rsvdetail.do")) {
+			command = new RsvDetailController();
+		} else if(uri.equals("/reservation/rsvdelete.do")) {
+			command = new RsvDeleteController();
+		} else if (uri.equals("/accommodation/insertRoom.do")) {
+			command = new InsertRoomController();
+		} else if(uri.equals("/accommodation/updateReport.do")) {
+			command = new updateReportController();
 		}
+				
 
 		page = command.execute(req);
 

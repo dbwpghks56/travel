@@ -27,7 +27,9 @@ public class InsertAccoController implements Command {
 		System.out.println(user);
 		int result = service.InsertAcco(insertAcco2(map,user.getUser_id()));
 
-		request.setAttribute("result", result);
+		//request.setAttribute("result", result);
+		String message = "등록실패"; if(result>0) message = "등록완료";
+		request.setAttribute("message", message);
 
 
 

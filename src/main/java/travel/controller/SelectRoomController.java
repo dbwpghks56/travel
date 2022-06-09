@@ -1,15 +1,17 @@
 package travel.controller;
 
+import java.lang.StackWalker.Option;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import travel.DTO.InteAccoDTO;
+import travel.DTO.ReviewDto;
+import travel.model.ReviewService;
 import travel.model.RoomService;
+import travel.model.UserService;
 import travel.util.DateUtil;
 
 public class SelectRoomController implements Command {
@@ -35,11 +37,46 @@ public class SelectRoomController implements Command {
 				}
 			}
 		}
+		UserService uService = new UserService();
+		String nickName = uService.nickToId(roomList.get(0).getUser_id());
+		String phone = roomList.get(0).getPhone();
+		
+		String option = "";
+		for(int i = 0; i<roomList.get(0).getA_option().length; i++) {
+			if(i == 0) {
+				option += roomList.get(0).getA_option()[i];
+			}else {
+				option += ", "+roomList.get(0).getA_option()[i];
+			}
+		}
+		ReviewService rService = new ReviewService();
+		List<ReviewDto> rList = rService.selectByAcco(accoId);
+		
+		String[][] userArr = new String[rList.size()][3];
+		
+		for(int i = 0; i<rList.size();i++) {
+			userArr[i][0] = rList.get(i).getUser_id();
+			userArr[i][1] = uService.selectImg(userArr[i][0]);
+			userArr[i][2] = uService.nickToId(userArr[i][0]);
+		}
+		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", roomList.get(0).getAddress());
 		request.setAttribute("user_id", roomList.get(0).getUser_id());
-		request.setAttribute("aImges", roomList.get(0).getA_image_path()[0]);
+		request.setAttribute("a_image_path", roomList.get(0).getA_image_path());
 		request.setAttribute("roomList", roomList);
+		request.setAttribute("nickName", nickName);
+		request.setAttribute("accoName", roomList.get(0).getAccommodation_name());
+		request.setAttribute("max", roomList);
+		request.setAttribute("accoType", roomList.get(0).getAccommodation_type());
+		request.setAttribute("x", roomList.get(0).getX());
+		request.setAttribute("y", roomList.get(0).getY());
+		request.setAttribute("phone", phone);
+		request.setAttribute("option", option);
+		request.setAttribute("price", roomList.get(0).getPrice_by_day());
+		request.setAttribute("rList", rList);
+		request.setAttribute("userArr", userArr);
+		
 		
 		return "selectRoom.jsp";
 	}

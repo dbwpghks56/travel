@@ -11,6 +11,8 @@ import travel.DTO.ReviewDto;
 import travel.util.DBUtil;
 
 public class ReviewDAO {
+	private static final String SQL_SELECT_BY_ACCOID = "select * from review where accommodation_id = ?";
+	private static final String SQL_UPDATE_REPORT = "update review set report = report+1 where review_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -114,6 +116,45 @@ public class ReviewDAO {
 		
 		return reviews;
 	}
+	public List<ReviewDto> selectByAcco(int accoId){
+		conn = DBUtil.getConnection();
+		List<ReviewDto> reviews = new ArrayList<>();
+		
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_BY_ACCOID);
+			pst.setInt(1, accoId);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				ReviewDto review = makeReview(rs);
+				reviews.add(review);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return reviews;
+	}
+	public int updateReport(int review_id) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		
+		try {
+			pst = conn.prepareStatement(SQL_UPDATE_REPORT);
+			pst.setInt(1, review_id);
+			ret = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(null, pst, conn);
+		}
+		
+		return ret;
+	}
 
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {
 		ReviewDto review = new ReviewDto();
@@ -128,8 +169,6 @@ public class ReviewDAO {
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
-		review.setHost_id(rs2.getString("host_id"));
-		
 		return review;
 	}
 }

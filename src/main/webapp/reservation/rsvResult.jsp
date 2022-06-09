@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="refresh" content="3; url=rsvdetail.do?rsv_no=${rsv_no }">
 <title>Insert title here</title>
 </head>
 <body>
-	${message}
+${message}
 </body>
 </html>

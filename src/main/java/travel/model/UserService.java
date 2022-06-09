@@ -1,5 +1,9 @@
 package travel.model;
 
+
+
+
+
 import travel.DTO.UserDTO;
 
 public class UserService {
@@ -27,5 +31,11 @@ public class UserService {
 	
 	public String nickToId(String user_id) {
 		return userdao.nickToId(user_id);
+	}
+	public String selectImg(String user_id) {
+		return userdao.selectImg(user_id);
+	}
+	public int selectByID(String id) {
+		return userdao.selectByID(id);
 	}
 }

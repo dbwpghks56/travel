@@ -19,7 +19,7 @@ const authorizationCode = url.searchParams.get("code");
 
 const handleGetAccessToken = async (authorizationCode) => {
    await axios.post(
-      "http://localhost:80/sign/google", // 구글 소셜 로그인 엔드포인트
+      "http://localhost:9090/sign/google", // 구글 소셜 로그인 엔드포인트
       {
         authorizationCode: authorizationCode,
       },

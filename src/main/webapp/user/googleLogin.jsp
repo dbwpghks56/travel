@@ -60,16 +60,36 @@ function onSignInFailure(t){
 </body>
 </html> -->
 
-<html>
+<html lang ="en">
 <head>
 	<meta name="google-signin-scope" content="profile email">
   	<meta name="google-signin-client_id" content="572568991072-5fvodmqdgno1dh4mj6ebh2cuf6nqii94.apps.googleusercontent.com">
 	<script src = "http://apis.google.com/js/platform.js" async defer></script>
-</head>
-<body>
-	<div class = "g-signin2" data-onsuccess= "onSignIn" data-theme = "dark"></div>
-	<script>
-	  
+<script>
+/* 	function init(){
+		console.log('init');
+		gapi.load('auth2',function({
+			console.log('auth2');
+			var gauth = gapi.auth2.init({
+			client_id : '572568991072-5fvodmqdgno1dh4mj6ebh2cuf6nqii94.apps.googleusercontent.com'
+			})
+			gauth.then(function() {
+				console.log('gooleAuth success');
+				if(gauth.isSignedIn.get()){
+					console.log('logined');
+				}else{
+					console.log('logouted');
+				}
+			}, function () {
+				console.log('gooleAuth fail');
+			
+			});
+		});
+		
+	}
+ */
+</script>
+<script>
     function onSignIn(googleUser) {
     	var profile = googleUser.getBasicProfile();
     	console.log("ID : " +profile.getId());
@@ -83,6 +103,24 @@ function onSignInFailure(t){
     	console.log("ID : " + id_token);
     }
     </script>
+    
+   
+   
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+</head>
+<body>
+	<a href="#" onclick="signOut();">Sign out</a>
+	<!-- <input type = "button" id = "loginBtn" value="checking.."> -->
+	<div class = "g-signin2" data-onsuccess= "onSignIn" data-theme = "dark"></div>
+	<button type = "button" onclick="signOut();">SignOut</button>
+	
     <!-- 	$.ajax({
         	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
     		url: 'https://people.googleapis.com/v1/people/me'
@@ -138,5 +176,6 @@ function init() {
 
 <div class = "g-signin2" data-onsucceess= "onSugnln"></div>
   <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script> -->
+  
 </body>
 </html>

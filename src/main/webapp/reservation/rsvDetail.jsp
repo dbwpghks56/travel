@@ -33,6 +33,9 @@ $(function(){
 		룸이름 :  <input type="hidden" name="room_name"> <br> 
 		체크인 : ${rsv.check_in}<input type="hidden" name="check_in"> <br>
 		체크아웃 :${rsv.check_out} <input type="hidden" name="chech_out">  <br>
+		예약날짜 : ${rsv.rsv_date}<br>
+		예약상태 : ${rsv.rsv_status}<br>
+		금액 : ${rsv.totalprice} <br>
 		인원 : ${rsv.personnel}<input type="hidden" name="personnel" >  <br>
 		요청사항 : <input type="text" name="request" value="${rsv.request}" >  <br>
 		<input class="btn" type="button" value="목록" id="rsvList"> <br>

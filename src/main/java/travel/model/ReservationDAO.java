@@ -118,6 +118,9 @@ public class ReservationDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
+			pst = conn.prepareStatement("SELECT r.*, r2.ROOM_NAME, ((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE \r\n"
+					+ "FROM RESERVATION r, ROOM r2 , ACCOMMODATION a \r\n"
+					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID) AND r.RSV_NO = ?");
 			pst = conn.prepareStatement("select * from reservation where rsv_no=?");
 			pst.setInt(1, rsv_no);
 			rs = pst.executeQuery();
@@ -157,6 +160,96 @@ public class ReservationDAO {
 		
 		return result;
 	}
+	
+	public List<ReservationDTO> hostRsvAll(String user_id) {
+		List<ReservationDTO> hostRsvList = new ArrayList<>();
+		
+		conn = DBUtil.getConnection();
+
+		// select * from reservation order by desc
+		try {
+			pst = conn.prepareStatement(
+					"SELECT  r.RSV_NO, r.PERSONNEL, r.CHECK_IN, r.CHECK_OUT, u.USER_PHONE \r\n"
+					+ "FROM RESERVATION r , ROOM r2 , ACCOMMODATION a, USERS u \r\n"
+					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = u.USER_ID) AND a.USER_ID = ?\r\n"
+					+ "ORDER BY r.RSV_DATE DESC ");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+
+			while (rs.next()) {
+				hostRsvList.add(makeRsv3(rs));
+			}
+		} catch (
+
+		SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return hostRsvList;
+
+	}
+	
+	public ReservationDTO selectByHostRsvNo(int rsv_no) {
+		ReservationDTO rsv = null;
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("SELECT  r.RSV_NO, u.USER_NAME ,u.USER_PHONE, a.ACCOMMODATION_NAME, r2.ROOM_NAME,r.PERSONNEL, r.CHECK_IN, r.CHECK_OUT, r.RSV_DATE, r.rsv_status , r.REQUEST \r\n"
+					+ "FROM RESERVATION r , ROOM r2 , ACCOMMODATION a, USERS u \r\n"
+					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = u.USER_ID) AND r.RSV_NO  = ?");
+			pst.setInt(1, rsv_no);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv = makeRsv4(rs);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsv;
+	}
+	
+	public ReservationDTO selectByRoomId(int room_id) {
+		ReservationDTO rsv = new ReservationDTO();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement(""
+					+ "SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r2.CHECK_IN ,r2.CHECK_OUT,r.MIN_DAY ,r.MAX_DAY  \r\n"
+					+ "FROM ROOM r , ACCOMMODATION a, RESERVATION r2 \r\n"
+					+ "WHERE (r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = r2.ROOM_ID  )AND r.ROOM_ID = ?");
+			pst.setInt(1, room_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv.setRoom_name(rs.getString("Room_name"));
+				rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+				rsv.setMin_personnel(rs.getInt("Min_personnel"));
+				rsv.setMax_personnel(rs.getInt("Max_personnel"));
+				rsv.setPrice_by_day(rs.getInt("Price_by_day"));
+				rsv.setCheck_in(rs.getDate("Check_in"));
+				rsv.setCheck_out(rs.getDate("Check_out"));
+				rsv.setMin_day(rs.getInt("Min_day"));
+				rsv.setMax_day(rs.getInt("Max_day"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsv;
+	}
 
 	private ReservationDTO makeRsv(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();
@@ -171,5 +264,56 @@ public class ReservationDAO {
 		rsv.setRsv_status(rs.getString("Rsv_status"));
 		return rsv;
 	}
+	
+	private ReservationDTO makeRsv2(ResultSet rs) throws SQLException {
+		ReservationDTO rsv = new ReservationDTO();
+		rsv.setRsv_no(rs.getInt("Rsv_no"));
+		rsv.setUser_id(rs.getString("User_id"));
+		rsv.setRoom_id(rs.getInt("Room_id"));
+		rsv.setCheck_in(rs.getDate("Check_in"));
+		rsv.setCheck_out(rs.getDate("Check_out"));
+		rsv.setRsv_date(rs.getDate("Rsv_date"));
+		rsv.setPersonnel(rs.getInt("Personnel"));
+		rsv.setRequest(rs.getString("Request"));
+		rsv.setRsv_status(rs.getString("Rsv_status"));
+		
+		rsv.setTotalprice(rs.getInt("Totalprice"));
+		rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+		rsv.setPhone(rs.getString("Phone"));
+		rsv.setRoom_name(rs.getString("Room_name"));
+
+		System.out.println(rsv);
+		return rsv;
+	}
+	
+	private ReservationDTO makeRsv3(ResultSet rs) throws SQLException {
+		ReservationDTO rsv = new ReservationDTO();
+		rsv.setRsv_no(rs.getInt("Rsv_no"));
+		rsv.setCheck_in(rs.getDate("Check_in"));
+		rsv.setCheck_out(rs.getDate("Check_out"));		
+		rsv.setPersonnel(rs.getInt("Personnel"));
+		rsv.setUser_phone(rs.getString("User_phone"));
+		System.out.println(rsv);
+		return rsv;
+	}
+	
+	private ReservationDTO makeRsv4(ResultSet rs) throws SQLException {
+		ReservationDTO rsv = new ReservationDTO();
+		rsv.setRsv_no(rs.getInt("Rsv_no"));
+		rsv.setUser_name(rs.getString("User_name"));
+		rsv.setUser_phone(rs.getString("User_phone"));
+		rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+		rsv.setRoom_name(rs.getString("Room_name"));
+		rsv.setPersonnel(rs.getInt("Personnel"));
+		rsv.setCheck_in(rs.getDate("Check_in"));
+		rsv.setCheck_out(rs.getDate("Check_out"));
+		rsv.setRsv_date(rs.getDate("Rsv_date"));
+		rsv.setRsv_status(rs.getString("Rsv_status"));
+		rsv.setRequest(rs.getString("Request"));
+		
+		System.out.println(rsv);
+		return rsv;
+	}
+
 
 }

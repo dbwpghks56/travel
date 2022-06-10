@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>나 제환스</h1>
-=======
-<h3>제발 충돌나지 마라</h3>
->>>>>>> branch 'master' of https://github.com/dbwpghks56/travel.git
+
 </body>
 </html>

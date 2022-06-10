@@ -40,6 +40,8 @@ public class SelectRoomController implements Command {
 		UserService uService = new UserService();
 		String nick_name = uService.nickToId(accommo.getUser_id());
 		
+		int star = (accommo.getCleaning_star()+accommo.getLocation_star()+accommo.getSatisfied_star())/3;
+		
 		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", accommo.getAddress());
@@ -56,6 +58,7 @@ public class SelectRoomController implements Command {
 		request.setAttribute("option", accommo.getA_option());
 		request.setAttribute("price", roomList.get(0).getPrice_by_day());
 		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("star", star);
 		
 		
 		return "selectRoom.jsp";

@@ -17,18 +17,34 @@ public class RsvController implements Command {
 		String method = reQuest.getMethod();
 		String page = null;
 		if(method.equals("GET")) {
+			String roomId = reQuest.getParameter("room_id");
+			int i_roomId = 0;
+			if(roomId !=null) {
+				i_roomId = Integer.parseInt(roomId);
+			}
+			ReservationService rService = new ReservationService();
+			ReservationDTO rsv = rService.selectByRoomId(i_roomId);
+			System.out.println(rsv);
+			reQuest.setAttribute("rsv", rsv);
+			
 			page = "reservation.jsp";
 		} else {
 			
 			ReservationDTO rsv = makeRsv(reQuest);
 			ReservationService rService = new ReservationService();
+			
 			int result = rService.resevation(rsv);
-			reQuest.setAttribute("message", result>0?"성공":"실패");
-			
 			int rsv_no = rService.insertAfterRsv();
-			reQuest.setAttribute("rsv_no",rsv_no);
-			
-			page="rsvResult.jsp";
+			if(result>0) {
+				reQuest.setAttribute("message", "성공");
+				reQuest.setAttribute("rsv_no",rsv_no);
+				
+				page="rsvResult.jsp";
+			} else {
+				reQuest.setAttribute("message", "실패");
+				page="result.jsp";
+			}
+		
 		}
 		return page;
 	}
@@ -72,3 +88,4 @@ public class RsvController implements Command {
 
 
 }
+

@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -34,7 +35,15 @@ body{
 	width: 45%;
 	height: 45%;
 }
-
+#demo a{
+	display: inline-block;
+}
+.score{
+	display: inline-block;
+	width:20%;
+	float: right;
+	margin-left: 0;
+}
 </style>
 
 </head>
@@ -42,30 +51,25 @@ body{
 	
 	<div id="map" ></div>
 	
-	
+	<c:set var = "accommoList" value = "${accommoList }"/>
+	<c:set var = "stars" value = "${stars }"/>
 	<div id = "leftSide">
-	<c:forEach items = "${accommoList }" var = "acco">
+		<c:forEach items = "${aImgs }" var = "aImg" varStatus = "status">
 			<!-- Carousel -->
-	<div id="demo" class="carousel slide" data-bs-ride="carousel">
+		<div id="demo" class="carousel slide" data-bs-ride="carousel" >
 
-		<!-- Indicators/dots -->
-		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-
-		</div>
+	
 
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../accoImages/${acco.a_image_path[0]}" alt="숙소사진1" class="d-block w-100">
+				<img src="../accoImages/${aImg[0]}" alt="숙소사진1" class="d-block w-100">
 			</div>
 			<div class="carousel-item">
-				<img src="../accoImages/${acco.a_image_path[1]}" alt="숙소사진2" class="d-block w-100">
+				<img src="../accoImages/${aImg[1]}" alt="숙소사진2" class="d-block w-100">
 			</div>
 			<div class="carousel-item">
-				<img src="../accoImages/${acco.a_image_path[2]}" alt="숙소사진3" class="d-block w-100">
+				<img src="../accoImages/${aImg[2]}" alt="숙소사진3" class="d-block w-100">
 			</div>
 		</div>
 		
@@ -78,10 +82,9 @@ body{
 			data-bs-target="#demo" data-bs-slide="next">
 			<span class="carousel-control-next-icon"></span>
 		</button>
-		
-		<a href = "selectRoom.do?acco_name=${acco.accommodation_name }&acco_id=${acco.accommodation_id}">
-		<span>${acco.accommodation_name }</span><br></a>
-		<span>${acco.user_id }</span>
+		<a href = "selectRoom.do?acco_name=${accommoList.get(status.index).get('accommodation_name') }&acco_id=${accommoList.get(status.index).get('accommodation_id') }">
+		<span>${accommoList.get(status.index).get('accommodation_name') }</span><br></a>
+		<div class = "score"><span class="material-icons">star</span><span>${stars.get(status.index)}</span></div>
 	</div>
 	</c:forEach>
 	</div>
@@ -116,10 +119,10 @@ body{
 		var x;
 		var y;
 		var point;
-		var accoArray = ${jArray};
-		for (let i = 0; i < accoArray.length; i++) {
-			x = accoArray[i]['x'];
-			y = accoArray[i]['y'];
+		
+		for (let i = 0; i < accommoList.size(); i++) {
+			x = ${accommoList.get(i).get('x')};
+			y = ${accommoList.get(i).get('x')};
 
 			point = proj4(grs80, wgs84, [ x, y ]);
 

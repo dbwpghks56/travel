@@ -33,22 +33,19 @@ function nullCheck(){
 	<form name="frm" action="reservation.do" method="post" onsubmit="nullCheck()">
 	
 		<label>숙소이름</label>
-		<%-- ${ }  --%>
-		<!-- <input type="hidden" name="accno" value=""> <br>  -->
+		${rsv.accommodation_name }<input type="hidden" name="aname" value="${rsv.accommodation_name }">
 		
 		<label>룸이름</label>
-		<%-- ${ }  --%>
-		<!-- <input type="hidden" name="rno" value=""> <br> -->
+		${rsv.room_name } <input type="hidden" name="roomid" value="${rsv.rsv_no }">
 		<input type="text" name="user_id" value="${user.user_id }" disabled="disabled" >
-		<input type="text" name="room_id" value="26"><br>
 		
-		<label>체크인</label> <input type="date" name="check_in" id="check_in" ><br> 
+		<label>체크인</label> <input type="date" name="check_in" id="check_in" value="" required="required" ><br> 
 		
-		<label>체크아웃</label> <input type="date" name="check_out" id="check_out" ><br>
+		<label>체크아웃</label> <input type="date" name="check_out" id="check_out" value="" required="required" ><br>
 		
 		<label>인원</label> 
 		<input type='button' onclick='count("minus")' value='-' /> 
-		<input type="number" name="personnel" min="0" id="result" value="0" > 
+		<input type="number" name="personnel" min="0" id="result" value="0" required="required" > 
 		<!-- max="${room.max_personnel}" 넣으면 되지 않을까...? -->
 		<input type='button' onclick='count("plus")' value='+' /><br>  
 		

@@ -21,6 +21,7 @@ $(function(){
 			return;
 		}
 	});
+	
 
 }); 
 </script>
@@ -29,14 +30,18 @@ $(function(){
 <h1>예약 내용 상세보기</h1>
 	<form action="rsvdetail.do" method="post">
 		예약번호 : ${rsv.rsv_no}<input type="hidden" name="rsv_no" value="${rsv.rsv_no}"> <br>
-		숙소이름 : <input type="hidden" name="accommodation_name">  <br>
-		룸이름 :  <input type="hidden" name="room_name"> <br> 
+		숙소이름 : ${rsv.accommodation_name}<input type="hidden" name="accommodation_name">  <br>
+		숙소전화번호 :${rsv.phone}
+		룸이름 :  ${rsv.room_name}<input type="hidden" name="room_name"> <br> 
 		체크인 : ${rsv.check_in}<input type="hidden" name="check_in"> <br>
 		체크아웃 :${rsv.check_out} <input type="hidden" name="chech_out">  <br>
+		예약날짜 : ${rsv.rsv_date}<br>
+		예약상태 : ${rsv.rsv_status}<br>
+		금액 : ${rsv.price_by_day} <br>
 		인원 : ${rsv.personnel}<input type="hidden" name="personnel" >  <br>
 		요청사항 : <input type="text" name="request" value="${rsv.request}" >  <br>
 		<input class="btn" type="button" value="목록" id="rsvList"> <br>
-		<input class="btn" type="submit" value="수정">
+		<input id="update" class="btn" type="submit" value="수정">
 	</form>
 	<form action="rsvdelete.do" method="post">
 		<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">

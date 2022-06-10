@@ -1,18 +1,28 @@
 package travel.model;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+
 
 import travel.DTO.ReviewDto;
 import travel.util.DBUtil;
 
 public class ReviewDAO {
-	private static final String SQL_SELECT_BY_ACCOID = "select * from review where accommodation_id = ?";
+
+	private static final String SQL_SELECT_BY_ACCOID = "select * from review\r\n"
+			+ "join users using(user_id)\r\n"
+			+ "where accommodation_id = ?";
 	private static final String SQL_UPDATE_REPORT = "update review set report = report+1 where review_id = ?";
+
+
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -116,17 +126,19 @@ public class ReviewDAO {
 		
 		return reviews;
 	}
-	public List<ReviewDto> selectByAcco(int accoId){
+
+	public List<Map<String, String>> selectByAcco(int accoId){
 		conn = DBUtil.getConnection();
-		List<ReviewDto> reviews = new ArrayList<>();
+		List<Map<String, String>> rlist = new ArrayList<>();
 		
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_BY_ACCOID);
 			pst.setInt(1, accoId);
 			rs = pst.executeQuery();
+			rs.next();
 			while(rs.next()) {
-				ReviewDto review = makeReview(rs);
-				reviews.add(review);
+				Map<String, String> rMap = makeMap(rs);
+				rlist.add(rMap);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -135,7 +147,7 @@ public class ReviewDAO {
 			DBUtil.dbClose(rs, pst, conn);
 		}
 		
-		return reviews;
+		return rlist;
 	}
 	public int updateReport(int review_id) {
 		conn = DBUtil.getConnection();
@@ -156,6 +168,7 @@ public class ReviewDAO {
 		return ret;
 	}
 
+
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {
 		ReviewDto review = new ReviewDto();
 		
@@ -164,12 +177,33 @@ public class ReviewDAO {
 		review.setUser_id(rs2.getString("user_id"));
 		review.setContent(rs2.getString("content"));
 		review.setCleaning_stars(rs2.getFloat("cleaning_stars"));
-		review.setLocation_stars(rs2.getFloat("LOCATION_STARTS"));
+		review.setLocation_stars(rs2.getFloat("location_stars"));
 		review.setSatisfied_stars(rs2.getFloat("satisfied_stars"));
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
+		review.setHost_id(rs2.getString("host_id"));
+		
 		return review;
+	}
+	private Map<String,String> makeMap(ResultSet rs2) {
+		Map<String,String> rMap = new HashMap<>();
+		try {
+			rMap.put("review_id",rs2.getString("review_id"));
+			rMap.put("accommodation_id",rs2.getString("accommodation_id"));
+			rMap.put("nick_name",rs2.getString("nickname"));
+			rMap.put("content",rs2.getString("content"));
+			rMap.put("report",rs2.getString("report"));
+			rMap.put("r_image_path",rs2.getString("r_image_path"));
+			rMap.put("r_regdate",rs2.getString("r_regdate"));
+			rMap.put("nick_name",rs2.getString("nickname"));
+			rMap.put("u_image_path",rs2.getString("u_image_path"));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rMap;
 	}
 }
 

@@ -26,7 +26,7 @@ padding: 10px;
 		
 		<c:forEach items="${hostrsvlist}" var="host">
 		<tr>
-			<td>${host.rsv_no}</td>
+			<td><a href="hostrsvdetail.do?rsv_no=${host.rsv_no}">${host.rsv_no}</a></td>
 			<td>${host.personnel}</td>
 			<td>${host.check_in} / ${host.check_out}</td>
 			<td>${host.user_phone}</td>

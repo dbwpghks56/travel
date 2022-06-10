@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>예약목록</title>
-<script>
-
-</script>
 <style>
 table, td { 
 border: 1px solid gray;
@@ -42,7 +39,6 @@ padding: 10px;
 		<td>${rsv.rsv_date}</td>
 		<td>${rsv.rsv_status}</td>
 		<td>${rsv.price_by_day}</td>
-
 		</tr>
 		</c:forEach>
 	</table>

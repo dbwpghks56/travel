@@ -1,18 +1,21 @@
 package travel.controller;
 
 import java.sql.Date;
+
 import java.util.ArrayList;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import java.util.List;
 
-import javax.print.attribute.standard.PrinterMakeAndModel;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 
-import travel.DTO.AccommodationDto;
 import travel.DTO.InteAccoDTO;
-import travel.DTO.RoomDto;
 import travel.model.AccommodationService;
 import travel.util.DateUtil;
 

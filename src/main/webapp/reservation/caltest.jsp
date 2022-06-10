@@ -44,7 +44,6 @@
 			},
 		});
 		calendar.render();
-		console.dir(calendar.getEvents());
 	});
 </script>
 <style>

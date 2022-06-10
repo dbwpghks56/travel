@@ -177,13 +177,11 @@ public class ReviewDAO {
 		review.setUser_id(rs2.getString("user_id"));
 		review.setContent(rs2.getString("content"));
 		review.setCleaning_stars(rs2.getFloat("cleaning_stars"));
-		review.setLocation_stars(rs2.getFloat("location_stars"));
+		review.setLocation_stars(rs2.getFloat("LOCATION_STARTS"));
 		review.setSatisfied_stars(rs2.getFloat("satisfied_stars"));
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
-		review.setHost_id(rs2.getString("host_id"));
-		
 		return review;
 	}
 	private Map<String,String> makeMap(ResultSet rs2) {

@@ -31,13 +31,9 @@ public class AccommodationDAO {
 	private static final String SQL_SELECT_DATE = "SELECT ROOM_ID  \r\n"
 			+ "FROM ROOM r JOIN RESERVATION r2 using(room_id)\r\n"
 			+ "WHERE (check_in BETWEEN ? and  ? ) or (CHECK_out BETWEEN ? and ? )\r\n";
-
 	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
 	private static final String SQL_SELECT_BY_ID = "select * from accommodation where accommodation_id = ?";
-	private static final String SQL_INSERT_ROOM = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
-			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
-
 	Connection conn;
 	PreparedStatement pst;
 	Statement st;
@@ -231,33 +227,28 @@ public class AccommodationDAO {
 
 		return result;
 	}
-	public int InsertRoom(RoomDto room) {
-		int result = 0;
-		conn = DBUtil.getConnection();
-		try {
-			pst = conn.prepareStatement(SQL_INSERT_ROOM);
-			/* pst.setInt(1, acco.getAccommodation_id()); */
-			pst.setInt(1, room.getRoom_id());
-			pst.setInt(2, room.getMin_personnel());
-			pst.setInt(3, room.getMax_personnel());
-			pst.setInt(4, room.getMin_day());
-			pst.setInt(5, room.getMax_day());
-			pst.setInt(6, room.getPrice_by_day());
-			/*
-			 * pst.setString(7, room.getPhone()); pst.setString(8,
-			 * room.getAccommodation_type());
-			 */
 
-			result = pst.executeUpdate();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbClose(rs, pst, conn);
+	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
+		JSONArray jArray = new JSONArray();
+		for (int j = 0; j < list.size(); j++) {
+			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json
+			sObject.put("accommodation_id", list.get(j).getAccommodation_id());
+			sObject.put("user_id", list.get(j).getUser_id());
+			sObject.put("accommodation_name", list.get(j).getAccommodation_name());
+			sObject.put("new_address", list.get(j).getNew_address());
+			sObject.put("address", list.get(j).getAddress());
+			sObject.put("cleaning_stars", list.get(j).getCleaning_star());
+			sObject.put("location_stars", list.get(j).getLocation_star());
+			sObject.put("satisfied_stars", list.get(j).getSatisfied_star());
+			sObject.put("mail_num", list.get(j).getMail_num());
+			sObject.put("new_mail_nume", list.get(j).getNew_mail_num());
+			sObject.put("x", list.get(j).getX());
+			sObject.put("y", list.get(j).getY());
+			jArray.add(sObject);
+
 		}
-
-		return result;
+		return jArray;
 	}
 
 }

@@ -4,21 +4,12 @@ import java.sql.Date;
 
 public class ReservationDTO {
 	
-
-
-
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ReservationDTO [rsv_no=").append(rsv_no).append(", user_id=").append(user_id)
-				.append(", room_id=").append(room_id).append(", check_in=").append(check_in).append(", check_out=")
-				.append(check_out).append(", rsv_date=").append(rsv_date).append(", personnel=").append(personnel)
-				.append(", request=").append(request).append(", rsv_status=").append(rsv_status)
-				.append(", accommodation_name=").append(accommodation_name)
-				.append(", room_name=").append(room_name).append("]");
-		return builder.toString();
+		return "ReservationDTO [rsv_no=" + rsv_no + ", user_id=" + user_id + ", room_id=" + room_id + ", check_in="
+				+ check_in + ", check_out=" + check_out + ", rsv_date=" + rsv_date + ", personnel=" + personnel
+				+ ", request=" + request + ", rsv_status=" + rsv_status + "]";
 	}
-	
 	private int rsv_no;
 	private String user_id;
 	private int room_id;
@@ -57,8 +48,7 @@ public class ReservationDTO {
 		this.personnel = personnel;
 		this.request = request;
 		this.rsv_status = rsv_status;
-	}	
-
+	}
 	
 	public int getRsv_no() {
 		return rsv_no;
@@ -66,7 +56,8 @@ public class ReservationDTO {
 	public void setRsv_no(int rsv_no) {
 		this.rsv_no = rsv_no;
 	}
-	
+
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -183,7 +174,7 @@ public class ReservationDTO {
 		this.max_day = max_day;
 	}
 
-	
+
 	
 	
 	

@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -40,14 +42,14 @@ public class AccommodationDAO {
 	ResultSet rs;
 	
 
-	public List<InteAccoDTO> selectAllaccommo() {
-		List<InteAccoDTO> accoList = new ArrayList<>();
+	public List<Map<String, String>> selectAllaccommo() {
+		List<Map<String, String>> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(SQL_SELECT_ALL);
 			while(rs.next()) {
-				InteAccoDTO accommo = makeinteAcco(rs);
+				Map<String, String> accommo = makeAMap(rs);
 				accoList.add(accommo);
 			}
 		} catch (SQLException e) {
@@ -59,15 +61,15 @@ public class AccommodationDAO {
 		return accoList;
 	}
 
-	public List<InteAccoDTO> selectByAddress(String address) {
-		List<InteAccoDTO> accoList = new ArrayList<>();
+	public List<Map<String, String>> selectByAddress(String address) {
+		List<Map<String, String>> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_LIKE);
 			pst.setString(1, address);
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				InteAccoDTO accommo = makeinteAcco(rs);
+				Map<String, String> accommo = makeAMap(rs);
 				accoList.add(accommo);
 			}
 		} catch (SQLException e) {
@@ -100,8 +102,8 @@ public class AccommodationDAO {
 		}
 		return accoList;
 	}
-	public List<InteAccoDTO> selectByOption(String loc, int person, Date check_in, Date check_out){
-		List<InteAccoDTO> accoList = new ArrayList<>();
+	public List<Map<String, String>> selectByOption(String loc, int person, Date check_in, Date check_out){
+		List<Map<String, String>> accoList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_OPTION);
@@ -114,7 +116,7 @@ public class AccommodationDAO {
 			pst.setDate(7, check_in);
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				InteAccoDTO accommo = makeinteAcco(rs);
+				Map<String, String> accommo = makeAMap(rs);
 				accoList.add(accommo);
 			}
 		} catch (SQLException e) {
@@ -170,37 +172,32 @@ public class AccommodationDAO {
 		return accommo;
 	}
 
-	private InteAccoDTO makeinteAcco(ResultSet rs2) {
-		InteAccoDTO accommo = new InteAccoDTO();
+	
+	private Map<String, String> makeAMap(ResultSet rs){
+		Map<String, String> aMap = new HashMap<>();
 		try {
-			accommo.setAccommodation_id(rs2.getInt("accommodation_id"));
-			accommo.setUser_id(rs2.getString("user_id"));
-			accommo.setAccommodation_name(rs2.getString("accommodation_name"));
-			accommo.setAddress(rs2.getString("address"));
-			accommo.setNew_address(rs2.getString("new_address"));
-			String[] options = rs2.getString("a_option").split(",");
-			accommo.setA_option(options);
-			accommo.setCleaning_star(rs2.getInt("cleaning_stars"));
-			accommo.setLocation_star(rs2.getInt("location_stars"));
-			accommo.setSatisfied_star(rs2.getInt("satisfied_stars"));
-			String[] images = rs2.getString("a_image_path").split(",");
-			accommo.setA_image_path(images);
-			accommo.setMail_num(rs2.getInt("mail_num"));
-			accommo.setNew_mail_num(rs2.getInt("new_mail_num"));
-			accommo.setX(rs2.getFloat("x"));
-			accommo.setY(rs2.getFloat("y"));
-			accommo.setRoom_id(rs2.getInt("room_id"));
-		
-			
-
+			aMap.put("accommodation_id", rs.getString("accommodation_id"));
+			aMap.put("user_id", rs.getString("user_id"));
+			aMap.put("accommodation_name", rs.getString("accommodation_name"));
+			aMap.put("address", rs.getString("address"));
+			aMap.put("new_address", rs.getString("new_address"));
+			aMap.put("a_option", rs.getString("a_option"));
+			aMap.put("cleaning_stars", rs.getString("cleaning_stars"));
+			aMap.put("location_stars", rs.getString("location_stars"));
+			aMap.put("satisfied_stars", rs.getString("satisfied_stars"));
+			aMap.put("a_image_path", rs.getString("a_image_path"));
+			aMap.put("mail_num", rs.getString("mail_num"));
+			aMap.put("new_mail_num", rs.getString("new_mail_num"));
+			aMap.put("x", rs.getString("x"));
+			aMap.put("y", rs.getString("y"));
+			aMap.put("room_id", rs.getString("room_id"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		return accommo;
+		return aMap;
+		
 	}
-
 	public int InsertAcco(AccommodationDto acco) {
 		int result = 0;
 		conn = DBUtil.getConnection();
@@ -228,27 +225,5 @@ public class AccommodationDAO {
 		return result;
 	}
 
-
-	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
-		JSONArray jArray = new JSONArray();
-		for (int j = 0; j < list.size(); j++) {
-			JSONObject sObject = new JSONObject();// 占썼열 占쏙옙占쏙옙 占쏙옙載� json
-			sObject.put("accommodation_id", list.get(j).getAccommodation_id());
-			sObject.put("user_id", list.get(j).getUser_id());
-			sObject.put("accommodation_name", list.get(j).getAccommodation_name());
-			sObject.put("new_address", list.get(j).getNew_address());
-			sObject.put("address", list.get(j).getAddress());
-			sObject.put("cleaning_stars", list.get(j).getCleaning_star());
-			sObject.put("location_stars", list.get(j).getLocation_star());
-			sObject.put("satisfied_stars", list.get(j).getSatisfied_star());
-			sObject.put("mail_num", list.get(j).getMail_num());
-			sObject.put("new_mail_nume", list.get(j).getNew_mail_num());
-			sObject.put("x", list.get(j).getX());
-			sObject.put("y", list.get(j).getY());
-			jArray.add(sObject);
-
-		}
-		return jArray;
-	}
 
 }

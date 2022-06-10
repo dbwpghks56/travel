@@ -8,13 +8,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <title>Insert title here</title>
-
 <style type="text/css">
 	* {
 	margin: 1%;
@@ -62,7 +60,8 @@
 	width: 40%;
 	height: 20%;
 }
-#roomDetail span{
+#roomDetail a{
+	display:inline-block;
 	margin-right: 44%;
 }
 #demo{
@@ -74,6 +73,7 @@
 	width:100;
 	height: 45%;
 }
+
 .reviews{
 	display:inline-block;
 	width:45%;
@@ -103,17 +103,11 @@
 	height: 40px;
 }
 
-</style>
 
+</style>
 </head>
 <body>
 	<h2>${accoName}</h2>
-
-	<h3>${address}</h3>
-	<h3>${aImages}</h3>
-	<c:forEach items = "${aImages }" var = "aImage">
-		<img src="../accoImages/${aImage }" width="10%" height="10%">
-
 	<div class = "imgs">
 	<div class = "aImgs">
 	<c:if test="${not empty a_image_path[0]}">
@@ -175,24 +169,25 @@
 			<span class="carousel-control-next-icon"></span>
 		</button>
 	</div>
-
 	</c:forEach>
-
 	</div>
 	<div id = "roomDetail">
 		<c:forEach items= "${roomList }" var = "room">
-			<span>${room.room_name }</span>
+			<a href = "../reservation/reservation.jsp?room_id=${room.room_id }"><span>${room.room_name }</span></a>
 		</c:forEach>
 	</div>
 	<hr>
 		<div class = "reviewDiv">
-		<h3>후기 (${reviewList.size()}개)</h3>
+		<div class = "stars">
+		<span class="material-icons">star</span><span> ${star}점(후기 ${reviewList.size()}개)</span>
+		</div>
 		<div class = "reviews">
 		<c:forEach items = "${reviewList}" var = "review">
 			<div id = "userImg">
 				<img src = "../uploads/${review.get('u_image_path')}">
 			</div>
 			<div id = "userInfo">
+			
 				${review.get('nick_name') }<br>
 				${review.get('r_regdate') } <input type = "button" class = "report" data-rId ="${review.get('review_id') }" value ="신고">
 			</div>
@@ -273,7 +268,6 @@
 	});
 	marker.setTitle(${price}+"원");
 	</script>
-
 	
 </body>
 </html>

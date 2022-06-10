@@ -37,4 +37,16 @@ public class ReservationService {
 	public int insertAfterRsv() {
 		return rDAO.insertAfterRsv();
 	}
+	
+	public List<ReservationDTO> hostRsvAll(String user_id) {
+		return rDAO.hostRsvAll(user_id);
+	}
+	
+	public ReservationDTO selectByHostRsvNo(int rsv_no) {
+		return rDAO.selectByHostRsvNo(rsv_no);
+	}
+	
+	public ReservationDTO selectByRoomId(int room_id) {
+		return rDAO.selectByRoomId(room_id);
+	}
 }

@@ -67,8 +67,8 @@ table, td {
 		<div id='calendar'></div>
 	</div>
 	<br>
-	<input type="text" id="start" value="startday">
-	<input type="text" id="end" value="endday">
+	<input type="date" id="start" value="startday" readonly="readonly">
+	<input type="date" id="end" value="endday" readonly="readonly">
 	<table>
 		<tr>
 			<td>예약번호</td>
@@ -98,4 +98,4 @@ table, td {
 	</table>
 
 </body>
-</html>
+</html> 

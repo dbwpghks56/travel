@@ -8,11 +8,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <title>Insert title here</title>
+
 <style type="text/css">
 	* {
 	margin: 1%;
@@ -105,9 +108,16 @@
 
 
 </style>
+
 </head>
 <body>
 	<h2>${accoName}</h2>
+
+	<h3>${address}</h3>
+	<h3>${aImages}</h3>
+	<c:forEach items = "${aImages }" var = "aImage">
+		<img src="../accoImages/${aImage }" width="10%" height="10%">
+
 	<div class = "imgs">
 	<div class = "aImgs">
 	<c:if test="${not empty a_image_path[0]}">
@@ -169,7 +179,9 @@
 			<span class="carousel-control-next-icon"></span>
 		</button>
 	</div>
+
 	</c:forEach>
+
 	</div>
 	<div id = "roomDetail">
 		<c:forEach items= "${roomList }" var = "room">
@@ -268,6 +280,7 @@
 	});
 	marker.setTitle(${price}+"원");
 	</script>
+
 	
 </body>
 </html>

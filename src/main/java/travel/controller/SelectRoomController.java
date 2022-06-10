@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import travel.DTO.AccommodationDto;
-import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
 import travel.model.AccommodationService;
 import travel.model.ReviewService;

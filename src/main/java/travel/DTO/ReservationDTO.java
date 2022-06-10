@@ -20,6 +20,21 @@ public class ReservationDTO {
 	private String request;
 	private String rsv_status;
 	
+	private int totalprice;
+	
+	private String accommodation_name;
+	private String phone; 
+	
+	private int price_by_day;
+	private String room_name;
+	private int min_personnel;
+	private int max_personnel;
+	private int min_day;
+	private int max_day;
+		
+	private String user_name;
+	private String user_phone;
+
 	public ReservationDTO() {}
 	public ReservationDTO(int rsv_no, String user_id, int room_id, Date check_in, Date check_out, Date rsv_date,
 			int personnel, String request, String rsv_status) {
@@ -92,6 +107,74 @@ public class ReservationDTO {
 		this.rsv_status = rsv_status;
 	}
 	
+	public String getAccommodation_name() {
+		return accommodation_name;
+	}
+	public void setAccommodation_name(String accommodation_name) {
+		this.accommodation_name = accommodation_name;
+	}	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public int getPrice_by_day() {
+		return price_by_day;
+	}
+	public void setPrice_by_day(int price_by_day) {
+		this.price_by_day = price_by_day;
+	}
+	public String getRoom_name() {
+		return room_name;
+	}
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	public String getUser_phone() {
+		return user_phone;
+	}
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
+	}
+	public int getMin_personnel() {
+		return min_personnel;
+	}
+	public void setMin_personnel(int min_personnel) {
+		this.min_personnel = min_personnel;
+	}
+	public int getMax_personnel() {
+		return max_personnel;
+	}
+	public void setMax_personnel(int max_personnel) {
+		this.max_personnel = max_personnel;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
+	}
+	public int getMin_day() {
+		return min_day;
+	}
+	public void setMin_day(int min_day) {
+		this.min_day = min_day;
+	}
+	public int getMax_day() {
+		return max_day;
+	}
+	public void setMax_day(int max_day) {
+		this.max_day = max_day;
+	}
+
+
 	
 	
 	

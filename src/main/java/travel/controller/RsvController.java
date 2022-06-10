@@ -16,21 +16,22 @@ public class RsvController implements Command {
 	public String execute(HttpServletRequest reQuest) {
 		String method = reQuest.getMethod();
 		String page = null;
+		String result = null;
 		if(method.equals("GET")) {
-			page = "reservation.jsp";
+			return page = "reservation.jsp";
 		} else {
 			
 			ReservationDTO rsv = makeRsv(reQuest);
 			ReservationService rService = new ReservationService();
-			int result = rService.resevation(rsv);
-			reQuest.setAttribute("message", result>0?"성공":"실패");
+			int ret = rService.resevation(rsv);
+			result = ret==0? "실패":"성공";
 			
 			int rsv_no = rService.insertAfterRsv();
 			reQuest.setAttribute("rsv_no",rsv_no);
 			
 			page="rsvResult.jsp";
 		}
-		return page;
+		return "rest:"+result;
 	}
 
 	private ReservationDTO makeRsv(HttpServletRequest reQuest) {

@@ -6,7 +6,9 @@
 <meta charset="UTF-8">
 <title>reservation</title>
 <script>
+
 function count(type)  {
+	
 	  const resultElement = document.getElementById('result');
 	  let num = resultElement.value;
 	  if(type === 'plus') {
@@ -40,7 +42,7 @@ function nullCheck(){
 		<%-- ${ }  --%>
 		<!-- <input type="hidden" name="rno" value=""> <br> -->
 		<input type="text" name="user_id" value="${user.user_id }" disabled="disabled" >
-		<input type="text" name="room_id" value="26"><br>
+		<input type="hidden" name="room_id" value="${param.room_id }"><br>
 		
 		<label>체크인</label> <input type="date" name="check_in" id="check_in" ><br> 
 		
@@ -48,7 +50,7 @@ function nullCheck(){
 		
 		<label>인원</label> 
 		<input type='button' onclick='count("minus")' value='-' /> 
-		<input type="number" name="personnel" min="0" id="result" value="0" > 
+		<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly"> 
 		<!-- max="${room.max_personnel}" 넣으면 되지 않을까...? -->
 		<input type='button' onclick='count("plus")' value='+' /><br>  
 		
@@ -63,5 +65,19 @@ function nullCheck(){
 
 
 	</form>
+	<script>
+		document.querySelector(".submit").onclick = function(){
+			 var room_id = ${param.room_id};
+	    	   $.ajax({
+	             type:"post",
+	             async:false, 
+	             url:"reservation.do",
+	             data : {"room_id": room_id},
+	             success:function (data,textStatus){
+	            	 alert(data);
+	             }
+		     });
+		};
+	</script>
 </body>
 </html>

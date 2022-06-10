@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
@@ -19,11 +18,8 @@
 	width: 200px;
 	margin: auto;
 }
-=======
->>>>>>> refs/remotes/origin/hyun
 
 
-<<<<<<< HEAD
 .title {
 	width: 100px;
 	margin: auto;
@@ -45,11 +41,8 @@ a:hover{
 }
 </style>
 
-=======
->>>>>>> refs/remotes/origin/hyun
 </head>
 <body>
-<<<<<<< HEAD
 	<h1 class="title">Login</h1>
 	<br>
 	<br>
@@ -75,7 +68,6 @@ a:hover{
 		</div>
 
 		<!-- <input type="reset" value="취소"> -->
-=======
 	<h1> &emsp; ID 로그인</h1>
 	<form action="login.do" method="post">
 	
@@ -88,7 +80,6 @@ a:hover{
 		<input type = "submit" value = "로그인">     
 		<input type = "button" value = "회원가입"><a href="signUp.jsp">회원가입</a>
 		<input type = "reset" value = "취소">
->>>>>>> refs/remotes/origin/hyun
 
 	</form>
 	

@@ -19,17 +19,22 @@ public class LoginUserController implements Command {
 		String user_id = request.getParameter("id");
 		String user_pass = request.getParameter("password");
 		
-		UserDTO user = new UserDTO();
+		UserDTO user = null;
 		
-		if(kakao_email == null || kakao_email == "") {
+		if(kakao_email.equals(null) || kakao_email.equals("")) {
 			System.out.println(kakao_email);
+			System.out.println("확인");
 			user = service.loginUser(user_id, user_pass);
 		}
 		
 		else {
 			user = service.loginKakaoUser(kakao_email);
-			
-			if(user.getUser_id().equals(null)) {
+			System.out.println(kakao_email);
+			System.out.println("확인"+ user);
+			if(user == null) {
+				request.setAttribute("email", kakao_email);
+				request.setAttribute("nick", kakao_nick);
+				request.setAttribute("kakao_profile", kakao_profile);
 				return "signUp.jsp";
 			}
 		}

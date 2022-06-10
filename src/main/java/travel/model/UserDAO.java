@@ -91,7 +91,7 @@ public class UserDAO {
 	
 	public UserDTO loginKakaoUser(String user_id) {
 		conn = DBUtil.getConnection();
-		UserDTO user = new UserDTO();
+		UserDTO user =  null;
 	
 		try {
 			pst = conn.prepareStatement("select * from users where user_id = ?");

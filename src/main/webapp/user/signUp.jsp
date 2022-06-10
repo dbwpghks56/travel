@@ -158,7 +158,7 @@ body {
 			<div class="input-group mb-3" style="width: 500px; margin: auto;">
 				<span class="input-group-text"
 					style="width: 90px; background-color: pink; color: white">아이디</span>
-				] <input type="text" class="form-control" placeholder="Id" name="id">
+				] <input type="text" class="form-control" placeholder="Id" name="id" value="${email }">
 				<input type="button" id="idDuplicateCheckBtn" value="중복확인" > 
 			</div>
 
@@ -182,7 +182,7 @@ body {
 			<div class="input-group mb-3" style="width: 500px; margin: auto;">
 				<span class="input-group-text" style="width: 90px;">닉네임</span> <input
 					type="text" class="form-control" placeholder="NickName"
-					name="nickname">
+					name="nickname" value="${nick }">
 			</div>
 
 			<div class="input-group mb-3" style="width: 500px; margin: auto;">

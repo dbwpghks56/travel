@@ -33,6 +33,12 @@
 	    text-shadow: 0 0 0 pink;
 	}
 	#myform input[name=location_stars]:checked ~ label{
+<<<<<<< HEAD
+	    text-shadow: 0 0 0 pink;
+	}
+	#myform input[name=satisfied_stars]:checked ~ label{
+=======
+>>>>>>> refs/remotes/origin/master
 	    text-shadow: 0 0 0 pink;
 	}
 	#myform input[name=satisfied_stars]:checked ~ label{
@@ -46,6 +52,8 @@
 		border: 5px solid skyblue;
 	}
 </style>
+<<<<<<< HEAD
+=======
 <script type="text/javascript">
 	function setThumbnail(event) {
 	    var reader = new FileReader();
@@ -58,6 +66,7 @@
 	    reader.readAsDataURL(event.target.files[0]);
 	  }
 </script>
+>>>>>>> refs/remotes/origin/master
 </head>
 <body>
 	<h1>review 입력하기 꼭 로그인하고 해주세요</h1>
@@ -107,8 +116,12 @@
 				for="rate15">★</label>
 		</fieldset>
 		 <br>
+<<<<<<< HEAD
+		이미지 : <input type="file" name="photos"> <br>
+=======
 		이미지 : <input type="file" name="photos" accept="image/*" onchange="setThumbnail(event);"> <br>
 		<img alt="" src="" id="thumbnail">
+>>>>>>> refs/remotes/origin/master
 		<input type="submit" value="전송스">
 	</form>
 </body>

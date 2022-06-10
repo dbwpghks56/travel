@@ -1,9 +1,13 @@
 package travel.controller;
 
 import java.sql.Date;
+
+import java.util.ArrayList;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +24,13 @@ public class SearchController implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 		AccommodationService service = new AccommodationService();
-		
 		Date check_in = DateUtil.convertToDate(request.getParameter("check_in"));
 		Date check_out = DateUtil.convertToDate(request.getParameter("check_out"));
 		String location = request.getParameter("loc");
 		int person = Integer.parseInt(request.getParameter("person"));
-		
+				
 		List<Integer> daccommoList = service.selectByDate(check_in, check_out);
 		List<InteAccoDTO> accommoList = service.selectByOption(location,person,check_in,check_out);
-		
 		for (int i = 0; i < daccommoList.size(); i++) {
 			for (int j = 0; j < accommoList.size(); j++) {
 				if (daccommoList.get(i) == accommoList.get(j).getRoom_id()) {
@@ -45,7 +47,7 @@ public class SearchController implements Command {
 				}
 			}
 		}
-		JSONArray jArray = service.makeJsonArray(accommoList);
+
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("check_in", check_in);
@@ -55,7 +57,7 @@ public class SearchController implements Command {
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("initCenterX", accommoList.get(0).getX());
 		request.setAttribute("initCenterY", accommoList.get(0).getY());
-		request.setAttribute("jArray", jArray);
+		
 		return "resultSelectAcco.jsp";
 	}
 

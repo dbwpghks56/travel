@@ -1,8 +1,6 @@
 package travel.model;
 
 import java.sql.Date;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import travel.DTO.InteAccoDTO;
@@ -14,6 +12,7 @@ import travel.util.DBUtil;
 public class RoomService {
 	RoomDAO roomdao = new RoomDAO();
 	
+	RoomDAO roomDAO = new RoomDAO();
 
 	public List<RoomDto> selectByName(int accoId, int person) {
 		return roomdao.selectByName(accoId, person);

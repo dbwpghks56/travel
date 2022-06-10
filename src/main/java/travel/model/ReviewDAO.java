@@ -16,10 +16,13 @@ import travel.DTO.ReviewDto;
 import travel.util.DBUtil;
 
 public class ReviewDAO {
+
 	private static final String SQL_SELECT_BY_ACCOID = "select * from review\r\n"
 			+ "join users using(user_id)\r\n"
 			+ "where accommodation_id = ?";
 	private static final String SQL_UPDATE_REPORT = "update review set report = report+1 where review_id = ?";
+
+
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -123,6 +126,7 @@ public class ReviewDAO {
 		
 		return reviews;
 	}
+
 	public List<Map<String, String>> selectByAcco(int accoId){
 		conn = DBUtil.getConnection();
 		List<Map<String, String>> rlist = new ArrayList<>();
@@ -163,6 +167,7 @@ public class ReviewDAO {
 		
 		return ret;
 	}
+
 
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {
 		ReviewDto review = new ReviewDto();

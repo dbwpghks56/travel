@@ -89,6 +89,28 @@ public class UserDAO {
 		return user;
 	}
 	
+	public UserDTO loginKakaoUser(String user_id) {
+		conn = DBUtil.getConnection();
+		UserDTO user = new UserDTO();
+	
+		try {
+			pst = conn.prepareStatement("select * from users where user_id = ?");
+			
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				user = makeUser(rs);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	
 	public int confirmUserid(String user_id) {
 		conn = DBUtil.getConnection();
 		

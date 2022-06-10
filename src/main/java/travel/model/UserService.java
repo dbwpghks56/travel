@@ -17,6 +17,10 @@ public class UserService {
 		return userdao.loginUser(user_id, user_pass);
 	}
 	
+	public UserDTO loginKakaoUser(String user_id) {
+		return userdao.loginKakaoUser(user_id);
+	}
+	
 	public int confirmUserid(String user_id) {
 		return userdao.confirmUserid(user_id);
 	}

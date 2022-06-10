@@ -37,10 +37,6 @@
 			selectOverlap: function(event) {
 			    return event.rendering === 'background';
 			  },
-			dateClick : function(data) {
-				console.log(data.dayEl.innerText);
-				console.log(data.dateStr);
-			},
 			select : function(info) {
 				$("#start").val(info.startStr);
 				$("#end").val(info.endStr);
@@ -48,7 +44,6 @@
 			},
 		});
 		calendar.render();
-		console.dir(calendar.getEvents());
 	});
 </script>
 <style>

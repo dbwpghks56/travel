@@ -75,13 +75,5 @@
 			</li>
 		</ul>
 	</form>
-<!-- 카카오 스크립트 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-Kakao.init('2d503e5862c5829d5794c838da38c231'); //발급받은 키 중 javascript키를 사용해준다.
-console.log(Kakao.isInitialized()); // sdk초기화여부판단
-//카카오로그인
-
-</script>
 </body>
 </html>

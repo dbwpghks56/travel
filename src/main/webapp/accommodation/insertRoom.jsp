@@ -9,7 +9,7 @@
 <body>
 	<h1>방 등록</h1>
 	<h2>숙소번호는 외래키이기 때문에 실제 데이터베이스에 있는 값을 넣어주세용</h2>
-	<form action="insertRoom.do" enctype="multipart/form-data">
+	<form action="insertRoom.do" method = "post" enctype="multipart/form-data">
 		숙소 	번호 : <input type="number" name="acco_id"> <br>
 		최소 숙박 인원 : <input type="number" name="min_per" min="1"> <br>
 		최대 숙박 인원 : <input type="number" name="max_per" min="1"> <br>

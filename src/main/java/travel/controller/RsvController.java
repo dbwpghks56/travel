@@ -17,6 +17,15 @@ public class RsvController implements Command {
 		String method = reQuest.getMethod();
 		String page = null;
 		if(method.equals("GET")) {
+			String roomId = reQuest.getParameter("room_id");
+			int i_roomId = 0;
+			if(roomId !=null) {
+				i_roomId = Integer.parseInt(roomId);
+			}
+			ReservationService rService = new ReservationService();
+			ReservationDTO rsv = rService.selectByRsvNo(i_roomId);
+			reQuest.setAttribute("rsv", rsv);
+			
 			page = "reservation.jsp";
 		} else {
 			

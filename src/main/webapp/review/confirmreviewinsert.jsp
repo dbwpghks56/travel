@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${message}
+	<h1> ${review_result }</h1>
 </body>
 </html>

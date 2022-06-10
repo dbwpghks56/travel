@@ -244,6 +244,33 @@ public class ReservationDAO {
 		
 		return rsv;
 	}
+	
+	public ReservationDTO selectByRoomId(int room_id) {
+		ReservationDTO rsv = new ReservationDTO();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement(""
+					+ "SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME \r\n"
+					+ "FROM ROOM r , ACCOMMODATION a \r\n"
+					+ "WHERE r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID  AND r.ROOM_ID =?");
+			pst.setInt(1, room_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv.setRoom_id(rs.getInt("Room_name"));
+				rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsv;
+	}
 
 	private ReservationDTO makeRsv(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();

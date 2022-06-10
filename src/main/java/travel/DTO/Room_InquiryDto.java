@@ -1,16 +1,25 @@
 package travel.DTO;
 
+import java.sql.Date;
+
 public class Room_InquiryDto {
 	private int r_inquiry_id;
 	private int accommodation_id;
 	private String user_id;
 	private String title;
 	private String content;
-	private int i_password;
+	private String i_password;
 	private String answer;
 	private String host_id;
 	private int answer_confirm;
+	private Date ri_regdate;
 	
+	public Date getRi_regdate() {
+		return ri_regdate;
+	}
+	public void setRi_regdate(Date ri_regdate) {
+		this.ri_regdate = ri_regdate;
+	}
 	public int getR_inquiry_id() {
 		return r_inquiry_id;
 	}
@@ -41,10 +50,10 @@ public class Room_InquiryDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getI_password() {
+	public String getI_password() {
 		return i_password;
 	}
-	public void setI_password(int i_password) {
+	public void setI_password(String i_password) {
 		this.i_password = i_password;
 	}
 	public String getAnswer() {

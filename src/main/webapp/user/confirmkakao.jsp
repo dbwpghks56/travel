@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${message}
+	<h1>${param.email }</h1>
+	<h1>${param.nick }</h1>
+	<img alt="" src="${param.profile2 }">
 </body>
 </html>

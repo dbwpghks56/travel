@@ -68,6 +68,8 @@ public class FrontServlet extends HttpServlet {
 			command = new updateReportController();
 		} else if(uri.equals("/user/UserCheck.do")) {
 			command = new UserCheckController();
+		} else if(uri.equals("/user/NickCheck.do")) {
+			command = new NickCheckController();
 		}
 				
 		

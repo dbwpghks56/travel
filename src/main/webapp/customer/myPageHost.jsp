@@ -68,7 +68,7 @@
 </div> -->
 
 	<div class="container-fluid mt-3">
-		<h1 class="title">마이페이지</h1>
+		<h1 class="title">고객센터</h1>
 		<br>
 		<br>
 		<hr>
@@ -76,13 +76,7 @@
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value ="개인정보수정">
 			</div>
-			<div class="col text-white">
-				<input type="button" onclick="location.href='/travel/reservation/rsvlist.do';" class="btn btn-secondary gain" value="예약조회">
-			</div>
-			<div class="col text-white">
-				<input type="button" onclick="location.href='/travel/accommodation/insertAcco.jsp';"  class="btn btn-secondary gain" value="숙소등록">
-			</div>
-		</div>
+	
 		<div class="row">
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="고객센터">

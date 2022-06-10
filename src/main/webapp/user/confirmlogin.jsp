@@ -17,5 +17,6 @@
 	${user.user_name }
 	${user.nickname }
 	<img alt="" src="../uploads/${user.u_image_path }" width="200" height="200">
+	<a href="../reservation/rsvlist.do">예약보기</a>
 </body>
 </html>

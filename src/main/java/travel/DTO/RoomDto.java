@@ -20,7 +20,6 @@ public class RoomDto {
 
 	private String r_image_path;
 	private String r_option;
-	
 	public int getRoom_id() {
 		return room_id;
 	}
@@ -81,7 +80,6 @@ public class RoomDto {
 	public void setR_option(String r_option) {
 		this.r_option = r_option;
 	}
-
 	
 	
 }

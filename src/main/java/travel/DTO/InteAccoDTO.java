@@ -14,7 +14,7 @@ public class InteAccoDTO {
 	}
 	
 	public String toStringRSV() {
-		return "ReservationDTO [rsv_no=" + rsv_no +  ", room_id=" + room_id + ", check_in="
+		return "ReservationDTO [rsv_no=" + rsv_no + ", usre_id=" + usre_id + ", room_id=" + room_id + ", check_in="
 				+ check_in + ", check_out=" + check_out + ", rsv_date=" + rsv_date + ", personnel=" + personnel
 				+ ", request=" + request + ", rsv_status=" + rsv_status + "]";
 	}
@@ -27,7 +27,6 @@ public class InteAccoDTO {
 	private int Accommodation_id;
 	private String user_id;
 	private String Accommodation_name;
-	private String accommodation_type;
 	private String address;
 	private String new_address;
 	private String location_detail;
@@ -50,30 +49,14 @@ public class InteAccoDTO {
 	private String[] r_image_path;
 	private String[] r_option;
 	private int rsv_no;
+	private String usre_id;
 	private Date check_in;
 	private Date check_out;
 	private Date rsv_date;
 	private int personnel;
 	private String request;
 	private String rsv_status;
-	private String phone;	
-	
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAccommodation_type() {
-		return accommodation_type;
-	}
-
-	public void setAccommodation_type(String accommodation_type) {
-		this.accommodation_type = accommodation_type;
-	}
-
+		
 	public int getMail_num() {
 		return mail_num;
 	}
@@ -223,6 +206,12 @@ public class InteAccoDTO {
 	}
 	public void setRsv_no(int rsv_no) {
 		this.rsv_no = rsv_no;
+	}
+	public String getUsre_id() {
+		return usre_id;
+	}
+	public void setUsre_id(String usre_id) {
+		this.usre_id = usre_id;
 	}
 	public Date getCheck_in() {
 		return check_in;

@@ -6,18 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import travel.DTO.InteAccoDTO;
+<<<<<<< HEAD
 import travel.DTO.RoomDto;
 import travel.util.DBUtil;
 
 
+=======
+>>>>>>> refs/remotes/origin/hyun
 
 public class RoomService {
-	RoomDAO roomdao = new RoomDAO();
 	
+<<<<<<< HEAD
 
 	public List<RoomDto> selectByName(int accoId, int person) {
 		return roomdao.selectByName(accoId, person);
+=======
+	RoomDAO roomDAO = new RoomDAO();
+	public List<InteAccoDTO> selectByName(int accoId, int person) {
+		return roomDAO.selectByName(accoId, person);
+>>>>>>> refs/remotes/origin/hyun
 	}
+<<<<<<< HEAD
 	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
 		return roomdao.selectByDate(accoId, check_in, check_out);
 	}
@@ -25,6 +34,10 @@ public class RoomService {
 	public int InsertRoom(RoomDto room) {
 		
 		return roomdao.InsertRoom(room);
+=======
+	public List<InteAccoDTO> selectByDate(int accoId, Date check_in, Date check_out){
+		return roomDAO.selectByDate(accoId, check_in, check_out);
+>>>>>>> refs/remotes/origin/hyun
 	}
 	public List<String[]> selectImg(int accoId){
 		return roomdao.selectImg(accoId);
@@ -33,4 +46,3 @@ public class RoomService {
 		return roomdao.selectByAcco(accoId);
 	}
 }
-

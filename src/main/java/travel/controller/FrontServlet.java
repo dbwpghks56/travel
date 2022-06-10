@@ -32,28 +32,16 @@ public class FrontServlet extends HttpServlet {
 
 		Command command = null;
 
-		if (uri.equals("/accommodation/search.do")) {
+		if (uri.equals("/jsp/search.do")) {
 			command = new SearchController();
 		} else if (uri.equals("/user/login.do")) {
 			command = new LoginUserController();
 		} else if (uri.equals("/user/signup.do")) {
 			command = new SignUpController();
-		} else if(uri.equals("/review/insertReview.do")) {
-			command = new InsertReview();
-		} else if(uri.equals("/review/listReview.do")) {
-			command = new ListReview();
 		} else if(uri.equals("/accommodation/selectRoom.do")) {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {
 			command = new InsertAccoController();
-		} else if(uri.equals("/accommodation/insertRoomInquiry.do")) {
-			command = new InsertRoomInquiryController();
-		} else if(uri.equals("/accommodation/listRoomInquiry.do")) {
-			command = new ListRoomInquiryController();
-		} else if(uri.equals("/accommodation/answerInquiry.do")) {
-			command = new AnswerInquiry();
-		} else if (uri.equals("/accommodation/insertRoom.do")) {
-			command = new InsertRoomController();
 		} else if(uri.equals("/reservation/reservation.do")) {
 			command = new RsvController();
 		} else if(uri.equals("/reservation/rsvlist.do")) {
@@ -62,15 +50,24 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvDetailController();
 		} else if(uri.equals("/reservation/rsvdelete.do")) {
 			command = new RsvDeleteController();
+<<<<<<< HEAD
 		} else if (uri.equals("/accommodation/insertRoom.do")) {
 			command = new InsertRoomController();
 		} else if(uri.equals("/accommodation/updateReviewReport.do")) {
 			command = new updateReportController();
 		} else if(uri.equals("/user/UserCheck.do")) {
 			command = new UserCheckController();
+=======
+		}else if(uri.equals("/reservation/hostlist.do")) {
+			command = new RsvListHostController();
+>>>>>>> refs/remotes/origin/hyun
 		}
+<<<<<<< HEAD
 				
 		
+=======
+
+>>>>>>> refs/remotes/origin/hyun
 		page = command.execute(req);
 		
 		// "rest:10", "rest:0"

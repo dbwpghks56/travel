@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import oracle.security.crypto.core.PrivateKeyPKCS8;
 import travel.DTO.UserDTO;
 import travel.util.DBUtil;
+import travel.util.DateUtil;
 
 public class UserDAO {
-	private static final String SQL_SELECT_IMAGE = "select u_image_path from users where user_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -43,27 +42,6 @@ public class UserDAO {
 		
 		
 		return result;
-	}
-	
-	public String nickToId(String user_id) {
-		conn = DBUtil.getConnection();
-		String nickname = "";
-		
-		try {
-			pst = conn.prepareStatement("select nickname from users where user_id = ?");
-			
-			pst.setString(1, user_id);
-			rs = pst.executeQuery();
-			
-			if(rs.next()) {
-				nickname = rs.getString("nickname");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return nickname;
 	}
 	
 	public UserDTO loginUser(String user_id, String user_pass) {
@@ -125,25 +103,20 @@ public class UserDAO {
 		return result;
 	}
 
-	public int updateUser(UserDTO user, String user_id) {
+	public int updateUser(String user_id) {
 		conn = DBUtil.getConnection();
+		UserDTO user = new UserDTO();
 	
 		try {
-			pst = conn.prepareStatement("update users set user_password = ?, user_name = ?, u_image_path = ?, user_email = ?, nickname = ?, "
-					+ "user_phone = ?, host = ?, birth = ?, favorite = ? where user_id = ?");
+			pst = conn.prepareStatement("select * from users where user_id = ?");
 			
-			pst.setString(1, user.getUser_pass());
-			pst.setString(2, user.getUser_name());
-			pst.setString(3, user.getU_image_path());
-			pst.setString(4, user.getUser_email());
-			pst.setString(5, user.getNickname());
-			pst.setString(6, user.getUser_phone());
-			pst.setInt(7, user.getHost());
-			pst.setDate(8, user.getBirth());
-			pst.setString(9, user.getFavorite());
-			pst.setString(10, user_id);
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
 			
-			result = pst.executeUpdate();
+			if(rs.next()) {
+				user = makeUser(rs);
+				result = 1;
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -151,22 +124,6 @@ public class UserDAO {
 		}
 		
 		return result;
-	}
-	public String selectImg(String user_id) {
-		conn = DBUtil.getConnection();
-		String img = null;
-		try {
-			pst = conn.prepareStatement(SQL_SELECT_IMAGE);
-			pst.setString(1, user_id);
-			rs = pst.executeQuery();
-			rs.next();
-			img = rs.getString("u_image_path");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return img;
 	}
 	
 	private UserDTO makeUser(ResultSet rs2) throws SQLException {
@@ -187,27 +144,7 @@ public class UserDAO {
 		
 		return user;
 	}
-	
-	//아이디 중복체크
-	
-	public int selectByID(String id) {
-		int result = 0;
-		conn = DBUtil.getConnection();
-	 try {
-			pst = conn.prepareStatement("select count(*)  from users where user_id = ?");
-			pst.setString(1, id); 
-			rs = pst.executeQuery();
-			while(rs.next()) {
-				result = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			DBUtil.dbClose(rs, pst, conn);
-		}
-		return result;
-}
+
 }
 
 

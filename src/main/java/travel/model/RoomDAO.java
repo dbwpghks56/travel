@@ -1,7 +1,6 @@
 package travel.model;
 
 import java.sql.Connection;
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import travel.DTO.InteAccoDTO;
-import travel.DTO.RoomDto;
 import travel.util.DBUtil;
 
 public class RoomDAO {
@@ -20,7 +18,6 @@ public class RoomDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet rs;
-	private static final String SQL_INSERT_ROOM = "INSERT INTO Room VALUES (seq_room.nextval,? , ? , ? , ? , ? , ? , ? , ? , ?)";
 	private static final String SQL_SELECT_BY_NAME = "select * from room\r\n"
 			+ "join accommodation using(accommodation_id)\r\n" + "where accommodation_id = ?\r\n"
 			+ "and (min_personnel<=? and max_personnel>= ?)\r\n";
@@ -31,10 +28,15 @@ public class RoomDAO {
 	private static final String SQL_SELECT_IMG = "select image_path from room where accommodation_id = ?";
 	private static final String SQL_SELECT_BY_ACCO = "select * from room join accommodation using(accommodation_id) where accommodation_id = ?";
 
+<<<<<<< HEAD
 	
 
 	public List<RoomDto> selectByName(int accoId, int person) {
 		List<RoomDto> accoList = new ArrayList<>();
+=======
+	public List<InteAccoDTO> selectByName(int accoId, int person) {
+		List<InteAccoDTO> accoList = new ArrayList<>();
+>>>>>>> refs/remotes/origin/hyun
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_BY_NAME);
@@ -77,6 +79,7 @@ public class RoomDAO {
 		}
 		return accoList;
 	}
+<<<<<<< HEAD
 	public List<String[]> selectImg(int accoId){
 		List<String[]> imgList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -117,6 +120,10 @@ public class RoomDAO {
 	}
 	private RoomDto makeRoom(ResultSet rs2) {
 		RoomDto room = new RoomDto();
+=======
+	private InteAccoDTO makeRoom(ResultSet rs2) {
+		InteAccoDTO room = new InteAccoDTO();
+>>>>>>> refs/remotes/origin/hyun
 		try {
 			room.setRoom_id(rs2.getInt("room_id"));
 			room.setPrice_by_day(rs2.getInt("price_by_day"));
@@ -125,41 +132,20 @@ public class RoomDAO {
 			room.setR_image_path(rs2.getString("image_path"));
 			room.setR_option(rs2.getString("r_option"));
 			room.setRoom_name(rs2.getString("room_name"));
+<<<<<<< HEAD
 			
+=======
+			room.setSatisfied_star(rs2.getInt("satisfied_stars"));
+			room.setUser_id(rs2.getString("user_id"));
+			room.setX(rs2.getFloat("x"));
+			room.setY(rs2.getFloat("y"));
+			String[] aImges= rs2.getString("a_image_path").split(",");
+			room.setA_image_path(aImges);
+>>>>>>> refs/remotes/origin/hyun
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return room;
 	}
-//諛� �벑濡�
-
-	public int InsertRoom(RoomDto room) {
-		int result = 0;
-		conn = DBUtil.getConnection();
-		try {
-			pst = conn.prepareStatement(SQL_INSERT_ROOM);
-			pst.setInt(1, room.getAccommodation_id());
-			pst.setInt(2, room.getMin_personnel());
-			pst.setInt(3, room.getMax_personnel());
-			pst.setInt(4, room.getMin_day());
-			pst.setInt(5, room.getMax_day());
-			pst.setInt(6, room.getPrice_by_day());
-			pst.setString(7, room.getRoom_name());
-			pst.setString(8, room.getR_image_path());
-			pst.setString(9, room.getR_option());
-
-			result = pst.executeUpdate();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbClose(rs, pst, conn);
-		}
-
-		return result;
-	}
 }
-
-

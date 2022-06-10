@@ -2,16 +2,18 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file = "selectAcco.jsp" %>
-    <%@ include file= "updateReviewReport.jsp" %>
-    <%@ page import = "travel.model.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+=======
+>>>>>>> refs/remotes/origin/hyun
 <title>Insert title here</title>
+<<<<<<< HEAD
 <style type="text/css">
 	* {
 	margin: 1%;
@@ -101,9 +103,12 @@
 }
 
 </style>
+=======
+>>>>>>> refs/remotes/origin/hyun
 </head>
 <body>
 	<h2>${accoName}</h2>
+<<<<<<< HEAD
 	<div class = "imgs">
 	<div class = "aImgs">
 	<c:if test="${not empty a_image_path[0]}">
@@ -165,7 +170,14 @@
 			<span class="carousel-control-next-icon"></span>
 		</button>
 	</div>
+=======
+	<h3>${address}</h3>
+	<h3>${aImages}</h3>
+	<c:forEach items = "${aImages }" var = "aImage">
+		<img src="../accoImages/${aImage }" width="10%" height="10%">
+>>>>>>> refs/remotes/origin/hyun
 	</c:forEach>
+<<<<<<< HEAD
 	</div>
 	<div id = "roomDetail">
 		<c:forEach items= "${roomList }" var = "room">
@@ -261,6 +273,8 @@
 	});
 	marker.setTitle(${price}+"원");
 	</script>
+=======
+>>>>>>> refs/remotes/origin/hyun
 	
 </body>
 </html>

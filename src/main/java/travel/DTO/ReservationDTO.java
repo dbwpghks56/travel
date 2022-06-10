@@ -29,12 +29,18 @@ public class ReservationDTO {
 	private String request;
 	private String rsv_status;
 	
+	private int totalprice;
+	
 	private String accommodation_name;
 	private String phone; 
 	
 	private int price_by_day;
 	private String room_name;
-	
+	private int min_personnel;
+	private int max_personnel;
+	private int min_day;
+	private int max_day;
+		
 	private String user_name;
 	private String user_phone;
 
@@ -145,6 +151,36 @@ public class ReservationDTO {
 	}
 	public void setUser_phone(String user_phone) {
 		this.user_phone = user_phone;
+	}
+	public int getMin_personnel() {
+		return min_personnel;
+	}
+	public void setMin_personnel(int min_personnel) {
+		this.min_personnel = min_personnel;
+	}
+	public int getMax_personnel() {
+		return max_personnel;
+	}
+	public void setMax_personnel(int max_personnel) {
+		this.max_personnel = max_personnel;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
+	}
+	public int getMin_day() {
+		return min_day;
+	}
+	public void setMin_day(int min_day) {
+		this.min_day = min_day;
+	}
+	public int getMax_day() {
+		return max_day;
+	}
+	public void setMax_day(int max_day) {
+		this.max_day = max_day;
 	}
 
 	

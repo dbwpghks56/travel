@@ -32,7 +32,7 @@ public class FrontServlet extends HttpServlet {
 
 		Command command = null;
 
-		if (uri.equals("/jsp/search.do")) {
+		if (uri.equals("/accommodation/search.do")) {
 			command = new SearchController();
 		} else if (uri.equals("/user/login.do")) {
 			command = new LoginUserController();
@@ -60,6 +60,8 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvListHostController();
 		} else if(uri.equals("/user/NickCheck.do")) {
 			command = new NickCheckController();
+		} else if(uri.equals("/reservation/hostrsvdetail.do")) {
+			command = new RsvDetailHostController();
 		}
 				
 

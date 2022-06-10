@@ -50,24 +50,19 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvDetailController();
 		} else if(uri.equals("/reservation/rsvdelete.do")) {
 			command = new RsvDeleteController();
-<<<<<<< HEAD
 		} else if (uri.equals("/accommodation/insertRoom.do")) {
 			command = new InsertRoomController();
 		} else if(uri.equals("/accommodation/updateReviewReport.do")) {
 			command = new updateReportController();
 		} else if(uri.equals("/user/UserCheck.do")) {
 			command = new UserCheckController();
-=======
 		}else if(uri.equals("/reservation/hostlist.do")) {
 			command = new RsvListHostController();
->>>>>>> refs/remotes/origin/hyun
+		} else if(uri.equals("/user/NickCheck.do")) {
+			command = new NickCheckController();
 		}
-<<<<<<< HEAD
 				
-		
-=======
 
->>>>>>> refs/remotes/origin/hyun
 		page = command.execute(req);
 		
 		// "rest:10", "rest:0"

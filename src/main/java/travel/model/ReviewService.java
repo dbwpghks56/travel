@@ -1,6 +1,7 @@
 package travel.model;
 
 import java.util.List;
+import java.util.Map;
 
 import travel.DTO.ReviewDto;
 
@@ -22,4 +23,12 @@ public class ReviewService {
 	public List<ReviewDto> selectHostidReview(String host_id) {
 		return reviewdao.selectHostidReview(host_id);
 	}
+
+	public List<Map<String, String>> selectByAcco(int accoId){
+		return reviewdao.selectByAcco(accoId);
+	}
+	public int updateReport(int review_id) {
+		return reviewdao.updateReport(review_id);
+	}
+	
 }

@@ -27,7 +27,7 @@ public class SearchController implements Command {
 		int person = Integer.parseInt(request.getParameter("person"));
 				
 		List<Integer> daccommoList = service.selectByDate(check_in, check_out);
-		List<InteAccoDTO> accommoList = service.selectByOption(location,person);
+		List<InteAccoDTO> accommoList = service.selectByOption(location,person,check_in,check_out);
 		for (int i = 0; i < daccommoList.size(); i++) {
 			for (int j = 0; j < accommoList.size(); j++) {
 				if (daccommoList.get(i) == accommoList.get(j).getRoom_id()) {
@@ -44,7 +44,7 @@ public class SearchController implements Command {
 				}
 			}
 		}
-		JSONArray jArray = service.makeJsonArray(accommoList);
+
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("check_in", check_in);
@@ -54,7 +54,7 @@ public class SearchController implements Command {
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("initCenterX", accommoList.get(0).getX());
 		request.setAttribute("initCenterY", accommoList.get(0).getY());
-		request.setAttribute("jArray", jArray);
+		
 		return "resultSelectAcco.jsp";
 	}
 

@@ -38,7 +38,26 @@
 	#myform input[name=satisfied_stars]:checked ~ label{
 	    text-shadow: 0 0 0 pink;
 	}
+	
+	#thumbnail {
+		width: 200px;
+		height: 200px;
+		display: none;
+		border: 5px solid skyblue;
+	}
 </style>
+<script type="text/javascript">
+	function setThumbnail(event) {
+	    var reader = new FileReader();
+	
+	    reader.onload = function(event) {
+	    	$("#thumbnail").attr("src", event.target.result);
+	    	$("#thumbnail").css("display", "inline-block");
+	    };
+	
+	    reader.readAsDataURL(event.target.files[0]);
+	  }
+</script>
 </head>
 <body>
 	<h1>review 입력하기 꼭 로그인하고 해주세요</h1>
@@ -88,7 +107,8 @@
 				for="rate15">★</label>
 		</fieldset>
 		 <br>
-		이미지 : <input type="file" name="photos"> <br>
+		이미지 : <input type="file" name="photos" accept="image/*" onchange="setThumbnail(event);"> <br>
+		<img alt="" src="" id="thumbnail">
 		<input type="submit" value="전송스">
 	</form>
 </body>

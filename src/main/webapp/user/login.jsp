@@ -11,6 +11,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<title>Insert title here</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
@@ -67,17 +68,6 @@ a:hover{
 		<div class="form-group mb-3" style="width: 300px; margin: auto;">
 			<input type="password" class="form-control" placeholder="PASSWORD" name="password">
 		</div>
-		
-	
-		<label>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
-			<input type="text" name="id" > <br>
-		
-		<label>비밀번호 &nbsp;</label>	
-			<input type="password" name="password"> <br>
-		
-		<input type = "submit" value = "로그인">     
-		<input type = "button" value = "회원가입"><a href="signUp.jsp">회원가입</a>
-		<input type = "reset" value = "취소">
 		<!-- input class = "log" type = "submit"  value = "로그인">   -->
 		<div style="text-align: center;">
 			<a href="signUp.jsp" style="margin-bottom: 10px;">회원가입</a>

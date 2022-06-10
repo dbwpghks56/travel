@@ -11,10 +11,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>Insert title here</title>
-<<<<<<< HEAD
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-=======
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -55,7 +52,6 @@ a:hover{
 }
 </style>
 
->>>>>>> refs/remotes/origin/main
 </head>
 <body>
 	<h1 class="title">Login</h1>
@@ -73,7 +69,6 @@ a:hover{
 		</div>
 		
 	
-<<<<<<< HEAD
 		<label>아이디 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>	
 			<input type="text" name="id" > <br>
 		
@@ -83,8 +78,6 @@ a:hover{
 		<input type = "submit" value = "로그인">     
 		<input type = "button" value = "회원가입"><a href="signUp.jsp">회원가입</a>
 		<input type = "reset" value = "취소">
-		2d503e5862c5829d5794c838da38c231
-=======
 		<!-- input class = "log" type = "submit"  value = "로그인">   -->
 		<div style="text-align: center;">
 			<a href="signUp.jsp" style="margin-bottom: 10px;">회원가입</a>
@@ -97,7 +90,6 @@ a:hover{
 		</div>
 
 		<!-- <input type="reset" value="취소"> -->
->>>>>>> refs/remotes/origin/main
 
 	</form>
 

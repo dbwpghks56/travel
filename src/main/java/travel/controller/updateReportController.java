@@ -13,9 +13,8 @@ public class updateReportController implements Command{
 	public String execute(HttpServletRequest request) {
 		int rId = Integer.parseInt(request.getParameter("rId"));
 		ReviewService rService = new ReviewService();
-		boolean result = rService.updateReport(rId)==0? false:true;
-		request.setAttribute("result", result);
-		return "resultReviewReport.jsp";
+		int result = rService.updateReport(rId);
+		return "rest:"+result;
 	}
 
 	

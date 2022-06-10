@@ -30,11 +30,13 @@ public class AccommodationService {
 		return accommoDAO.InsertAcco(acco);
 	}
 	
-//	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
-//		return accommoDAO.makeJsonArray(list);
-//	}
-	public List<InteAccoDTO> selectByOption(String loc, int person){
-		return accommoDAO.selectByOption(loc, person);
+	public JSONArray makeJsonArray(List<InteAccoDTO> list) {
+		return accommoDAO.makeJsonArray(list);
 	}
-	
+	public List<InteAccoDTO> selectByOption(String loc, int person, Date check_in, Date check_out){
+		return accommoDAO.selectByOption(loc, person, check_in, check_out);
+	}
+	public AccommodationDto selectById(int id) {
+		return accommoDAO.selectById(id);
+	}
 }

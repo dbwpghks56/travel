@@ -3,6 +3,7 @@ package travel.model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import travel.DTO.ReviewDto;
 import travel.util.DBUtil;
@@ -25,10 +26,11 @@ public class ReviewService {
 	public List<ReviewDto> selectHostidReview(String host_id) {
 		return reviewdao.selectHostidReview(host_id);
 	}
-	public List<ReviewDto> selectByAcco(int accoId){
+	public List<Map<String, String>> selectByAcco(int accoId){
 		return reviewdao.selectByAcco(accoId);
 	}
 	public int updateReport(int review_id) {
 		return reviewdao.updateReport(review_id);
 	}
+	
 }

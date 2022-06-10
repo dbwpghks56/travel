@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 	* {
@@ -27,8 +28,19 @@
 	h3{
 		position: left;
 	}
+	.imgs{
+		margin-bottom :5%;
+	}
 	.aImgs{
-		width:100%;
+		display:inline-block;
+		float:left;
+		width:48%;
+		height: 30%;
+	}
+	.aImgs2{
+		display:inline-block;
+		float:right;
+		width:48%;
 		height: 30%;
 	}
 	#map{
@@ -39,9 +51,16 @@
 		width: 5%;
 		height: 5%;
 	}
-	#roomDetail{
+	#roomImgs{
 	width: 40%;
 	height: 40%;
+}
+#roomDetail{
+	width: 40%;
+	height: 20%;
+}
+#roomDetail span{
+	margin-right: 44%;
 }
 #demo{
 	display:inline-block;
@@ -63,6 +82,14 @@
 	display:inline-block;
 	position: left;
 	width:10%;
+	margin :0 auto;
+	
+}
+#userImg img{
+	width:100%;
+	height:100%;
+	
+	border-radius: 50%;;
 }
 #userInfo{
 	display:inline-block;
@@ -77,21 +104,25 @@
 </head>
 <body>
 	<h2>${accoName}</h2>
+	<div class = "imgs">
 	<div class = "aImgs">
 	<c:if test="${not empty a_image_path[0]}">
-		<img id = "firstImg" src="../accoImages/${a_image_path[0]}">
+		<img id = "firstImg" src="../accoImages/${a_image_path[0]}" width="100%" height="100%">
+	</c:if>
+	</div>
+	<div class = "aImgs2">
 		<c:if test="${not empty a_image_path[1]}">
-			<img src="../accoImages/${a_image_path[1]}">
+			<img src="../accoImages/${a_image_path[1]}"width="45%" height="50%">
 			<c:if test="${not empty a_image_path[2]}">
-				<img src="../accoImages/${a_image_path[2]}">
+				<img src="../accoImages/${a_image_path[2]}"width="45%" height="50%">
 				<c:if test="${not empty a_image_path[3]}">
-					<img src="../accoImages/${a_image_path[3]}">
+					<img src="../accoImages/${a_image_path[3]}"width="45%" height="50%">
 				</c:if>
 			</c:if>
 		</c:if>
-	</c:if>
+		</div>
 	</div>
-	<h3>${nickName}(${user_id })님이 호스팅하는 ${accoType}</h3>
+	<h3>${nick_name}(${host_id})님이 호스팅하는 ${accoType}</h3>
 	<hr>
 		<div class = "detail">
 		<img src = "../images/icons/phoneIcon.png">${phone}<br>
@@ -100,8 +131,8 @@
 		<img src = "../images/icons/wonIcon.png">${price}<img src = "../images/icons/timeIcon.png">예약하기
 		</div>
 	<hr>
-	<div id = "roomDetail">
-		<c:forEach items = "${roomList }" var = "room">
+	<div id = "roomImgs">
+		<c:forEach items = "${rImgs }" var = "rImg">
 			<!-- Carousel -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
@@ -115,11 +146,11 @@
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../accoImages/${room.r_image_path[0]}" alt="숙소사진1" class="d-block w-100">
+				<img src="../accoImages/${rImg[0]}" alt="숙소사진1" class="d-block w-100">
 			</div>
-			<c:if test="${not empty room.r_image_path[1] }">
+			<c:if test="${not empty rImg[1] }">
 			<div class="carousel-item">
-				<img src="../accoImages/${room.r_image_path[1]}" alt="숙소사진2" class="d-block w-100">
+				<img src="../accoImages/${rImg[1]}" alt="숙소사진2" class="d-block w-100">
 			</div>
 			</c:if>
 		</div>
@@ -133,30 +164,29 @@
 			data-bs-target="#demo" data-bs-slide="next">
 			<span class="carousel-control-next-icon"></span>
 		</button>
-		
-		<span>${room.room_name }</span><br>
 	</div>
 	</c:forEach>
 	</div>
+	<div id = "roomDetail">
+		<c:forEach items= "${roomList }" var = "room">
+			<span>${room.room_name }</span>
+		</c:forEach>
+	</div>
 	<hr>
 		<div class = "reviewDiv">
-		<h3>후기 (${rList.size()}개)</h3>
+		<h3>후기 (${reviewList.size()}개)</h3>
 		<div class = "reviews">
-		<c:forEach items = "${rList}" var = "review">
-		<c:forEach items="${userArr }" var = "user">
-			<c:if test="${review.user_id eq user[0]}">
-				<div id = "userImg">
-				<img src = "../uploads/${user[1]}">
-				</div>
-				<div id = "userInfo">
-				${user[2] }<br>
-				${review.r_regdate } <input type = "button" id = "report" value ="${review.review_id }">
-				</div>
-				<div id = "content">
-				${review.content }
-				</div>
-			</c:if>
-		</c:forEach>
+		<c:forEach items = "${reviewList}" var = "review">
+			<div id = "userImg">
+				<img src = "../uploads/${review.get('u_image_path')}">
+			</div>
+			<div id = "userInfo">
+				${review.get('nick_name') }<br>
+				${review.get('r_regdate') } <input type = "button" class = "report" data-rId ="${review.get('review_id') }" value ="신고">
+			</div>
+			<div id = "content">
+				${review.get('content') }
+			</div>
 		</c:forEach>
 		</div>
 		</div>
@@ -172,15 +202,27 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"
 		type="text/javascript"></script>
 	<script>
-	var report = document.querySelector("#report");
-	
-	report.onclick = function(){
+	var report = document.querySelector(".report");
+	var rId = null;
+	$(".report").on("click", function(e) {
+		e.preventDefault();
 		modal.style.display = 'block';
-	};
-	var rId = document.querySelector("#report").value;
+		rId = $(this).attr("data-rId");
+	});
+	
+	
 	updateReport.onclick = function(){
-		modal.style.display = 'none';
-		location = "updateReport.do?rId="+rId;
+   	  	$.ajax({
+            type:"get",
+            async:false, 
+            url:"updateReviewReport.do",
+            data : {rId: rId},
+            success:function (data,textStatus){
+            	document.querySelector(".modal-body").innerHTML="신고 완료됐습니다!";
+            	
+	     	}
+	     	
+	   	});  //end ajax	
 		
 	};
 	var divMap = document.querySelector("#map");

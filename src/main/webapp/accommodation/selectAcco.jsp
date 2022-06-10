@@ -53,7 +53,8 @@ input {
       <input type = "submit" value = "" id = "search">
       </form>
     </div>
-
-
+	<script>
+	
+	</script>
 </body>
 </html>

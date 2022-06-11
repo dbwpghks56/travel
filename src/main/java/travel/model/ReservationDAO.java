@@ -121,12 +121,11 @@ public class ReservationDAO {
 			pst = conn.prepareStatement("SELECT r.*, r2.ROOM_NAME, ((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE \r\n"
 					+ "FROM RESERVATION r, ROOM r2 , ACCOMMODATION a \r\n"
 					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID) AND r.RSV_NO = ?");
-			pst = conn.prepareStatement("select * from reservation where rsv_no=?");
 			pst.setInt(1, rsv_no);
 			rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				rsv = makeRsv(rs);
+				rsv = makeRsv2(rs);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -221,10 +220,9 @@ public class ReservationDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement(""
-					+ "SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r2.CHECK_IN ,r2.CHECK_OUT,r.MIN_DAY ,r.MAX_DAY  \r\n"
+			pst = conn.prepareStatement("SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r.MIN_DAY ,r.MAX_DAY, r2.CHECK_IN ,r2.CHECK_OUT \r\n"
 					+ "FROM ROOM r , ACCOMMODATION a, RESERVATION r2 \r\n"
-					+ "WHERE (r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = r2.ROOM_ID  )AND r.ROOM_ID = ?");
+					+ "WHERE r2.ROOM_ID = r.ROOM_ID AND r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = ?");
 			pst.setInt(1, room_id);
 			rs = pst.executeQuery();
 			

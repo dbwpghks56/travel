@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import geoUtil.GeoPoint;
 import geoUtil.GeoTrans;
+
 import travel.DTO.AccommodationDto;
 import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
@@ -17,7 +18,9 @@ import travel.DTO.SightDTO;
 import travel.model.AccommodationService;
 import travel.model.ReviewService;
 import travel.model.RoomService;
+
 import travel.model.SightsDAO;
+
 import travel.model.UserService;
 
 public class SelectRoomController implements Command {
@@ -47,6 +50,7 @@ public class SelectRoomController implements Command {
 		
 		int star = (accommo.getCleaning_star()+accommo.getLocation_star()+accommo.getSatisfied_star())/3;
 		
+
 		GeoPoint pt = new GeoPoint(accommo.getX(),accommo.getY());
 		GeoPoint npt = GeoTrans.convert(GeoTrans.TM, GeoTrans.GEO, pt);
 		npt = new GeoPoint(npt.getY(),npt.getX());
@@ -62,6 +66,7 @@ public class SelectRoomController implements Command {
 			}
 		}
 		System.out.println(sights.size());
+
 		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", accommo.getAddress());
@@ -79,7 +84,9 @@ public class SelectRoomController implements Command {
 		request.setAttribute("price", roomList.get(0).getPrice_by_day());
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("star", star);
+
 		request.setAttribute("sights", sights);
+
 		
 		
 		return "selectRoom.jsp";

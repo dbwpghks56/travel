@@ -46,6 +46,7 @@ public class RoomDAO {
 			while(rs.next()) {
 				RoomDto room = makeRoom(rs);
 
+
 				accoList.add(room);
 			}
 		} catch (SQLException e) {
@@ -56,6 +57,10 @@ public class RoomDAO {
 		}
 		return accoList;
 	}
+
+	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
+		List<RoomDto> accoList = new ArrayList<>();
+
 
 
 	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){

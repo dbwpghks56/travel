@@ -14,6 +14,7 @@ import travel.util.DBUtil;
 public class RoomService {
 	RoomDAO roomdao = new RoomDAO();
 
+
 	public List<RoomDto> selectByName(int accoId, int person) {
 		return roomdao.selectByName(accoId, person);
 	}

@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
+
+<h1>test  jh</h1>
+
 	<h1>나 제환스</h1>
-=======
+
 <h3>제발 충돌나지 마라</h3>
+
 </body>
 </html>

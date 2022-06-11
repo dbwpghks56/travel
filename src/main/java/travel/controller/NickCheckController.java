@@ -11,7 +11,9 @@ public class NickCheckController implements Command {
 	public String execute(HttpServletRequest request) {
 		String nick = request.getParameter("nickname");
 
+
 		if (nick == null) 
+
 			return null;
 		System.out.println("nickname" + nick);
 
@@ -21,5 +23,5 @@ public class NickCheckController implements Command {
 		//PrintWriter out = response.getWriter(); out.print(result == 0 ? 0 : 1);
 		return "rest:" + result;
 	}
- 
+
 }

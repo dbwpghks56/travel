@@ -29,8 +29,8 @@ $(function(){
 <h1>예약 내용 상세보기</h1>
 	<form action="rsvdetail.do" method="post">
 		예약번호 : ${rsv.rsv_no}<input type="hidden" name="rsv_no" value="${rsv.rsv_no}"> <br>
-		숙소이름 : <input type="hidden" name="accommodation_name">  <br>
-		룸이름 :  <input type="hidden" name="room_name"> <br> 
+		숙소이름 : ${rsv.accommodation_name }<input type="hidden" name="accommodation_name">  <br>
+		룸이름 :  ${rsv.room_name }<input type="hidden" name="room_name"> <br> 
 		체크인 : ${rsv.check_in}<input type="hidden" name="check_in"> <br>
 		체크아웃 :${rsv.check_out} <input type="hidden" name="chech_out">  <br>
 		예약날짜 : ${rsv.rsv_date}<br>

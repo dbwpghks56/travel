@@ -267,8 +267,7 @@
 		image : icon
 	});
 	marker.setTitle(${price}+"원");
-	
-	
+
 	for(let i = 0; i<${sights.size()}; i++){
 		sx = ${sights.get(i).getX()};
 		sy = ${sights.get(i).getY()};
@@ -288,6 +287,7 @@
 			image : sicon
 		});
 	}
+
 	</script>
 	
 </body>

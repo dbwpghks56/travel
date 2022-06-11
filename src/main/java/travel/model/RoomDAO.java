@@ -28,7 +28,8 @@ public class RoomDAO {
 			+ "join accommodation using(accommodation_id)\r\n" + "join reservation using(room_id)\r\n"
 			+ "where (accommodation_id = ?)\r\n" + "and((check_in<= ? and check_out>= ?)\r\n"
 			+ "or (check_in<= ? and check_out>= ?))\r\n";
-
+	private static final String SQL_SELECT_IMG = "select image_path from room where accommodation_id = ?";
+	private static final String SQL_SELECT_BY_ACCO = "select * from room join accommodation using(accommodation_id) where accommodation_id = ?";
 
 	
 
@@ -54,6 +55,29 @@ public class RoomDAO {
 		return accoList;
 	}
 
+	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
+		List<RoomDto> accoList = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_BY_DATE);
+			pst.setInt(1, accoId);
+			pst.setDate(2, check_in);
+			pst.setDate(3, check_in);
+			pst.setDate(4, check_out);
+			pst.setDate(5, check_out);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				RoomDto room = makeRoom(rs);
+				accoList.add(room);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return accoList;
+	}
 	public List<String[]> selectImg(int accoId){
 		List<String[]> imgList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -99,10 +123,9 @@ public class RoomDAO {
 			room.setPrice_by_day(rs2.getInt("price_by_day"));
 			room.setMax_day(rs2.getInt("max_day"));
 			room.setMax_personnel(rs2.getInt("max_personnel"));
-			String[] images = rs2.getString("image_path").split(",");
-			String[] options = rs2.getString("r_option").split(",");
+			room.setR_image_path(rs2.getString("image_path"));
+			room.setR_option(rs2.getString("r_option"));
 			room.setRoom_name(rs2.getString("room_name"));
-			String[] aImges= rs2.getString("a_image_path").split(",");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

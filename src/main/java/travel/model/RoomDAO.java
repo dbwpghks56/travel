@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
 import travel.util.DBUtil;
 
@@ -57,6 +56,7 @@ public class RoomDAO {
 		}
 		return accoList;
 	}
+
 
 	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
 		List<RoomDto> accoList = new ArrayList<>();

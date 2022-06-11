@@ -68,6 +68,7 @@ public class SearchController implements Command {
 		session.setAttribute("check_in", check_in);
 		session.setAttribute("check_out", check_out);
 		session.setAttribute("person", person);
+		session.setAttribute("loc", location);
 		
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("aImgs", aImgs);

@@ -57,7 +57,6 @@ public class RoomDAO {
 		}
 		return accoList;
 	}
-
 	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
 		List<RoomDto> accoList = new ArrayList<>();
 

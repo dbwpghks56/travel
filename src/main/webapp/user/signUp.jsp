@@ -15,13 +15,12 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <style>
-
 .form-group {
 	width: 200px;
-	}
-	
-.title { 
-	text-align : center;
+}
+
+.title {
+	text-align: center;
 }
 
 .btn {
@@ -32,7 +31,6 @@
 
 .title {
 	text-align: center;
-
 	margin-top: 2%;
 }
 
@@ -47,7 +45,6 @@ body {
 
 .container {
 	margin-bottom: 95px;
-
 }
 
 #thumbnail {
@@ -61,39 +58,71 @@ body {
 
 <script>
 	$(function() {
-		$("#idDuplicateCheckBtn").click(function() {
-			//alert("버튼누름");
-			var user_id = $("#user_id").val();
-			if (user_id == "" || user_id == null) {
-				alert("아이디를 입력 해 주세요!")
-				$("#user_id").focus();
-			}
-			$.ajax({
-				url : "UserCheck.do",
-				data : {
-					"user_id" : $("#user_id").val()
-				},
-				type : "post",
-				success : function(responseData) {
-					//중복:1, 중복안됨:0
-					$("#message").html(responseData == 1 ? "사용이 블가능 합니다." : "사용 가능 합니다");
-				},
-				fail : function() {
-				}
-			});
-		});
+		$("#idDuplicateCheckBtn").click(
+				function() {
+					//alert("버튼누름");
+					var user_id = $("#user_id").val();
+					if (user_id == "" || user_id == null) {
+						alert("아이디를 입력 해 주세요!")
+						$("#user_id").focus();
+					}
+					$.ajax({
+						url : "UserCheck.do",
+						data : {
+							"user_id" : $("#user_id").val()
+						},
+						type : "post",
+						success : function(responseData) {
+							//중복:1, 중복안됨:0
+							$("#message").html(
+									responseData == 1 ? "사용이 블가능 합니다."
+											: "사용 가능 합니다");
+						},
+						fail : function() {
+						}
+					});
+				});
 	});
 	
+	$(function() {
+		$("#nickDuplicateCheckBtn")
+				.click(
+						function() {
+							var nickname = $("#nickname").val();
+							if (nickname == "" || nickname == null) {
+								alert("닉네임을 입력 해 주세요!")
+								$("#nickname").focus();
+							} else {
+								$
+										.ajax({
+											url : "NickCheck.do",
+											data : {
+												"nickname" : $("#nickname")
+														.val()
+											},
+											type : "post",
+											success : function(responseData) {
+												//중복:1, 중복안됨:0
+												alert(responseData == 1 ? "이미 사용 중이거나 , 사용이 불가능 합니다."
+														: "사용 가능 합니다");
+											},
+											fail : function() {
+											}
+										});
+							}
+						});
+	});
+
 	function setThumbnail(event) {
-        var reader = new FileReader();
+		var reader = new FileReader();
 
-        reader.onload = function(event) {
-        	$("#thumbnail").attr("src", event.target.result);
-        	$("#thumbnail").css("display", "inline-block");
-        };
+		reader.onload = function(event) {
+			$("#thumbnail").attr("src", event.target.result);
+			$("#thumbnail").css("display", "inline-block");
+		};
 
-        reader.readAsDataURL(event.target.files[0]);
-      }
+		reader.readAsDataURL(event.target.files[0]);
+	}
 </script>
 
 </head>
@@ -103,56 +132,56 @@ body {
 
 	<form action="signup.do" method="post" enctype="multipart/form-data">
 		<div>
-		
-		<div class="form-group">
-			<label>아이디</label> <input class="form-control" type="text" name="id">
-			<br>
-		</div>
 
-		<div class="form-group">
-			<label>비밀번호</label> <input class="form-control" type="password"
-				name="password"> <br>
-		</div>
+			<div class="form-group">
+				<label>아이디</label> <input class="form-control" type="text" name="id">
+				<br>
+			</div>
 
-		<div class="form-group">
-			<label>이름</label> <input class="form-control" type="text" name="name">
-			<br>
-		</div>
+			<div class="form-group">
+				<label>비밀번호</label> <input class="form-control" type="password"
+					name="password"> <br>
+			</div>
 
-		프로필사진 : <input type="file" name="photos"><br>
-		<div>
-			<label>Host</label> <input type="radio" name="host" value="1">
-			예 <input type="radio" name="host" value="0"> 아니오 <br>
-		</div>
+			<div class="form-group">
+				<label>이름</label> <input class="form-control" type="text"
+					name="name"> <br>
+			</div>
 
-		<div class="form-group">
-			<label>이메일</label> <input class="form-control" type="text"
-				name="email"> <br>
-		</div>
+			프로필사진 : <input type="file" name="photos"><br>
+			<div>
+				<label>Host</label> <input type="radio" name="host" value="1">
+				예 <input type="radio" name="host" value="0"> 아니오 <br>
+			</div>
 
-		<div class="form-group">
-			<label>닉네임</label> <input type="button" id="nicknameCheckBtn"
-				value="중복체크"> <input class="form-control" type="text"
-				name="nickname">
-		</div>
+			<div class="form-group">
+				<label>이메일</label> <input class="form-control" type="text"
+					name="email"> <br>
+			</div>
 
-		<div class="form-group">
-			<label>전화번호</label> <input class="form-control" type="text"
-				name="phone"> <br>
-		</div>
+			<div class="form-group">
+				<label>닉네임</label> <input type="button" id="nicknameCheckBtn"
+					value="중복체크"> <input class="form-control" type="text"
+					name="nickname">
+			</div>
 
-		<div class="form-group">
-			<label>생년월일</label> <input class="form-control" type="date"
-				name="birth"> <br>
-		</div>
+			<div class="form-group">
+				<label>전화번호</label> <input class="form-control" type="text"
+					name="phone"> <br>
+			</div>
 
-		<div class="form-group">
-			<label>favorite</label> <input class="form-control" type="text"
-				name="favorite"> <br>
-		</div>
+			<div class="form-group">
+				<label>생년월일</label> <input class="form-control" type="date"
+					name="birth"> <br>
+			</div>
 
-		<input type="submit" value="확인"> <input type="reset"
-			value="취소">
+			<div class="form-group">
+				<label>favorite</label> <input class="form-control" type="text"
+					name="favorite"> <br>
+			</div>
+
+			<input type="submit" value="확인"> <input type="reset"
+				value="취소">
 		</div>
 
 	</form>

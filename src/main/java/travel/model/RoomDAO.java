@@ -61,11 +61,6 @@ public class RoomDAO {
 	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
 		List<RoomDto> accoList = new ArrayList<>();
 
-
-
-	public List<RoomDto> selectByDate(int accoId, Date check_in, Date check_out){
-		List<RoomDto> accoList = new ArrayList<>();
-
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_BY_DATE);

@@ -21,5 +21,5 @@ public class NickCheckController implements Command {
 		//PrintWriter out = response.getWriter(); out.print(result == 0 ? 0 : 1);
 		return "rest:" + result;
 	}
-
+ 
 }

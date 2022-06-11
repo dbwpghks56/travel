@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>예약목록</title>
+<script>
+
+</script>
 <style>
 table, td { 
 border: 1px solid gray;
@@ -33,12 +36,12 @@ padding: 10px;
 		<c:forEach items="${rsvlist }" var="rsv">
 		<tr>
 		<td><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">${rsv.rsv_no}</a></td>
-		<td>${rsv.accommodation_name}</td>
-		<td>${rsv.room_name}</td>
+		<td>숙소이름</td>
+		<td>룸이름</td>
 		<td>${rsv.check_in} / ${rsv.check_out}</td>
 		<td>${rsv.rsv_date}</td>
 		<td>${rsv.rsv_status}</td>
-		<td>${rsv.price_by_day}</td>
+
 		</tr>
 		</c:forEach>
 	</table>

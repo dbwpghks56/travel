@@ -18,18 +18,24 @@ padding: 10px;
 <h1>예약된 List</h1>
 <table>
 		<tr>
-			<td>예약번호</td>
+			<td>숙소이름</td>
+			<td>룸이름</td>
 			<td>인원</td>
 			<td>체크인/체크아웃</td>
+			<td>유저이름</td>
 			<td>유저번호</td>
+			<td>요청사항</td>
 		</tr>
 		
-		<c:forEach items="${hostrsvlist}" var="host">
+		<c:forEach items="${rsvlist }" var="rsv">
 		<tr>
-			<td><a href="hostrsvdetail.do?rsv_no=${host.rsv_no}">${host.rsv_no}</a></td>
-			<td>${host.personnel}</td>
-			<td>${host.check_in} / ${host.check_out}</td>
-			<td>${host.user_phone}</td>
+			<td><a href="hostRsvDetail.do?accommodation_name=${accommodation_name}">숙소이름</a></td>
+			<td>룸이름</td>
+			<td>인원</td>
+			<td>체크인/체크아웃</td>
+			<td>유저이름</td>
+			<td>유저번호</td>
+			<td>요청사항</td>
 
 		</tr>
 		</c:forEach>

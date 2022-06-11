@@ -21,7 +21,7 @@ public class RsvDetailHostController implements Command {
 			}
 			
 			ReservationService rService = new ReservationService();
-			ReservationDTO host = rService.selectByRsvNo(i_rsvNO);
+			ReservationDTO host = rService.selectByHostRsvNo(i_rsvNO);
 			reQuest.setAttribute("host", host);
 			
 		

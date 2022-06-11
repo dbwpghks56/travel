@@ -8,12 +8,19 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import geoUtil.GeoPoint;
+import geoUtil.GeoTrans;
+
 import travel.DTO.AccommodationDto;
 import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
+import travel.DTO.SightDTO;
 import travel.model.AccommodationService;
 import travel.model.ReviewService;
 import travel.model.RoomService;
+
+import travel.model.SightsDAO;
+
 import travel.model.UserService;
 
 public class SelectRoomController implements Command {
@@ -26,6 +33,7 @@ public class SelectRoomController implements Command {
 		Date check_in = (Date)session.getAttribute("check_in");
 		Date check_out = (Date)session.getAttribute("check_out");
 		int person = (Integer)session.getAttribute("person");
+		String loc = (String) session.getAttribute("loc");
 		
 		AccommodationService aService = new AccommodationService();
 		AccommodationDto accommo = aService.selectById(accoId);
@@ -42,6 +50,23 @@ public class SelectRoomController implements Command {
 		
 		int star = (accommo.getCleaning_star()+accommo.getLocation_star()+accommo.getSatisfied_star())/3;
 		
+
+		GeoPoint pt = new GeoPoint(accommo.getX(),accommo.getY());
+		GeoPoint npt = GeoTrans.convert(GeoTrans.TM, GeoTrans.GEO, pt);
+		npt = new GeoPoint(npt.getY(),npt.getX());
+		
+		SightsDAO sService = new SightsDAO();
+		List<SightDTO> sights = sService.selectAll();
+		for(int i = 0; i<sights.size(); i++) {
+			GeoPoint spt = new GeoPoint(sights.get(i).getX(),sights.get(i).getY());
+			double distance = GeoTrans.getDistancebyGeo(npt, spt);
+			if(distance>20){
+				sights.remove(i);
+				i--;
+			}
+		}
+		System.out.println(sights.size());
+
 		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", accommo.getAddress());
@@ -59,6 +84,9 @@ public class SelectRoomController implements Command {
 		request.setAttribute("price", roomList.get(0).getPrice_by_day());
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("star", star);
+
+		request.setAttribute("sights", sights);
+
 		
 		
 		return "selectRoom.jsp";

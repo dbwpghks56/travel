@@ -267,6 +267,27 @@
 		image : icon
 	});
 	marker.setTitle(${price}+"원");
+
+	for(let i = 0; i<${sights.size()}; i++){
+		sx = ${sights.get(i).getX()};
+		sy = ${sights.get(i).getY()};
+		sicon = new kakao.maps.MarkerImage(
+			'../images/icons/makerIcon.png',
+			new kakao.maps.Size(70, 35),
+			{
+				offset : new kakao.maps.Point(16, 34),
+				alt : "마커 이미지",
+				shape : "poly",
+				coords : "1,20,1,9,5,2,10,0,21,0,27,3,30,9,30,20,17,33,14,33"
+			});
+
+		smarker = new kakao.maps.Marker({
+			map : map,
+			position : new kakao.maps.LatLng(sx, sy),
+			image : sicon
+		});
+	}
+
 	</script>
 	
 </body>

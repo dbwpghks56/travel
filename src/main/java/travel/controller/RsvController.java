@@ -32,6 +32,7 @@ public class RsvController implements Command {
 			
 			ReservationDTO rsv = makeRsv(reQuest);
 			ReservationService rService = new ReservationService();
+			
 			int result = rService.resevation(rsv);
 			int rsv_no = rService.insertAfterRsv();
 			if(result>0) {

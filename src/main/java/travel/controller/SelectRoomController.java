@@ -8,9 +8,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import geoUtil.GeoPoint;
 import geoUtil.GeoTrans;
-
+import oracle.net.aso.l;
 import travel.DTO.AccommodationDto;
 import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
@@ -56,18 +60,24 @@ public class SelectRoomController implements Command {
 		npt = new GeoPoint(npt.getY(),npt.getX());
 		
 		SightsDAO sService = new SightsDAO();
-		List<SightDTO> sights = sService.selectAll();
+		List<Map<String, String>> sights = sService.selectAll();
+		JSONArray jSights = new JSONArray();
 		for(int i = 0; i<sights.size(); i++) {
-			GeoPoint spt = new GeoPoint(sights.get(i).getX(),sights.get(i).getY());
+			Double x = Double.parseDouble(sights.get(i).get("x"));
+			Double y = Double.parseDouble(sights.get(i).get("y"));
+			GeoPoint spt = new GeoPoint(x,y);
 			double distance = GeoTrans.getDistancebyGeo(npt, spt);
-			if(distance>20){
+			if(distance>10){
 				sights.remove(i);
-				i--;
+				if(i!=1) {
+					i--;
+				}
 			}
 		}
-		System.out.println(sights.size());
-
-		
+		for(int i = 0 ; i<sights.size(); i++) {
+			JSONObject jSight = new JSONObject(sights.get(i));
+			jSights.add(jSight);
+		}
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("address", accommo.getAddress());
 		request.setAttribute("host_id", accommo.getUser_id());
@@ -85,7 +95,7 @@ public class SelectRoomController implements Command {
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("star", star);
 
-		request.setAttribute("sights", sights);
+		request.setAttribute("sights", jSights);
 
 		
 		

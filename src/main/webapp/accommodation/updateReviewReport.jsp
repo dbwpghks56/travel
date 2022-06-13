@@ -18,6 +18,9 @@
 	.modal-dialog{
 		position: absolute;
 	}
+	.modal-body2{
+		display: none;
+	}
 	.modal-content{
 		position: absolute;
 		width: 40%;
@@ -45,6 +48,9 @@
 				<div class="modal-body">
 					정말 신고하시겠습니까?
 					<input type = "button" id = "updateReport" value = "신고">
+				</div>
+				<div class="modal-body2">
+					신고 완료되었습니다!
 				</div>
 
 				<!-- Modal footer -->

@@ -17,6 +17,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
 <title>reservation</title>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js"
+	type="application/javascript"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		let eventobj = [];
@@ -79,12 +81,65 @@ function count(type)  {
 	  }
 	  resultElement.value = num;
 	}
-	
-
-
-
-
 </script>
+ <script type="text/javascript">
+	function pay() {
+		BootPay.request({
+			price : $("#totalprice").val(), 
+			application_id : "62a2ec5de38c3000215ae28d",
+			name : '${rsv.accommodation_name}', 
+			pg : 'kakao',
+			method : 'easy',
+			show_agree_window : 1, 
+			items : [ {
+				item_name : '${rsv.room_name}', 
+				qty : 1, 
+				unique : '${rsv.rsv_no}', 
+				price : $("#totalprice").val(), 
+			} ],
+			user_info : {
+				username : '${user.user_name}',
+				email : '${user.user_email}',
+				phone : '${user.user_phone}'
+			},
+			order_id : 'order_id11112', 
+			extra : {
+				vbank_result : 1, // 가상계좌 사용시 사용, 가상계좌 결과창을 볼지(1), 말지(0), 미설정시 봄(1)
+				quota : '0,2,3', // 결제금액이 5만원 이상시 할부개월 허용범위를 설정할 수 있음, [0(일시불), 2개월, 3개월] 허용, 미설정시 12개월까지 허용,
+				theme : 'purple', // [ red, purple(기본), custom ]
+				custom_background : '#00a086', // [ theme가 custom 일 때 background 색상 지정 가능 ]
+				custom_font_color : '#ffffff' // [ theme가 custom 일 때 font color 색상 지정 가능 ]
+			}
+		}).error(function(data) {
+			//결제 진행시 에러가 발생하면 수행됩니다.
+			console.log(data);
+		}).cancel(function(data) {
+			//결제가 취소되면 수행됩니다.
+			console.log(data);
+		}).ready(function(data) {
+			// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
+			console.log(data);
+		}).confirm(function(data) {
+			//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
+			//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
+			console.log(data);
+			var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
+			if (enable) {
+				BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
+			} else {
+				BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
+			}
+		}).close(function(data) {
+			// 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
+			console.log(data);
+		}).done(function(data) {
+			//결제가 정상적으로 완료되면 수행됩니다
+			//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
+			$("#rsv_form").submit();
+			console.log(data);
+		});
+	}
+</script> 
 <style>
 body{
 	width: 500px;
@@ -117,7 +172,6 @@ input, textarea{
   border: 2px solid #777;
   box-sizing: border-box;
   font-size: 1.25em;
-/*   font-family: 'Nanum Gothic'; */
   width: 100%;
   padding: 10px;
 }
@@ -144,7 +198,6 @@ hr{ border: 1px dotted #ccc;}
   height: 50px;
   border: none;
   font-size: 1.25em;
-/*   font-family: 'Nanum Gothic'; */
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
@@ -186,7 +239,7 @@ h1{text-align: center;}
 		</div>
 	<hr>
 		
-	<form name="frm" action="reservation.do" method="post" >
+	<form name="frm" action="reservation.do" method="post" id="rsv_form" >
 		<input type="hidden" name="user_id" value="${user.user_id }">	
 		<input type="hidden" name="room_id" value="${param.room_id}" >
 	
@@ -239,7 +292,7 @@ h1{text-align: center;}
 	 <hr>
 		
 	
-			<input class="btn" id="btn_submit" type="submit" value="예약하기"> 
+			<input class="btn" id="btn_submit" type="button" value="예약하기" onclick="pay();"> 
 			<input class="btn" id="btn_reset" type="reset" value="취소">
 		
 		

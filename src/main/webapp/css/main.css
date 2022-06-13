@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+.hiper {
+	text-decoration: none;
+	color: white;
+	margin-right: 3px;
+	visibility: hidden;
+}
+
+.hiper2 {
+	font-size: 1.5em;
+	text-decoration: none;
+	color: white;
+	visibility: visible;
+	text-shadow: 1px 1px 1px red;
+}
+
+.nav-item:hover .hiper {
+	visibility: visible;
+}
+
+.nav {
+	width: 100%;
+	z-index: 3;
+}
+
+.nav-item {
+	font-size: 1.3em;
+	color: black;
+	margin-top: 10px;
+}
+
+.nav-container {
+	list-style-type: none;
+	z-index: 3;
+	position: absolute;
+	top: 33%;
+	right: 1%;
+	text-align: end;
+	position: fixed;
+}
+
+.head {
+	font-size: 2.7em;
+	z-index: 3;
+	position: absolute;
+	top: 40%;
+	left: 20%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-family: 'Noto Serif KR', serif;
+}
+
+.content1 {
+	font-size: 1.6em;
+	text-align: right;
+	z-index: 3;
+	position: absolute;
+	top: 70%;
+	left: 70%;
+	width: 45%;
+	transform: translate(-50%, -50%);
+	font-family: 'Gaegu', cursive;
+	color: white;
+	padding: 30px 30px 30px 30px;
+}
+
+
+.all-content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.all-content>h1, p {
+	text-align: center;
+}
+
+.all-content>h1 {
+	font-size: 5em;
+}
+
+.all-content>p {
+	text-align: center;
+	font-size: 1.7em;
+	font-family: 'Gaegu', cursive;
+}
+
+.all-content>a {
+	text-align: center;
+	font-size: 21px;
+	font-family: 'Gaegu', cursive;
+}
+
+.second-content {
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+.btn {
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: white;
+	border: 1px solid black;
+	margin-top: 30px;
+	padding: 10px;
+	width: 130px;
+	border-radius: 4px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+}
+
+.btn:hover {
+	color: black;
+	background-color: white;
+}
+
+#page1 {
+	color: white;
+	text-align: center;
+	padding-top: 6%;
+	font-family: 'Noto Serif KR', serif;
+	font-weight: bold;
+	font-size: 2.3em;
+}
+
+#page1_1 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.5);
+	width: 70%;
+	height: 60%;
+	z-index: 3;
+	color: #323232;
+	font-size: 1.1em;
+	font-family: 'Noto Serif KR', serif;
+}

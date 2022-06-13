@@ -15,75 +15,97 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <style>
-.form-group {
-	width: 200px;
-}
-
-.title {
-	text-align: center;
-}
-
-.btn {
-	width: 150px;
-	margin: auto;
-	width: 280px;
-}
-
 .title {
 	text-align: center;
 	margin-top: 2%;
+	font-family: verdana;
 }
-
 .check {
 	width: 50px;
 }
-
 body {
 	line-height: 0.5em;
 	text-align: center;
 }
-
 .container {
 	margin-bottom: 95px;
 }
-
+.input-group {
+	width: 500px;
+	margin: auto;
+}
+.input-group-text {
+	width: 90px;
+	background-color: pink;
+	color: white;
+}
+.text {
+	display: inline-block;
+	width: 115px;
+	margin-top: 12.5%;
+	color: white;
+}
+.textdiv {
+	background-color: pink;
+	display: inline-block;
+	padding: auto;
+}
+.btn-primary {
+	width: 500px;
+	margin: auto;
+	background-color: pink;
+	color: white;
+	border: pink;
+}
+#idDuplicateCheckBtn {
+	width: 115px;
+	color: white;
+	background-color: pink;
+	border: pink;
+}
+#nickDuplicateCheckBtn {
+	width: 115px;
+	color: white;
+	background-color: pink;
+	border: pink;
+}
 #thumbnail {
 	width: 200px;
 	height: 200px;
 	display: none;
 	border-radius: 80%;
-	border: 5px solid skyblue;
+	border: 5px solid pink;
 }
 </style>
 
 <script>
 	$(function() {
-		$("#idDuplicateCheckBtn").click(
-				function() {
-					//alert("버튼누름");
-					var user_id = $("#user_id").val();
-					if (user_id == "" || user_id == null) {
-						alert("아이디를 입력 해 주세요!")
-						$("#user_id").focus();
-					}
-					$.ajax({
-						url : "UserCheck.do",
-						data : {
-							"user_id" : $("#user_id").val()
-						},
-						type : "post",
-						success : function(responseData) {
-							//중복:1, 중복안됨:0
-							$("#message").html(
-									responseData == 1 ? "사용이 블가능 합니다."
-											: "사용 가능 합니다");
-						},
-						fail : function() {
-						}
-					});
-				});
+		$("#idDuplicateCheckBtn")
+				.click(
+						function() {
+							var user_id = $("#user_id").val();
+							if (user_id == "" || user_id == null) {
+								alert("아이디를 입력 해 주세요!")
+								$("#user_id").focus();
+							} else {
+								$
+										.ajax({
+											url : "UserCheck.do",
+											data : {
+												"user_id" : $("#user_id").val()
+											},
+											type : "post",
+											success : function(responseData) {
+												//중복:1, 중복안됨:0
+												alert(responseData == 1 ? "이미 사용 중이거나 , 사용이 불가능 합니다."
+														: "사용 가능 합니다");
+											},
+											fail : function() {
+											}
+										});
+							}
+						});
 	});
-	
 	$(function() {
 		$("#nickDuplicateCheckBtn")
 				.click(
@@ -112,79 +134,89 @@ body {
 							}
 						});
 	});
-
+	
 	function setThumbnail(event) {
-		var reader = new FileReader();
-
-		reader.onload = function(event) {
-			$("#thumbnail").attr("src", event.target.result);
-			$("#thumbnail").css("display", "inline-block");
-		};
-
-		reader.readAsDataURL(event.target.files[0]);
+        var reader = new FileReader();
+        reader.onload = function(event) {
+        	$("#thumbnail").attr("src", event.target.result);
+        	$("#thumbnail").css("display", "inline-block");
+        };
+        reader.readAsDataURL(event.target.files[0]);
 	}
 </script>
 
 </head>
 <body>
+	<h1 class="title">Would You Travel</h1>
+	<br>
+	<br>
 
-	<h1>회원가입</h1>
+	<div class="container mt-3">
 
-	<form action="signup.do" method="post" enctype="multipart/form-data">
-		<div>
+		<form action="signup.do" method="post" enctype="multipart/form-data">
 
-			<div class="form-group">
-				<label>아이디</label> <input class="form-control" type="text" name="id">
-				<br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">아이디</span> <input type="text"
+					class="form-control" placeholder="Id" name="id" id="user_id" value="${email }">
+				<input type="button" id="idDuplicateCheckBtn" value="중복확인">
 			</div>
 
-			<div class="form-group">
-				<label>비밀번호</label> <input class="form-control" type="password"
-					name="password"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">비밀번호</span> <input type="password"
+					class="form-control" placeholder="PassWord" name="password">
 			</div>
 
-			<div class="form-group">
-				<label>이름</label> <input class="form-control" type="text"
-					name="name"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">이름</span> <input type="text"
+					class="form-control" placeholder="Name" name="name">
 			</div>
 
-			프로필사진 : <input type="file" name="photos"><br>
-			<div>
-				<label>Host</label> <input type="radio" name="host" value="1">
-				예 <input type="radio" name="host" value="0"> 아니오 <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">이메일</span> <input type="text"
+					class="form-control" placeholder="Your Email" name="email">
+				<div class="textdiv">
+					<span class="text">@example.com</span>
+				</div>
 			</div>
 
-			<div class="form-group">
-				<label>이메일</label> <input class="form-control" type="text"
-					name="email"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">닉네임</span> <input type="text"
+					class="form-control" placeholder="NickName" name="nickname"
+					id="nickname" value="${nick }"> <input type="button"
+					id="nickDuplicateCheckBtn" value="중복확인">
 			</div>
 
-			<div class="form-group">
-				<label>닉네임</label> <input type="button" id="nicknameCheckBtn"
-					value="중복체크"> <input class="form-control" type="text"
-					name="nickname">
+			<div class="input-group mb-3">
+				<span class="input-group-text">전화번호</span> <input type="text"
+					class="form-control" placeholder="Phone" name="phone">
 			</div>
 
-			<div class="form-group">
-				<label>전화번호</label> <input class="form-control" type="text"
-					name="phone"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">생년월일</span> <input type="date"
+					class="form-control" placeholder="Birth" name="birth">
+
 			</div>
 
-			<div class="form-group">
-				<label>생년월일</label> <input class="form-control" type="date"
-					name="birth"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">Favorite</span> <input type="text"
+					class="form-control" placeholder="Favorite" name="favorite">
 			</div>
 
-			<div class="form-group">
-				<label>favorite</label> <input class="form-control" type="text"
-					name="favorite"> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">프로필</span> <input type="file"
+					class="form-control" placeholder="Photo" name="photos" accept="image/*" onchange="setThumbnail(event);">
+					<img alt="" src="" id="thumbnail">
 			</div>
 
-			<input type="submit" value="확인"> <input type="reset"
-				value="취소">
-		</div>
+			<label>Host</label> <input type="radio" class="check" name="host"
+				value="1">예 <input type="radio" class="check" name="host"
+				value="0">아니오<br> <br> <br>
 
-	</form>
+			<button type="submit" class="btn btn-primary">확인</button>
+		</form>
+
+	</div>
+
 
 </body>
 </html>

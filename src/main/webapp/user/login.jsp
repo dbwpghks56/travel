@@ -48,6 +48,7 @@ a:hover {
 .signup a {
 	text-decoration: none;
 }
+
 .btn {
 	width: 300px;
 	margin: auto;
@@ -74,6 +75,7 @@ a:hover {
 	margin-bottom: 10px;
 }
 </style>
+
 <script>
 	// SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
 	Kakao.init('2d503e5862c5829d5794c838da38c231');
@@ -122,6 +124,7 @@ a:hover {
 	    }
 	  }  
 </script>
+
 </head>
 <body>
 
@@ -129,8 +132,8 @@ a:hover {
 	<br>
 	<br>
 	<br>
-	<form action="login.do" method="post" enctype="multipart/form-data" id="myform">
 
+	<form action="login.do" method="post" enctype="multipart/form-data" id="myform">
 
 		<div class="form-group mb-3">
 			<input type="text" class="form-control" placeholder="ID" name="id">
@@ -166,11 +169,18 @@ a:hover {
 		
 
 		<!-- <input type="reset" value="취소"> -->
+		<!-- <input type="reset" value="취소"> -->
+		<input id="email" type="hidden" name="email"> <br>
+		<input id="nick" type="hidden" name="nick"> <br>
+		<input id="profile" type="hidden" name="profile">
+		<ul>
+			<li onclick="kakaoLogout();">
+		      <a href="javascript:void(0)">
+		          <span>카카오 로그아웃</span>
+		      </a>
+			</li>
+		</ul>
 
 	</form>
-
-
-
-
 </body>
 </html>

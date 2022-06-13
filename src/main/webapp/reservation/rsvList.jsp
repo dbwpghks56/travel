@@ -39,9 +39,6 @@ td:not(#font_small,#atag){font-weight: bold;}
 </head>
 <body>
 <h1>예약목록</h1>
-
-
-	
 	<c:forEach items="${rsvlist }" var="rsv">
 	<div>
 	<table>
@@ -49,7 +46,7 @@ td:not(#font_small,#atag){font-weight: bold;}
 	<td >${rsv.accommodation_name }</td>
 	<td >${rsv.room_name }</td>
 	</tr>
-		<tr>
+	<tr>
 	<td colspan="2">${rsv.check_in} ~ ${rsv.check_out}</td>
 	</tr>
 	<tr>
@@ -71,6 +68,40 @@ td:not(#font_small,#atag){font-weight: bold;}
 	<tr>
 	<td id="atag"><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">상세보기</a></td>
 	<td id="atag"><a>리뷰작성</a></td>
+	</tr>
+	</table>
+	</div>	
+	<br><br>
+	</c:forEach>
+	
+	<hr>
+	<h1>예약 취소 list</h1>
+	<c:forEach items="${rsvdeletelist }" var="delete">
+	<div>
+	<table>
+	<tr>
+	<td >${delete.accommodation_name }</td>
+	<td >${delete.room_name }</td>
+	</tr>
+	<tr>
+	<td colspan="2">${delete.check_in} ~ ${delete.check_out}</td>
+	</tr>
+	<tr>
+	<td id="font_small">예약일</td>
+	<td id="font_small">예약번호</td>
+	</tr>
+	<tr>
+	<td>${delete.rsv_date}</td>
+	<td>${delete.d_rsv_no}</td>
+	</tr>
+	<tr>
+	<td id="font_small" colspan="2">금액</td>
+	</tr>
+	<tr>
+	<td>${delete.totalprice}원</td>
+	</tr>
+	<tr>
+	<td id="atag" colspan="2"><a href="rsvdetail.do?rsv_no=${delete.d_rsv_no}">상세보기</a></td>
 	</tr>
 	</table>
 	</div>	

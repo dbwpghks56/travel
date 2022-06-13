@@ -25,6 +25,10 @@ public class ReservationService {
 		return rDAO.rsvDelete(rsv_no);
 	}
 	
+	public List<ReservationDTO> rsvDeleteAll(String user_id){
+		return rDAO.rsvDeleteAll(user_id);
+	}
+	
 	//예약 목록
 	public List<ReservationDTO> rsvAll(String user_id){
 		return rDAO.rsvAll(user_id);

@@ -15,6 +15,7 @@ public class RsvListController implements Command {
 		String user_id=((UserDTO)session.getAttribute("user")).getUser_id();
 		System.out.println(user_id);
 		request.setAttribute("rsvlist", service.rsvAll(user_id));
+		request.setAttribute("rsvdeletelist", service.rsvDeleteAll(user_id));
 		return "rsvList.jsp";
 	}
 

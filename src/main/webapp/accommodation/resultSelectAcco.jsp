@@ -21,23 +21,32 @@ body{
 }
 #map {
 	position:fixed;
-	left:40%;
-	width: 60%;
+	left:50%;
+	width: 50%;
 	height: 100%;
 }
 #leftSide{
 	position: left;
-	width: 40%;
+	width: 50%;
 	height: 40%;
 }
 #demo{
 	display:inline-block;
 	width: 45%;
 	height: 45%;
+	
 }
 #demo a{
 	display: inline-block;
 }
+.carousel-item active{
+	border-radius: 10%;
+	overflow: hidden;
+}
+.carousel-item{
+	border-radius: 10%;
+	overflow: hidden;
+} 
 .score{
 	display: inline-block;
 	width:20%;

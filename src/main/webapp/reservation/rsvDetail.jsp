@@ -31,7 +31,7 @@ $(function(){
 			dataType:"text",
 			success:function(data){
 				if(data==0)
-				{alert("요청사항을 다시 입력해주세요");}
+				{alert("요청사항 변경 기간이 지났습니다");}
 				else{alert("요청사항이 수정 되었습니다");}
 								
 			},

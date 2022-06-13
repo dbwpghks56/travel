@@ -85,6 +85,34 @@ public class ReservationDAO {
 		
 	}
 	
+	//예약 취소 list
+	public List<ReservationDTO> rsvDeleteAll(String user_id){
+		List<ReservationDTO> rsvList = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("SELECT dr.D_RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , dr.CHECK_IN ,dr.CHECK_OUT,((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, dr.RSV_DATE \r\n"
+					+ "FROM DELETE_RESERVATION dr ,ROOM r2 , ACCOMMODATION a\r\n"
+					+ "WHERE dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND dr.USER_ID = ? \r\n"
+					+ "ORDER BY dr.D_RSV_NO DESC");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsvList.add(makeRsv6(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsvList;
+		
+	}
+	
 	
 	
 	//예약 목록
@@ -229,8 +257,8 @@ public class ReservationDAO {
 		
 		try {
 			pst = conn.prepareStatement("SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r.MIN_DAY ,r.MAX_DAY\r\n"
-					+ "FROM ROOM r , ACCOMMODATION a, RESERVATION r2 \r\n"
-					+ "WHERE r2.ROOM_ID = r.ROOM_ID AND r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = ?");
+					+ "FROM ROOM r , ACCOMMODATION a\r\n"
+					+ "WHERE r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = ?");
 			pst.setInt(1, room_id);
 			rs = pst.executeQuery();
 			
@@ -354,5 +382,16 @@ public class ReservationDAO {
 		return rsv;
 	}
 
+	private ReservationDTO makeRsv6(ResultSet rs) throws SQLException {
+		ReservationDTO rsv = new ReservationDTO();
+		rsv.setD_rsv_no(rs.getInt("D_rsv_no"));
+		rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+		rsv.setRoom_name(rs.getString("Room_name"));
+		rsv.setCheck_in(rs.getDate("Check_in"));
+		rsv.setCheck_out(rs.getDate("Check_out"));
+		rsv.setRsv_date(rs.getDate("Rsv_date"));
+		rsv.setTotalprice(rs.getInt("Totalprice"));	
+		return rsv;
+	}
 
 }

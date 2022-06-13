@@ -5,10 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import travel.DTO.InteAccoDTO;
 import travel.DTO.RoomDto;
-
 import travel.util.DBUtil;
 
 public class RoomService {

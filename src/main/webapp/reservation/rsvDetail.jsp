@@ -22,6 +22,26 @@ $(function(){
 		}
 	});
 
+	$("#ajaxbtn").click(function(){
+		$.ajax({
+			type:"POST",
+			url:"rsvdetail.do",
+			data:{"rsv_no":$(this).attr("data-no"),
+				"request":$("#request").val()},
+			dataType:"text",
+			success:function(data){
+				if(data==0)
+				{alert("요청사항을 다시 입력해주세요");}
+				else{alert("요청사항이 수정 되었습니다");}
+								
+			},
+			error:function(data){
+			
+				
+			}
+		})
+	})
+
 }); 
 </script>
 </head>
@@ -37,9 +57,9 @@ $(function(){
 		예약상태 : ${rsv.rsv_status}<br>
 		금액 : ${rsv.totalprice} <br>
 		인원 : ${rsv.personnel}<input type="hidden" name="personnel" >  <br>
-		요청사항 : <input type="text" name="request" value="${rsv.request}" >  <br>
+		요청사항 : <input type="text" name="request" value="${rsv.request}" id="request">  <br>
 		<input class="btn" type="button" value="목록" id="rsvList"> <br>
-		<input class="btn" type="submit" value="수정">
+		<input class="btn" type="submit" value="수정" id="ajaxbtn" data-no="${rsv.rsv_no}">
 	</form>
 	<form action="rsvdelete.do" method="post">
 		<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">

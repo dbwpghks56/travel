@@ -87,14 +87,16 @@ public class ReservationDAO {
 	
 	
 	
-	//예약 전체 조회하기(최근 예약순으로) 
+	//예약 목록
 	public List<ReservationDTO> rsvAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		
 		//select * from reservation order by desc
 		try {
-			pst = conn.prepareStatement("select * from reservation where user_id=? order by rsv_no desc");
+			pst = conn.prepareStatement("SELECT r.RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , r.CHECK_IN ,r.CHECK_OUT , r.RSV_DATE ,((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, r.rsv_status \r\n"
+					+ "FROM RESERVATION r ,ROOM r2 , ACCOMMODATION a \r\n"
+					+ "WHERE r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = ? ORDER BY rsv_no DESC ");
 			pst.setString(1, user_id);
 			rs = pst.executeQuery();
 			
@@ -113,6 +115,7 @@ public class ReservationDAO {
 		
 	}
 	
+	//예약 상세
 	public ReservationDTO selectByRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -138,6 +141,7 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
+	//예약 후 바로 상세보기
 	public int insertAfterRsv() {
 		
 		conn = DBUtil.getConnection();
@@ -160,6 +164,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
+	//host가 등록한 숙소에 예약된 list
 	public List<ReservationDTO> hostRsvAll(String user_id) {
 		List<ReservationDTO> hostRsvList = new ArrayList<>();
 		
@@ -190,6 +195,7 @@ public class ReservationDAO {
 
 	}
 	
+	//host가 등록한 숙소에 예약된 detail
 	public ReservationDTO selectByHostRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -215,12 +221,14 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
+	
+	//예약할 때 나오는 해당 숙소 정보
 	public ReservationDTO selectByRoomId(int room_id) {
 		ReservationDTO rsv = new ReservationDTO();
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r.MIN_DAY ,r.MAX_DAY, r2.CHECK_IN ,r2.CHECK_OUT \r\n"
+			pst = conn.prepareStatement("SELECT r.ROOM_NAME , a.ACCOMMODATION_NAME ,r.price_by_day , r.MIN_PERSONNEL ,r.MAX_PERSONNEL, r.MIN_DAY ,r.MAX_DAY\r\n"
 					+ "FROM ROOM r , ACCOMMODATION a, RESERVATION r2 \r\n"
 					+ "WHERE r2.ROOM_ID = r.ROOM_ID AND r.ACCOMMODATION_ID  = a.ACCOMMODATION_ID AND r.ROOM_ID = ?");
 			pst.setInt(1, room_id);
@@ -232,8 +240,6 @@ public class ReservationDAO {
 				rsv.setMin_personnel(rs.getInt("Min_personnel"));
 				rsv.setMax_personnel(rs.getInt("Max_personnel"));
 				rsv.setPrice_by_day(rs.getInt("Price_by_day"));
-				rsv.setCheck_in(rs.getDate("Check_in"));
-				rsv.setCheck_out(rs.getDate("Check_out"));
 				rsv.setMin_day(rs.getInt("Min_day"));
 				rsv.setMax_day(rs.getInt("Max_day"));
 
@@ -248,18 +254,53 @@ public class ReservationDAO {
 		
 		return rsv;
 	}
+	
+	public List<ReservationDTO> selectByCheckInOut(int room_id) {
+		List<ReservationDTO> rsvlist = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("SELECT CHECK_IN , CHECK_OUT \r\n"
+					+ "FROM RESERVATION\r\n"
+					+ "WHERE ROOM_ID = ?");
+			pst.setInt(1, room_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsvlist.add(makeRsv5(rs));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsvlist;
+	}
+	
+	private ReservationDTO makeRsv5(ResultSet rs) throws SQLException {
+		ReservationDTO rsv = new ReservationDTO();
+		rsv.setCheck_in(rs.getDate("Check_in"));
+		rsv.setCheck_out(rs.getDate("Check_out"));
+		return rsv;
+	}
+
+
+
 
 	private ReservationDTO makeRsv(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();
 		rsv.setRsv_no(rs.getInt("Rsv_no"));
-		rsv.setUser_id(rs.getString("User_id"));
-		rsv.setRoom_id(rs.getInt("Room_id"));
+		rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+		rsv.setRoom_name(rs.getString("Room_name"));
 		rsv.setCheck_in(rs.getDate("Check_in"));
 		rsv.setCheck_out(rs.getDate("Check_out"));
 		rsv.setRsv_date(rs.getDate("Rsv_date"));
-		rsv.setPersonnel(rs.getInt("Personnel"));
-		rsv.setRequest(rs.getString("Request"));
-		rsv.setRsv_status(rs.getString("Rsv_status"));
+		rsv.setTotalprice(rs.getInt("Totalprice"));
+		rsv.setRsv_status(rs.getString("Rsv_status"));		
 		return rsv;
 	}
 	

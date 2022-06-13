@@ -45,6 +45,7 @@ a:hover {
 .signup {
 	text-align: center;
 }
+
 .signup a {
 	text-decoration: none;
 }
@@ -155,6 +156,7 @@ a:hover {
 			<img alt=""
 				src="../images/loginbutton/kakao_login_medium_wide.png"
 				onclick="kakaoLogin();" id="kakaologin">
+
 		</div>
 		<input id="email" type="hidden" name="email"> <br>
 		<input id="nick" type="hidden" name="nick"> <br>
@@ -166,7 +168,6 @@ a:hover {
 		      </a>
 			</li>
 		</ul>
-		
 
 		<!-- <input type="reset" value="취소"> -->
 		<!-- <input type="reset" value="취소"> -->

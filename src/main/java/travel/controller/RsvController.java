@@ -1,6 +1,7 @@
 package travel.controller;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,8 +25,9 @@ public class RsvController implements Command {
 			}
 			ReservationService rService = new ReservationService();
 			ReservationDTO rsv = rService.selectByRoomId(i_roomId);
-			System.out.println(rsv);
 			reQuest.setAttribute("rsv", rsv);
+			
+			reQuest.setAttribute("checkInOut", rService.selectByCheckInOut(i_roomId));
 			
 			page = "reservation.jsp";
 		} else {

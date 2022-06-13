@@ -29,12 +29,11 @@
 
 		<div class="input-group mb-3">
 			<span class="input-group-text">아이디</span> <input type="text"
-				class="form-control" placeholder="ID" name="id"
-				id="user_password">
+				class="form-control" placeholder="ID" name="id">
 		</div>
 		
 		<div class="input-group mb-3">
-			<span class="input-group-text">비밀번호</span> <input type="text"
+			<span class="input-group-text">비밀번호</span> <input type="password"
 				class="form-control" placeholder="PASSWORD" name="password"
 				id="user_password">
 		</div>

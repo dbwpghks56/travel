@@ -76,7 +76,6 @@ body {
 	display: none;
 	border-radius: 80%;
 	border: 5px solid pink;
-
 }
 </style>
 
@@ -136,7 +135,6 @@ body {
 							}
 						});
 	});
-
 	
 	function setThumbnail(event) {
         var reader = new FileReader();

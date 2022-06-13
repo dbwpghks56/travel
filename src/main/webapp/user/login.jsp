@@ -12,14 +12,8 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <title>Insert title here</title>
-
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <style type="text/css">
 .form-group {
 	width: 300px;
@@ -51,7 +45,6 @@ a:hover {
 .signup {
 	text-align: center;
 }
-
 .signup a {
 	text-decoration: none;
 }
@@ -142,7 +135,6 @@ a:hover {
 
 	<form action="login.do" method="post" enctype="multipart/form-data" id="myform">
 
-
 		<div class="form-group mb-3">
 			<input type="text" class="form-control" placeholder="ID" name="id">
 		</div>
@@ -159,7 +151,6 @@ a:hover {
 		</div>
 		<br>
 		<div style="text-align: center;">
-
 			<button type="submit" class="btn btn-primary" id="loginbtn">로그인</button> <br>
 			<img alt=""
 				src="../images/loginbutton/kakao_login_medium_wide.png"
@@ -191,8 +182,5 @@ a:hover {
 		</ul>
 
 	</form>
-
-
-
 </body>
 </html>

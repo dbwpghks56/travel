@@ -7,49 +7,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style type="text/css">
 	* {
     box-sizing: border-box;
+    text-align: center;
 	}
 
 .search {
+	display:inline-block;
+	width:60%;
+	height:40px;
+	background-image:url("../images/icons/searchBar.png");
+	background-size:100% 100px;
     text-align: center;
     margin: 0 auto;
 }
-input {
-    width: 20%;
-    border-radius: 20px;
-    border: 1px solid #bbb;
-    margin: 10px 0;
-    margin-top : 50px;
-    padding: 10px 12px;
+#check {
+	opacity:0;
+    width: 25%;
+    height:30px;
+    border:none;
+}
+#loc{
+opacity:0;
+	width: 25%;
+	height:30px;
+     border:none;
+}
+#person{
+opacity:0;
+	width: 25%;
+	height:30px;
+	  border:none;
 }
 
 #search{
-	background-color:white;
-	background-image:url("../images/icons/searchIcon.png");
-	background-size: cover;
-	width : 40px;
-	height: 40px;
-	border : 0;
+	width: 25%;
 	
 }
 #search:hover {
 	cursor: pointer;
 }
+#searchIcon{
+	display:inline-block;
+	margin-left:0;
+	width : 40px;
+	height: 40px;
+	border : 0;
+}
+
 
 
 </style> 
 </head>
 <body>
  	<div class="search">
- 	<form action ="search.do" >
-      <input type="text" id = "check" name = "check" required="required">
-      <input type="text" name = "loc" required="required">
-      <input type="number" name = "person" required="required">
-      <input type = "submit" value = "" id = "search">
-      </form>
+ 	<form>
+      <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
+      <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
+      <input type="number" id = "person" name = "person" required="required"placeholder="인원">
+     	<a href = "search.do"id = "searchIcon"></a>
+     </form>
     </div>
 	<script>
 		var check = document.querySelector("#check");

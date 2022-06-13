@@ -34,6 +34,8 @@ public class ReservationDTO {
 		
 	private String user_name;
 	private String user_phone;
+	
+	private int d_rsv_no;
 
 	public ReservationDTO() {}
 	public ReservationDTO(int rsv_no, String user_id, int room_id, Date check_in, Date check_out, Date rsv_date,
@@ -172,6 +174,12 @@ public class ReservationDTO {
 	}
 	public void setMax_day(int max_day) {
 		this.max_day = max_day;
+	}
+	public int getD_rsv_no() {
+		return d_rsv_no;
+	}
+	public void setD_rsv_no(int d_rsv_no) {
+		this.d_rsv_no = d_rsv_no;
 	}
 
 

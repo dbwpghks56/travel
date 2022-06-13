@@ -230,6 +230,28 @@ public class UserDAO {
 		}
 		return result;
 }
+	
+	//회원탈퇴
+	public int userDelete(String user_pass , String user_id) {
+		int result =0;
+		conn = DBUtil.getConnection();
+		 try {
+				pst = conn.prepareStatement("DELETE FROM users WHERE user_password = ? and user_id =? " );     
+				pst.setString(1, user_pass); 
+				pst.setString(2, user_id); 
+				
+				result = pst.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				DBUtil.dbClose(rs, pst, conn);
+			}
+			
+		return result; 
+	}
 }
 
 

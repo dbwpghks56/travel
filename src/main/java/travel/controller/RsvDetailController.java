@@ -34,9 +34,9 @@ public class RsvDetailController implements Command {
 			rsv.setRsv_no(Integer.parseInt(reQuest.getParameter("rsv_no")));
 			ReservationService rService = new ReservationService();
 			int result = rService.rsvUpdate(rsv);
-			reQuest.setAttribute("message", result>0?"수정성공":"수정실패");
 			
-			page="result.jsp";
+			
+			page="rest:" + result ;
 		}
 		return page;
 	}

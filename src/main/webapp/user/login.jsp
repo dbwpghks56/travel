@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -15,10 +16,14 @@
 <title>Insert title here</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <style type="text/css">
+body {
+	background-color: #FFE6E6;
+}
+
 .form-group {
 	width: 300px;
-	margin: auto; //
-	style ="width: 300px;
+	margin: auto; 
+	width: 300px;
 	margin: auto;
 }
 .log {
@@ -30,7 +35,7 @@
 	width: 100px;
 	margin: auto;
 	margin-top: 100px;
-	font-family: verdana;
+	font-family: 'Raleway', sans-serif;
 }
 .id {
 	width: 1px;
@@ -53,7 +58,7 @@ a:hover {
 .btn {
 	width: 300px;
 	margin: auto;
-	background-color: #FFE6E6;
+	background-color: pink;
 	color: black;
 	border: #F2D1D1;
 }
@@ -161,26 +166,14 @@ a:hover {
 		<input id="email" type="hidden" name="email"> <br>
 		<input id="nick" type="hidden" name="nick"> <br>
 		<input id="profile" type="hidden" name="profile">
-		<ul>
+		<!-- <ul>
 			<li onclick="kakaoLogout();">
 		      <a href="javascript:void(0)">
 		          <span>카카오 로그아웃</span>
 		      </a>
 			</li>
-		</ul>
+		</ul> -->
 
-		<!-- <input type="reset" value="취소"> -->
-		<!-- <input type="reset" value="취소"> -->
-		<input id="email" type="hidden" name="email"> <br>
-		<input id="nick" type="hidden" name="nick"> <br>
-		<input id="profile" type="hidden" name="profile">
-		<ul>
-			<li onclick="kakaoLogout();">
-		      <a href="javascript:void(0)">
-		          <span>카카오 로그아웃</span>
-		      </a>
-			</li>
-		</ul>
 
 	</form>
 </body>

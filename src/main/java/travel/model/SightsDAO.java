@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import travel.DTO.RoomDto;
 import travel.DTO.SightDTO;
@@ -19,15 +21,15 @@ public class SightsDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet rs;
-	public List<SightDTO> selectAll(){
-		List<SightDTO> sList = new ArrayList<>();
+	public List<Map<String, String>> selectAll(){
+		List<Map<String, String>> sMaps = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		try {
 			st = conn.createStatement();
 			rs = st.executeQuery(SQL_SELECT_ALL);
 			while(rs.next()) {
-				SightDTO sight = makeSight(rs);
-				sList.add(sight);
+				Map<String, String> sight = makeMap(rs);
+				sMaps.add(sight);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +37,7 @@ public class SightsDAO {
 		}finally {
 			DBUtil.dbClose(rs, st, conn);
 		}
-		return sList;
+		return sMaps;
 	}
 	public List<SightDTO> selectByAddress(String address){
 		List<SightDTO> sights = new ArrayList<>();
@@ -72,5 +74,21 @@ public class SightsDAO {
 			e.printStackTrace();
 		}
 		return sight;
+	}
+	private Map<String, String> makeMap(ResultSet rs){
+		Map<String, String> sMap = new HashMap<>();
+		try {
+			sMap.put("address", rs.getString("address"));
+			sMap.put("phone", rs.getString("phone"));
+			sMap.put("sights_id", rs.getString("sights_id"));
+			sMap.put("sights_name", rs.getString("sights_name"));
+			sMap.put("SIGHT_TYPE", rs.getString("SIGHT_TYPE"));
+			sMap.put("x", rs.getFloat("x")+"");
+			sMap.put("y", rs.getFloat("y")+"");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sMap;
 	}
 }

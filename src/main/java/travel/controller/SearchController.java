@@ -22,9 +22,9 @@ public class SearchController implements Command {
 	@Override
 	public String execute(HttpServletRequest request) {
 		AccommodationService service = new AccommodationService();
-		
-		Date check_in = DateUtil.convertToDate(request.getParameter("check_in"));
-		Date check_out = DateUtil.convertToDate(request.getParameter("check_out"));
+		String[] check = request.getParameter("check").split("~");
+		Date check_in = DateUtil.convertToDate(check[0]);
+		Date check_out = DateUtil.convertToDate(check[1]);
 		String location = request.getParameter("loc");
 		int person = Integer.parseInt(request.getParameter("person"));
 		

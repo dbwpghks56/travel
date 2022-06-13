@@ -117,15 +117,12 @@ function nullCheck(){
 		<input type="hidden" name="user_id" value="${user.user_id }">
 		
 		<label>룸이름</label>
-<<<<<<< HEAD
 		<%-- ${ }  --%>
 		<!-- <input type="hidden" name="rno" value=""> <br> -->
 		<input type="text" name="user_id" value="${user.user_id }" disabled="disabled" >
 		<input type="hidden" name="room_id" value="${param.room_id }"><br>
-=======
 		${rsv.room_name}
 		<input type="hidden" name="room_id" value="${param.room_id}" ><br>
->>>>>>> refs/remotes/origin/master
 		
 		<p class="checkcal" data-checkin="${rsv.check_in}" data-checkout="${rsv.check_out}">
 		<!-- &check_in=2022-06-16&check_out=2022-06-18 value="${param.check_in}" value="${param.check_out}" -->
@@ -134,18 +131,15 @@ function nullCheck(){
 		<label>체크아웃</label>
 		<input type="date" name="check_out" id="check_out" readonly="readonly"><br>
 		
-<<<<<<< HEAD
 		<label>체크아웃</label> <input type="date" name="check_out" id="check_out" ><br>
 		
 		<label>인원</label> 
 		<input type='button' onclick='count("minus")' value='-' /> 
 		<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly"> 
 		<!-- max="${room.max_personnel}" 넣으면 되지 않을까...? -->
-=======
 		<label>인원</label>
 		<input type='button' onclick='count("minus")' value='-' />
 		<input type="number" name="personnel"  id="result" value="0" required="required" readonly="readonly"> 
->>>>>>> refs/remotes/origin/master
 		<input type='button' onclick='count("plus")' value='+' /><br>  
 		
 		<label>총 금액</label>
@@ -159,7 +153,6 @@ function nullCheck(){
 
 	</form>
 	<script>
-<<<<<<< HEAD
 		document.querySelector(".submit").onclick = function(){
 			 var room_id = ${param.room_id};
 	    	   $.ajax({
@@ -173,7 +166,6 @@ function nullCheck(){
 		     });
 		};
 	</script>
-=======
 /* 		document.querySelector(".submit").onclick = function(){
 			 var room_id = ${param.room_id};
 	    	   $.ajax({
@@ -189,6 +181,5 @@ function nullCheck(){
 	</script>
 	
 
->>>>>>> refs/remotes/origin/master
 </body>
 </html>

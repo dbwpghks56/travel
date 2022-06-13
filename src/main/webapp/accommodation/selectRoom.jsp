@@ -8,41 +8,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
 	* {
-	margin: 1%;
+	margin: 0 auto;
 	box-sizing: border-box;
-}
+	}
 	body {
 		margin-left:10%;
 		margin-right:10%;
 		position: relative;
 	}
 	h2{
+		margin-top:5%;
 		position: left;
 	}
 	h3{
 		position: left;
 	}
-	.imgs{
-		margin-bottom :5%;
-	}
-	.aImgs{
-		display:inline-block;
-		float:left;
-		width:48%;
-		height: 30%;
-	}
-	.aImgs2{
-		display:inline-block;
-		float:right;
-		width:48%;
-		height: 30%;
+	.w3-row{
+		margin-bottom:5%;
+		margin-top: 5%;
 	}
 	#map{
 		width: 100%;
@@ -52,23 +45,19 @@
 		width: 5%;
 		height: 5%;
 	}
-	#roomImgs{
-	width: 40%;
+#roomImgs{
+	position:static;
+	left:0;
+	width: 50%;
 	height: 40%;
-}
-#roomDetail{
-	width: 40%;
-	height: 20%;
-}
-#roomDetail a{
-	display:inline-block;
-	margin-right: 44%;
+	margin: 1%;
 }
 #demo{
 	display:inline-block;
 	width: 45%;
 	height: 45%;
 }
+
 .reviewDiv{
 	width:100;
 	height: 45%;
@@ -108,35 +97,40 @@
 </head>
 <body>
 	<h2>${accoName}</h2>
-	<div class = "imgs">
-	<div class = "aImgs">
-	<c:if test="${not empty a_image_path[0]}">
-		<img id = "firstImg" src="../accoImages/${a_image_path[0]}" width="100%" height="100%">
-	</c:if>
-	</div>
-	<div class = "aImgs2">
+	<!-- Photo Grid -->
+<div class="w3-row" id="myGrid">
+	
+  <div class="w3-third">
+   	<c:if test="${not empty a_image_path[0]}">
+		<img src="../accoImages/${a_image_path[0]}" style="width:100%">
 		<c:if test="${not empty a_image_path[1]}">
-			<img src="../accoImages/${a_image_path[1]}"width="45%" height="50%">
-			<c:if test="${not empty a_image_path[2]}">
-				<img src="../accoImages/${a_image_path[2]}"width="45%" height="50%">
-				<c:if test="${not empty a_image_path[3]}">
-					<img src="../accoImages/${a_image_path[3]}"width="45%" height="50%">
-				</c:if>
-			</c:if>
+			<img src="../accoImages/${a_image_path[1]}"style="width:100%">
 		</c:if>
-		</div>
-	</div>
+	</c:if>
+  </div>
+
+  <div class="w3-third">
+    <c:if test="${not empty a_image_path[2]}">
+		<img src="../accoImages/${a_image_path[2]}"style="width:100%">
+			<c:if test="${not empty a_image_path[3]}">
+				<img src="../accoImages/${a_image_path[3]}"style="width:100%">
+		</c:if>
+	</c:if>
+  </div>
+</div>
+	
 	<h3>${nick_name}(${host_id})님이 호스팅하는 ${accoType}</h3>
 	<hr>
 		<div class = "detail">
 		<img src = "../images/icons/phoneIcon.png">${phone}<br>
 		<img src = "../images/icons/blackMaker.png">${address }<br>
 		<img src = "../images/icons/homeIcon.png">${option }<br>
-		<img src = "../images/icons/wonIcon.png">${price}<img src = "../images/icons/timeIcon.png">예약하기
+		<img src = "../images/icons/wonIcon.png">${price}
 		</div>
 	<hr>
+	<c:set var = "room" value = "${roomList }"/>
 	<div id = "roomImgs">
-		<c:forEach items = "${rImgs }" var = "rImg">
+		<c:forEach items = "${rImgs }" var = "rImg" varStatus="status">
 			<!-- Carousel -->
 	<div id="demo" class="carousel slide" data-bs-ride="carousel">
 
@@ -168,18 +162,15 @@
 			data-bs-target="#demo" data-bs-slide="next">
 			<span class="carousel-control-next-icon"></span>
 		</button>
+		
+		<span><a href = "../reservation/reservation.jsp?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
 	</div>
 	</c:forEach>
-	</div>
-	<div id = "roomDetail">
-		<c:forEach items= "${roomList }" var = "room">
-			<a href = "../reservation/reservation.jsp?room_id=${room.room_id }"><span>${room.room_name }</span></a>
-		</c:forEach>
 	</div>
 	<hr>
 		<div class = "reviewDiv">
 		<div class = "stars">
-		<span class="material-icons">star</span><span> ${star}점(후기 ${reviewList.size()}개)</span>
+		<h3><span class="material-icons">star</span> ${star}점(후기 ${reviewList.size()}개)</h3>
 		</div>
 		<div class = "reviews">
 		<c:forEach items = "${reviewList}" var = "review">
@@ -214,6 +205,8 @@
 	$(".report").on("click", function(e) {
 		e.preventDefault();
 		modal.style.display = 'block';
+		document.querySelector(".modal-body").style.display = "block";
+		document.querySelector(".modal-body2").style.display = "none";
 		rId = $(this).attr("data-rId");
 	});
 	
@@ -225,7 +218,9 @@
             url:"updateReviewReport.do",
             data : {rId: rId},
             success:function (data,textStatus){
-            	document.querySelector(".modal-body").innerHTML="신고 완료됐습니다!";
+            	document.querySelector(".modal-body").style.display = "none";
+            	document.querySelector(".modal-body2").style.display = "block";
+            	
             	
 	     	}
 	     	
@@ -267,25 +262,26 @@
 		image : icon
 	});
 	marker.setTitle(${price}+"원");
-
-	for(let i = 0; i<${sights.size()}; i++){
-		sx = ${sights.get(i).getX()};
-		sy = ${sights.get(i).getY()};
-		sicon = new kakao.maps.MarkerImage(
-			'../images/icons/makerIcon.png',
+	var sicon = new kakao.maps.MarkerImage(
+			'../images/icons/pin.png',
 			new kakao.maps.Size(70, 35),
 			{
 				offset : new kakao.maps.Point(16, 34),
 				alt : "마커 이미지",
 				shape : "poly",
 				coords : "1,20,1,9,5,2,10,0,21,0,27,3,30,9,30,20,17,33,14,33"
-			});
+			});;
+	var smarker = null;
 
+	var sights = ${sights};
+	for(let i = 0; i<sights.length; i++){
+		var sight = sights[i];
 		smarker = new kakao.maps.Marker({
 			map : map,
-			position : new kakao.maps.LatLng(sx, sy),
+			position : new kakao.maps.LatLng(sight["x"],sight["y"]),
 			image : sicon
 		});
+		smarker.setTitle(sight["sights_name"]);
 	}
 
 	</script>

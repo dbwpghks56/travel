@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,26 +44,15 @@
 				
 				//console.log(typeof(info.startStr));
 				console.dir(info.resourceId);
-				
-/* 				var checkIn2 = new Date(${param.check_in});
-				var checkOut2 = new Date(${param.check_out});
-				var difDate2 = Math.ceil(
-					(checkOut2.getTime() - checkIn2.getTime()) / (1000 * 3600 * 24)
-				);
-				document.getElementById("totalprice").value = (difDate2*${rsv.price_by_day}); */
-				
+							
 				var checkIn = new Date($("#check_in").val());
 				var checkOut = new Date($("#check_out").val());
 				var difDate = Math.ceil(
 					(checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24)
 				);
 				if(difDate>${rsv.max_day}){alert("최대 숙박일을 초과 하셨습니다");}
-				document.getElementById("totalprice").value = (difDate*${rsv.price_by_day});
-				
-				
-				
-				
-				
+				document.getElementById("totalprice").value = (difDate*${rsv.price_by_day})+"원";
+							
 			},
 		});
 		calendar.render();
@@ -90,96 +80,171 @@ function count(type)  {
 	  resultElement.value = num;
 	}
 	
-function nullCheck(){
 
-}
 
 
 
 </script>
 <style>
+body{
+	width: 500px;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+div.rsv_group{
+	margin: 20px 0;
+}
+
+
+
+div.rsv_group_date{
+	width: 49%;
+	display: inline-block;
+	float: left;
+	margin-left: 1%;
+}
+
+label{
+	display: block;
+	font-family: 'Nanum Gothic';
+	padding-bottom: 10px;
+	font-size: 1.25em;
+}
+
+input, textarea{
+  border-radius: 10px;
+  border: 2px solid #777;
+  box-sizing: border-box;
+  font-size: 1.25em;
+/*   font-family: 'Nanum Gothic'; */
+  width: 100%;
+  padding: 10px;
+}
+
+div.rsv_group_date input{
+	width: 95%;
+	display: inline-block;
+	
+}
+
+div.rsv_group_personnel input{
+	width: 50px;
+	display: inline-block;
+}
+
+textarea{ height: 150px; }
+
+hr{ border: 1px dotted #ccc;}
+
+
+
+.btn{
+  width: 100px;
+  height: 50px;
+  border: none;
+  font-size: 1.25em;
+/*   font-family: 'Nanum Gothic'; */
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#btn_submit{
+ 	background: pink;
+    color: white;
+}
+
+#btn_reset{
+ 	background: lightgray;
+    color: white;
+}
+
+.btn:hover{
+	border: 2px solid black;
+}
+
+#result{
+	width: 200px;
+	text-align: center;
+}
 #container {
 	width: 500px;
-	height: 500px;
+	height: 450px;
+	
+	
 }
+h1{text-align: center;}
 </style>
 </head>
 <body>
-	<h1>예약하기</h1>
+	<div><h1>Lodging Reservations</h1></div>
+	
+	<hr>
 		<div id="container">
-		<div id='calendar'></div>
-	</div>
-	<form name="frm" action="reservation.do" method="post" onsubmit="nullCheck()">
+			<div id='calendar'></div>
+		</div>
+	<hr>
+		
+	<form name="frm" action="reservation.do" method="post" >
+		<input type="hidden" name="user_id" value="${user.user_id }">	
+		<input type="hidden" name="room_id" value="${param.room_id}" >
 	
-	
-		<label>숙소이름</label>
-		${rsv.accommodation_name}
-		<input type="hidden" name="user_id" value="${user.user_id }">
-		
-		<label>룸이름</label>
-		<%-- ${ }  --%>
-		<!-- <input type="hidden" name="rno" value=""> <br> -->
-		<input type="text" name="user_id" value="${user.user_id }" disabled="disabled" >
-		<input type="hidden" name="room_id" value="${param.room_id }"><br>
-		${rsv.room_name}
-		<input type="hidden" name="room_id" value="${param.room_id}" ><br>
-		
-		<p class="checkcal" data-checkin="${rsv.check_in}" data-checkout="${rsv.check_out}">
-		<!-- &check_in=2022-06-16&check_out=2022-06-18 value="${param.check_in}" value="${param.check_out}" -->
-		<label>체크인</label>
-		<input type="date" name="check_in" id="check_in" readonly="readonly"><br> 		
-		<label>체크아웃</label>
-		<input type="date" name="check_out" id="check_out" readonly="readonly"><br>
-		
-		<label>체크아웃</label> <input type="date" name="check_out" id="check_out" ><br>
-		
-		<label>인원</label> 
-		<input type='button' onclick='count("minus")' value='-' /> 
-		<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly"> 
-		<!-- max="${room.max_personnel}" 넣으면 되지 않을까...? -->
-		<label>인원</label>
-		<input type='button' onclick='count("minus")' value='-' />
-		<input type="number" name="personnel"  id="result" value="0" required="required" readonly="readonly"> 
-		<input type='button' onclick='count("plus")' value='+' /><br>  
-		
-		<label>총 금액</label>
-		<input type="text" id="totalprice" readonly="readonly" >원
-		
-		<label>요청사항</label> 
-		<input type="text" name="request" placeholder="추가 요청사항을 입력해주세요"><br>
-		<input class="btn" type="submit" value="예약"> 
-		<input class="btn" type="reset" value="취소">
+			<div class="rsv_group">		
+				<label for="acco_name">숙소이름</label>
+				<input type="text" id="acco_name" value="${rsv.accommodation_name}" readonly="readonly"> 
+			</div>
 
+			<div class="rsv_group">
+				<label for="room_name">룸이름</label>
+				<input type="text" id="room_name" value="${rsv.room_name}" readonly="readonly"> 
+			</div>
+
+	<hr>
+		<c:forEach items="${checkInOut}" var="check">
+		<p class="checkcal" data-checkin="${check.check_in }" data-checkout="${check.check_out}"></p>
+		</c:forEach>
+		<!-- &check_in=2022-06-16&check_out=2022-06-18 value="${param.check_in}" value="${param.check_out}" -->
+		
+			<div class="rsv_group_date">
+				<label for="check_in">체크인</label>
+				<input type="date" name="check_in" id="check_in"  readonly="readonly">	
+			</div>
+		
+			<div class="rsv_group_date">
+				<label for="check_out">체크아웃</label>
+				<input type="date" name="check_out" id="check_out"  readonly="readonly">
+			</div>
+		
+	<br>
+		
+
+			<div class="rsv_group_personnel">
+				<label for="personnel">인원</label> 
+					<input class="btn_personnel" type='button' onclick='count("minus")' value='-' style="text-align: center;" > 
+					<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly" > 
+					<input class="btn_personnel" type='button' onclick='count("plus")' value='+' style="text-align: center;" >
+			</div>
+	
+		
+			<div class="rsv_group">
+				<label>총 금액</label>
+					<input type="text" id="totalprice" readonly="readonly" style="text-align: right;">
+			</div>
+		
+			<div class="rsv_group">
+				<label>요청사항</label> 
+					<textarea id="request" name="request" placeholder="추가 요청사항을 입력해주세요" ></textarea>
+			</div>
+	 <hr>
+		
+	
+			<input class="btn" id="btn_submit" type="submit" value="예약하기"> 
+			<input class="btn" id="btn_reset" type="reset" value="취소">
+		
+		
+		
 
 	</form>
-	<script>
-		document.querySelector(".submit").onclick = function(){
-			 var room_id = ${param.room_id};
-	    	   $.ajax({
-	             type:"post",
-	             async:false, 
-	             url:"reservation.do",
-	             data : {"room_id": room_id},
-	             success:function (data,textStatus){
-	            	 alert(data);
-	             }
-		     });
-		};
-	</script>
-/* 		document.querySelector(".submit").onclick = function(){
-			 var room_id = ${param.room_id};
-	    	   $.ajax({
-	             type:"post",
-	             async:false, 
-	             url:"reservation.do",
-	             data : {"room_id": room_id},
-	             success:function (data,textStatus){
-	            	 alert(data);
-	             }
-		     });
-		}; */
-	</script>
-	
-
 </body>
 </html>

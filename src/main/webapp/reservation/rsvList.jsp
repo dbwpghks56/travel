@@ -10,40 +10,72 @@
 
 </script>
 <style>
-table, td { 
-border: 1px solid gray;
+body{
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px;
+	text-align: center;
+}
+
+table{ margin-left: auto; margin-right: auto; width: 500px; height: 100px;} 
+table,td{ 
+
+border-top: 1px solid gray;
+border-bottom: 1px solid gray;
 border-collapse: collapse;
 padding: 10px;
+
 }
+
+
+a{text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+td:not(#font_small,#atag){font-weight: bold;}
+#font_small{ font-size: 12px; text-align:left; color: gray;}
+#atag{font-size: 14px; text-align: left;}
+
 </style>
 </head>
 <body>
 <h1>예약목록</h1>
-<a href="reservation.do">예약하기</a>
-	<table>
-		<tr>
-			<td>예약번호</td>
-			<td>숙소이름</td>
-			<td>룸이름</td>
-			<td>체크인/체크아웃</td>
-			<td>예약날짜</td>
-			<td>예약상태</td>
-			<td>금액</td>
-			<td></td>
-			<td></td>
-		</tr>
-		
-		<c:forEach items="${rsvlist }" var="rsv">
-		<tr>
-		<td><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">${rsv.rsv_no}</a></td>
-		<td>숙소이름</td>
-		<td>룸이름</td>
-		<td>${rsv.check_in} / ${rsv.check_out}</td>
-		<td>${rsv.rsv_date}</td>
-		<td>${rsv.rsv_status}</td>
 
-		</tr>
-		</c:forEach>
+
+	
+	<c:forEach items="${rsvlist }" var="rsv">
+	<div>
+	<table>
+	<tr>
+	<td >${rsv.accommodation_name }</td>
+	<td >${rsv.room_name }</td>
+	</tr>
+		<tr>
+	<td colspan="2">${rsv.check_in} ~ ${rsv.check_out}</td>
+	</tr>
+	<tr>
+	<td id="font_small">예약일</td>
+	<td id="font_small">예약번호</td>
+	</tr>
+	<tr>
+	<td>${rsv.rsv_date}</td>
+	<td>${rsv.rsv_no}</td>
+	</tr>
+	<tr>
+	<td id="font_small">상태</td>
+	<td id="font_small">금액</td>
+	</tr>
+	<tr>
+	<td>${rsv.rsv_status}</td>
+	<td>${rsv.totalprice}원</td>
+	</tr>
+	<tr>
+	<td id="atag"><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">상세보기</a></td>
+	<td id="atag"><a>리뷰작성</a></td>
+	</tr>
 	</table>
+	</div>	
+	<br><br>
+	</c:forEach>
+	
 </body>
 </html>

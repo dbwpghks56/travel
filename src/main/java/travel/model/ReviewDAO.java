@@ -198,6 +198,28 @@ public class ReviewDAO {
 		}
 		return rMap;
 	}
+	//후기 삭제
+	public int reviewDelete(int review_id) {
+		int result =0;
+		conn = DBUtil.getConnection();
+		 try {
+				pst = conn.prepareStatement("DELETE FROM REVIEW WHERE REVIEW_ID = ?");     
+				pst.setInt(1, review_id); 
+				
+				
+				result = pst.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				DBUtil.dbClose(rs, pst, conn);
+			}
+			
+		return result; 
+	}
+	
 }
 
 

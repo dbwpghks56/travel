@@ -41,8 +41,8 @@ public class UserService {
 		return userdao.selectByID(id);
 	}
 
-	public int userDelete(String user_pass ,String user_id) {
-		return userdao.userDelete(user_pass ,user_id);
+	public int userDelete(String user_id , String user_pass) {
+		return userdao.userDelete(user_id , user_pass );
 	}
 
 }

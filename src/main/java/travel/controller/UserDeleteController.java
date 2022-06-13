@@ -10,33 +10,27 @@ public class UserDeleteController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		
 		UserService service = new UserService();
 		int result = 0;
 		
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("user");
 
-		String pass = request.getParameter("user_pass");
-		String id = request.getParameter("user_id");
+		String id = request.getParameter("id");
+		String pass = request.getParameter("password");
 		
+		System.out.println("user" + user);
 		
 		if(user.getUser_id().equals(id) && user.getUser_pass().equals(pass)) {
 			
-			result = service.userDelete(id , pass );
+			result = service.userDelete(id , pass);
 			
+			String message = "아이디와 비밀번호를 다시 확인 해 주세요."; 
+			if(result == 1) message = "탈퇴완료";
+			request.setAttribute("message", message);
 		}
 			
-		String message = "등록실패"; 
-		if(result == 0) message = "등록완료";
-		request.setAttribute("message", message);
-
-		/*
-		 * int resultPass = service.userDelete(pass); System.out.println(user); int
-		 * result = service.userDelete(pass , user.getUser_id());
-		 * 
-		 * 
-		 */
-
 		
 		return "confirmUserDelete.jsp";
 		

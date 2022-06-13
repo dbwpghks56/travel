@@ -28,6 +28,13 @@
 	.myform input[name=satisfied_stars]:checked ~ label{
 	    text-shadow: 0 0 0 #f0f0f0;
 	}
+	.delete{
+		margin-bottom : 10px; 
+		margin-left: 320px;
+	}
+	.name{
+		width :290px;
+	}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -78,8 +85,9 @@
 <body>
 	<c:forEach items = "${reviews}" var = "review" varStatus="status">
 		<div class="container mt-3">
-			<h2>${nicks.get(status.index) }</h2>
-				<p>${review.host_id }</p>
+			<h2>${nicks.get(status.index)} </h2>
+				<p>${review.host_id }</p> 
+				<button class = "delete" onclick="">후기삭제</button>
 				<div class="card" style="width:400px"  data-length=${reviews.size() }>
 					<img class="card-img-top" src="../uploads/${review.r_image_path}" alt="Card image" style="width:100%">
 					<div class="card-body myform" data-cleaning="${review.cleaning_stars }" data-location=${review.location_stars }

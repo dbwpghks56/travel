@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,6 +68,15 @@ body {
 	color: white;
 	background-color: pink;
 	border: pink;
+
+}
+#thumbnail {
+	width: 200px;
+	height: 200px;
+	display: none;
+	border-radius: 80%;
+	border: 5px solid pink;
+
 }
 </style>
 
@@ -128,6 +136,17 @@ body {
 							}
 						});
 	});
+
+	
+	function setThumbnail(event) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+        	$("#thumbnail").attr("src", event.target.result);
+        	$("#thumbnail").css("display", "inline-block");
+        };
+        reader.readAsDataURL(event.target.files[0]);
+	}
+
 </script>
 
 </head>
@@ -142,7 +161,7 @@ body {
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">아이디</span> <input type="text"
-					class="form-control" placeholder="Id" name="id" id="user_id">
+					class="form-control" placeholder="Id" name="id" id="user_id" value="${email }">
 				<input type="button" id="idDuplicateCheckBtn" value="중복확인">
 			</div>
 
@@ -167,7 +186,7 @@ body {
 			<div class="input-group mb-3">
 				<span class="input-group-text">닉네임</span> <input type="text"
 					class="form-control" placeholder="NickName" name="nickname"
-					id="nickname"> <input type="button"
+					id="nickname" value="${nick }"> <input type="button"
 					id="nickDuplicateCheckBtn" value="중복확인">
 			</div>
 
@@ -189,7 +208,8 @@ body {
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">프로필</span> <input type="file"
-					class="form-control" placeholder="Photo" name="photos">
+					class="form-control" placeholder="Photo" name="photos" accept="image/*" onchange="setThumbnail(event);">
+					<img alt="" src="" id="thumbnail">
 			</div>
 
 			<label>Host</label> <input type="radio" class="check" name="host"

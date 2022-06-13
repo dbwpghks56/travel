@@ -70,6 +70,8 @@ public class FrontServlet extends HttpServlet {
 			command = new UserCheckController();
 		} else if(uri.equals("/user/UserDelete.do")) {
 			command = new UserDeleteController();
+		} else if(uri.equals("/user/NickCheck.do")) {
+			command = new NickCheckController();
 		}
 				
 		

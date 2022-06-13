@@ -160,8 +160,6 @@ public class AccommodationDAO {
 			accommo.setLocation_star(rs2.getInt("location_stars"));
 			accommo.setSatisfied_star(rs2.getInt("satisfied_stars"));
 			accommo.setA_image_path(rs2.getString("a_image_path"));
-			accommo.setMail_num(rs2.getInt("mail_num"));
-			accommo.setNew_mail_num(rs2.getInt("new_mail_num"));
 			accommo.setX(rs2.getFloat("x"));
 			accommo.setY(rs2.getFloat("y"));
 		} catch (SQLException e) {
@@ -186,8 +184,6 @@ public class AccommodationDAO {
 			aMap.put("location_stars", rs.getString("location_stars"));
 			aMap.put("satisfied_stars", rs.getString("satisfied_stars"));
 			aMap.put("a_image_path", rs.getString("a_image_path"));
-			aMap.put("mail_num", rs.getString("mail_num"));
-			aMap.put("new_mail_num", rs.getString("new_mail_num"));
 			aMap.put("x", rs.getString("x"));
 			aMap.put("y", rs.getString("y"));
 			aMap.put("room_id", rs.getString("room_id"));

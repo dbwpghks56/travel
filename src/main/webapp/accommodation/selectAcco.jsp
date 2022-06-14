@@ -57,6 +57,7 @@ input {
 </head>
 <body>
  	<div class="search">
+
  	<form action = "/travel/accommodation/search.do">
 
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">

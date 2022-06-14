@@ -10,14 +10,19 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/travel/css/main.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+
+
 <title>Insert title here</title>
 <style type="text/css">
 	body {
 		margin: 0;
 	}
 	#backimg{
-		background-image: url("/travel/images/back/미드.gif");
+
+		background-image: url("${pageContext.request.contextPath}/images/back/미드.gif");
+
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 100vh;
@@ -48,11 +53,6 @@
 	.img2 {
 		margin-top: -5px;
 	}
-.search{
-	position: fixed;
-	margin-left: 22%;
-   	margin-top: 7.3%;
-}
 
 
 
@@ -125,9 +125,13 @@
 	<p id="poppins"> Would you travel? </p>
 	<p id="raleway"> Would you travel? </p> -->
 	<!-- <p id="lobstertwo"> Would you travel? </p> -->
+
+
+
 	<img id="summer" alt="" src="/travel/images/back/수영장.gif">
 	<img id="fall" alt="" src="/travel/images/back/다즐링.gif" class="img2">
 	<img id="winter" alt="" src="/travel/images/back/이터널선샤인.gif" class="img2">
+
 	<script>
 		function scrolling(evt, loc) {
 	                var offset = $(loc).offset();

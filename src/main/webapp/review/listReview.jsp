@@ -96,16 +96,20 @@
 	});
 </script>
 
-<script type="text/javascript">
+ 
 
 <script>
-$(".btnDel").click(function() {
-	var review =$(this).attr("data-review");        /* 현재에 있는 데이터 비엔오를 읽어서 bno에 넣어라! */
-	if(confirm(review+"삭제?")){
-		location.href="deleteReview.do?review="+review;   //로케이션.href는 주소창이 바뀌는 것
-	}
+$(function(){
+
+	$(".delete").click(function() {
+		var review =$(this).attr("data-review");       
+		if(confirm(review+"삭제?")){
+			location.href="deleteReview.do?reviewid="+review ;
+		}
+	});
 });
-});
+
+ 
 </script>
 
 </head>
@@ -118,8 +122,7 @@ $(".btnDel").click(function() {
 			<p>${review.host_id }</p>
 			
 			<c:if test="${user.getManager() == 1 }">
-				<button class="delete" onclick="deleteReview.jsp" data-review="${review.review_id}">후기삭제</button>
-				<!-- c이프문 써서 유저.겟메니져 1이면  onclick="">후기삭제</button> 넣기-->
+				<button class="delete"  data-review="${review.review_id}">후기삭제</button>
 			</c:if>
 			
 			<div class="card" style="width: 400px" data-length=${reviews.size() }>

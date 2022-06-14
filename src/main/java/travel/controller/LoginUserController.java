@@ -44,7 +44,7 @@ public class LoginUserController implements Command {
 		session.setAttribute("user", user);
 		session.setAttribute("user_id", user_id);
 		
-		return "../test/fontall.jsp";
+		return "/index.jsp";
 	}
 
 }

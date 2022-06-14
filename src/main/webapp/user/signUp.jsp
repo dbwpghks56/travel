@@ -159,23 +159,23 @@ body {
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">아이디</span> <input type="text"
-					class="form-control" placeholder="Id" name="id" id="user_id" value="${email }">
+					class="form-control" placeholder="Id" name="id" id="user_id" value="${email }" required="required">
 				<input type="button" id="idDuplicateCheckBtn" value="중복확인">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">비밀번호</span> <input type="password"
-					class="form-control" placeholder="PassWord" name="password">
+					class="form-control" placeholder="PassWord" name="password" required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">이름</span> <input type="text"
-					class="form-control" placeholder="Name" name="name">
+					class="form-control" placeholder="Name" name="name" required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">이메일</span> <input type="text"
-					class="form-control" placeholder="Your Email" name="email">
+					class="form-control" placeholder="Your Email" name="email" required="required">
 				<div class="textdiv">
 					<span class="text">@example.com</span>
 				</div>
@@ -184,24 +184,24 @@ body {
 			<div class="input-group mb-3">
 				<span class="input-group-text">닉네임</span> <input type="text"
 					class="form-control" placeholder="NickName" name="nickname"
-					id="nickname" value="${nick }"> <input type="button"
+					id="nickname" value="${nick }" required="required"> <input type="button"
 					id="nickDuplicateCheckBtn" value="중복확인">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">전화번호</span> <input type="text"
-					class="form-control" placeholder="Phone" name="phone">
+					class="form-control" placeholder="Phone" name="phone" required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">생년월일</span> <input type="date"
-					class="form-control" placeholder="Birth" name="birth">
+					class="form-control" placeholder="Birth" name="birth" required="required">
 
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">Favorite</span> <input type="text"
-					class="form-control" placeholder="Favorite" name="favorite">
+					class="form-control" placeholder="Favorite" name="favorite" required="required">
 			</div>
 
 			<div class="input-group mb-3">

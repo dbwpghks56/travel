@@ -24,8 +24,8 @@ input {
 
 #search{
 	vertical-align: middle;
-	background-color: rgba(255,255,255,1);
-	background-image:url("../images/icons/searchIcon.png");
+	background-color: rgba(255,255,255,0.8);
+	background-image:url("/images/icons/searchIcon.png");
 	background-size: cover;
 	width : 40px;
 	height: 40px;
@@ -39,7 +39,7 @@ input {
 #submit{
 	display:inline-block;
 	background-color:"white";
-	background: url("../images/icons/searchIcon.png");
+	background: url("/travel/images/icons/searchIcon.png");
 	background-repeat: no-repeat;
 	width:40px;
 	height: 40px;
@@ -54,7 +54,7 @@ input {
 </head>
 <body>
  	<div class="search">
- 	<form action = "../accommodation/search.do">
+ 	<form action = "/travel/accommodation/search.do">
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
       <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
       <input type="number" id = "person" name = "person" required="required"placeholder="인원">

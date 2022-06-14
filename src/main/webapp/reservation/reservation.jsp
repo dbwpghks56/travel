@@ -5,20 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+
 <title>reservation</title>
-<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js"
-	type="application/javascript"></script>
+
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
+<!-- <script>
+var valueCheckIn = new Date(session.getAttribute("check_in"));
+var valueCheckOut = new Date(session.getAttribute("check_out"));
+var valueDifDate = Math.ceil(
+	(valueCheckOut.getTime() - valueCheckIn.getTime()) / (1000 * 3600 * 24)
+);
+document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day})+"원";
+document.getElementById("result").value = session.getAttribute("person");
+
+</script> -->
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		let eventobj = [];
@@ -52,7 +59,7 @@
 				var difDate = Math.ceil(
 					(checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24)
 				);
-				if(difDate>${rsv.max_day}){alert("최대 숙박일을 초과 하셨습니다");}
+				if(difDate>${rsv.max_day}){alert("최대 숙박일은 ${rsv.max_day}일 입니다");}
 				document.getElementById("totalprice").value = (difDate*${rsv.price_by_day})+"원";
 							
 			},
@@ -104,37 +111,29 @@ function count(type)  {
 			},
 			order_id : 'order_id11112', 
 			extra : {
-				vbank_result : 1, // 가상계좌 사용시 사용, 가상계좌 결과창을 볼지(1), 말지(0), 미설정시 봄(1)
-				quota : '0,2,3', // 결제금액이 5만원 이상시 할부개월 허용범위를 설정할 수 있음, [0(일시불), 2개월, 3개월] 허용, 미설정시 12개월까지 허용,
-				theme : 'purple', // [ red, purple(기본), custom ]
-				custom_background : '#00a086', // [ theme가 custom 일 때 background 색상 지정 가능 ]
-				custom_font_color : '#ffffff' // [ theme가 custom 일 때 font color 색상 지정 가능 ]
+				vbank_result : 1, 
+				quota : '0,2,3', 
+				theme : 'purple', 
+				custom_background : '#00a086', 
+				custom_font_color : '#ffffff' 
 			}
 		}).error(function(data) {
-			//결제 진행시 에러가 발생하면 수행됩니다.
 			console.log(data);
 		}).cancel(function(data) {
-			//결제가 취소되면 수행됩니다.
 			console.log(data);
 		}).ready(function(data) {
-			// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
 			console.log(data);
 		}).confirm(function(data) {
-			//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
-			//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
 			console.log(data);
-			var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
+			var enable = true; 
 			if (enable) {
-				BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
+				BootPay.transactionConfirm(data); 
 			} else {
-				BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
+				BootPay.removePaymentWindow(); 
 			}
 		}).close(function(data) {
-			// 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
 			console.log(data);
 		}).done(function(data) {
-			//결제가 정상적으로 완료되면 수행됩니다
-			//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
 			$("#rsv_form").submit();
 			console.log(data);
 		});
@@ -145,6 +144,7 @@ body{
 	width: 500px;
 	margin: 0 auto;
 	padding: 50px;
+	background-color: pink;
 }
 
 div.rsv_group{
@@ -228,9 +228,11 @@ hr{ border: 1px dotted #ccc;}
 	
 }
 h1{text-align: center;}
+
 </style>
 </head>
 <body>
+<div id="reservation_form">
 	<div><h1>Lodging Reservations</h1></div>
 	
 	<hr>
@@ -257,7 +259,6 @@ h1{text-align: center;}
 		<c:forEach items="${checkInOut}" var="check">
 		<p class="checkcal" data-checkin="${check.check_in }" data-checkout="${check.check_out}"></p>
 		</c:forEach>
-		<!-- &check_in=2022-06-16&check_out=2022-06-18 value="${param.check_in}" value="${param.check_out}" -->
 		
 			<div class="rsv_group_date">
 				<label for="check_in">체크인</label>
@@ -299,5 +300,6 @@ h1{text-align: center;}
 		
 
 	</form>
+</div>
 </body>
 </html>

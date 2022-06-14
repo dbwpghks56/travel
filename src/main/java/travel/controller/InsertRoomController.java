@@ -17,6 +17,7 @@ public class InsertRoomController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		String path = request.getContextPath();
 		RoomService service = new RoomService();
 		String dir = request.getServletContext().getRealPath("uploads");
 
@@ -34,7 +35,7 @@ public class InsertRoomController implements Command {
 		request.setAttribute("message", message);
 
 
-		return "confirmInsertRoom.jsp";
+		return "/accommodation/confirmInsertRoom.jsp";
 
 	}
 	

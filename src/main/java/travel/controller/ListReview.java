@@ -26,7 +26,7 @@ public class ListReview implements Command {
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("nicks", nicks);
 		
-		return "listReview.jsp";
+		return "/review/listReview.jsp";
 	}
 
 }

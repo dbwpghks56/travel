@@ -222,7 +222,7 @@ public class ReviewDAO {
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
-		review.setReport_user(rs2.getString("report_user"));
+		review.setReport_user(rs2.getString("report_user")); 
 		return review;
 	}
 	private Map<String,String> makeMap(ResultSet rs2) {

@@ -47,37 +47,7 @@
 		margin-top: -5px;
 	}
 
-.search {
-	position: fixed;
-    text-align: center;
-   	margin-left: 22%;
-   	margin-top: 7.3%;
-}
-input {
-    width: 270px;
-    border-radius: 20px;
-    border: 1px solid pink;
-    padding: 10px 12px;
-}
 
-#search{
-	vertical-align: middle;
-	background-color: rgba(255,255,255,1);
-	background-image:url("../images/icons/searchIcon.png");
-	background-size: cover;
-	width : 40px;
-	height: 40px;
-	border : 1px solid pink;
-	
-}
-#search:hover {
-	cursor: pointer;
-}
-
-a {
-	text-decoration: none;
-	color: pink;
-}
 
 </style>
 </head>

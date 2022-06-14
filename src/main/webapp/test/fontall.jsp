@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../accommodation/selectAcco.jsp" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,23 +111,39 @@ a {
 	                        <i class="hiper2 hiper fa fa-snowflake-o "></i>
 	                    </a>
 	                </li>
-	                <li class="nav-item">
-	                    <a class="hiper" href="../user/login.jsp">
-	                        Login
-	                        <i class="hiper2 hiper fa fa-sign-in"></i>
-	                    </a>
-	                </li>
+	                <c:if test="${user == null }">
+		                <li class="nav-item">
+		                    <a class="hiper" href="../user/login.jsp">
+		                        Login
+		                        <i class="hiper2 hiper fa fa-sign-in"></i>
+		                    </a>
+		                </li>
+	                </c:if>
+	                <c:if test="${user != null }">
+		                <li class="nav-item">
+		                    <a class="hiper" href="../user/myPageUser.jsp">
+		                        My Page
+		                        <i class="hiper2 hiper fa fa-user"></i>
+		                    </a>
+		                </li>
+		                <li class="nav-item">
+		                    <a class="hiper" href="../user/logOut.do">
+		                        LogOut
+		                        <i class="hiper2 hiper fa fa-power-off"></i>
+		                    </a>
+		                </li>
+	                </c:if>
 	            </ul>
 	        </div>
 		<p id="lobster"> Would you travel?</p>
-		<div class="search">
+		<!-- <div class="search">
 		 	<form action ="search.do" >
 		      <input type="text" id = "check" name = "check" required="required">
 		      <input type="text" name = "loc" required="required">
 		      <input type="number" name = "person" required="required">
 		      <input type = "submit" value = "" id = "search">
 	      </form>
-	    </div>
+	    </div> -->
 	</div>
 	
 	<!-- <p id="oswald"> Would you travel? </p>

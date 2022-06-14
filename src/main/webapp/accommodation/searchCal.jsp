@@ -155,7 +155,7 @@ margin:0 auto;
 	box-sizing: border-box;
 }
 .modal-container{
-  /*  visibility : hidden; */  
+  visibility : hidden;
   position: fixed; 
   z-index: 1; 
   padding-top: 120px; 

@@ -12,7 +12,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-
 .title {
 	width: 300px;
 	margin: auto;

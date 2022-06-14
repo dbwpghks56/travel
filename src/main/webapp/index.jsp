@@ -48,6 +48,11 @@
 	.img2 {
 		margin-top: -5px;
 	}
+.search{
+	position: fixed;
+	margin-left: 22%;
+   	margin-top: 7.3%;
+}
 
 
 

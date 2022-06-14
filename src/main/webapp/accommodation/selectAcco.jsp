@@ -11,32 +11,41 @@
 	* {
     box-sizing: border-box;
 	}
-
 .search {
-	display:inline-block;
-	width:60%;
-	height:40px;
+	position: fixed;
     text-align: center;
-    margin: 0 auto;
+   	margin-left: 22%;
+   	margin-top: 7.3%;
 }
-#check {
-    width: 25%;
-    height:30px;
-    border:none;
-}
-#loc{
-	width: 25%;
-	height:30px;
-     border:none;
-}
-#person{
-	width: 25%;
-	height:30px;
-	  border:none;
+input {
+    width: 270px;
+    border-radius: 20px;
+    border: 1px solid pink;
+    padding: 10px 12px;
 }
 
-#search:hover {
+#search{
+	vertical-align: middle;
+	background-color: rgba(255,255,255,1);
+	background-image:url("../images/icons/searchIcon.png");
+	background-size: cover;
+	width : 40px;
+	height: 40px;
+	border : 1px solid pink;
+	
+}
+#submit:hover {
 	cursor: pointer;
+}
+
+#submit{
+	display:inline-block;
+	background: url("../images/icons/searchIcon.png");
+	background-repeat: no-repeat;
+	width:40px;
+	height: 40px;
+	background-size: 100% 100%;
+	vertical-align: middle;
 }
 
 
@@ -50,7 +59,7 @@
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
       <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
       <input type="number" id = "person" name = "person" required="required"placeholder="인원">
-     	<input type = "submit">
+     	<input type = "submit" id = "submit" value ="">
      </form>
     </div>
 	<script>

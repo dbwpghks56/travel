@@ -25,7 +25,7 @@ public class RsvDeleteDetailController implements Command {
 			ReservationDTO rsvdelete = rService.rsvDeleteAllDetail(i_dRsvNO);
 			reQuest.setAttribute("rsvdelete", rsvdelete);
 
-			return "rsvDeleteDetail.jsp";
+			return "/reservation/rsvDeleteDetail.jsp";
 
 }
 }

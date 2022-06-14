@@ -10,12 +10,13 @@ public class RsvListHostController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		String path = request.getContextPath();
 		ReservationService service = new ReservationService();
 		HttpSession session = request.getSession();
 		String user_id=((UserDTO)session.getAttribute("user")).getUser_id();
 		System.out.println(user_id);
 		request.setAttribute("hostrsvlist", service.hostRsvAll(user_id));
-		return "hostRsvList.jsp";
+		return "/reservation/hostRsvList.jsp";
 		//return null;
 	}
 

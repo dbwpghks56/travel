@@ -15,6 +15,10 @@ public class RsvController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest reQuest) {
+		
+		/*return path+"/accommodation/resultSelectAcco.jsp";
+*/
+		
 		String method = reQuest.getMethod();
 		String page = null;
 		if(method.equals("GET")) {
@@ -29,7 +33,7 @@ public class RsvController implements Command {
 			
 			reQuest.setAttribute("checkInOut", rService.selectByCheckInOut(i_roomId));
 			
-			page = "reservation.jsp";
+			page = "/reservation/reservation.jsp";
 		} else {
 			
 			ReservationDTO rsv = makeRsv(reQuest);
@@ -41,10 +45,10 @@ public class RsvController implements Command {
 				reQuest.setAttribute("message", "성공");
 				reQuest.setAttribute("rsv_no",rsv_no);
 				
-				page="rsvResult.jsp";
+				page="/reservation/rsvResult.jsp";
 			} else {
 				reQuest.setAttribute("message", "실패");
-				page="result.jsp";
+				page = "/reservation/result.jsp";
 			}
 		
 		}

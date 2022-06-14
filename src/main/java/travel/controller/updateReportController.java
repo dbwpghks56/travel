@@ -18,7 +18,7 @@ public class updateReportController implements Command{
 		int result = rService.updateReport(rId)==0? 0:1;
 		result = rService.updateReportUser(rId, user_id)==0? 0:1;
 		System.out.println(result);
-		return "ret:"+result;
+		return "rest:"+result;
 	}
 
 	

@@ -12,10 +12,8 @@
     box-sizing: border-box;
 	}
 .search {
-	position: fixed;
     text-align: center;
-   	margin-left: 22%;
-   	margin-top: 7.3%;
+   	margin:0 auto;
 }
 input {
     width: 270px;
@@ -40,6 +38,7 @@ input {
 
 #submit{
 	display:inline-block;
+	background-color:"white";
 	background: url("../images/icons/searchIcon.png");
 	background-repeat: no-repeat;
 	width:40px;
@@ -55,7 +54,7 @@ input {
 </head>
 <body>
  	<div class="search">
- 	<form action = "search.do">
+ 	<form action = "../accommodation/search.do">
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
       <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
       <input type="number" id = "person" name = "person" required="required"placeholder="인원">

@@ -17,7 +17,7 @@ public class selectReviewController implements Command{
 		List<Map<String, String>> reviewList = rService.selectByAcco(accoId);
 		
 		request.setAttribute("rList", reviewList);
-		return "ret: 0";
+		return "rest: 0";
 	}
 
 }

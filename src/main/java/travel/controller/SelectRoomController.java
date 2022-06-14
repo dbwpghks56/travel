@@ -104,7 +104,7 @@ public class SelectRoomController implements Command {
 
 		
 		
-		return "selectRoom.jsp";
+		return "/accommodation/selectRoom.jsp";
 	}
 
 }

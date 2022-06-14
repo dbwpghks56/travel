@@ -175,6 +175,7 @@ margin:0 auto;
  	margin: 0 auto;
   	padding: 20px;
 	width: 30%;
+	margi
 }
 #calendar2{
 	display:inline-block;

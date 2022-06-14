@@ -75,7 +75,7 @@ public class SearchController implements Command {
 		request.setAttribute("stars", stars);
 		request.setAttribute("initCenterX", Float.parseFloat(accommoList.get(0).get("x")));
 		request.setAttribute("initCenterY", Float.parseFloat(accommoList.get(0).get("y")));
-		return "resultSelectAcco.jsp";
+		return "/accommodation/resultSelectAcco.jsp";
 	}
 
 }

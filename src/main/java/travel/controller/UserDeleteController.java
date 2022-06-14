@@ -26,13 +26,13 @@ public class UserDeleteController implements Command {
 			
 			result = service.userDelete(id , pass);
 			
-			String message = "아이디와 비밀번호를 다시 확인 해 주세요."; 
-			if(result == 1) message = "탈퇴완료";
+			String message = "�븘�씠�뵒�� 鍮꾨�踰덊샇瑜� �떎�떆 �솗�씤 �빐 二쇱꽭�슂."; 
+			if(result == 1) message = "�깉�눜�셿猷�";
 			request.setAttribute("message", message);
 		}
 			
 		
-		return "confirmUserDelete.jsp";
+		return "/user/confirmUserDelete.jsp";
 		
 	}
 

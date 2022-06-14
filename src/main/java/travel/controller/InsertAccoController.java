@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import geoUtil.GeoPoint;
+import geoUtil.GeoTrans;
 import travel.DTO.AccommodationDto;
 import travel.DTO.UserDTO;
 import travel.model.AccommodationService;
@@ -24,7 +26,7 @@ public class InsertAccoController implements Command {
 		int result = service.InsertAcco(insertAcco2(map));
 
 		//request.setAttribute("result", result);
-		String message = "등록실패"; if(result>0) message = "등록완료";
+		String message = "�벑濡앹떎�뙣"; if(result>0) message = "�벑濡앹셿猷�";
 		request.setAttribute("message", message);
 
 
@@ -48,8 +50,12 @@ public class InsertAccoController implements Command {
 		Acco.setMail_num(Integer.parseInt(params.get("mail_num")));
 		Acco.setAddress(params.get("address"));
 		Acco.setLocation_detail(params.get("location_detail"));
-		Acco.setX(Float.parseFloat(params.get("geoX")));
-		Acco.setY(Float.parseFloat(params.get("geoY")));
+		double x = Double.parseDouble(params.get("geoX"));
+		double y = Double.parseDouble(params.get("geoY"));
+		GeoPoint pt = new GeoPoint(x,y);
+		GeoPoint npt = GeoTrans.convert(GeoTrans.GEO, GeoTrans.TM, pt);
+		Acco.setX((float)npt.getX());
+		Acco.setY((float)npt.getY());
 		Acco.setA_image_path(photos.get(0));
 		Acco.setA_option(params.get("acco_option"));
 		Acco.setPhone(params.get("acco_phone"));

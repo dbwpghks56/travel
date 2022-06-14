@@ -19,7 +19,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	* {
-	margin: 0 auto;
+	margin: 1%;
 	box-sizing: border-box;
 	}
 	body {

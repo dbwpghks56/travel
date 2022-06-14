@@ -29,8 +29,7 @@ public class RsvController implements Command {
 			}
 			ReservationService rService = new ReservationService();
 			ReservationDTO rsv = rService.selectByRoomId(i_roomId);
-			reQuest.setAttribute("rsv", rsv);
-			
+			reQuest.setAttribute("rsv", rsv);			
 			reQuest.setAttribute("checkInOut", rService.selectByCheckInOut(i_roomId));
 			
 			page = "/reservation/reservation.jsp";

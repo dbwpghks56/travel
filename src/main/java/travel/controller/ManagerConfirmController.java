@@ -7,14 +7,19 @@ import travel.DTO.UserDTO;
 import travel.model.ReviewService;
 import travel.model.UserService;
 
-public class ReviewDeleteController implements Command {
+public class ManagerConfirmController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
 		
-		 return "/travel/review/deleteReview.jsp";
+		UserService service = new UserService();
+		
+		HttpSession session = request.getSession();
+		UserDTO user = (UserDTO)session.getAttribute("user");
+		
+		return "/travel/review/listReview.jsp";
+		
+		
 	}
-
-	
 
 }

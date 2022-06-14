@@ -73,7 +73,7 @@
 		</div>
 		<div class="row">
 			<div class="col text-white">
-				<input type="button" onclick = "location.href = 'travel/ class="btn btn-secondary gain" value="고객센터">
+				<input type="button" onclick = "location.href = 'travel/" class="btn btn-secondary gain" value="고객센터">
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="리뷰관리">

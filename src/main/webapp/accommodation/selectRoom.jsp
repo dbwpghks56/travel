@@ -27,17 +27,12 @@
 		margin-right:10%;
 		position: relative;
 	}
-	h2{
-		margin-top:5%;
-		position: left;
-	}
-	h3{
-		position: left;
-	}
-	.w3-row{
-		margin-bottom:5%;
-		margin-top: 5%;
-	}
+.w3-third{
+	display: inline-block;
+	width: 33%;
+	margin:0;
+}
+	
 	#map{
 		width: 100%;
 		height: 500px;
@@ -97,25 +92,24 @@
 </style>
 </head>
 <body>
-	<h2>${accoName}</h2>
+	<h1>${accoName}</h1>
 	<!-- Photo Grid -->
 <div class="w3-row" id="myGrid">
 	
   <div class="w3-third">
    	<c:if test="${not empty a_image_path[0]}">
 		<img src="../accoImages/${a_image_path[0]}" style="width:100%">
-		<c:if test="${not empty a_image_path[1]}">
-			<img src="../accoImages/${a_image_path[1]}"style="width:100%">
-		</c:if>
 	</c:if>
   </div>
 
   <div class="w3-third">
-    <c:if test="${not empty a_image_path[2]}">
+  	<c:if test="${not empty a_image_path[1]}">
+		<img src="../accoImages/${a_image_path[1]}"style="width:100%">
+	</c:if>
+  </div>
+  <div class="w3-third">
+	<c:if test="${not empty a_image_path[2]}">
 		<img src="../accoImages/${a_image_path[2]}"style="width:100%">
-			<c:if test="${not empty a_image_path[3]}">
-				<img src="../accoImages/${a_image_path[3]}"style="width:100%">
-		</c:if>
 	</c:if>
   </div>
 </div>
@@ -191,7 +185,9 @@
 		<button id = "btnReview">더보기</button>
 		</div>
 		</div>
+	
 	<hr>
+	
 	<h3>위치</h3>
 	<div id = "map">지도</div>
 	
@@ -204,7 +200,6 @@
 		type="text/javascript"></script>
 	<script>
 	var report = document.querySelector(".report");
-	var rId = null;
 	$(".report").on("click", function(e) {
 		e.preventDefault();
 		modal.style.display = 'block';
@@ -222,7 +217,6 @@
             url:"updateReviewReport.do",
             data : {rId: rId},
             success:function (data,textStatus){
-            	alert(data);
             	if(data == 1){
             		document.querySelector(".modal-body").style.display = "none";
             		document.querySelector(".modal-body2").style.display = "block";
@@ -238,20 +232,16 @@
 	   	});  //end ajax	
 		
 	};
-	btnReview.onclick = function(){
-		$.ajax({
-            type:"get",
-            async:false, 
-            url:"selectReview.do",
-            data : {accoId: ${accoId}},
-            success:function (data,textStatus){
-            	alert(data);
-            	document.querySelector(".modal-review").style.display = "block";
-	     	}
-	     
-	     	
-	   	});  //end ajax	
-	};
+	var modalReview =document.querySelector('.modal-review');
+	var rmodal =document.querySelector('.rmodal');
+	var btnReview = document.querySelector('#btnReview');
+	window.addEventListener('click', (e) => {
+		if(e.target ==rmodal||e.target==btnReview){
+			modalReview.style.display ='block';
+		}else {
+			modalReview.style.display ='none';
+		}
+	}) ;
 	var divMap = document.querySelector("#map");
 
 	var centerx = ${x};

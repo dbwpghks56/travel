@@ -49,7 +49,13 @@ public class SearchController implements Command {
 		}
 		List<String[]> aImgs = new ArrayList<>();
 		for(int i = 0; i<accommoList.size(); i++) {
-			aImgs.add(accommoList.get(i).get("a_image_path").split(","));
+			if(accommoList.get(i).get("a_image_path")!=null) {
+				aImgs.add(accommoList.get(i).get("a_image_path").split(","));
+			}else {
+				String[] arr = {""};
+				aImgs.add(arr);
+			}
+			
 		}
 		List<Integer> stars = new ArrayList<>();
 		int c = 0;
@@ -73,8 +79,8 @@ public class SearchController implements Command {
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("aImgs", aImgs);
 		request.setAttribute("stars", stars);
-		request.setAttribute("initCenterX", Float.parseFloat(accommoList.get(0).get("x")));
-		request.setAttribute("initCenterY", Float.parseFloat(accommoList.get(0).get("y")));
+		request.setAttribute("initCenterX", accommoList.get(0).get("x"));
+		request.setAttribute("initCenterY", accommoList.get(0).get("y"));
 		return "/accommodation/resultSelectAcco.jsp";
 	}
 

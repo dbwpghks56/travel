@@ -46,7 +46,7 @@ input {
 </head>
 <body>
  	<div class="search">
- 	<form action = "./accommodation/search.do">
+ 	<form action = "/travel/accommodation/search.do">
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
       <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
       <input type="number" id = "person" name = "person" required="required"placeholder="인원">

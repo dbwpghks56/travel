@@ -21,7 +21,7 @@ public class NickCheckController implements Command {
 		
 		int result = service.confirmNickname(nick);
 		//PrintWriter out = response.getWriter(); out.print(result == 0 ? 0 : 1);
-		return "rest:" + result;
+		return "rest:" + "/user/signUp.jsp";
 	}
 
 }

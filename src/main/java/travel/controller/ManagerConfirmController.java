@@ -17,7 +17,7 @@ public class ManagerConfirmController implements Command {
 		HttpSession session = request.getSession();
 		UserDTO user = (UserDTO)session.getAttribute("user");
 		
-		return "/travel/review/listReview.jsp";
+		return "/review/listReview.jsp";
 		
 		
 	}

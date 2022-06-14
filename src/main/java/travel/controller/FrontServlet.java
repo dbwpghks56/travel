@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.connector.Response;
+
 /**
  * Servlet implementation class FrontController
  */
@@ -42,6 +44,8 @@ public class FrontServlet extends HttpServlet {
 			command = new InsertReview();
 		} else if(uri.equals("/review/listReview.do")) {
 			command = new ListReview();
+		} else if(uri.equals("/review/deleteReview.do")) {
+			command = new ReviewDeleteController();
 		} else if(uri.equals("/accommodation/selectRoom.do")) {
 			command = new SelectRoomController();
 		} else if (uri.equals("/accommodation/insertAcco.do")) {
@@ -82,8 +86,7 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvDeleteDetailController();
 		} else if(uri.equals("/reservation/rsvcancellremove.do")) {
 			command = new RsvCancellRemoveController();
-		}
-				
+		}	
 		
 		page = command.execute(req);
 		
@@ -93,8 +96,9 @@ public class FrontServlet extends HttpServlet {
 			int result = Integer.parseInt(mulstr[1]); // 10, 0
 			PrintWriter out = resp.getWriter(); 
 			out.print(result == 0 ? 0 : 1);
+		}else if(page.contains("redirect:")){
+			resp.sendRedirect(page.substring(9));
 		}
-		
 		else {
 			RequestDispatcher rd = req.getRequestDispatcher(page);
 			rd.forward(req, resp);

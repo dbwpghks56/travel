@@ -32,7 +32,7 @@ public class ListRoomInquiryController implements Command {
 		request.setAttribute("rinquirylist", rinquirylist);
 		request.setAttribute("nicks", nicks);
 		
-		return "listRoominquiry.jsp";
+		return "/accommodation/listRoominquiry.jsp";
 	}
 
 }

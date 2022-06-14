@@ -23,7 +23,6 @@ input {
     padding: 10px 12px;
 }
 
-
 #search{
 	vertical-align: middle;
 	background-color: rgba(255,255,255,0.8);
@@ -59,7 +58,7 @@ input {
 <body>
  	<div class="search">
 
- 	<form action = "./accommodation/search.do">
+ 	<form action = "/travel/accommodation/search.do">
 
       <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
       <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">

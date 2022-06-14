@@ -126,15 +126,10 @@
 	<p id="poppins"> Would you travel? </p>
 	<p id="raleway"> Would you travel? </p> -->
 	<!-- <p id="lobstertwo"> Would you travel? </p> -->
-<<<<<<< HEAD
-	<img id="summer" alt="" src="${pageContext.request.contextPath}/images/back/수영장.gif">
-	<img id="fall" alt="" src="${pageContext.request.contextPath}/images/back/다즐링.gif" class="img2">
-	<img id="winter" alt="" src="${pageContext.request.contextPath}/images/back/이터널선샤인.gif" class="img2">
-=======
+
 	<img id="summer" alt="" src="/travel/images/back/수영장.gif">
 	<img id="fall" alt="" src="/travel/images/back/다즐링.gif" class="img2">
 	<img id="winter" alt="" src="/travel/images/back/이터널선샤인.gif" class="img2">
->>>>>>> refs/remotes/origin/master
 	<script>
 		function scrolling(evt, loc) {
 	                var offset = $(loc).offset();

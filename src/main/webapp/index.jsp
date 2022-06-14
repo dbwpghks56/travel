@@ -55,6 +55,11 @@
 		margin-top: -5px;
 	}
 
+.search{
+	position:fixed;
+	left:19%;
+	margin-top:7.3%;
+}
 
 
 </style>
@@ -126,7 +131,6 @@
 	<p id="poppins"> Would you travel? </p>
 	<p id="raleway"> Would you travel? </p> -->
 	<!-- <p id="lobstertwo"> Would you travel? </p> -->
-
 	<img id="summer" alt="" src="/travel/images/back/수영장.gif">
 	<img id="fall" alt="" src="/travel/images/back/다즐링.gif" class="img2">
 	<img id="winter" alt="" src="/travel/images/back/이터널선샤인.gif" class="img2">
@@ -138,6 +142,8 @@
 	                    scrollTop: offset.top
 	                }, 800);
 	            }
+	
+		
 	</script>
 </body>
 </html>

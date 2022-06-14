@@ -39,6 +39,9 @@ body{
 }
 #demo a{
 	display: inline-block;
+	width:75%;
+	text-decoration: none;
+	color:black;
 }
 .carousel-item active{
 	border-radius: 10%;
@@ -93,7 +96,7 @@ body{
 			<span class="carousel-control-next-icon"></span>
 		</button>
 		<a href = "selectRoom.do?acco_name=${accommoList.get(status.index).get('accommodation_name') }&acco_id=${accommoList.get(status.index).get('accommodation_id') }">
-		<span>${accommoList.get(status.index).get('accommodation_name') }</span><br></a>
+		<span>${accommoList.get(status.index).get('accommodation_name') }</span></a>
 		<div class = "score"><span class="material-icons">star</span><span>${stars.get(status.index)}</span></div>
 	</div>
 	</c:forEach>
@@ -130,9 +133,9 @@ body{
 		var y;
 		var point;
 		
-		for (let i = 0; i < accommoList.size(); i++) {
+		for (let i = 0; i < ${accommoList.size()}; i++) {
 			x = ${accommoList.get(i).get('x')};
-			y = ${accommoList.get(i).get('x')};
+			y = ${accommoList.get(i).get('y')};
 
 			point = proj4(grs80, wgs84, [ x, y ]);
 

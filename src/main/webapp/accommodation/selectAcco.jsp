@@ -23,6 +23,17 @@ input {
     padding: 10px 12px;
 }
 
+#search{
+	vertical-align: middle;
+	background-color: rgba(255,255,255,0.8);
+	background-image:url("/images/icons/searchIcon.png");
+	background-size: cover;
+	width : 40px;
+	height: 40px;
+	border : 1px solid pink;
+	
+}
+
 #submit:hover {
 	cursor: pointer;
 }
@@ -30,7 +41,7 @@ input {
 #submit{
 	display:inline-block;
 	background-color:"white";
-	background: url("../images/icons/searchIcon.png");
+	background: url("/travel/images/icons/searchIcon.png");
 	background-repeat: no-repeat;
 	width:40px;
 	height: 40px;

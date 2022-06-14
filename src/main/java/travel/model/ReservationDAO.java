@@ -113,7 +113,60 @@ public class ReservationDAO {
 		
 	}
 	
+	public ReservationDTO rsvDeleteAllDetail(int d_rsv_no) {
+		ReservationDTO rsv = new ReservationDTO();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("SELECT dr.*, r2.ROOM_NAME, ((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE\r\n"
+					+ "FROM DELETE_RESERVATION dr , ROOM r2 , ACCOMMODATION a \r\n"
+					+ "WHERE(dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID) AND dr.D_RSV_NO  = ?");
+			pst.setInt(1, d_rsv_no);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv.setD_rsv_no(rs.getInt("D_rsv_no"));
+				rsv.setUser_id(rs.getString("User_id"));
+				rsv.setRoom_id(rs.getInt("Room_id"));
+				rsv.setCheck_in(rs.getDate("Check_in"));
+				rsv.setCheck_out(rs.getDate("Check_out"));
+				rsv.setRsv_date(rs.getDate("Rsv_date"));
+				rsv.setPersonnel(rs.getInt("Personnel"));
+				rsv.setRequest(rs.getString("Request"));
+				rsv.setRoom_name(rs.getString("Room_name"));
+				rsv.setTotalprice(rs.getInt("Totalprice"));
+				rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+				rsv.setPhone(rs.getString("Phone"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
 	
+		
+		return rsv;
+	}
+	
+	//예약취소하기
+	public int dRsvNoDelete(int d_rsv_no) {
+		result = 0;
+		conn = DBUtil.getConnection();
+		try {
+			//delete from reservation where rsv_no = ?;
+			pst = conn.prepareStatement("DELETE FROM DELETE_RESERVATION WHERE D_RSV_NO = ?");
+			pst.setInt(1, d_rsv_no);
+			result = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return result;
+		
+	}
 	
 	//예약 목록
 	public List<ReservationDTO> rsvAll(String user_id){

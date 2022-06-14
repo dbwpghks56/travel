@@ -154,7 +154,7 @@
 	box-sizing: border-box;
 }
 .modal-container{
-display:none;
+   visibility : hidden;  
   position: fixed; 
   z-index: 1; 
   padding-top: 120px; 

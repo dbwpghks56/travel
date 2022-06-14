@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.eclipse.jdt.internal.compiler.lookup.AptSourceLocalVariableBinding;
 
 import travel.DTO.ReviewDto;
 import travel.util.DBUtil;
@@ -18,8 +18,11 @@ import travel.util.DBUtil;
 public class ReviewDAO {
 	private static final String SQL_SELECT_BY_ACCOID = "select * from review\r\n"
 			+ "join users using(user_id)\r\n"
-			+ "where accommodation_id = ?";
+			+ "where accommodation_id = ?\r\n"
+			+ "and report<11";
 	private static final String SQL_UPDATE_REPORT = "update review set report = report+1 where review_id = ?";
+	private static final String SQL_UPDATE_REPORT_USER = "update review set report_user = ? where review_id = ?";
+	private static final String SQL_SELECT_REPORT_USER="select report_user from review where review_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -163,6 +166,48 @@ public class ReviewDAO {
 		
 		return ret;
 	}
+	public int updateReportUser(int review_id, String user_id) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_REPORT_USER);
+			pst.setInt(1, review_id);
+			rs = pst.executeQuery();
+			rs.next();
+			String reportUser = rs.getString("report_user");
+			if(reportUser==null) {
+				pst.close();
+				pst = conn.prepareStatement(SQL_UPDATE_REPORT_USER);
+				pst.setString(1, user_id);
+				pst.setInt(2, review_id);
+				ret = pst.executeUpdate();
+			}else {
+				String[] arr = reportUser.split(",");
+				for(int i = 0; i<arr.length; i++) {
+					if(user_id.equals(arr[i])) {
+						ret =0;
+					}else {
+						String str = reportUser+", "+user_id;
+						pst.close();
+						pst = conn.prepareStatement(SQL_UPDATE_REPORT_USER);
+						pst.setString(1, str);
+						pst.setInt(2, review_id);
+						ret = pst.executeUpdate();
+					}
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return ret;
+	}
 
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {
 		ReviewDto review = new ReviewDto();
@@ -177,6 +222,7 @@ public class ReviewDAO {
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
+		review.setReport_user(rs2.getString("report_user"));
 		return review;
 	}
 	private Map<String,String> makeMap(ResultSet rs2) {
@@ -191,6 +237,7 @@ public class ReviewDAO {
 			rMap.put("r_regdate",rs2.getString("r_regdate"));
 			rMap.put("nick_name",rs2.getString("nickname"));
 			rMap.put("u_image_path",rs2.getString("u_image_path"));
+			rMap.put("report_user", rs2.getString("report_user"));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -198,7 +245,7 @@ public class ReviewDAO {
 		}
 		return rMap;
 	}
-	//후기 삭제
+	//�썑湲� �궘�젣
 	public int reviewDelete(int review_id) {
 		int result =0;
 		conn = DBUtil.getConnection();

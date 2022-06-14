@@ -155,7 +155,7 @@ margin:0 auto;
 	box-sizing: border-box;
 }
 .modal-container{
-  /*  visibility : hidden; */  
+  visibility : hidden;
   position: fixed; 
   z-index: 1; 
   padding-top: 120px; 
@@ -175,6 +175,7 @@ margin:0 auto;
  	margin: 0 auto;
   	padding: 20px;
 	width: 30%;
+	margi
 }
 #calendar2{
 	display:inline-block;

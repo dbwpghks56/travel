@@ -1,33 +1,151 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2d503e5862c5829d5794c838da38c231&libraries=services,clusterer,drawing"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"
+	type="text/javascript"></script>
+	<style type="text/css">
+		#formcontainer {
+			width: 40%;
+			display: inline-block;
+			margin-left: 5%;
+			margin-right: 2%;
+			margin-bottom: 1%;
+		}
+		
+		.btn {
+			margin-top: 5px;
+			background-color: pink;
+			border: 1px solid pink;
+			margin-bottom: -5px;
+			height: 56px;
+			width: 100%;
+		}
+		
+		.btn:hover {
+			border: none;
+			background-color: #F582A7;
+		}
+		
+		#map {
+			display: inline-block;
+			width: 50%; 
+			height: 680px; 
+			border: 1px solid pink;
+			box-shadow: 3px 3px #F582A7;
+			
+		}
+		#accot {
+			margin-bottom: 10px;
+		}
+		.input-group-text {
+			background-color: pink;
+			color: white;
+		}
+		#thumbnail {
+			width: 200px;
+			height: 200px;
+			border-radius: 5px;
+			border: 3px solid pink;
+		}
+	</style>
 </head>
 <body>
-	<h1>숙소 등록</h1>
-	<h2>로그인하고 시도해주세용</h2>
-	<form action="insertAcco.do" method = "post" enctype="multipart/form-data">
-		user_id : ${user.user_id } <br>
-		<input type="hidden" name="user_id" value="${user.user_id }">
-		숙소 이름 : <input type="text" name="acco_name"> <br>
-		<input type="text" id="sample6_postcode" placeholder="우편번호" name="mail_num">
-		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-		<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
-		<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="location_detail">
-		<input type="text" id="sample6_extraAddress" placeholder="참고항목"> <br>
-		사진 : <input type="file" name="photos"> <br>
-		옵션 : <input type="text" name="acco_option"> <br>
-		전화번호 : <input type="text" name="acco_phone"> <br>
-		숙소 타입 : <input type="radio" name="acco_type" value="호텔"> 호텔 <input type="radio" name="acco_type" value="여관">여관 <br>
-		<input type="radio" name="acco_type" value="게스트하우스"> 게스트하우스 <input type="radio" name="acco_type" value="펜션">펜션
-		<input type="radio" name="acco_type" value="캠핑장">캠핑장 <br>
-		<input type="submit" value="전송스">
-	</form>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<div id="formcontainer">
+		<form action="insertAcco.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="user_id" value="${user.user_id }"> 
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" id="acco_name" placeholder="Enter name" name="acco_name" required="required">
+				<label for="acco_name"> 숙소 이름 : </label>
+			</div>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" id="sample6_postcode" placeholder="우편번호" name="mail_num" required="required" readonly="readonly">
+				<label for="sample6_postcode"> 우편번호 : </label>
+				<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+			</div>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" id="sample6_address" placeholder="주소" name="address" onchange="addresstogeo();" required="required" readonly="readonly">
+				<label for="sample6_address"> 도로명 주소 : </label>
+			</div>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" id="sample6_detailAddress" placeholder="상세주소" name="location_detail" required="required">
+				<label for="sample6_detailAddress"> 상세 주소 : </label>
+			</div>
+			<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+			<input type="button" class="btn btn-primary" id="geobtn" value="지도에 표시하기" onclick="addresstogeo();"> 
+			<input type="hidden" id="geobtnY" name="geoX">
+			<input type="hidden" id="geobtnX" name="geoY"> <br> <br>
+			<div class="input-group mb-3">
+				<span class="input-group-text">사진</span> <input type="file"
+					class="form-control" placeholder="Photo" name="photos" accept="image/*" onchange="setThumbnail(event);" multiple="multiple">
+					<div id="demo" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div id="image_container"></div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+							<span class="carousel-control-next-icon"></span>
+						</button>
+					</div>
+			</div>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" placeholder="옵션" name="acco_option" required="required">
+				<label for="acco_option"> 옵션 : </label>
+			</div>
+			<div class="form-floating mb-3 mt-3">
+				<input type="text" class="form-control" placeholder="전화번호" name="acco_phone" required="required">
+				<label for="acco_phone"> 전화번호 : </label>
+			</div>
+			<div id="accot">
+				숙소 타입 : <input type="radio" name="acco_type" value="호텔"> 
+				호텔 <input type="radio" name="acco_type" value="여관">
+				여관 <input type="radio" name="acco_type" value="게스트하우스"> 
+				게스트하우스 <input type="radio" name="acco_type" value="펜션">
+				펜션 <input type="radio" name="acco_type" value="캠핑장">
+				캠핑장 
+			</div>
+			<input type="submit" class="btn btn-primary" value="숙소 등록하기">
+		</form>
+	</div>
+	<div id="map"></div>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+		function setThumbnail(event) {
+	        for (var image of event.target.files) {
+	          var reader = new FileReader();
+	
+	          reader.onload = function(event) {
+	            var img = document.createElement("img");
+	            var div = document.createElement("div");
+	            var div2 = document.createElement("div");
+	            img.setAttribute("src", event.target.result);
+	            div.class = 'carousel-item';
+	            div2.class = 'image_container';
+	            img.id = 'thumbnail';
+	            document.querySelector("div.carousel-inner").appendChild(div);
+	            div.appendChild(div2);
+	            div2.appendChild(img);
+	          };
+	
+	          console.log(image);
+	          reader.readAsDataURL(image);
+	        }
+	      }
+
 	    function sample6_execDaumPostcode() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -75,6 +193,53 @@
 	            }
 	        }).open();
 	    }
+	</script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		
+		mapOption = {
+			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		function addresstogeo() {
+			geocoder.addressSearch(
+						$("#sample6_address").val(),
+						function(result, status) {
+
+							// 정상적으로 검색이 완료됐으면 
+							if (status === kakao.maps.services.Status.OK) {
+
+								var coords = new kakao.maps.LatLng(result[0].y,
+										result[0].x);
+								$("#geobtnY").val(result[0].y); // 이거먼저 와야됨
+								$("#geobtnX").val(result[0].x);
+								// 결과값으로 받은 위치를 마커로 표시합니다
+								var marker = new kakao.maps.Marker({
+									map : map,
+									position : coords
+									/* console.log(coords); */
+								});
+								// 인포윈도우로 장소에 대한 설명을 표시합니다
+								var infowindow = new kakao.maps.InfoWindow(
+										{
+											content : '<div style="width:150px;text-align:center;padding:6px 0;">내 숙소 위치</div>'
+										});
+								infowindow.open(map, marker);
+
+								// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+								map.setCenter(coords);
+							}
+						});
+		}
 	</script>
 </body>
 </html>

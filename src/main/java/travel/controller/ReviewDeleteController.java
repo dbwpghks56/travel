@@ -1,20 +1,24 @@
 package travel.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import travel.DTO.UserDTO;
 import travel.model.ReviewService;
-import travel.model.UserService;
 
 public class ReviewDeleteController implements Command {
-
+	
+	
+	
 	@Override
 	public String execute(HttpServletRequest request) {
 		
-		 return "/travel/review/deleteReview.jsp";
+		 String rid = request.getParameter("reviewid");
+		 ReviewService service = new ReviewService();
+		 service.reviewDelete(Integer.parseInt(rid));
+		 //return "redirect:listReview.do";
+		 return "/review/redirect:listReview.jsp";
 	}
 
 	
+
 
 }

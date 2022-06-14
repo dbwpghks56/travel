@@ -33,8 +33,8 @@ public class AccommodationDAO {
 	private static final String SQL_SELECT_DATE = "SELECT ROOM_ID  \r\n"
 			+ "FROM ROOM r JOIN RESERVATION r2 using(room_id)\r\n"
 			+ "WHERE (check_in BETWEEN ? and  ? ) or (CHECK_out BETWEEN ? and ? )\r\n";
-	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address , New_address , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
-			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?)";
+	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address, location_detail, mail_num, x, y , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
+			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?, ?, ?, ?)";
 	private static final String SQL_SELECT_BY_ID = "select * from accommodation where accommodation_id = ?";
 	Connection conn;
 	PreparedStatement pst;
@@ -154,7 +154,6 @@ public class AccommodationDAO {
 			accommo.setUser_id(rs2.getString("user_id"));
 			accommo.setAccommodation_name(rs2.getString("accommodation_name"));
 			accommo.setAddress(rs2.getString("address"));
-			accommo.setNew_address(rs2.getString("new_address"));
 			accommo.setA_option(rs2.getString("a_option"));
 			accommo.setCleaning_star(rs2.getInt("cleaning_stars"));
 			accommo.setLocation_star(rs2.getInt("location_stars"));
@@ -178,7 +177,6 @@ public class AccommodationDAO {
 			aMap.put("user_id", rs.getString("user_id"));
 			aMap.put("accommodation_name", rs.getString("accommodation_name"));
 			aMap.put("address", rs.getString("address"));
-			aMap.put("new_address", rs.getString("new_address"));
 			aMap.put("a_option", rs.getString("a_option"));
 			aMap.put("cleaning_stars", rs.getString("cleaning_stars"));
 			aMap.put("location_stars", rs.getString("location_stars"));
@@ -196,6 +194,7 @@ public class AccommodationDAO {
 	}
 	public int InsertAcco(AccommodationDto acco) {
 		int result = 0;
+		
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_INSERT_ACCO);
@@ -203,11 +202,14 @@ public class AccommodationDAO {
 			pst.setString(1, acco.getUser_id());
 			pst.setString(2, acco.getAccommodation_name());
 			pst.setString(3, acco.getAddress());
-			pst.setString(4, acco.getNew_address());
-			pst.setString(5, acco.getA_image_path());
-			pst.setString(6, acco.getA_option());
-			pst.setString(7, acco.getPhone());
-			pst.setString(8, acco.getAccommodation_type());
+			pst.setString(4, acco.getLocation_detail());
+			pst.setInt(5, acco.getMail_num());
+			pst.setFloat(6, acco.getX());
+			pst.setFloat(7, acco.getY());
+			pst.setString(8, acco.getA_image_path());
+			pst.setString(9, acco.getA_option());
+			pst.setString(10, acco.getPhone());
+			pst.setString(11, acco.getAccommodation_type());
 
 			result = pst.executeUpdate();
 

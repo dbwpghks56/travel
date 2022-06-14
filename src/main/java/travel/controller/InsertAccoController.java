@@ -17,7 +17,7 @@ public class InsertAccoController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-
+		String path = request.getContextPath();
 		AccommodationService service = new AccommodationService();
 		String dir = request.getServletContext().getRealPath("uploads");
 
@@ -32,7 +32,7 @@ public class InsertAccoController implements Command {
 
 
 		//return insertAcco;
-		return "confirmInsertAcco.jsp";
+		return "/accommodation/confirmInsertAcco.jsp";
 	
 	}
 

@@ -9,11 +9,12 @@ public class InsertRoomInquiryController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		String path = request.getContextPath();
 		Room_InquiryService riservice = new Room_InquiryService();
 		
 		request.setAttribute("message", riservice.insertRinquiry(makeRi(request)) >0 ? "성공" : "실패");
 		
-		return "confirmInsertri.jsp";
+		return "/accommodation/confirmInsertri.jsp";
 	}
 
 	private Room_InquiryDto makeRi(HttpServletRequest request) {

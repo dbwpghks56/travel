@@ -15,6 +15,7 @@ public class InsertReview implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		String path = request.getContextPath();
 		ReviewService reviewservice = new ReviewService();
 		
 		String dir = request.getServletContext().getRealPath("uploads");
@@ -26,7 +27,7 @@ public class InsertReview implements Command {
 		
 		request.setAttribute("review_result", result > 0 ? "성공" : "실패");
 		
-		return "confirmreviewinsert.jsp";
+		return "/review/confirmreviewinsert.jsp";
 	}
 
 	private ReviewDto makeReview(Map<String, Object> map) {

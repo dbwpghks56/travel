@@ -52,7 +52,9 @@ public class SelectRoomController implements Command {
 		UserService uService = new UserService();
 		String nick_name = uService.nickToId(accommo.getUser_id());
 		
-		int star = (accommo.getCleaning_star()+accommo.getLocation_star()+accommo.getSatisfied_star())/3;
+		int cStar = accommo.getCleaning_star();
+		int lStar= accommo.getLocation_star();
+		int sStar = accommo.getSatisfied_star();
 		
 
 		GeoPoint pt = new GeoPoint(accommo.getX(),accommo.getY());
@@ -79,6 +81,7 @@ public class SelectRoomController implements Command {
 			jSights.add(jSight);
 		}
 		request.setAttribute("accoName", accoName);
+		request.setAttribute("accoId", accoId);
 		request.setAttribute("address", accommo.getAddress());
 		request.setAttribute("host_id", accommo.getUser_id());
 		request.setAttribute("accoType", accommo.getAccommodation_type());
@@ -93,7 +96,9 @@ public class SelectRoomController implements Command {
 		request.setAttribute("option", accommo.getA_option());
 		request.setAttribute("price", roomList.get(0).getPrice_by_day());
 		request.setAttribute("reviewList", reviewList);
-		request.setAttribute("star", star);
+		request.setAttribute("cStar", cStar);
+		request.setAttribute("lStar", lStar);
+		request.setAttribute("sStar", sStar);
 
 		request.setAttribute("sights", jSights);
 

@@ -21,6 +21,9 @@
 	.modal-body2{
 		display: none;
 	}
+	.modal-body3{
+		display: none;
+	}
 	.modal-content{
 		position: absolute;
 		width: 40%;
@@ -51,6 +54,9 @@
 				</div>
 				<div class="modal-body2">
 					신고 완료되었습니다!
+				</div>
+				<div class="modal-body3">
+					이미 신고된 리뷰입니다.
 				</div>
 
 				<!-- Modal footer -->

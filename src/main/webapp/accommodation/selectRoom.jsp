@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ include file = "selectAcco.jsp" %>
     <%@ include file= "updateReviewReport.jsp" %>
+    <%@ include file = "selectReview.jsp" %>
     <%@ page import = "travel.model.*" %>
 <!DOCTYPE html>
 <html>
@@ -170,7 +171,8 @@
 	<hr>
 		<div class = "reviewDiv">
 		<div class = "stars">
-		<h3><span class="material-icons">star</span> ${star}점(후기 ${reviewList.size()}개)</h3>
+		<h3>후기 ${reviewList.size()}개 </h3>
+		<h4>청결 <span class="material-icons">star</span> ${cStar}점 | 위치 <span class="material-icons">star</span> ${lStar}점 | 만족 <span class="material-icons">star</span> ${sStar}점</h4>
 		</div>
 		<div class = "reviews">
 		<c:forEach items = "${reviewList}" var = "review">
@@ -186,6 +188,7 @@
 				${review.get('content') }
 			</div>
 		</c:forEach>
+		<button id = "btnReview">더보기</button>
 		</div>
 		</div>
 	<hr>
@@ -207,6 +210,7 @@
 		modal.style.display = 'block';
 		document.querySelector(".modal-body").style.display = "block";
 		document.querySelector(".modal-body2").style.display = "none";
+		document.querySelector(".modal-body3").style.display = "none";
 		rId = $(this).attr("data-rId");
 	});
 	
@@ -218,14 +222,35 @@
             url:"updateReviewReport.do",
             data : {rId: rId},
             success:function (data,textStatus){
-            	document.querySelector(".modal-body").style.display = "none";
-            	document.querySelector(".modal-body2").style.display = "block";
-            	
-            	
+            	alert(data);
+            	if(data == 1){
+            		document.querySelector(".modal-body").style.display = "none";
+            		document.querySelector(".modal-body2").style.display = "block";
+            		document.querySelector(".modal-body3").style.display = "none";
+            	}else{
+            		document.querySelector(".modal-body").style.display = "none";
+            		document.querySelector(".modal-body2").style.display = "none";
+            		document.querySelector(".modal-body3").style.display = "block";
+            	}
 	     	}
+	     
 	     	
 	   	});  //end ajax	
 		
+	};
+	btnReview.onclick = function(){
+		$.ajax({
+            type:"get",
+            async:false, 
+            url:"selectReview.do",
+            data : {accoId: ${accoId}},
+            success:function (data,textStatus){
+            	alert(data);
+            	document.querySelector(".modal-review").style.display = "block";
+	     	}
+	     
+	     	
+	   	});  //end ajax	
 	};
 	var divMap = document.querySelector("#map");
 
@@ -263,27 +288,59 @@
 	});
 	marker.setTitle(${price}+"원");
 	var sicon = new kakao.maps.MarkerImage(
-			'../images/icons/pin.png',
-			new kakao.maps.Size(70, 35),
-			{
-				offset : new kakao.maps.Point(16, 34),
-				alt : "마커 이미지",
-				shape : "poly",
-				coords : "1,20,1,9,5,2,10,0,21,0,27,3,30,9,30,20,17,33,14,33"
-			});;
-	var smarker = null;
-
+			'../images/icons/newpin.png',
+			new kakao.maps.Size(95, 50),
+			new kakao.maps.Point(140, 50));
+	var bicon = new kakao.maps.MarkerImage(
+			'../images/icons/newpin.png',
+			new kakao.maps.Size(150, 80),
+			 new kakao.maps.Point(140, 50)
+		);;
+	
+	var positions = [];
 	var sights = ${sights};
 	for(let i = 0; i<sights.length; i++){
-		var sight = sights[i];
-		smarker = new kakao.maps.Marker({
+		let = sight = sights[i];
+		positions[i]= 
+		    {
+		        content: sight['sights_name'], 
+		        latlng: new kakao.maps.LatLng(sight['x'], sight['y'])
+		    };
+
+	}
+	for(let i = 0; i<sights.length; i++){
+		let sight = sights[i];
+		let smarker = new kakao.maps.Marker({
 			map : map,
-			position : new kakao.maps.LatLng(sight["x"],sight["y"]),
+			position : positions[i].latlng,
 			image : sicon
 		});
-		smarker.setTitle(sight["sights_name"]);
+		smarker.setClickable(true);
+		let infowindow = new kakao.maps.InfoWindow({
+		    content: positions[i].content // 인포윈도우에 표시할 내용
+		});
+		kakao.maps.event.addListener(smarker, 'mouseover', makeOverListener(map, smarker, infowindow));
+		kakao.maps.event.addListener(smarker, 'mouseout', makeOutListener(infowindow,smarker));
+		kakao.maps.event.addListener(smarker, 'click', function() {
+		   	infowindow.open(map,smarker);
+		   	smarker.setImage(bicon);
+		});
+	}
+	function makeOverListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	        marker.setImage(bicon);
+	    };
 	}
 
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow, marker) {
+	    return function() {
+	        infowindow.close();
+	        marker.setImage(sicon);
+	    };
+	}
+	
 	</script>
 	
 </body>

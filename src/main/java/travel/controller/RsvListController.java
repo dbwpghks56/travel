@@ -16,7 +16,7 @@ public class RsvListController implements Command {
 		System.out.println(user_id);
 		request.setAttribute("rsvlist", service.rsvAll(user_id));
 		request.setAttribute("rsvdeletelist", service.rsvDeleteAll(user_id));
-		return "rsvList.jsp";
+		return "/reservation/rsvList.jsp";
 	}
 
 }

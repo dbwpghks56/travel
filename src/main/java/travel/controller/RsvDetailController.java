@@ -26,7 +26,7 @@ public class RsvDetailController implements Command {
 			ReservationService rService = new ReservationService();
 			ReservationDTO rsv = rService.selectByRsvNo(i_rsvNO);
 			reQuest.setAttribute("rsv", rsv);
-			page = "rsvDetail.jsp";
+			page = "/reservation/rsvDetail.jsp";
 			
 		}else {
 			ReservationDTO rsv = new ReservationDTO();

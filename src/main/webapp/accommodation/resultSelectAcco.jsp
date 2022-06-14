@@ -16,6 +16,7 @@
 	margin: 1%;
 	box-sizing: border-box;
 }
+
 body{
 	position: relative;
 }

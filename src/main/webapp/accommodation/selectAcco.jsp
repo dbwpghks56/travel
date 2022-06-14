@@ -12,15 +12,17 @@
     box-sizing: border-box;
 	}
 .search {
-    text-align: center;
-   	margin:0 auto;
+	margin:0 auto;
+	text-align: center;
 }
 input {
+	display:inline-block;
     width: 270px;
     border-radius: 20px;
     border: 1px solid pink;
     padding: 10px 12px;
 }
+
 
 #search{
 	vertical-align: middle;
@@ -32,6 +34,7 @@ input {
 	border : 1px solid pink;
 	
 }
+
 #submit:hover {
 	cursor: pointer;
 }
@@ -45,6 +48,7 @@ input {
 	height: 40px;
 	background-size: 100% 100%;
 	vertical-align: middle;
+
 }
 
 

@@ -35,4 +35,7 @@ public class ReviewService {
 	public int reviewDelete(int review_id) {
 		return reviewdao.reviewDelete(review_id);
 	}
+	public int updateReportUser(int review_id, String user_id) {
+		return reviewdao.updateReportUser(review_id, user_id);
+	}
 }

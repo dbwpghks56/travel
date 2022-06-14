@@ -13,26 +13,31 @@
 		left : 0;
 		width: 100%;
 		height: 100%;
-		display:none;
-		background-color: rgba(0, 0, 0, 0.4);
+		display: none;
 	}
 	
-	.rmodal-content{
-		position: absolute;
+	.rmodal{
+		position: fixed;
+		left:30%;
 		width: 40%;
-		height: 70%;
+		height: 90%;
 		padding: 40px;
 		text-align: center;
-		background-color: rgb(255, 160, 160);
+		background-color:"pink";
 		border-radius: 10px;
 		box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+		word-break:break-all;
+		overflow: scroll;
+	}
+	input{
+		width: 25%;
 	}
 </style>
 </head>
 <body>
 	<div class = "modal-review">
 	<div class = "rmodal">
-		<c:forEach items = "${rList}" var = "review">
+		<c:forEach items = "${reviewList}" var = "review">
 			<div id = "userImg">
 				<img src = "../uploads/${review.get('u_image_path')}">
 			</div>
@@ -44,8 +49,12 @@
 			<div id = "content">
 				${review.get('content') }
 			</div>
+			<hr>
 		</c:forEach>
 		</div>
 	</div>
+	<script>
+	
+	</script>
 </body>
 </html>

@@ -2,7 +2,7 @@ package travel.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpSession;
 
 import travel.model.ReviewService;
 
@@ -12,10 +12,13 @@ public class updateReportController implements Command{
 	@Override
 	public String execute(HttpServletRequest request) {
 		int rId = Integer.parseInt(request.getParameter("rId"));
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("user_id");
 		ReviewService rService = new ReviewService();
-		boolean result = rService.updateReport(rId)==0? false:true;
-		request.setAttribute("result", result);
-		return "resultReviewReport.jsp";
+		int result = rService.updateReport(rId)==0? 0:1;
+		result = rService.updateReportUser(rId, user_id)==0? 0:1;
+		System.out.println(result);
+		return "ret:"+result;
 	}
 
 	

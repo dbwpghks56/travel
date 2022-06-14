@@ -9,7 +9,7 @@ import travel.model.UserService;
 public class LoginUserController implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request) { //테스트2
+	public String execute(HttpServletRequest request) { //�뀒�뒪�듃2
 		UserService service = new UserService();
 		
 		String kakao_email = request.getParameter("email");
@@ -23,14 +23,14 @@ public class LoginUserController implements Command {
 		
 		if(kakao_email.equals(null) || kakao_email.equals("")) {
 			System.out.println(kakao_email);
-			System.out.println("확인");
+			System.out.println("�솗�씤");
 			user = service.loginUser(user_id, user_pass);
 		}
 		
 		else {
 			user = service.loginKakaoUser(kakao_email);
 			System.out.println(kakao_email);
-			System.out.println("확인"+ user);
+			System.out.println("�솗�씤"+ user);
 			if(user == null) {
 				request.setAttribute("email", kakao_email);
 				request.setAttribute("nick", kakao_nick);
@@ -42,6 +42,7 @@ public class LoginUserController implements Command {
 		HttpSession session = request.getSession();
 		
 		session.setAttribute("user", user);
+		session.setAttribute("user_id", user_id);
 		
 		return "confirmlogin.jsp";
 	}

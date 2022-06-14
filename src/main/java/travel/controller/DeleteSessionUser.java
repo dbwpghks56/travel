@@ -12,7 +12,7 @@ public class DeleteSessionUser implements Command {
 		
 		session.removeAttribute("user");
 		
-		return "/test/fontall.jsp";
+		return "redirect:/travel/index.jsp";
 	}
 
 }

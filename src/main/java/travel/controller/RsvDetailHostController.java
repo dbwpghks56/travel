@@ -25,7 +25,7 @@ public class RsvDetailHostController implements Command {
 			reQuest.setAttribute("host", host);
 			
 		
-		return "hostRsvDetail.jsp";
+		return "/reservation/hostRsvDetail.jsp";
 	}
 	
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../accommodation/selectAcco.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,14 +89,14 @@
 	            </ul>
 	        </div>
 		<p id="lobster"> Would you travel?</p>
-		<div class="search">
+		<!-- <div class="search">
 		 	<form action ="search.do" >
 		      <input type="text" id = "check" name = "check" required="required">
 		      <input type="text" name = "loc" required="required">
 		      <input type="number" name = "person" required="required">
 		      <input type = "submit" value = "" id = "search">
 	      </form>
-	    </div>
+	    </div> -->
 	</div>
 	
 	<!-- <p id="oswald"> Would you travel? </p>

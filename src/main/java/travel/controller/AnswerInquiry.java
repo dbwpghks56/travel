@@ -8,6 +8,7 @@ public class AnswerInquiry implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+		String path = request.getContextPath();
 		Room_InquiryService rservice = new Room_InquiryService();
 		
 		int inquiry_id = Integer.parseInt(request.getParameter("inquiry_id"));
@@ -15,7 +16,7 @@ public class AnswerInquiry implements Command {
 		
 		int result = rservice.insertAnswerInquiry(inquiry_id, answer);
 		
-		return "listRoomInquiry.do";
+		return "/accommodation/listRoomInquiry.do";
 	}
 
 }

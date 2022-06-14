@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../accommodation/selectAcco.jsp" %>
+    <%@ include file="/accommodation/selectAcco.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,14 +10,14 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="css/main.css">
 <title>Insert title here</title>
 <style type="text/css">
 	body {
 		margin: 0;
 	}
 	#backimg{
-		background-image: url("../images/back/미드.gif");
+		background-image: url("images/back/미드.gif");
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 100vh;
@@ -83,7 +83,7 @@
 	                </li>
 	                <c:if test="${user == null }">
 		                <li class="nav-item">
-		                    <a class="hiper" href="../user/login.jsp">
+		                    <a class="hiper" href="user/login.jsp">
 		                        Login
 		                        <i class="hiper2 hiper fa fa-sign-in"></i>
 		                    </a>
@@ -91,13 +91,13 @@
 	                </c:if>
 	                <c:if test="${user != null }">
 		                <li class="nav-item">
-		                    <a class="hiper" href="../user/myPageUser.jsp">
+		                    <a class="hiper" href="user/myPageUser.jsp">
 		                        My Page
 		                        <i class="hiper2 hiper fa fa-user"></i>
 		                    </a>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="hiper" href="../user/logOut.do">
+		                    <a class="hiper" href="user/logOut.do">
 		                        LogOut
 		                        <i class="hiper2 hiper fa fa-power-off"></i>
 		                    </a>
@@ -120,9 +120,9 @@
 	<p id="poppins"> Would you travel? </p>
 	<p id="raleway"> Would you travel? </p> -->
 	<!-- <p id="lobstertwo"> Would you travel? </p> -->
-	<img id="summer" alt="" src="../images/back/수영장.gif">
-	<img id="fall" alt="" src="../images/back/다즐링.gif" class="img2">
-	<img id="winter" alt="" src="../images/back/이터널선샤인.gif" class="img2">
+	<img id="summer" alt="" src="images/back/수영장.gif">
+	<img id="fall" alt="" src="images/back/다즐링.gif" class="img2">
+	<img id="winter" alt="" src="images/back/이터널선샤인.gif" class="img2">
 	<script>
 		function scrolling(evt, loc) {
 	                var offset = $(loc).offset();

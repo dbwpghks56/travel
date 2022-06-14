@@ -60,7 +60,6 @@ public class RsvController implements Command {
 		Date check_in = readDate(reQuest, "check_in");
 		Date check_out = readDate(reQuest, "check_out");
 		
-//		String usre_id = reQuest.getParameter("user_id");
 		UserDTO user = (UserDTO)session.getAttribute("user");
 		String request = reQuest.getParameter("request");
 		String rsv_status = reQuest.getParameter("rsv_status");
@@ -78,10 +77,6 @@ public class RsvController implements Command {
 		return rsv;
 	}
 
-	/*
-	 * private int readInt(HttpServletRequest reQuest, String column) { String data
-	 * = reQuest.getParameter(column); return Integer.parseInt(data); }
-	 */
 	private Date readDate(HttpServletRequest reQuest, String column) {
 		String data = reQuest.getParameter(column);
 		return DateUtil.convertToDate(data);

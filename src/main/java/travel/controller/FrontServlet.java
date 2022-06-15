@@ -44,6 +44,8 @@ public class FrontServlet extends HttpServlet {
 			command = new InsertReview();
 		} else if(uri.equals("/review/listReview.do")) {
 			command = new ListReview();
+		} else if(uri.equals("/review/confirmReview.do")) {
+			command = new ConfrimReview();
 		} else if(uri.equals("/review/deleteReview.do")) {
 			command = new ReviewDeleteController();
 		} else if(uri.equals("/accommodation/selectRoom.do")) {

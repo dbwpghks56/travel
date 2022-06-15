@@ -32,14 +32,15 @@ public class ReviewDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("insert into review values(seq_review.nextval, ?, ?, ?, ?, ?, ?, 0, ?, sysdate)");
+			pst = conn.prepareStatement("insert into review values(seq_review.nextval, (select accommodation_id from room where room_id = ?), ?, ?, ?, ?, ?, 0, 'none', sysdate, ?, ?)");
 			pst.setInt(1, review.getAccommodation_id());
 			pst.setString(2, review.getUser_id());
 			pst.setString(3, review.getContent());
 			pst.setFloat(4, review.getCleaning_stars());
 			pst.setFloat(5, review.getLocation_stars());
 			pst.setFloat(6, review.getSatisfied_stars());
-			pst.setString(7, review.getR_image_path());
+			pst.setString(7, review.getReport_user());
+			pst.setInt(8, review.getRsv_no());
 			
 			result = pst.executeUpdate();
 			
@@ -51,6 +52,29 @@ public class ReviewDAO {
 		}
 		
 		return result;
+	}
+	
+	public List<String> confirmReview(int rsv_no) {
+		conn = DBUtil.getConnection();
+		List<String> users = new ArrayList<>();
+		
+		try {
+			pst = conn.prepareStatement("SELECT USER_ID FROM review WHERE RSV_NO = ?");
+			pst.setInt(1, rsv_no);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				users.add(rs.getString("user_id"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return users;
 	}
 	
 	public List<ReviewDto> selectAllReview() {
@@ -223,6 +247,8 @@ public class ReviewDAO {
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
 		review.setReport_user(rs2.getString("report_user")); 
+		review.setRsv_no(rs2.getInt("rsv_no"));
+		
 		return review;
 	}
 	private Map<String,String> makeMap(ResultSet rs2) {
@@ -238,6 +264,7 @@ public class ReviewDAO {
 			rMap.put("nick_name",rs2.getString("nickname"));
 			rMap.put("u_image_path",rs2.getString("u_image_path"));
 			rMap.put("report_user", rs2.getString("report_user"));
+			rMap.put("rsv_no", rs2.getString("rsv_no"));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

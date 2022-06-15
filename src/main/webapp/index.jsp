@@ -57,8 +57,24 @@
 
 .search{
 	position:fixed;
-	left:19%;
+	left:22%;
 	margin-top:7.3%;
+}
+#calendar{
+	display:inline-block;
+ 	background-color: #fefefe;
+ 	margin: 0 auto;
+  	padding: 20px;
+	width: 30%;
+	margin-top:1%;
+}
+#calendar2{
+	display:inline-block;
+ 	background-color: #fefefe;
+ 	margin: 0 auto;
+  	padding: 20px;
+	width: 30%;
+	margin-top:1%;
 }
 
 

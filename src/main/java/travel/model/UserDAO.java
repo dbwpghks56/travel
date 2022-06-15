@@ -11,6 +11,7 @@ import travel.util.DBUtil;
 
 public class UserDAO {
 	private static final String SQL_SELECT_IMAGE = "select u_image_path from users where user_id = ?";
+	private static final String SQL_SELECT_MGR = "select manager from users where user_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -64,6 +65,22 @@ public class UserDAO {
 		}
 		
 		return nickname;
+	}
+	public int selectMGR(String user_id) {
+		conn = DBUtil.getConnection();
+		int mgr = 0;
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_MGR);
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			rs.next();
+			mgr = rs.getInt("manager");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return mgr;
 	}
 	
 	public UserDTO loginUser(String user_id, String user_pass) {
@@ -210,7 +227,7 @@ public class UserDAO {
 		return user;
 	}
 	
-	//아이디 중복체크
+	//�븘�씠�뵒 以묐났泥댄겕
 	
 	public int selectByID(String id) {
 		int result = 0;
@@ -231,7 +248,7 @@ public class UserDAO {
 		return result;
 }
 	
-	//회원탈퇴
+	//�쉶�썝�깉�눜
 	public int userDelete(String user_id , String user_pass ) {
 		int result =0;
 		conn = DBUtil.getConnection();

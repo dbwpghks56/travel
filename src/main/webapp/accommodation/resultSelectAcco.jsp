@@ -78,12 +78,17 @@ body{
 			<div class="carousel-item active">
 				<img src="../accoImages/${aImg[0]}" alt="숙소사진1" class="d-block w-100">
 			</div>
+			<c:if test="${aImg[1] ne null }">
 			<div class="carousel-item">
 				<img src="../accoImages/${aImg[1]}" alt="숙소사진2" class="d-block w-100">
 			</div>
+			</c:if>
+			<c:if test="${aImg[2] ne null }">
 			<div class="carousel-item">
 				<img src="../accoImages/${aImg[2]}" alt="숙소사진3" class="d-block w-100">
 			</div>
+			</c:if>
+			
 		</div>
 		
 		<!-- Left and right controls/icons -->

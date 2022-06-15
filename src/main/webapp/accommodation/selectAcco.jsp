@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@include file="searchCal.jsp"  %>
 
 <!DOCTYPE html>
@@ -59,11 +60,22 @@ input {
  	<div class="search">
 
  	<form action = "/travel/accommodation/search.do">
-
-      <input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃">
-      <input type="text" id = "loc" name = "loc" required="required"placeholder="지역">
-      <input type="number" id = "person" name = "person" required="required"placeholder="인원">
+ 	<c:choose>
+ 	<c:when test="${check_in ne null}">
+ 	<input type="text" id = "check" name = "check" required="required" value="${check_in }~${check_out}" autocomplete="off">
+      <input type="text" id = "loc" name = "loc" required="required"value="${loc }"autocomplete="off">
+      <input type="number" id = "person" name = "person" required="required"value="${person }"autocomplete="off">
      	<input type = "submit" id = "submit" value ="">
+ 	</c:when>
+ 	<c:otherwise>
+ 	<input type="text" id = "check" name = "check" required="required" placeholder="체크인~체크아웃" autocomplete="off">
+      <input type="text" id = "loc" name = "loc" required="required"placeholder="지역"autocomplete="off">
+      <input type="number" id = "person" name = "person" required="required"placeholder="인원"autocomplete="off">
+     	<input type = "submit" id = "submit" value ="">
+ 	</c:otherwise>
+ 	</c:choose>
+
+      
      </form>
     </div>
 	<script>

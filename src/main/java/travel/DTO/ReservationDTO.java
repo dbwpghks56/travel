@@ -24,6 +24,7 @@ public class ReservationDTO {
 	
 	private String accommodation_name;
 	private String phone; 
+	private String address;
 	
 	private int price_by_day;
 	private String room_name;
@@ -180,6 +181,12 @@ public class ReservationDTO {
 	}
 	public void setD_rsv_no(int d_rsv_no) {
 		this.d_rsv_no = d_rsv_no;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 

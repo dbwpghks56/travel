@@ -88,6 +88,8 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvCancellRemoveController();
 		} else if(uri.equals("/user/logOut.do")) {
 			command = new DeleteSessionUser();
+		} else if(uri.equals("/user/userUpdate.do")) {
+			command = new UserUpdateController();
 		}
 		
 		page = command.execute(req);

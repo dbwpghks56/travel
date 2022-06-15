@@ -12,12 +12,26 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+.col.text-white{
+	background-color: white;
+	width : 100px;
+}
+
+body {
+	background-color: #FFE6E6;
+}
+
 .title {
-	width: 300px;
+	width: 500px;
 	margin: auto;
 	margin-top: 30px;
 	text-align: center;
+	font-family: 'Lobster', cursive;		
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;	
+	color: pink;
 }
+
 .gain {
 	width: 200px;
 	height: 200px;
@@ -32,42 +46,60 @@
 	height: 200px;
 	border-radius: 10%;
 	margin: auto;
-	background-color: white;
 	text-align: center;
 	margin-top: 60px;
 	padding: 0px;
 	
 }
-
+/* 	background-color: white; */
 .row {
-	width:800px;
-	margin: auto;
+	width :900px;
+	margin : auto;
+	display : inline-flex;
+	flex-direction: row;
+
 }
 
 .btn {
 	background-color : pink;
+	color: 
 	
 }
-
+.btn.btn-secondary.gain{
+	font-family : Person Ions;
+	font-weight: normal;
+  	font-style: normal;
+	width: 200px; 
+	height: 200px;
+	border-radius: 10%;
+	margin: auto;
+	text-align: center;
+	margin-top: 1px;
+	padding: 0px;
+	border-color: white;
+	text-shadow: 1px 1px 1px;
+	color: hotpink;
+}
 
 </style>
 </head>
 <body>
 
 	<div class="container-fluid mt-3">
-		<h1 class="title">마이페이지</h1>
+		<h1 class="title">MyPage</h1>
 		<br>
 		<br>
 		<hr>
+		
 		<div class="row">
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value ="1:1 문의">
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="예약조회">
+				<input type="button" class="btn btn-secondary gain" value ="예약조회">
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="개인정보조회">
+				<input type="button" class="btn btn-secondary gain" value ="개인정보조회">
 			</div>
 		</div>
 		<div class="row">

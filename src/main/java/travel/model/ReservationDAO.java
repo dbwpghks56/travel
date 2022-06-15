@@ -21,14 +21,14 @@ public class ReservationDAO {
 	ResultSet rs;
 	int result;
 
-	//¿¹¾àÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int resevation(ReservationDTO rsv) {
 		result = 0;
 		conn = DBUtil.getConnection();
 		
 		//insert into RESERVATION values(rsv_no, user_id, room_id, check_in, check_out, rsv_date, personnel, request, rsv_status);
 		try {
-			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '¿¹¾à¿Ï·á')");
+			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, 'ï¿½ï¿½ï¿½ï¿½Ï·ï¿½')");
 			pst.setString(1, rsv.getUser_id());
 			pst.setInt(2, rsv.getRoom_id());
 			pst.setDate(3, rsv.getCheck_in());
@@ -46,7 +46,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//¿¹¾à ¼öÁ¤ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int rsvUpdate(ReservationDTO rsv) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -66,7 +66,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//¿¹¾àÃë¼ÒÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int rsvDelete(int rsv_no) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -85,7 +85,7 @@ public class ReservationDAO {
 		
 	}
 	
-	//¿¹¾à Ãë¼Ò list
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ list
 	public List<ReservationDTO> rsvDeleteAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -149,7 +149,7 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
-	//¿¹¾àÃë¼ÒÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int dRsvNoDelete(int d_rsv_no) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -168,14 +168,14 @@ public class ReservationDAO {
 		
 	}
 	
-	//¿¹¾à ¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<ReservationDTO> rsvAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		
 		//select * from reservation order by desc
 		try {
-			pst = conn.prepareStatement("SELECT r.RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , r.CHECK_IN ,r.CHECK_OUT , r.RSV_DATE ,((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, r.rsv_status \r\n"
+			pst = conn.prepareStatement("SELECT r.RSV_NO, r.room_id, a.ACCOMMODATION_NAME, r2.ROOM_NAME , r.CHECK_IN ,r.CHECK_OUT , r.RSV_DATE ,((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, r.rsv_status \r\n"
 					+ "FROM RESERVATION r ,ROOM r2 , ACCOMMODATION a \r\n"
 					+ "WHERE r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = ? ORDER BY rsv_no DESC ");
 			pst.setString(1, user_id);
@@ -196,7 +196,7 @@ public class ReservationDAO {
 		
 	}
 	
-	//¿¹¾à »ó¼¼
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public ReservationDTO selectByRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -222,7 +222,7 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
-	//¿¹¾à ÈÄ ¹Ù·Î »ó¼¼º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public int insertAfterRsv() {
 		
 		conn = DBUtil.getConnection();
@@ -245,7 +245,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//host°¡ µî·ÏÇÑ ¼÷¼Ò¿¡ ¿¹¾àµÈ list
+	//hostï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ list
 	public List<ReservationDTO> hostRsvAll(String user_id) {
 		List<ReservationDTO> hostRsvList = new ArrayList<>();
 		
@@ -276,7 +276,7 @@ public class ReservationDAO {
 
 	}
 	
-	//host°¡ µî·ÏÇÑ ¼÷¼Ò¿¡ ¿¹¾àµÈ detail
+	//hostï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ detail
 	public ReservationDTO selectByHostRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -303,7 +303,7 @@ public class ReservationDAO {
 	}
 	
 	
-	//¿¹¾àÇÒ ¶§ ³ª¿À´Â ÇØ´ç ¼÷¼Ò Á¤º¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ReservationDTO selectByRoomId(int room_id) {
 		ReservationDTO rsv = new ReservationDTO();
 		conn = DBUtil.getConnection();
@@ -381,7 +381,8 @@ public class ReservationDAO {
 		rsv.setCheck_out(rs.getDate("Check_out"));
 		rsv.setRsv_date(rs.getDate("Rsv_date"));
 		rsv.setTotalprice(rs.getInt("Totalprice"));
-		rsv.setRsv_status(rs.getString("Rsv_status"));		
+		rsv.setRsv_status(rs.getString("Rsv_status"));	
+		rsv.setRoom_id(rs.getInt("room_id"));
 		return rsv;
 	}
 	

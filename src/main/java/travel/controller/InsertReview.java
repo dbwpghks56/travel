@@ -18,41 +18,25 @@ public class InsertReview implements Command {
 		String path = request.getContextPath();
 		ReviewService reviewservice = new ReviewService();
 		
-		String dir = request.getServletContext().getRealPath("uploads");
-		Map<String, Object> map = UploadFileHelper.uploadFile("uploads", request);
-		
-		ReviewDto review = makeReview(map);
+		ReviewDto review = makeReview(request);
 		
 		int result = reviewservice.insertReview(review);
 		
 		request.setAttribute("review_result", result > 0 ? "성공" : "실패");
 		
-		return "/review/confirmreviewinsert.jsp";
+		return "rest:" + result;
 	}
 
-	private ReviewDto makeReview(Map<String, Object> map) {
+	private ReviewDto makeReview(HttpServletRequest request) {
 		ReviewDto review = new ReviewDto();
-		
-		List<String> potos = (List<String>)map.get("potos");
-		System.out.println(potos);
-		
-		Map<String,String> params = (Map<String,String>)map.get("params");
-		
-		int acco_id = Integer.parseInt(params.get("acco_id"));
-		String user_id = params.get("user_id");
-		String content = params.get("content");
-		float cleaning_stars = Float.parseFloat(params.get("cleaning_stars"));
-		float location_stars = Float.parseFloat(params.get("location_stars"));
-		float satisfied_stars = Float.parseFloat(params.get("satisfied_stars"));
-		String potos2 = potos.get(0);
-		
-		review.setAccommodation_id(acco_id);
-		review.setUser_id(user_id);
-		review.setContent(content);
-		review.setCleaning_stars(cleaning_stars);
-		review.setLocation_stars(location_stars);
-		review.setSatisfied_stars(satisfied_stars);
-		review.setR_image_path(potos2);
+
+		review.setAccommodation_id(Integer.parseInt(request.getParameter("room_id")));
+		review.setUser_id(request.getParameter("user_id"));
+		review.setContent(request.getParameter("content"));
+		review.setCleaning_stars(Float.parseFloat(request.getParameter("clean")));
+		review.setLocation_stars(Float.parseFloat(request.getParameter("location")));
+		review.setSatisfied_stars(Float.parseFloat(request.getParameter("sati")));
+		review.setRsv_no(Integer.parseInt(request.getParameter("rsv_no")));
 		
 		return review;
 	}

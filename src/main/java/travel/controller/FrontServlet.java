@@ -88,6 +88,10 @@ public class FrontServlet extends HttpServlet {
 			command = new RsvCancellRemoveController();
 		} else if(uri.equals("/user/logOut.do")) {
 			command = new DeleteSessionUser();
+		} else if(uri.equals("/user/siteInquiry.do")) {
+			command = new SiteInquiryController();
+		} else if(uri.equals("/user/insertSInquiry.do")) {
+			command = new InsertSInquiryController();
 		} else if(uri.equals("/user/userUpdate.do")) {
 			command = new UserUpdateController();
 		}

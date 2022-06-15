@@ -98,18 +98,18 @@
 	
   <div class="w3-third">
    	<c:if test="${not empty a_image_path[0]}">
-		<img src="../accoImages/${a_image_path[0]}" style="width:100%">
+		<img src="../accoImages/${a_image_path[0]}" style="width:100%"height="350px">
 	</c:if>
   </div>
 
   <div class="w3-third">
   	<c:if test="${not empty a_image_path[1]}">
-		<img src="../accoImages/${a_image_path[1]}"style="width:100%">
+		<img src="../accoImages/${a_image_path[1]}"style="width:100%"height="350px">
 	</c:if>
   </div>
   <div class="w3-third">
 	<c:if test="${not empty a_image_path[2]}">
-		<img src="../accoImages/${a_image_path[2]}"style="width:100%">
+		<img src="../accoImages/${a_image_path[2]}"style="width:100%"height="350px">
 	</c:if>
   </div>
 </div>
@@ -139,24 +139,16 @@
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../accoImages/${rImg[0]}" alt="숙소사진1" class="d-block w-100">
+				<img src="../accoImages/${rImg[0]}" alt="숙소사진1" class="d-block w-100" width="100%"height="200px">
 			</div>
 			<c:if test="${not empty rImg[1] }">
 			<div class="carousel-item">
-				<img src="../accoImages/${rImg[1]}" alt="숙소사진2" class="d-block w-100">
+				<img src="../accoImages/${rImg[1]}" alt="숙소사진2" class="d-block w-100"width="100%"height="200px">
 			</div>
 			</c:if>
 		</div>
 		
-		<!-- Left and right controls/icons -->
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#demo" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#demo" data-bs-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		</button>
+	
 		
 		<span><a href = "../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
 	</div>

@@ -1,6 +1,9 @@
 package travel.model;
 
+import java.sql.SQLException;
+
 import travel.DTO.UserDTO;
+import travel.util.DBUtil;
 
 public class UserService {
 	UserDAO userdao = new UserDAO();
@@ -43,6 +46,9 @@ public class UserService {
 
 	public int userDelete(String user_id , String user_pass) {
 		return userdao.userDelete(user_id , user_pass );
+	}
+	public int selectMGR(String user_id) {
+		return userdao.selectMGR(user_id);
 	}
 
 }

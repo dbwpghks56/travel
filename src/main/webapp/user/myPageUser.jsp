@@ -104,7 +104,7 @@ body {
 		</div>
 		<div class="row">
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="고객센터">
+				<a href = "siteInquiry.do"><input type="button" class="btn btn-secondary gain" value="고객센터"></a>
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="리뷰관리">

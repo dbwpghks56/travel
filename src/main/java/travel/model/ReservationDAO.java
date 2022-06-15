@@ -91,9 +91,9 @@ public class ReservationDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("SELECT dr.D_RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , dr.CHECK_IN ,dr.CHECK_OUT,((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, dr.RSV_DATE \r\n"
-					+ "FROM DELETE_RESERVATION dr ,ROOM r2 , ACCOMMODATION a\r\n"
-					+ "WHERE dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND dr.USER_ID = ? \r\n"
+			pst = conn.prepareStatement("SELECT dr.D_RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , dr.CHECK_IN ,dr.CHECK_OUT,((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, dr.RSV_DATE,u.USER_PHONE, u.user_name  \r\n"
+					+ "FROM DELETE_RESERVATION dr ,ROOM r2 , ACCOMMODATION a,USERS u  \r\n"
+					+ "WHERE (dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND dr.USER_ID = u.USER_ID) AND dr.USER_ID = ? \r\n"
 					+ "ORDER BY dr.D_RSV_NO DESC");
 			pst.setString(1, user_id);
 			rs = pst.executeQuery();
@@ -118,7 +118,7 @@ public class ReservationDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("SELECT dr.*, r2.ROOM_NAME, ((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE\r\n"
+			pst = conn.prepareStatement("SELECT dr.*, r2.ROOM_NAME, ((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE, a.address\r\n"
 					+ "FROM DELETE_RESERVATION dr , ROOM r2 , ACCOMMODATION a \r\n"
 					+ "WHERE(dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID) AND dr.D_RSV_NO  = ?");
 			pst.setInt(1, d_rsv_no);
@@ -137,6 +137,7 @@ public class ReservationDAO {
 				rsv.setTotalprice(rs.getInt("Totalprice"));
 				rsv.setAccommodation_name(rs.getString("Accommodation_name"));
 				rsv.setPhone(rs.getString("Phone"));
+				rsv.setAddress(rs.getString("Address"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -149,7 +150,6 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
-	//��������ϱ�
 	public int dRsvNoDelete(int d_rsv_no) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -167,8 +167,72 @@ public class ReservationDAO {
 		return result;
 		
 	}
+
+	public List<ReservationDTO> rsvDeleteAllhost(String user_id){
+		List<ReservationDTO> rsvList = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement(""
+					+ "SELECT dr.D_RSV_NO, a.ACCOMMODATION_NAME, r2.ROOM_NAME , dr.CHECK_IN ,dr.CHECK_OUT,((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, dr.RSV_DATE ,u.USER_PHONE,u.user_name  \r\n"
+					+ "FROM DELETE_RESERVATION dr,ROOM r2 , ACCOMMODATION a ,USERS u \r\n"
+					+ "WHERE (dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND dr.USER_ID = u.USER_ID) AND a.USER_ID = ? ORDER BY D_RSV_NO DESC");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsvList.add(makeRsv6(rs));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
 	
-	//���� ���
+		
+		return rsvList;
+		
+	}
+	
+	public ReservationDTO rsvDeleteDetailHost(int d_rsv_no) {
+		ReservationDTO rsv = new ReservationDTO();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("SELECT  dr.D_RSV_NO , u.USER_NAME ,u.USER_PHONE, a.ACCOMMODATION_NAME, r2.ROOM_NAME, dr.PERSONNEL,((dr.CHECK_OUT-dr.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice \r\n"
+					+ ",dr.CHECK_IN, dr.CHECK_OUT, dr.RSV_DATE, dr.REQUEST \r\n"
+					+ "FROM DELETE_RESERVATION dr  , ROOM r2 , ACCOMMODATION a, USERS u\r\n"
+					+ "WHERE(dr.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND dr.USER_ID = u.USER_ID) \r\n"
+					+ "AND dr.D_RSV_NO   = ? \r\n"
+					+ "");
+			pst.setInt(1, d_rsv_no);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rsv.setD_rsv_no(rs.getInt("D_rsv_no"));
+				rsv.setUser_name(rs.getString("User_name"));
+				rsv.setUser_phone(rs.getString("User_phone"));
+				rsv.setAccommodation_name(rs.getString("Accommodation_name"));
+				rsv.setRoom_name(rs.getString("Room_name"));
+				rsv.setPersonnel(rs.getInt("Personnel"));
+				rsv.setTotalprice(rs.getInt("Totalprice"));
+				rsv.setCheck_in(rs.getDate("Check_in"));
+				rsv.setCheck_out(rs.getDate("Check_out"));
+				rsv.setRsv_date(rs.getDate("Rsv_date"));				
+				rsv.setRequest(rs.getString("Request"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return rsv;
+	}
+	
 	public List<ReservationDTO> rsvAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -202,7 +266,7 @@ public class ReservationDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("SELECT r.*, r2.ROOM_NAME, ((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE \r\n"
+			pst = conn.prepareStatement("SELECT r.*, r2.ROOM_NAME, ((r.CHECK_OUT-r.CHECK_IN)*r2.PRICE_BY_DAY) AS totalprice, a.ACCOMMODATION_NAME ,a.PHONE, a.address \r\n"
 					+ "FROM RESERVATION r, ROOM r2 , ACCOMMODATION a \r\n"
 					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID) AND r.RSV_NO = ?");
 			pst.setInt(1, rsv_no);
@@ -383,6 +447,8 @@ public class ReservationDAO {
 		rsv.setTotalprice(rs.getInt("Totalprice"));
 		rsv.setRsv_status(rs.getString("Rsv_status"));	
 		rsv.setRoom_id(rs.getInt("room_id"));
+		rsv.setRsv_status(rs.getString("Rsv_status"));				
+
 		return rsv;
 	}
 	
@@ -402,6 +468,7 @@ public class ReservationDAO {
 		rsv.setAccommodation_name(rs.getString("Accommodation_name"));
 		rsv.setPhone(rs.getString("Phone"));
 		rsv.setRoom_name(rs.getString("Room_name"));
+		rsv.setAddress(rs.getString("Address"));
 
 		System.out.println(rsv);
 		return rsv;
@@ -445,6 +512,8 @@ public class ReservationDAO {
 		rsv.setCheck_out(rs.getDate("Check_out"));
 		rsv.setRsv_date(rs.getDate("Rsv_date"));
 		rsv.setTotalprice(rs.getInt("Totalprice"));	
+		rsv.setUser_phone(rs.getString("User_phone"));
+		rsv.setUser_name(rs.getString("User_name"));
 		return rsv;
 	}
 

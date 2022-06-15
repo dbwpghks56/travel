@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ include file="/accommodation/selectAcco.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ include file="/jsp/mainlogo.jsp" %>
+    <%-- <c:set var="path" value="${pageContext.request.contextPath }"/> --%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,21 +31,6 @@
 		width: 100%;
 	}
 	
-	p{
-		margin-top: 10px;
-		position: fixed;
-		font-size: 4em;
-		left: 35.5%;
-		color: #FFE6E6;
-		text-shadow: 1px 1px 1px red;
-		text-align: center;
-		z-index: 1;
-	}
-
-	#lobster {
-		font-family: 'Lobster', cursive;		
-	}
-	
 	img {
 		margin: 0;
 		width: 100%;
@@ -56,7 +43,7 @@
 
 .search{
 	position:fixed;
-	left:19%;
+	left:24%;
 	margin-top:7.3%;
 }
 
@@ -115,7 +102,7 @@
 	                </c:if>
 	            </ul>
 	        </div>
-		<p id="lobster"> Would you travel?</p>
+		
 		<!-- <div class="search">
 		 	<form action ="search.do" >
 		      <input type="text" id = "check" name = "check" required="required">

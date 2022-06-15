@@ -15,7 +15,14 @@ public class ReviewDto {
 	private String r_image_path;
 	private Date r_regdate;
 	private String report_user;
+	private int rsv_no;
 	
+	public int getRsv_no() {
+		return rsv_no;
+	}
+	public void setRsv_no(int rsv_no) {
+		this.rsv_no = rsv_no;
+	}
 	public String getReport_user() {
 		return report_user;
 	}

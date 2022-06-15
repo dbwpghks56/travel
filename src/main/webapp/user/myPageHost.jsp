@@ -8,17 +8,32 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <title>Insert title here</title>
 <style type="text/css">
+.col.text-white{
+	background-color: #FFE6E6;
+}
+
+body {
+	background-color: #FFE6E6;
+}
 
 .title {
-	width: 300px;
+	width: 500px;
 	margin: auto;
 	margin-top: 30px;
 	text-align: center;
+	font-family: 'Lobster', cursive;		
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;	
+	color: pink;
 }
+
 .gain {
 	width: 200px;
 	height: 200px;
@@ -33,28 +48,42 @@
 	height: 200px;
 	border-radius: 10%;
 	margin: auto;
-	background-color: white;
 	text-align: center;
 	margin-top: 60px;
 	padding: 0px;
 	
 }
-
+/* 	background-color: white; */
 .row {
 	width:800px;
 	margin: auto;
 }
-.btn{
+
+.btn {
 	background-color : pink;
-	color: black;
+	color: 
+	
 }
+.btn.btn-secondary.gain{
+	width: 200px; 
+	height: 200px;
+	border-radius: 10%;
+	margin: auto;
+	text-align: center;
+	margin-top: 1px;
+	padding: 0px;
+	border-color: pink;
+	text-shadow: 1px 1px 1px;
+	color: hotpink;
+}
+
 
 </style>
 </head>
 <body>
 
 	<div class="container-fluid mt-3">
-		<h1 class="title">마이페이지</h1>
+		<h1 class="title">MyPage</h1>
 		<br>
 		<br>
 		<hr>

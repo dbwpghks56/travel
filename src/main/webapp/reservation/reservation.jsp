@@ -17,15 +17,15 @@
 
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
 <!-- <script>
-var valueCheckIn = new Date(session.getAttribute("check_in"));
-var valueCheckOut = new Date(session.getAttribute("check_out"));
+var valueCheckIn = ${check_in};
+var valueCheckOut =${check_out};
 var valueDifDate = Math.ceil(
 	(valueCheckOut.getTime() - valueCheckIn.getTime()) / (1000 * 3600 * 24)
 );
-document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day})+"원";
-document.getElementById("result").value = session.getAttribute("person");
+document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day}*$("#result").val())+"원";
 
-</script> -->
+
+</script -->>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		let eventobj = [];
@@ -60,7 +60,7 @@ document.getElementById("result").value = session.getAttribute("person");
 					(checkOut.getTime() - checkIn.getTime()) / (1000 * 3600 * 24)
 				);
 				if(difDate>${rsv.max_day}){alert("최대 숙박일은 ${rsv.max_day}일 입니다");}
-				document.getElementById("totalprice").value = (difDate*${rsv.price_by_day})+"원";
+				document.getElementById("totalprice").value = (difDate*${rsv.price_by_day}*$("#result").val())+"원";
 							
 			},
 		});
@@ -76,8 +76,9 @@ function count(type)  {
 	  let num = resultElement.value;
 	  if(type === 'plus') {
 		  num = parseInt(num) + 1;
-		  if(num>=${rsv.max_personnel}){
+		  if(num>${rsv.max_personnel}){
 			  alert("최대 숙박 인원은 "+${rsv.max_personnel}+"명 입니다");
+			  return;
 		  }
 		  
 	  }else if(type === 'minus')  {
@@ -109,7 +110,7 @@ function count(type)  {
 				email : '${user.user_email}',
 				phone : '${user.user_phone}'
 			},
-			order_id : 'order_id11112', 
+			order_id : 'order_id1111288', 
 			extra : {
 				vbank_result : 1, 
 				quota : '0,2,3', 
@@ -144,7 +145,7 @@ body{
 	width: 500px;
 	margin: 0 auto;
 	padding: 50px;
-	background-color: pink;
+	background-color: #FFE6E6;;
 }
 
 div.rsv_group{
@@ -187,7 +188,7 @@ div.rsv_group_personnel input{
 	display: inline-block;
 }
 
-textarea{ height: 150px; }
+textarea{ height: 130px; resize: none;}
 
 hr{ border: 1px dotted #ccc;}
 
@@ -262,12 +263,12 @@ h1{text-align: center;}
 		
 			<div class="rsv_group_date">
 				<label for="check_in">체크인</label>
-				<input type="date" name="check_in" id="check_in"  readonly="readonly">	
+				<input type="date" name="check_in" id="check_in"  readonly="readonly" value="${check_in }">	
 			</div>
 		
 			<div class="rsv_group_date">
 				<label for="check_out">체크아웃</label>
-				<input type="date" name="check_out" id="check_out"  readonly="readonly">
+				<input type="date" name="check_out" id="check_out"  readonly="readonly" value="${check_out }">
 			</div>
 		
 	<br>
@@ -275,21 +276,23 @@ h1{text-align: center;}
 
 			<div class="rsv_group_personnel">
 				<label for="personnel">인원</label> 
-					<input class="btn_personnel" type='button' onclick='count("minus")' value='-' style="text-align: center;" > 
-					<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly" > 
-					<input class="btn_personnel" type='button' onclick='count("plus")' value='+' style="text-align: center;" >
+					<input class="btn" type='button' onclick='count("minus")' value='-' style="text-align: center;" > 
+					<input type="number" name="personnel" min="1" id="result" value="${person }" readonly="readonly"  > 
+					<input class="btn" type='button' onclick='count("plus")' value='+' style="text-align: center;" >
 			</div>
-	
-		
+
+
+			<div class="rsv_group">
+				<label>요청사항</label>
+				<textarea id="request" name="request" placeholder="추가 요청사항을 입력해주세요"></textarea>
+			</div>
+<hr>
 			<div class="rsv_group">
 				<label>총 금액</label>
 					<input type="text" id="totalprice" readonly="readonly" style="text-align: right;">
 			</div>
 		
-			<div class="rsv_group">
-				<label>요청사항</label> 
-					<textarea id="request" name="request" placeholder="추가 요청사항을 입력해주세요" ></textarea>
-			</div>
+		
 	 <hr>
 		
 	

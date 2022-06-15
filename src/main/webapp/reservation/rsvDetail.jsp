@@ -44,28 +44,123 @@ $(function(){
 
 }); 
 </script>
+<style>
+body {
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px;
+	text-align: center;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+	width:600px;
+	height: 100px;
+	border-top: 3px solid gray;
+	border-bottom: 3.5px solid gray;
+}
+td {
+	border-collapse: collapse;
+	padding: 10px;
+}
+textarea {
+	width: 95%;
+	height: 6.25em;
+    resize: none;
+}
+.btn{
+  width: 80px;
+  height: 50px;
+  border: none;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+.btn:hover{
+	border: 2px solid black;
+}
+.bold{
+font-weight: bold; 
+}
+.atag{
+text-decoration: none;
+}
+.atag:hover{
+text-decoration: underline;
+}
+.value{
+text-align: left;
+}
+/* .btnlist{
+padding-left: 50px;
+}
+.btndelete{
+
+} */
+#revisit{
+color : blue;
+font-size: 1em;
+}
+</style>
 </head>
 <body>
-<h1>예약 내용 상세보기</h1>
-	
-		예약번호 : ${rsv.rsv_no}<input type="hidden" name="rsv_no" value="${rsv.rsv_no}"> <br>
-		숙소이름 : ${rsv.accommodation_name }<input type="hidden" name="accommodation_name">  <br>
-		룸이름 :  ${rsv.room_name }<input type="hidden" name="room_name"> <br> 
-		체크인 : ${rsv.check_in}<input type="hidden" name="check_in" id="check_in"> <br>
-		체크아웃 :${rsv.check_out} <input type="hidden" name="chech_out">  <br>
-		예약날짜 : ${rsv.rsv_date}<br>
-		예약상태 : ${rsv.rsv_status}<br>
-		금액 : ${rsv.totalprice} <br>
-		인원 : ${rsv.personnel}<input type="hidden" name="personnel" >  <br>
-		요청사항 : <input type="text" name="request" value="${rsv.request}" id="request">  <br>
-		<input class="btn" type="button" value="목록" id="rsvList"> <br>
-		<input class="btn" type="submit" value="수정" id="ajaxbtn" data-no="${rsv.rsv_no}">
-	
-	<form action="rsvdelete.do" method="post">
-		<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">
-		<input type="submit" value="예약취소" id="delete"> 
-	</form>
-
+<h1>예약 상세보기</h1>	
+<table>					
+							<tr>
+							<td class="bold">예약번호</td>
+							<td class="value"> ${rsv.rsv_no}</td>
+							<td > <a class="atag" href="reservation.do?room_id=${rsv.room_id }" id="revisit">재방문하기</a> </td>
+							</tr>
+							<tr>
+								<td class="bold">숙소이름</td>
+								<td class="value">${rsv.accommodation_name }</td>
+							</tr>
+							<tr>
+								<td class="bold">룸이름</td>
+								<td class="value">${rsv.room_name }</td>
+							</tr>
+							<tr>
+								<td class="bold">숙소주소</td>
+								<td class="value">${rsv.address }</td>
+							</tr>
+							<tr>
+								<td class="bold">숙소번호</td>
+								<td class="value">${rsv.phone }</td>
+							</tr>
+							<tr>
+								<td class="bold">체크인 ~ 체크아웃</td>
+								<td class="value" colspan="2">${rsv.check_in} ~  ${rsv.check_out}</td>
+								
+							</tr>
+							<tr>
+								<td class="bold">총 금액</td>
+								<td class="bold">예약일</td>
+								<td class="bold">상태</td>
+							</tr>
+							<tr class="hr">
+							<td> ${rsv.totalprice}원</td>
+								<td> ${rsv.rsv_date}</td>
+								<td> ${rsv.rsv_status}</td>
+							</tr>	
+							<tr>
+							<td colspan="4" class="bold">요청사항</td>
+							</tr>	
+							<tr id="requestTR" >
+							<td colspan="4"> <textarea id="request" name="request">${rsv.request}</textarea> </td>
+							</tr>	
+							<tr>
+							<td id="btnlist"><input class="btn" type="button" value="목록" id="rsvList"></td>
+							<td><input class="btn" type="submit" value="수정" id="ajaxbtn" data-no="${rsv.rsv_no}"></td>
+							<td id="btndelete">
+							<form action="rsvdelete.do" method="post">
+							<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">
+							<input type="submit" value="예약취소" id="delete" class="btn"> 
+							</form>
+							</td>
+							
+							</tr>	
+						</table>	
 
 </body>
 </html>

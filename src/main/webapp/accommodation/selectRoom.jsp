@@ -158,7 +158,7 @@
 			<span class="carousel-control-next-icon"></span>
 		</button>
 		
-		<span><a href = "../reservation/reservation.jsp?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
+		<span><a href = "../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
 	</div>
 	</c:forEach>
 	</div>

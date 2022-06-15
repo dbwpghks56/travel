@@ -15,21 +15,95 @@ $(function(){
 
 }); 
 </script>
+<style>
+body {
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px;
+	text-align: center;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	height: 100px;
+	border-top: 3px solid gray;
+	border-bottom: 3.5px solid gray;
+}
+td {
+	border-collapse: collapse;
+	padding: 10px;
+}
+textarea {
+	width: 95%;
+	height: 6.25em;
+    resize: none;
+}
+.btn{
+  width: 100px;
+  height: 50px;
+  border: none;
+  font-size: 1.25em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+.btn:hover{
+	border: 2px solid black;
+}
+.bold{
+font-weight: bold; 
+}
+.textleft{
+text-align: left;}
+</style>
 </head>
 <body>
 <h1>host가 등록한 숙소에 예약된 정보</h1>
-<form action="hostrsvdetail.do" method="post">
-예약번호 : ${host.rsv_no }<br>
-유저이름: ${host.user_name}<br>
-유저폰번: ${host.user_phone}<br>
-숙소이름: ${host.accommodation_name }<br>
-룸이름: ${host.room_name}<br>
-인원: ${host.personnel}<br>
-체크인/아웃 : ${host.check_in}/${host.check_out }<br>
-예약상태 : ${host.rsv_status}<br>
-요청사항 : ${host.request}<br>
 
-<input class="btn" type="button" value="목록" id="hostlist"> <br>
-</form>
+<table>					
+							<tr>
+							<td class="bold">예약번호</td>
+							<td class="textleft"> ${host.rsv_no }</td>
+							</tr>
+							<tr>
+								<td class="bold">예약자 이름</td>
+								<td class="textleft">${host.user_name}</td>
+							</tr>
+							<tr>
+								<td class="bold">예약자 핸드폰 번호</td>
+								<td class="textleft">${host.user_phone}</td>
+							</tr>
+							<tr>
+								<td class="bold">숙소이름</td>
+								<td class="textleft">${host.accommodation_name }</td>
+							</tr>
+							<tr>
+								<td class="bold">룸이름</td>
+								<td class="textleft">${host.room_name}</td>
+							</tr>
+							<tr>
+								<td class="bold">체크인 ~ 체크아웃</td>
+								<td class="textleft">${host.check_in} ~ ${host.check_out }</td>
+								
+							</tr>
+							<tr>
+								<td class="bold">상태</td>
+								<td class="bold">인원</td>
+							</tr>
+							<tr class="hr">
+								<td>${host.rsv_status}</td>
+								<td> ${host.personnel}</td>
+								
+							</tr>	
+							<tr>
+							<td class="bold">요청사항</td>
+							<td class="textleft"> ${host.request}</td>
+							</tr>
+							<tr>
+							<td colspan="2"><input class="btn" type="button" value="목록" id="hostlist"></td>						
+							</tr>	
+						</table>	
+
 </body>
 </html>

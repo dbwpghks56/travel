@@ -87,7 +87,10 @@
 	width: 50px;
 	height: 40px;
 }
-
+a{
+	text-decoration: none;
+	color:black;
+}
 
 </style>
 </head>
@@ -117,10 +120,11 @@
 	<h3>${nick_name}(${host_id})님이 호스팅하는 ${accoType}</h3>
 	<hr>
 		<div class = "detail">
-		<img src = "../images/icons/phoneIcon.png">${phone}<br>
-		<img src = "../images/icons/blackMaker.png">${address }<br>
-		<img src = "../images/icons/homeIcon.png">${option }<br>
-		<img src = "../images/icons/wonIcon.png">${price}
+		<img src = "/travel/images/icons/inquiry.png"><a href = "/travel/accommodation/insertroomInquiry.jsp?accoId=${accoId }">문의하기</a><br>
+		<img src = "/travel/images/icons/phoneIcon.png">${phone}<br>
+		<img src = "/travel/images/icons/blackMaker.png">${address }<br>
+		<img src = "/travel/images/icons/homeIcon.png">${option }<br>
+		<img src = "/travel/images/icons/wonIcon.png">${price}
 		</div>
 	<hr>
 	<c:set var = "room" value = "${roomList }"/>
@@ -147,8 +151,6 @@
 			</div>
 			</c:if>
 		</div>
-		
-	
 		
 		<span><a href = "../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
 	</div>

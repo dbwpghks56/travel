@@ -13,8 +13,8 @@ public class SiteInquiryService {
 	public int insertInquiry(String user_id, String comment) {
 		return sDao.insertInquiry(user_id,comment);
 	}
-	public int updateAnswer(SiteInquiryDTO site) {
-		return sDao.updateAnswer(site);
+	public int updateAnswer(int iId, String answer, String mgrId) {
+		return sDao.updateAnswer(iId,answer,mgrId);
 	}
 	public List<SiteInquiryDTO> selectAll() {
 		return sDao.selectAll();

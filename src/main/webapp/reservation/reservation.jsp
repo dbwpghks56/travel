@@ -13,19 +13,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
 
-<title>reservation</title>
+<title>Reservation</title>
 
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
-<!-- <script>
-var valueCheckIn = ${check_in};
-var valueCheckOut =${check_out};
-var valueDifDate = Math.ceil(
-	(valueCheckOut.getTime() - valueCheckIn.getTime()) / (1000 * 3600 * 24)
-);
-document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day}*$("#result").val())+"원";
+<script>
+window.onload = function(){
+	
+	var valueCheckIn = new Date(${check_in});
+	var valueCheckOut =  new Date(${check_out});
+	var valueDifDate = valueCheckIn-valueCheckOut;
+	console.log(valueCheckIn-valueCheckOut);
+	console.log(valueCheckOut.getYear());
+	document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day}*${person})+"원";
+};
 
 
-</script -->>
+
+
+</script>
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		let eventobj = [];
@@ -228,7 +233,7 @@ hr{ border: 1px dotted #ccc;}
 	
 	
 }
-h1{text-align: center;}
+h1{text-align: center; font-family: 'Lobster', cursive;}
 
 </style>
 </head>

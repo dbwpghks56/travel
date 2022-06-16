@@ -17,9 +17,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-	rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
 <title>예약목록</title>
 <script>
 	$(() => {
@@ -100,11 +104,13 @@ tr:nth-child(odd) {
 	background-color: #FFE6E6;
 	color: black;
 }
+
+
 h1 {
-	font-family: 'Pacifico', cursive;
-	clear: both;
-	text-align: center;
+	font-family: 'Lobster', cursive;	
 }
+
+
 a {
 	text-decoration: none;
 	color: black;
@@ -117,11 +123,16 @@ a:hover {
 td:not(#font_small, #atag) {
 	font-weight: bold;
 }
-#font_small {
+
+/* #font_small {
+>>>>>>> branch 'master' of https://github.com/dbwpghks56/travel.git
 	font-size: 12px;
 	text-align: left;
 	color: black;
+<<<<<<< HEAD
 }
+=======
+} */
 #atag {
 	font-size: 14px;
 	text-align: left;
@@ -209,9 +220,36 @@ td:not(#font_small, #atag) {
 		background-color: pink;
 		border: none;
 	}
-	
-	
-	
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+td:not(.font_small, #atag) {
+	font-weight: bold;
+}
+
+.font_small {
+	font-size: 12px;
+	text-align:center;
+	color: gray;
+}
+
+#atag {
+	font-size: 14px;
+	text-align: center;
+}
+.hr{
+	border-bottom: 1px solid gray;
+}
+#acconame{ color: black;}
+#acconame:hover{ color: blue;}
+#totalpricetext{text-align: center;}
+.nav-item{font-family: 'Do Hyeon', sans-serif;}
 </style>
 </head>
 <body>
@@ -220,9 +258,9 @@ td:not(#font_small, #atag) {
 		<br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
-				data-toggle="tab" href="#rsvlist">예약목록</a></li>
+				data-toggle="tab" href="#rsvlist">전체 예약</a></li>
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#rsvdeletelist">예약취소목록</a></li>
+				href="#rsvdeletelist">취소한 예약</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -283,18 +321,18 @@ td:not(#font_small, #atag) {
 								<td colspan="2">${delete.check_in}~${delete.check_out}</td>
 							</tr>
 							<tr>
-								<td id="font_small">예약일</td>
-								<td id="font_small">예약번호</td>
+								<td class="font_small">예약일</td>
+								<td class="font_small">예약번호</td>
 							</tr>
 							<tr>
 								<td>${delete.rsv_date}</td>
 								<td>${delete.d_rsv_no}</td>
 							</tr>
 							<tr>
-								<td id="font_small" colspan="2">금액</td>
+								<td class="font_small" colspan="2">금액</td>
 							</tr>
 							<tr>
-								<td>${delete.totalprice}원</td>
+								<td id="totalpricetext">${delete.totalprice}원</td>
 							</tr>
 							<tr>
 								<td id="atag" colspan="2"><a

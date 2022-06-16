@@ -79,6 +79,18 @@ body {
 
 
 </style>
+<script>
+
+function setThumbnail(event) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+    	$("#thumbnail").attr("src", event.target.result);
+    	$("#thumbnail").css("display", "inline-block");
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+</script>
 </head>
 <body>
 

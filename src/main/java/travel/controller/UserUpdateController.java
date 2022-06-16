@@ -53,7 +53,7 @@ public class UserUpdateController implements Command {
 		result = service.updateUser(user, userSession.getUser_id());
 		
 	   
-		return "rest:Hello";
+		return "user/userUpdate.do";
 	}
 		 
 	 

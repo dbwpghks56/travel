@@ -15,7 +15,7 @@ public class RsvDeleteController implements Command {
 		ReservationService service = new ReservationService();
 		int result = service.rsvDelete(rsvNo);
 		request.setAttribute("message", result>0?"성공":"실패");
-		return "/reservation/result.jsp";
+		return "/reservation/rsvlist.do";
 	}
 
 }

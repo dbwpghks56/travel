@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <title>host가 등록한 숙소에 예약된 list</title>
 <style>
 body {
@@ -64,19 +64,21 @@ td:not(#font_small, #atag) {
 .hr{
 	border-bottom: 1px solid gray;
 }
+h1{font-family: 'Lobster', cursive;	}
 #acconame{ color: black;}
 #acconame:hover{ color: blue;}
+.nav-item{font-family: 'Do Hyeon', sans-serif;}
 </style>
 </head>
 <body>
 <div class="container mt-3">
-<h1>예약된 List</h1>
+<h1>Incoming Reservations List</h1>
 
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
-				data-toggle="tab" href="#rsvlist">예약목록</a></li>
+				data-toggle="tab" href="#rsvlist">들어온 예약</a></li>
 			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#rsvdeletelist">예약취소목록</a></li>
+				href="#rsvdeletelist">취소된 예약</a></li>
 		</ul>
 
 		<div class="tab-content">

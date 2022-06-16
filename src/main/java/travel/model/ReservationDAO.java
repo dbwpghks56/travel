@@ -21,14 +21,14 @@ public class ReservationDAO {
 	ResultSet rs;
 	int result;
 
-	//�����ϱ�
+	//占쏙옙占쏙옙占싹깍옙
 	public int resevation(ReservationDTO rsv) {
 		result = 0;
 		conn = DBUtil.getConnection();
 		
 		//insert into RESERVATION values(rsv_no, user_id, room_id, check_in, check_out, rsv_date, personnel, request, rsv_status);
 		try {
-			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '����Ϸ�')");
+			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '占쏙옙占쏙옙狗占�')");
 			pst.setString(1, rsv.getUser_id());
 			pst.setInt(2, rsv.getRoom_id());
 			pst.setDate(3, rsv.getCheck_in());
@@ -46,7 +46,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//���� �����ϱ�
+	//占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙
 	public int rsvUpdate(ReservationDTO rsv) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -66,7 +66,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//��������ϱ�
+	//占쏙옙占쏙옙占쏙옙占쏙옙歐占�
 	public int rsvDelete(int rsv_no) {
 		result = 0;
 		conn = DBUtil.getConnection();
@@ -85,7 +85,7 @@ public class ReservationDAO {
 		
 	}
 	
-	//���� ��� list
+	//占쏙옙占쏙옙 占쏙옙占� list
 	public List<ReservationDTO> rsvDeleteAll(String user_id){
 		List<ReservationDTO> rsvList = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -260,7 +260,7 @@ public class ReservationDAO {
 		
 	}
 	
-	//���� ��
+	//占쏙옙占쏙옙 占쏙옙
 	public ReservationDTO selectByRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -286,7 +286,7 @@ public class ReservationDAO {
 		return rsv;
 	}
 	
-	//���� �� �ٷ� �󼼺���
+	//占쏙옙占쏙옙 占쏙옙 占쌕뤄옙 占쏢세븝옙占쏙옙
 	public int insertAfterRsv() {
 		
 		conn = DBUtil.getConnection();
@@ -309,7 +309,7 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	//host�� ����� ���ҿ� ����� list
+	//host占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쌀울옙 占쏙옙占쏙옙占� list
 	public List<ReservationDTO> hostRsvAll(String user_id) {
 		List<ReservationDTO> hostRsvList = new ArrayList<>();
 		
@@ -340,7 +340,7 @@ public class ReservationDAO {
 
 	}
 	
-	//host�� ����� ���ҿ� ����� detail
+	//host占쏙옙 占쏙옙占쏙옙占� 占쏙옙占쌀울옙 占쏙옙占쏙옙占� detail
 	public ReservationDTO selectByHostRsvNo(int rsv_no) {
 		ReservationDTO rsv = null;
 		conn = DBUtil.getConnection();
@@ -367,7 +367,7 @@ public class ReservationDAO {
 	}
 	
 	
-	//������ �� ������ �ش� ���� ����
+	//占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔댐옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	public ReservationDTO selectByRoomId(int room_id) {
 		ReservationDTO rsv = new ReservationDTO();
 		conn = DBUtil.getConnection();
@@ -425,6 +425,48 @@ public class ReservationDAO {
 		
 		return rsvlist;
 	}
+	
+////////////////////////////////////////////////////////////////////accommodation delete	
+	public int accoDelete(String user_id, int accommodation_id) {
+		
+		conn = DBUtil.getConnection();
+		int result = 0;
+		
+		try {
+			pst = conn.prepareStatement(""
+					+ "SELECT  r.RSV_NO\r\n"
+					+ "FROM RESERVATION r , ROOM r2 , ACCOMMODATION a, USERS u \r\n"
+					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = u.USER_ID) AND a.USER_ID = ?;");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			rs.next();
+			int rsvNo = rs.getInt("rsv_no");
+			if(rsvNo==0) {
+				pst.close();
+				pst = conn.prepareStatement("delete from ACCOMMODATION where user_id = ? and accommodation_id = ?  ");
+				pst.setString(1, user_id);
+				pst.setInt(2, accommodation_id);
+				result = pst.executeUpdate();
+			}else { return 0; }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	private ReservationDTO makeRsv5(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();

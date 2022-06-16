@@ -21,7 +21,7 @@ public class SiteInquiryDAO {
 	private static final String SQL_SELECT_BY_ID = "select * from site_inquiry where user_id =?";
 	private static final String SQL_INSERT_BY_USER = "insert into site_inquiry values(s_seq.nextval,?,?,null,null,0)";
 	private static final String SQL_UPDATE_BY_MGR = "update site_inquiry set answer = ?, manager_id = ?, s_answer_confirm=1 where inquiry_id = ?";
-	private static final String SQL_SELECT_ALL = "select * from site_inquiry";
+	private static final String SQL_SELECT_ALL = "select * from site_inquiry order by s_answer_confirm";
 	public List<SiteInquiryDTO> selectAllReview(String userId) {
 		conn = DBUtil.getConnection();
 		List<SiteInquiryDTO> inquirys = new ArrayList<>();
@@ -86,14 +86,14 @@ public class SiteInquiryDAO {
 		
 		return ret;
 	}
-	public int updateAnswer(SiteInquiryDTO site) {
+	public int updateAnswer(int iId, String answer, String mgrId) {
 		conn = DBUtil.getConnection();
 		int ret = 0;
 		try {
 			pst = conn.prepareStatement(SQL_UPDATE_BY_MGR);
-			pst.setString(1, site.getAnswer());
-			pst.setString(2, site.getManager_id());
-			pst.setInt(3, site.getInquiry_id());
+			pst.setString(1, answer);
+			pst.setString(2, mgrId);
+			pst.setInt(3, iId);
 			ret = pst.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -112,6 +112,7 @@ public class SiteInquiryDAO {
 			inquiry.setContent(rs2.getString("content"));
 			inquiry.setInquiry_id(rs2.getInt("inquiry_id"));
 			if(rs2.getInt("s_answer_confirm")!=0) {
+				inquiry.setS_answer_confirm(rs2.getInt("s_answer_confirm"));
 				inquiry.setAnswer(rs2.getString("answer"));
 				inquiry.setManager_id("manager_id");
 			}

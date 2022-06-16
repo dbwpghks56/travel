@@ -28,8 +28,7 @@ public class AccommodationDAO {
 			+ "FROM ACCOMMODATION a FULL OUTER JOIN ROOM r ON a.ACCOMMODATION_ID = r.ACCOMMODATION_ID \r\n"
 			+ "WHERE (a.ADDRESS LIKE '%'||?||'%')\r\n"
 			+ "AND (r.MAX_PERSONNEL>=? AND r.MIN_PERSONNEL<=?)"
-			+ "AND(r.MAX_DAY>=(? - ?) AND r.MIN_DAY<=(?-?))"
-			+ "OR (r.MAX_PERSONNEL IS null)";
+			+ "AND(r.MAX_DAY>=(? - ?) AND r.MIN_DAY<=(?-?))";
 	private static final String SQL_SELECT_DATE = "SELECT ROOM_ID  \r\n"
 			+ "FROM ROOM r JOIN RESERVATION r2 using(room_id)\r\n"
 			+ "WHERE (check_in BETWEEN ? and  ? ) or (CHECK_out BETWEEN ? and ? )\r\n";

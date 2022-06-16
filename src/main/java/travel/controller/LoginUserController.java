@@ -10,6 +10,14 @@ public class LoginUserController implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request) { //�뀒�뒪�듃2
+		
+		
+	  if(request.getMethod().equals("GET")) {
+		  
+		  return "/user/login.jsp";
+	  }
+		
+		
 		UserService service = new UserService();
 		
 		String kakao_email = request.getParameter("email");

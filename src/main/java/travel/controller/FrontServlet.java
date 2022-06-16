@@ -98,6 +98,8 @@ public class FrontServlet extends HttpServlet {
 			command = new UpdateAnswerController();
 		} else if(uri.equals("/accommodation/deleteRinquiry.do")) {
 			command = new DeleteRInquiry();
+		}else if(uri.equals("/user/selectAccoHost.do")) {
+			command = new SelectByHostController();
 		}
 		
 		page = command.execute(req);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ include file="/jsp/mainnav.jsp"%> --%>
+<%@ include file="/jsp/mainnav.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,8 +14,10 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -43,6 +45,7 @@
 						
 						alert("이미 리뷰를 작성한 예약입니다.");
 						$(".btn-danger").click();
+						$(".modal-backdrop").css("display", "none");
 						
 					}
 				},
@@ -82,87 +85,76 @@
 </script>
 <style>
 body {
-	width: 100%;
-	margin: 0 auto;
-	padding: 50px;
-	text-align: center;
+	
 	clear: both;
 }
-
 table {
 	margin-left: auto;
 	margin-right: auto;
 	width: 500px;
 	height: 100px;
-	border-top: 3px solid gray;
-	border-bottom: 3.5px solid gray;
-
 }
-
-
 table, td {
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
-	}
-
-td {
-
 	border-collapse: collapse;
 	padding: 10px;
 }
-
-
 tr:nth-child(odd) {
 	background-color: #FFE6E6;
 	color: black;
 }
 
+
 h1 {
 	font-family: 'Lobster', cursive;	
+	clear: both;
 }
+
 
 a {
 	text-decoration: none;
+	color: black;
 }
-
 a:hover {
-	text-decoration: underline;
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
 }
-
 td:not(#font_small, #atag) {
 	font-weight: bold;
 }
 
 /* #font_small {
+>>>>>>> branch 'master' of https://github.com/dbwpghks56/travel.git
 	font-size: 12px;
 	text-align: left;
 	color: black;
+<<<<<<< HEAD
+}
+=======
 } */
-
 #atag {
 	font-size: 14px;
 	text-align: left;
 }
-
 .nav-tabs {
 	width: 500px;
 	margin: auto;
 }
-
 .reviewbtn {
 	background-color: white;
 	color: black;
 	border: none;
 }
-
 .reviewbtn:hover {
 	background-color: pink;
 	border: none;
 }
 .modal-content {
+	text-align:center;
 	height: 500px;
 }
-
 	#myform fieldset{
     display: inline-block;
     direction: rtl;
@@ -215,7 +207,6 @@ td:not(#font_small, #atag) {
 	h5 {
 		margin-top: 5px;
 	}
-
 	.photowidth {
 		width: 255px;
 		margin: auto;
@@ -250,7 +241,6 @@ td:not(.font_small, #atag) {
 }
 
 #atag {
-	
 	font-size: 14px;
 	text-align: center;
 }
@@ -264,11 +254,9 @@ td:not(.font_small, #atag) {
 </style>
 </head>
 <body>
-
-<div class="container mt-3">
-<h1>Reservation List</h1>
-
-<br>
+	<div class="container mt-3">
+		<h1>Reservation List</h1>
+		<br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
 				data-toggle="tab" href="#rsvlist">전체 예약</a></li>
@@ -278,31 +266,32 @@ td:not(.font_small, #atag) {
 
 		<div class="tab-content">
 			<div id="rsvlist" class="container tab-pane active">
+				<br>
 				<c:forEach items="${rsvlist }" var="rsv">
 					<div>
 						<table>
 							<tr>
-								<td><a id="acconame" href="accommodation/selectRoom.do?acco_name=${rsv.accommodation_name }&acco_id=1000">${rsv.accommodation_name }</a> </td>
-								<td> ${rsv.room_name }</td>
-							</tr>
-							<tr class="hr">
-								<td colspan="2">${rsv.check_in} ~  ${rsv.check_out}</td>
+								<td>${rsv.accommodation_name }</td>
+								<td>${rsv.room_name }</td>
 							</tr>
 							<tr>
-								<td class="font_small">예약일</td>
-								<td class="font_small">예약번호</td>
-							</tr>
-							<tr class="hr">
-								<td> ${rsv.rsv_date}</td>
-								<td> ${rsv.rsv_no}</td>
+								<td colspan="2">${rsv.check_in}~${rsv.check_out}</td>
 							</tr>
 							<tr>
-								<td class="font_small">상태</td>
-								<td class="font_small">금액</td>
+								<td id="font_small">예약일</td>
+								<td id="font_small">예약번호</td>
 							</tr>
-							<tr class="hr">
-								<td> ${rsv.rsv_status}</td>
-								<td> ${rsv.totalprice}원</td>
+							<tr>
+								<td>${rsv.rsv_date}</td>
+								<td>${rsv.rsv_no}</td>
+							</tr>
+							<tr>
+								<td id="font_small">상태</td>
+								<td id="font_small">금액</td>
+							</tr>
+							<tr>
+								<td>${rsv.rsv_status}</td>
+								<td>${rsv.totalprice}원</td>
 							</tr>
 							<tr>
 								<td id="atag"><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">상세보기</a></td>
@@ -312,13 +301,12 @@ td:not(.font_small, #atag) {
 										리뷰작성
 									</a>
 								</td>
-
 							</tr>
 						</table>
 					</div>
 					<br>
 					<br>
-	</c:forEach> 
+				</c:forEach>
 			</div>
 
 			<div id="rsvdeletelist" class="container tab-pane fade">
@@ -418,37 +406,6 @@ td:not(.font_small, #atag) {
 							<input type="radio" name="satisfied_stars" value="1" id="rate15"><label
 								for="rate15">★</label>
 						</fieldset>
-					 <c:forEach items="${rsvdeletelist }" var="delete"> 
-						<div>
-							<table>
-								<tr>
-									<td> ${delete.accommodation_name }</td>
-									<td> ${delete.room_name }</td>
-								</tr>
-								<tr class="hr">
-									<td colspan="2"> ${delete.check_in}~ ${delete.check_out}</td>
-								</tr>
-								<tr >
-									<td class="font_small">예약일</td>
-									<td class="font_small">예약번호</td>
-								</tr>
-								<tr>
-									<td> ${delete.rsv_date}</td>
-									<td> ${delete.d_rsv_no}</td>
-								</tr>
-								<tr>
-									<td class="font_small">금액</td>
-									<td id="atag" rowspan="2"><a
-										href="rsvdeletedetail.do?d_rsv_no=${delete.d_rsv_no}">상세보기</a></td>
-								</tr>
-								<tr>
-									<td>${delete.totalprice}원</td>
-								</tr>
-							</table>
-						</div>
-						<br>
-						<br>
-				</c:forEach> 
 					</div>
 				</div>
 				<!-- Modal footer -->
@@ -461,16 +418,3 @@ td:not(.font_small, #atag) {
 	</div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

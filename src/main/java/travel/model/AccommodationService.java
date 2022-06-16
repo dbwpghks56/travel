@@ -38,4 +38,8 @@ public class AccommodationService {
 	public AccommodationDto selectById(int id) {
 		return accommoDAO.selectById(id);
 	}
+	
+	public int accoDelete(String user_id, int accommodation_id) {
+		return accommoDAO.accoDelete(user_id, accommodation_id);
+	}
 }

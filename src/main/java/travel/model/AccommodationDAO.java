@@ -223,4 +223,37 @@ public class AccommodationDAO {
 	}
 
 
+	public int accoDelete(String user_id, int accommodation_id) {
+		
+		conn = DBUtil.getConnection();
+		int result = 0;
+		
+		try {
+			pst = conn.prepareStatement(""
+					+ "SELECT  count(r.RSV_NO)\r\n"
+					+ "FROM RESERVATION r , ROOM r2 , ACCOMMODATION a, USERS u\r\n"
+					+ "WHERE(r.ROOM_ID = r2.ROOM_ID AND r2.ACCOMMODATION_ID = a.ACCOMMODATION_ID AND r.USER_ID = u.USER_ID) AND a.USER_ID = ? AND a.ACCOMMODATION_ID=?");
+			pst.setString(1, user_id);
+			pst.setInt(2, accommodation_id);
+			rs = pst.executeQuery();
+			rs.next();
+			int rsvNo = rs.getInt(1);
+			if(rsvNo==0) {
+				pst.close();
+				pst = conn.prepareStatement("delete from ACCOMMODATION where user_id = ? and accommodation_id = ?  ");
+				pst.setString(1, user_id);
+				pst.setInt(2, accommodation_id);
+				result = pst.executeUpdate();
+			}else { return 0; }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+	
+		
+		return result;
+	}
 }

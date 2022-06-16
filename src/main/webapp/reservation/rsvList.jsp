@@ -100,6 +100,9 @@ table, td {
 	border-collapse: collapse;
 	padding: 10px;
 }
+td{
+text-align: center;
+}
 tr:nth-child(odd) {
 	background-color: #FFE6E6;
 	color: black;
@@ -107,6 +110,7 @@ tr:nth-child(odd) {
 
 
 h1 {
+	text-align:center;
 	font-family: 'Lobster', cursive;	
 	clear: both;
 }
@@ -278,16 +282,16 @@ td:not(.font_small, #atag) {
 								<td colspan="2">${rsv.check_in}~${rsv.check_out}</td>
 							</tr>
 							<tr>
-								<td id="font_small">예약일</td>
-								<td id="font_small">예약번호</td>
+								<td class="font_small">예약일</td>
+								<td class="font_small">예약번호</td>
 							</tr>
 							<tr>
 								<td>${rsv.rsv_date}</td>
 								<td>${rsv.rsv_no}</td>
 							</tr>
 							<tr>
-								<td id="font_small">상태</td>
-								<td id="font_small">금액</td>
+								<td class="font_small">상태</td>
+								<td class="font_small">금액</td>
 							</tr>
 							<tr>
 								<td>${rsv.rsv_status}</td>

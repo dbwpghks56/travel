@@ -101,7 +101,7 @@ function setThumbnail(event) {
 		<hr>
 		<div class="row">
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value ="개인정보수정">
+				<input type="button" onclick="location.href='/travel/user/userUpdate.do';" class="btn btn-secondary gain" value ="개인정보조회" >
 			</div>
 			<div class="col text-white">
 

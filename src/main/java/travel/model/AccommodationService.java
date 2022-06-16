@@ -38,6 +38,12 @@ public class AccommodationService {
 	public AccommodationDto selectById(int id) {
 		return accommoDAO.selectById(id);
 	}
+
+	
+	public int accoDelete(String user_id, int accommodation_id) {
+		return accommoDAO.accoDelete(user_id, accommodation_id);
+	}
+
 	public int updateStar(double cStar,double lStar,double sStar,int accoId) {
 		return accommoDAO.updateStar(cStar, lStar, sStar, accoId);
 	}

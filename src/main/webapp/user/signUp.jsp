@@ -18,7 +18,11 @@
 .title {
 	text-align: center;
 	margin-top: 2%;
-	font-family: verdana;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 3em;
+	color: pink;
+	
 }
 
 .check {
@@ -154,6 +158,15 @@ body {
 		};
 		reader.readAsDataURL(event.target.files[0]);
 	}
+
+	
+	$(function () {
+		$("#confirm").click(function() {
+			alert("회원가입이 완료 되었습니다.")
+		});
+				
+	});
+
 </script>
 
 </head>
@@ -231,7 +244,7 @@ body {
 				value="1">예 <input type="radio" class="check" name="host"
 				value="0">아니오<br> <br> <br>
 
-			<button type="submit" class="btn btn-primary">확인</button>
+			<button type="submit" class="btn btn-primary" id ="confirm">확인</button>
 		</form>
 
 	</div>

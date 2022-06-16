@@ -26,13 +26,14 @@ public class UserDeleteController implements Command {
 			
 			result = service.userDelete(id , pass);
 			
-			String message = "�븘�씠�뵒�� 鍮꾨�踰덊샇瑜� �떎�떆 �솗�씤 �빐 二쇱꽭�슂."; 
-			if(result == 1) message = "�깉�눜�셿猷�";
-			request.setAttribute("message", message);
+			/*
+			 * String message = "�븘�씠�뵒�� 鍮꾨�踰덊샇瑜� �떎�떆 �솗�씤 �빐 二쇱꽭�슂."; if(result == 1)
+			 * message = "�깉�눜�셿猷�"; request.setAttribute("message", message);
+			 */
 		}
 			
 		
-		return "/user/confirmUserDelete.jsp";
+			return "rest:" + result;
 		
 	}
 

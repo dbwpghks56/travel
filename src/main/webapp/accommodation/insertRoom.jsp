@@ -1,97 +1,144 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+#formcontainer {
+	width: 40%;
+	display: inline-block;
+	margin-left: 450px;
+	
+}
+
+.btn {
+	margin-top: 5px;
+	background-color: pink;
+	border: 1px solid pink;
+	margin-bottom: -5px;
+	height: 56px;
+	width: 100%;
+}
+
+.btn:hover {
+	border: none;
+	background-color: #F582A7;
+}
+
+#thumbnail {
+	width: 200px;
+	height: 200px;
+	border-radius: 5px;
+	border: 3px solid pink;
+}
+
+.input-group-text {
+	background-color: pink;
+	color: white;
+	width : 115px;
+	text: center;
+}
+.title{
+	margin-left: 520px;
+	width: 450px;
+	margin: auto;
+	margin-top: 10px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 3em;
+	color: pink;
+	
+}
+.line{
+	margin: auto;
+	width: 700px;
+}
+.text{
+	margin-left: 460px;
+	text-shadow: 1px 1px 1px;
+	color : gray;
+}
+</style>
 </head>
 <body>
-	<h1>방 등록</h1>
-	<h2>숙소번호는 외래키이기 때문에 실제 데이터베이스에 있는 값을 넣어주세용</h2>
-		숙소 	번호 : <input type="number" name="acco_id"> <br>
-		최소 숙박 인원 : <input type="number" name="min_per" min="1"> <br>
-		최대 숙박 인원 : <input type="number" name="max_per" min="1"> <br>
-		최소 숙박일 : <input type="number" name="min_day" min="1"> <br>
-		최대 숙박일 : <input type="number" name="max_day" min="1"> <br>
-		1박 가격 : <input type="number" name="price"> <br>
-		방 이름 : <input type="text" name="room_name"> <br>
-		방 사진 : <input type="file" name="photos"> <br>
-		방옵션 : <input type="text" name="room_option"> <br>
-		<input type="submit" value="전송스">
-		
-		<h1 class="title">Would You Travel</h1>
+	<h1 class="title">Would You Travel</h1>
 	<br>
-	<br>
+	<hr class = "line">
 
-<h2>숙소번호는 외래키이기 때문에 실제 데이터베이스에 있는 값을 넣어주세용</h2>
-	<div class="container mt-3">
+	<p class = "text">숙소번호를 입력 해 주세요</p>
+	<div id="formcontainer">
 
-		<form action="insertRoom.do" method="post" enctype="multipart/form-data">
+		<form action="insertRoom.do" method="post"
+			enctype="multipart/form-data">
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">숙소번호 </span> <input type="number"
-					class="form-control" placeholder="Id" name="acco_id" id="acco_id" required="required">
+					class="form-control" name="acco_id" id="acco_id"
+					required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">최소숙박인원</span> <input type="number"
-					class="form-control" name="min_per" min="1" required="required">
+					class="form-control" name="min_per" min="1">
+				<!-- required="required" -->
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">최대숙박인원</span> <input type="number"
-					class="form-control" name="max_per"  min="1" required="required">
+					class="form-control" name="max_per" min="1" required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">최소 숙박일</span> <input type="number"
-					class="form-control" placeholder="Your Email" name="min_day" min="1" required="required">
-				<div class="textdiv">
-					<span class="text">@example.com</span>
-				</div>
+					class="form-control" name="min_day" min="1" required="required">
 			</div>
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">최대 숙박일</span> <input type="number"
-					class="form-control" placeholder="NickName" name="nickname"
-					id="nickname" value="${nick }" required="required"> <input type="button"
-					id="nickDuplicateCheckBtn" value="중복확인">
+					class="form-control" name="max_day" min="1" required="required">
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">전화번호</span> <input type="text"
-					class="form-control" placeholder="Phone" name="phone" required="required">
+				<span class="input-group-text">1박 가격</span> <input type="text"
+					class="form-control" name="price" required="required">
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">생년월일</span> <input type="date"
-					class="form-control" placeholder="Birth" name="birth" required="required">
+				<span class="input-group-text">방 이름</span> <input type="date"
+					class="form-control" placeholder="Birth" name="birth"
+					required="required">
 
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">Favorite</span> <input type="text"
-					class="form-control" placeholder="Favorite" name="favorite" required="required">
+				<span class="input-group-text">방 사진</span> <input type="file"
+					class="form-control" placeholder="Photo" name="photos"
+					accept="image/*" onchange="setThumbnail(event);" multiple="multiple"> 
+					<img alt="" src="" id="thumbnail" >
+					
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">프로필</span> <input type="file"
-					class="form-control" placeholder="Photo" name="photos" accept="image/*" onchange="setThumbnail(event);">
-					<img alt="" src="" id="thumbnail">
+				<span class="input-group-text">방옵션</span> <input type="text"
+					class="form-control" placeholder="Favorite" name="favorite"
+					required="required">
 			</div>
 
-			<label>Host</label> <input type="radio" class="check" name="host"
-				value="1">예 <input type="radio" class="check" name="host"
-				value="0">아니오<br> <br> <br>
 
-			<button type="submit" class="btn btn-primary">확인</button>
+			<button type="submit" class="btn btn-primary">등록하기</button>
+
 		</form>
-
 	</div>
 
-		
-		
-	</form>
+
 </body>
 </html>

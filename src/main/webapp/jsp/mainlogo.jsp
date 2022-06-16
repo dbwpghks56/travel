@@ -17,9 +17,15 @@
 		text-align: center;
 		z-index: 1;	
 	}
+	
+	#lobster a {
+		text-decoration: none;
+		color: #FFE6E6;
+	}
+	
 </style>
 </head>
 <body>
-	<p id="lobster"> Would you travel?</p>
+	<p id="lobster"><a href="/travel"> Would you travel?</a></p>
 </body>
 </html>

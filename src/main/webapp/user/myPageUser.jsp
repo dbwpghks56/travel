@@ -13,7 +13,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
+
 <title>Insert title here</title>
 <style type="text/css">
 .col.text-white {
@@ -106,6 +106,8 @@ body {
 	left :20px;
 	position: relative; 
 }
+
+
 </style>
 </head>
 <body>
@@ -127,9 +129,7 @@ body {
 				
 			</div>
 			<div class="col text-white">
-
 				<input type="button" class="btn btn-secondary gain" value ="예약조회" onclick="location.href='/travel/reservation/rsvlist.do';">
-
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="개인정보조회" onclick="location.href='/travel/user/userUpdate.do';">

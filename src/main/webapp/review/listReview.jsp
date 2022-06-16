@@ -103,7 +103,7 @@ $(function(){
 
 	$(".delete").click(function() {
 		var review =$(this).attr("data-review");       
-		if(confirm(review+"삭제?")){
+		if(confirm("정말 삭제 하시겠습니까?")){
 			location.href="deleteReview.do?reviewid="+review ;
 		}
 	});

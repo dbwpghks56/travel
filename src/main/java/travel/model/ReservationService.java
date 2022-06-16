@@ -78,4 +78,8 @@ public class ReservationService {
 	public List<ReservationDTO> selectByCheckInOut(int room_id) {
 		return rDAO.selectByCheckInOut(room_id);
 	}
+//////////////////////////////////////////////////////////////////// accommodation delete
+	public int accoDelete(String user_id, int accommodation_id) {
+		return rDAO.accoDelete(user_id, accommodation_id);
+	}
 }

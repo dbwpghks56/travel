@@ -105,7 +105,7 @@ text-align: left;
 							</tr>	
 							<tr>
 							<td colspan="2" class="bold">요청사항</td>
-							<td rowspan="2"><a class="atag" href="reservation/reservation.do?room_id=">다시예약하기</a></td>
+							<td rowspan="2"><a class="atag" href="reservation.do?room_id=${rsvdelete.room_id }">다시예약하기</a></td>
 							</tr>	
 							<tr id="requestTR" >
 							<td colspan="2">${rsvdelete.request} </td>

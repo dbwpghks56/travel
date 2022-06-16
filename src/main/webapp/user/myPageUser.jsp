@@ -145,7 +145,7 @@ body {
 				<input type="button" class="btn btn-secondary gain" value="회원탈퇴">
 			</div>
 		</div>
-
+		
 	</div>
 
 </body>

@@ -35,6 +35,9 @@ public class AccommodationDAO {
 	private static final String SQL_INSERT_ACCO = "INSERT INTO Accommodation (Accommodation_id , User_id ,Accommodation_name , Address, location_detail, mail_num, x, y , A_image_path , A_option , Phone , Accommodation_type) VALUEs "
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?, ?, ?, ?)";
 	private static final String SQL_SELECT_BY_ID = "select * from accommodation where accommodation_id = ?";
+	private static final String SQL_UPDATE_STAR = "update accommodation set cleaning_stars = ?, location_stars = ?, satisfied_stars = ? where accommodation_id = ?";
+	private static final String SQL_ROOM_TO_ACCO = "select accommodation_id from room where room_id = ?";
+	private static final String SQL_SELECT_USER = "select * from accommodation where user_id = ?";
 	Connection conn;
 	PreparedStatement pst;
 	Statement st;
@@ -143,7 +146,60 @@ public class AccommodationDAO {
 		}
 		return accommo;
 	}
-
+	public int updateStar(double cStar,double lStar,double sStar,int accoId) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		try {
+			pst = conn.prepareStatement(SQL_UPDATE_STAR);
+			pst.setDouble(1, cStar);
+			pst.setDouble(2, lStar);
+			pst.setDouble(3, sStar);
+			pst.setInt(4, accoId);
+			ret = pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return ret;
+	}
+	public int roomToAcco(int rId) {
+		conn = DBUtil.getConnection();
+		int accoId = 0;
+		try {
+			pst = conn.prepareStatement(SQL_ROOM_TO_ACCO);
+			pst.setInt(1, rId);
+			rs = pst.executeQuery();
+			rs.next();
+			accoId = rs.getInt("accommodation_id");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return accoId;
+	}
+	public List<Map<String, String>> selectByUser(String user_id) {
+		List<Map<String, String>> accoList = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_USER);
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Map<String, String> accommo = makeAMap(rs);
+				accoList.add(accommo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		return accoList;
+	}
 	private AccommodationDto makeAcco(ResultSet rs2) {
 		AccommodationDto accommo = new AccommodationDto();
 		try {
@@ -167,7 +223,7 @@ public class AccommodationDAO {
 		
 		return accommo;
 	}
-
+	
 	
 	private Map<String, String> makeAMap(ResultSet rs){
 		Map<String, String> aMap = new HashMap<>();

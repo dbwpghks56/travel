@@ -85,7 +85,7 @@ public class UserDAO {
 	
 	public UserDTO loginUser(String user_id, String user_pass) {
 		conn = DBUtil.getConnection();
-		UserDTO user = new UserDTO();
+		UserDTO user = null;
 	
 		try {
 			pst = conn.prepareStatement("select * from users where user_id = ? and user_password = ?");

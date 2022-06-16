@@ -23,6 +23,7 @@ public class ReviewDAO {
 	private static final String SQL_UPDATE_REPORT = "update review set report = report+1 where review_id = ?";
 	private static final String SQL_UPDATE_REPORT_USER = "update review set report_user = ? where review_id = ?";
 	private static final String SQL_SELECT_REPORT_USER="select report_user from review where review_id = ?";
+	private static final String SQL_SELECT_NUMBER = "select count('review_id') from review where accommodation_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -231,6 +232,25 @@ public class ReviewDAO {
 		}
 		
 		return ret;
+	}
+	public int selectNumber(int accoId) {
+		conn = DBUtil.getConnection();
+		int number = 0;
+		try {
+			pst = conn.prepareStatement(SQL_SELECT_NUMBER);
+			pst.setInt(1, accoId);
+			rs = pst.executeQuery();
+			rs.next();
+			number = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return number;
 	}
 
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {

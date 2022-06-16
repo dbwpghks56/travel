@@ -6,8 +6,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import travel.DTO.AccommodationDto;
 import travel.DTO.ReviewDto;
 import travel.DTO.UserDTO;
+import travel.model.AccommodationService;
 import travel.model.ReviewService;
 import travel.util.UploadFileHelper;
 
@@ -22,7 +24,22 @@ public class InsertReview implements Command {
 		
 		int result = reviewservice.insertReview(review);
 		
-		request.setAttribute("review_result", result > 0 ? "성공" : "실패");
+		request.setAttribute("review_result", result > 0 ? "�꽦怨�" : "�떎�뙣");
+		
+		
+		//accommodation별점 추가하기
+		AccommodationService aService = new AccommodationService();
+		double cStar = Integer.parseInt(request.getParameter("clean"));
+		double lStar = Integer.parseInt(request.getParameter("location"));
+		double sStar = Integer.parseInt(request.getParameter("sati"));
+		int accoId = aService.roomToAcco(Integer.parseInt(request.getParameter("room_id")));
+		int totalNum = reviewservice.selectNumber(accoId);
+		
+		AccommodationDto acco = aService.selectById(accoId);
+		cStar = (acco.getCleaning_star()/totalNum)+(cStar/totalNum);
+		lStar = (acco.getLocation_star()/totalNum)+(lStar/totalNum);
+		sStar = (acco.getSatisfied_star()/totalNum)+(sStar/totalNum);
+		aService.updateStar(cStar, lStar, sStar, accoId);
 		
 		return "rest:" + result;
 	}

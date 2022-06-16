@@ -108,6 +108,7 @@ tr:nth-child(odd) {
 
 h1 {
 	font-family: 'Lobster', cursive;	
+	clear: both;
 }
 
 

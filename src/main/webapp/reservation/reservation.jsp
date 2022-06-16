@@ -282,7 +282,13 @@ h1{text-align: center; font-family: 'Lobster', cursive;}
 			<div class="rsv_group_personnel">
 				<label for="personnel">인원</label> 
 					<input class="btn" type='button' onclick='count("minus")' value='-' style="text-align: center;" > 
+					<c:if test="${person != null }">
 					<input type="number" name="personnel" min="1" id="result" value="${person }" readonly="readonly"  > 
+					</c:if>
+					<c:if test="${person == null }">
+					<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly"  > 
+					</c:if>
+					
 					<input class="btn" type='button' onclick='count("plus")' value='+' style="text-align: center;" >
 			</div>
 

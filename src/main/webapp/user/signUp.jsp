@@ -158,6 +158,7 @@ body {
 		};
 		reader.readAsDataURL(event.target.files[0]);
 	}
+
 	
 	$(function () {
 		$("#confirm").click(function() {
@@ -165,6 +166,7 @@ body {
 		});
 				
 	});
+
 </script>
 
 </head>

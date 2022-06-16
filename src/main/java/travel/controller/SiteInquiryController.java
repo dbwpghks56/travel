@@ -19,7 +19,10 @@ public class SiteInquiryController implements Command{
 		UserService uService = new UserService();
 		int mgr = uService.selectMGR(user_id);
 		SiteInquiryService sService = new SiteInquiryService();
-		if(mgr == 1) {
+		if(user_id == null) {
+			return "/user/login.jsp";
+		}
+		else if(mgr == 1) {
 			List<SiteInquiryDTO> iList = sService.selectAll();
 			request.setAttribute("iList", iList);
 			return "/user/mgrInquiry.jsp";

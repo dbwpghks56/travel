@@ -102,10 +102,10 @@ body {
 }
 .material-symbols-outlined{
 	font-family: Person Icons;
-	font-size: 50px; 
+	font-size: 50px;
+	left :20px;
+	position: relative; 
 }
-
-
 </style>
 </head>
 <body>
@@ -123,14 +123,19 @@ body {
 		<div class="row">
 			<div class="col text-white" >
 				<span class="material-symbols-outlined">person</span>
-				<input type="button" class="btn btn-secondary gain" value="1:1 문의">
+				<input type="button" class="btn btn-secondary gain" value="1:1 문의" onclick="location.href='/travel/accommodation/listRoomInquiry.do';">
+
 				
 			</div>
 			<div class="col text-white">
+
 				<input type="button" class="btn btn-secondary gain" value ="예약조회" onclick="location.href='/travel/reservation/rsvlist.do';">
+
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="개인정보조회">
+
+				<input type="button" class="btn btn-secondary gain" value="개인정보조회" onclick="location.href='/travel/user/userUpdate.do';">
+
 			</div>
 		</div>
 		<div class="row">
@@ -142,7 +147,7 @@ body {
 				<input type="button" class="btn btn-secondary gain" value="리뷰관리">
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="회원탈퇴">
+				<input type="button" class="btn btn-secondary gain" value="회원탈퇴" onclick="location.href='/travel/user/userDelete.jsp';">
 			</div>
 		</div>
 		

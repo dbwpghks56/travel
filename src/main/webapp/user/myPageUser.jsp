@@ -147,7 +147,7 @@ body {
 				<input type="button" class="btn btn-secondary gain" value="회원탈퇴" onclick="location.href='/travel/user/userDelete.jsp';">
 			</div>
 		</div>
-
+		
 	</div>
 
 </body>

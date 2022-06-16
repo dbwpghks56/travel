@@ -11,6 +11,7 @@ public class DeleteSessionUser implements Command {
 		HttpSession session = request.getSession();
 		
 		session.removeAttribute("user");
+		session.removeAttribute("user_id");
 		
 		return "redirect:/travel/index.jsp";
 	}

@@ -41,4 +41,7 @@ public class ReviewService {
 	public List<String> confirmReview(int rsv_no) {
 		return reviewdao.confirmReview(rsv_no);
 	}
+	public int selectNumber(int accoId) {
+		return reviewdao.selectNumber(accoId);
+	}
 }

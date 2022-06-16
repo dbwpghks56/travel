@@ -58,7 +58,10 @@ body {
 	width:800px;
 	margin: auto;
 }
-
+.third{
+	width: 800px;
+	margin:auto;
+}
 .btn {
 	background-color : pink;
 	color: 
@@ -114,13 +117,19 @@ function setThumbnail(event) {
 		</div>
 		<div class="row">
 			<div class="col text-white">
-				<input type="button" onclick = "location.href = 'travel/" class="btn btn-secondary gain" value="고객센터">
+				<a href="siteInquiry.do"><input type="button"
+					class="btn btn-secondary gain" value="고객센터"></a>
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="리뷰관리">
 			</div>
 			<div class="col text-white">
 				<input type="button"  onclick="location.href='/travel/user/userDelete.do';" class= "btn btn-secondary gain" value="회원탈퇴">
+			</div>
+		</div>
+		<div class = "third">
+			<div class="col text-white">
+				<input type="button" onclick="location.href='/travel/user/selectAccoHost.do';"  class="btn btn-secondary gain" value="숙소관리">
 			</div>
 		</div>
 

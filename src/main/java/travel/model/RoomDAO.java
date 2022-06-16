@@ -27,7 +27,7 @@ public class RoomDAO {
 			+ "where (accommodation_id = ?)\r\n" + "and((check_in<= ? and check_out>= ?)\r\n"
 			+ "or (check_in<= ? and check_out>= ?))\r\n";
 	private static final String SQL_SELECT_IMG = "select image_path from room where accommodation_id = ?";
-	private static final String SQL_SELECT_BY_ACCO = "select * from room join accommodation using(accommodation_id) where accommodation_id = ?";
+	private static final String SQL_SELECT_BY_ACCO = "select * from room where accommodation_id = ?";
 
 
 	
@@ -130,7 +130,9 @@ public class RoomDAO {
 			room.setRoom_id(rs2.getInt("room_id"));
 			room.setPrice_by_day(rs2.getInt("price_by_day"));
 			room.setMax_day(rs2.getInt("max_day"));
+			room.setMin_day(rs2.getInt("min_day"));
 			room.setMax_personnel(rs2.getInt("max_personnel"));
+			room.setMin_personnel(rs2.getInt("min_personnel"));
 			room.setR_image_path(rs2.getString("image_path"));
 			room.setR_option(rs2.getString("r_option"));
 			room.setRoom_name(rs2.getString("room_name"));

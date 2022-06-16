@@ -105,7 +105,7 @@ function setThumbnail(event) {
 			</div>
 			<div class="col text-white">
 
-				<input type="button" onclick="location.href='/travel/reservation/rsvList.do';" class="btn btn-secondary gain" value="예약조회">
+				<input type="button" onclick="location.href='/travel/reservation/hostlist.do';" class="btn btn-secondary gain" value="예약조회">
 
 			</div>
 			<div class="col text-white">

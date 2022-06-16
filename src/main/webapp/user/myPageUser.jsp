@@ -125,7 +125,9 @@ body {
 				
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="예약조회">
+
+				<input type="button" class="btn btn-secondary gain" value ="예약조회" onclick="location.href='/travel/reservation/rsvlist.do';">
+
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="개인정보조회">

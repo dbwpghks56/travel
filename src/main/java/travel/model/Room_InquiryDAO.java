@@ -94,7 +94,8 @@ public class Room_InquiryDAO {
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("select * from room_inquiry where user_id = ?");
+			pst = conn.prepareStatement("select ri.*, a.user_id as host_id from room_inquiry ri, accommodation a where ri.accommodation_id = a.accommodation_id and ri.user_id = ? and answer_confirm = 0");
+			
 			pst.setString(1, user_id);
 			
 			rs = pst.executeQuery();
@@ -112,14 +113,15 @@ public class Room_InquiryDAO {
 		
 		return rinquirylist;
 	}
-	public List<Room_InquiryDto> selectHostRinquiry(String host_id) {
+	
+	public List<Room_InquiryDto> selectAUserRinquiry(String user_id) {
 		List<Room_InquiryDto> rinquirylist = new ArrayList<>();
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("select * from room_inquiry where ACCOMMODATION_ID in (select ACCOMMODATION_ID from accommodation where "
-					+ "user_id = ?)");
-			pst.setString(1, host_id);
+			pst = conn.prepareStatement("select ri.*, a.user_id as host_id from room_inquiry ri, accommodation a where ri.accommodation_id = a.accommodation_id and ri.user_id = ? and answer_confirm = 1");
+			
+			pst.setString(1, user_id);
 			
 			rs = pst.executeQuery();
 			
@@ -137,6 +139,47 @@ public class Room_InquiryDAO {
 		return rinquirylist;
 	}
 	
+	public List<Room_InquiryDto> selectHostRinquiry(String host_id) {
+		List<Room_InquiryDto> rinquirylist = new ArrayList<>();
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("select * from room_inquiry where ACCOMMODATION_ID in (select ACCOMMODATION_ID from accommodation where "
+					+ "user_id = ?)");
+			pst.setString(1, host_id);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				rinquirylist.add(makeRinquiry2(rs));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return rinquirylist;
+	}
+	
+	private Room_InquiryDto makeRinquiry2(ResultSet rs2) throws SQLException {
+		Room_InquiryDto rinquiry = new Room_InquiryDto();
+		
+		rinquiry.setR_inquiry_id(rs2.getInt("r_inquiry_id"));
+		rinquiry.setAccommodation_id(rs2.getInt("accommodation_id"));
+		rinquiry.setUser_id(rs2.getString("user_id"));
+		rinquiry.setTitle(rs2.getString("title"));
+		rinquiry.setContent(rs2.getString("content"));
+		rinquiry.setI_password(rs2.getString("i_password"));
+		rinquiry.setAnswer(rs2.getString("answer"));
+		rinquiry.setAnswer_confirm(rs2.getInt("answer_confirm"));
+		rinquiry.setRi_regdate(rs2.getDate("ri_regdate"));
+		
+		return rinquiry;
+	}
+
 	public List<Room_InquiryDto> selectAnswerRinquiry(int a_confirm, String user_id) {
 		List<Room_InquiryDto> rinquirylist = new ArrayList<>();
 		conn = DBUtil.getConnection();
@@ -170,6 +213,25 @@ public class Room_InquiryDAO {
 			
 			pst.setString(1, answer);
 			pst.setInt(2, inquiry_id);
+			
+			result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+	
+	public int deleteInquiry(int inquiry_id) {
+		conn = DBUtil.getConnection();
+		
+		try {
+			pst = conn.prepareStatement("delete from room_inquiry where r_inquiry_id = ?");
+			
+			pst.setInt(1, inquiry_id);
 			
 			result = pst.executeUpdate();
 			

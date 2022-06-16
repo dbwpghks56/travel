@@ -41,7 +41,7 @@ input {
 
 #submit{
 	display:inline-block;
-	background-color:"white";
+	color:white;
 	background: url("/travel/images/icons/searchIcon.png");
 	background-repeat: no-repeat;
 	width:40px;

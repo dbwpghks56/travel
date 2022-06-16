@@ -94,6 +94,8 @@ public class FrontServlet extends HttpServlet {
 			command = new InsertSInquiryController();
 		} else if(uri.equals("/user/userUpdate.do")) {
 			command = new UserUpdateController();
+		}else if(uri.equals("/user/updateAnswer.do")) {
+			command = new UpdateAnswerController();
 		}
 		
 		page = command.execute(req);

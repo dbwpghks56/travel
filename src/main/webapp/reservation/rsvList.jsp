@@ -107,6 +107,7 @@ tr:nth-child(odd) {
 
 
 h1 {
+	text-align: center;
 	font-family: 'Lobster', cursive;	
 	clear: both;
 }
@@ -251,9 +252,14 @@ td:not(.font_small, #atag) {
 #acconame:hover{ color: blue;}
 #totalpricetext{text-align: center;}
 .nav-item{font-family: 'Do Hyeon', sans-serif;}
+
+#wholecontainer {
+	clear: both;
+}
 </style>
 </head>
 <body>
+<div id="wholecontainer">
 	<div class="container mt-3">
 		<h1>Reservation List</h1>
 		<br>
@@ -415,6 +421,7 @@ td:not(.font_small, #atag) {
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

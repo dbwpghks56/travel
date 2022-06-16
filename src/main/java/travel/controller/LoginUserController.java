@@ -18,19 +18,23 @@ public class LoginUserController implements Command {
 		
 		String user_id = request.getParameter("id");
 		String user_pass = request.getParameter("password");
-		
+		HttpSession session = request.getSession();
 		UserDTO user = null;
 		
 		if(kakao_email.equals(null) || kakao_email.equals("")) {
 			System.out.println(kakao_email);
 			System.out.println("�솗�씤");
 			user = service.loginUser(user_id, user_pass);
+			session.setAttribute("user", user);
+			session.setAttribute("user_id", user_id);
 		}
 		
 		else {
 			user = service.loginKakaoUser(kakao_email);
 			System.out.println(kakao_email);
 			System.out.println("�솗�씤"+ user);
+			session.setAttribute("user", user);
+			session.setAttribute("user_id", user_id);
 			if(user == null) {
 				request.setAttribute("email", kakao_email);
 				request.setAttribute("nick", kakao_nick);
@@ -38,11 +42,6 @@ public class LoginUserController implements Command {
 				return "signUp.jsp";
 			}
 		}
-		
-		HttpSession session = request.getSession();
-		
-		session.setAttribute("user", user);
-		session.setAttribute("user_id", user_id);
 		
 		return "redirect:/travel/index.jsp";
 	}

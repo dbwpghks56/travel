@@ -15,9 +15,17 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(() => {
-		$("#dropscontainer").on("click", function() {
-			$("#dropsitem").toggle();
+		$("#drops").on("click", function() {
+			if($("#dropsitem").css("visibility") == "hidden") {
+				$("#dropsitem").css("visibility", "visible");
+			}
+		
+			else if($("#dropsitem").css("visibility") == "visible") {
+				$("#dropsitem").css("visibility", "hidden");
+			}
+			
 		});
+
 	});
 </script>
 <style type="text/css">
@@ -31,8 +39,7 @@
 	
 	#dropsitem {
 		margin-right: 20px;
-		position: inherit;
-		display: none;
+		visibility: hidden;
 		background-color: white;
 		box-shadow: 0px 0.5px 5px gray;
 		border-radius: 10px;
@@ -53,9 +60,10 @@
 	#dropscontainer {
 		float: right;
 		margin-right: 20px;
+		margin-bottom: -300px;
 	}
 	
-	#drops {
+	#drops#drops {
 		margin-top: 16px;
 		width: 150px;
 		height: 52px;
@@ -85,7 +93,7 @@
 	}
 	
 	img.profile {
-		border: 1px solid pink;
+		border: 2px solid pink;
 		border-radius: 80%;
 		margin-top: -18px;
 		width: 40px;
@@ -94,6 +102,7 @@
 	
 	#dropdis {
 		text-align: center;
+		height: 100%;
 	}
 	
 	
@@ -103,6 +112,7 @@
 	
 	#dropsitem li:hover {
 		background-color: #DFDFDE;
+		border-radius: 5px;
 	}
 
 	.devideli {
@@ -134,12 +144,13 @@
 	  </button>
 	  
 	    <ul id="dropsitem">
-	  	<li><a class="runa" href="/travel/user/myPageUser.jsp">1:1 문의</a></li>
+	  	<li><a class="runa" href="/travel/accommodation/listRoomInquiry.do">1:1 문의</a></li>
 	  	<li><a class="runa" href="/travel/reservation/rsvlist.do">예약조회</a></li>
 	  	<li><a class="runa" href="/travel/user/userUpdate.do">개인 정보 조회</a></li>
 	  	<li><a class="runa" href="/travel/user/siteInquiry.do">고객센터</a></li>
 	  	<li><a class="runa" href="#">리뷰관리</a></li>
 	  	<li><a class="runa" href="#">회원 탈퇴</a></li>
+	  	<li><a class="runa" href="/travel/user/logOut.do">로그아웃</a></li>
 	  	<li><div class="devideli"></div></li>
 	  	<c:if test="${user.host == 0 }">
 	  		<li>
@@ -149,6 +160,9 @@
 		<c:if test="${user.host == 1 }">
 			<li>
 				<a class="runa" href="/travel/accommodation/insertAcco.jsp">숙소 등록</a>
+			</li>
+			<li>
+				<a class="runa" href="/travel/reservation/hostlist.do">예약 현황</a>
 			</li>
 		</c:if>
 	  </ul> 

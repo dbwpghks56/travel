@@ -1,0 +1,81 @@
+@charset "UTF-8";
+	#lobster {
+		margin-top: 12px;
+		position: inherit;
+		float: left;
+		font-size: 3em;
+		margin-left: 20px;
+	}
+	
+	#dropsitem {
+		position:fixed;
+		display: none;
+		background-color: white;
+		box-shadow: 0px 0.5px 5px gray;
+		border-radius: 10px;
+		list-style: none;
+		width: 100px;
+	}
+	
+	.runa {
+		color: black;
+		text-decoration: none;
+	}
+	
+	#dropsitem li {
+		margin-bottom: 10px;
+	}
+	#dropscontainer {
+		float: right;
+		margin-right: 20px;
+	}
+	
+	#drops {
+		margin-top: 16px;
+		width: 150px;
+		height: 52px;
+		background-color: white;
+		border: 1px solid pink;
+		padding-top: 10px;
+		border-radius: 8px;
+	}
+	
+	#drops:hover {
+		cursor: pointer;
+		box-shadow: 0px 0.5px 5px gray;
+	}
+	
+	.devideli {
+		display: inline-block;
+		width: 100px;
+	}
+	
+	#hambuger {
+		margin-right: 20px;
+		margin-left: 18px;
+		font-size: 2.2em;
+	}
+	
+	.profile {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		font-size: 2.2em;
+	}
+	
+	img.profile {
+		border: 1px solid pink;
+		border-radius: 80%;
+		margin-top: -18px;
+		width: 40px;
+		height: 40px;
+	}
+	
+	#dropdis {
+		text-align: center;
+	}
+	
+	.dropdown-menu {
+		border: none;
+		box-shadow: 0px 0.5px 5px gray;
+	}

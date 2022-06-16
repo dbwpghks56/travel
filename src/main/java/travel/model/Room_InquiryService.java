@@ -29,4 +29,10 @@ public class Room_InquiryService {
 	public int insertAnswerInquiry(int inquiry_id, String answer) {
 		return rinquirydao.insertAnswerInquiry(inquiry_id, answer);
 	}
+	public int deleteInquiry(int inquiry_id) {
+		return rinquirydao.deleteInquiry(inquiry_id);
+	}
+	public List<Room_InquiryDto> selectAUserRinquiry(String user_id) {
+		return rinquirydao.selectAUserRinquiry(user_id);
+	}
 }

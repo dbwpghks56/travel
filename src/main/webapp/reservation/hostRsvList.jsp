@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/jsp/mainnav.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -17,9 +18,10 @@
 <style>
 body {
 	width: 100%;
-	margin: 0 auto;
-	padding: 50px;
 	text-align: center;
+}
+h1 {
+	clear: both;
 }
 table {
 	margin-left: auto;
@@ -64,10 +66,17 @@ td:not(#font_small, #atag) {
 .hr{
 	border-bottom: 1px solid gray;
 }
-h1{font-family: 'Lobster', cursive;	}
+h1{
+	font-family: 'Lobster', cursive;
+	margin-bottom: 20px;
+	}
 #acconame{ color: black;}
 #acconame:hover{ color: blue;}
 .nav-item{font-family: 'Do Hyeon', sans-serif;}
+.nav {
+	width: 500px;
+	margin: auto;
+}
 </style>
 </head>
 <body>

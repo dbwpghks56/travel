@@ -38,4 +38,13 @@ public class AccommodationService {
 	public AccommodationDto selectById(int id) {
 		return accommoDAO.selectById(id);
 	}
+	public int updateStar(double cStar,double lStar,double sStar,int accoId) {
+		return accommoDAO.updateStar(cStar, lStar, sStar, accoId);
+	}
+	public int roomToAcco(int rId) {
+		return accommoDAO.roomToAcco(rId);
+	}
+	public List<Map<String, String>> selectByUser(String user_id) {
+		return accommoDAO.selectByUser(user_id);
+	}
 }

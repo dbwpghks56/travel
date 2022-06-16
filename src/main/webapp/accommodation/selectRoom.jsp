@@ -170,7 +170,14 @@ a{
 			<div id = "userInfo">
 			
 				${review.get('nick_name') }<br>
+				<c:choose>
+				<c:when test="${user == null }">
+				${review.get('r_regdate') } <input type = "button" class = "userNull"  value ="신고">
+				</c:when>
+				<c:otherwise>
 				${review.get('r_regdate') } <input type = "button" class = "report" data-rId ="${review.get('review_id') }" value ="신고">
+				</c:otherwise>
+				</c:choose>
 			</div>
 			<div id = "content">
 				${review.get('content') }
@@ -226,6 +233,13 @@ a{
 	   	});  //end ajax	
 		
 	};
+	$(".userNull").on("click", function(e) {
+		e.preventDefault();
+		if(confirm("로그인하기")){
+			location.href = "/travel/user/login.do";
+		}
+			
+	});
 	var modalReview =document.querySelector('.modal-review');
 	var rmodal =document.querySelector('.rmodal');
 	var btnReview = document.querySelector('#btnReview');

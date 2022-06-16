@@ -70,6 +70,18 @@ public class SearchController implements Command {
 			int star = (c+l+s)/3;
 			stars.add(star);
 		}
+		
+		String centerx = accommoList.get(0).get("x");
+		String centery = accommoList.get(0).get("y");
+		if(centerx ==null) {
+			for(int i= 1; i<accommoList.size(); i++) {
+				if(accommoList.get(i).get("x")!=null) {
+					centerx = accommoList.get(i).get("x");
+					centery = accommoList.get(i).get("y");
+					break;
+				}
+			}
+		}
 		HttpSession session = request.getSession();
 		session.setAttribute("check_in", check_in);
 		session.setAttribute("check_out", check_out);
@@ -79,8 +91,8 @@ public class SearchController implements Command {
 		request.setAttribute("accommoList", accommoList);
 		request.setAttribute("aImgs", aImgs);
 		request.setAttribute("stars", stars);
-		request.setAttribute("initCenterX", accommoList.get(0).get("x"));
-		request.setAttribute("initCenterY", accommoList.get(0).get("y"));
+		request.setAttribute("initCenterX", centerx);
+		request.setAttribute("initCenterY", centery);
 		return "/accommodation/resultSelectAcco.jsp";
 	}
 

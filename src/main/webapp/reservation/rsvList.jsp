@@ -93,27 +93,30 @@ table {
 	margin-right: auto;
 	width: 500px;
 	height: 100px;
+	border-top: 3px solid pink;
+	border-bottom: 3.5px solid pink;
+	border-collapse: collapse;
+	padding: 10px;
 }
-table, td {
+ td {
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
 	border-collapse: collapse;
 	padding: 10px;
+	text-align: center;
 }
-td{
-text-align: center;
-}
+
 tr:nth-child(odd) {
 	background-color: #FFE6E6;
 	color: black;
 }
 
 
-h1 {
+/* h1 {
 	text-align:center;
 	font-family: 'Lobster', cursive;	
 	clear: both;
-}
+} */
 
 
 a {
@@ -121,13 +124,11 @@ a {
 	color: black;
 }
 a:hover {
-	text-decoration: none;
-	color: black;
+	text-decoration: underline;	
 	cursor: pointer;
+	color: gray;
 }
-td:not(#font_small, #atag) {
-	font-weight: bold;
-}
+
 
 /* #font_small {
 >>>>>>> branch 'master' of https://github.com/dbwpghks56/travel.git
@@ -138,10 +139,7 @@ td:not(#font_small, #atag) {
 }
 =======
 } */
-#atag {
-	font-size: 14px;
-	text-align: left;
-}
+
 .nav-tabs {
 	width: 1200px;
 	margin: auto;
@@ -226,15 +224,8 @@ td:not(#font_small, #atag) {
 		border: none;
 	}
 
-a {
-	text-decoration: none;
-}
 
-a:hover {
-	text-decoration: underline;
-}
-
-td:not(.font_small, #atag) {
+td:not(.font_small, .tag) {
 	font-weight: bold;
 }
 
@@ -244,9 +235,12 @@ td:not(.font_small, #atag) {
 	color: gray;
 }
 
-#atag {
+
+
+.atag {
 	font-size: 14px;
 	text-align: center;
+	
 }
 .hr{
 	border-bottom: 1px solid gray;
@@ -259,12 +253,26 @@ td:not(.font_small, #atag) {
 #wholecontainer {
 	clear: both;
 }
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+
+#deleteAtag{ background-color: white;}
+#deleteAtag:hover{background-color: #E6F8F9;}
 </style>
 </head>
 <body>
 <div id="wholecontainer">
 	<div class="container mt-3">
-		<h1>Reservation List</h1>
+		<h1 class="title">Reservation List</h1>
 		<br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
@@ -304,8 +312,8 @@ td:not(.font_small, #atag) {
 								<td>${rsv.totalprice}원</td>
 							</tr>
 							<tr>
-								<td id="atag"><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">상세보기</a></td>
-								<td id="atag">
+								<td class="atag"><a href="rsvdetail.do?rsv_no=${rsv.rsv_no}">상세보기</a></td>
+								<td class="atag">
 									<a class="btn btn-primary reviewbtn" data-toggle="modal" data-target="#myModal" 
 									data-no="${rsv.rsv_no}" data-name="${rsv.accommodation_name }" data-roomid="${rsv.room_id }">
 										리뷰작성
@@ -342,15 +350,15 @@ td:not(.font_small, #atag) {
 								<td>${delete.d_rsv_no}</td>
 							</tr>
 							<tr>
-								<td class="font_small" colspan="2">금액</td>
+								<td class="font_small" >금액</td>
+								<td class="atag" rowspan="2" id="deleteAtag">
+								<a href="rsvdeletedetail.do?d_rsv_no=${delete.d_rsv_no}">상세보기</a>
+								</td>
 							</tr>
 							<tr>
 								<td id="totalpricetext">${delete.totalprice}원</td>
 							</tr>
-							<tr>
-								<td id="atag" colspan="2"><a
-									href="rsvdeletedetail.do?d_rsv_no=${delete.d_rsv_no}">상세보기</a></td>
-							</tr>
+
 						</table>
 					</div>
 					<br>

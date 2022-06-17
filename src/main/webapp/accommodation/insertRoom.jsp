@@ -113,9 +113,8 @@
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">방 이름</span> <input type="date"
-					class="form-control" placeholder="Birth" name="birth"
-					required="required">
+				<span class="input-group-text">방 이름</span> <input type="text"
+					class="form-control" name="room_name" required="required">
 
 			</div>
 
@@ -129,7 +128,7 @@
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">방옵션</span> <input type="text"
-					class="form-control" placeholder="Favorite" name="favorite"
+					class="form-control" placeholder="Favorite" name="room_option"
 					required="required">
 			</div>
 

@@ -28,7 +28,7 @@ public class ReservationDAO {
 		
 		//insert into RESERVATION values(rsv_no, user_id, room_id, check_in, check_out, rsv_date, personnel, request, rsv_status);
 		try {
-			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '占쏙옙占쏙옙狗占�')");
+			pst = conn.prepareStatement("insert into reservation values(seq_rsv.nextval, ?, ?, ?, ?, sysdate, ?, ?, '예약완료')");
 			pst.setString(1, rsv.getUser_id());
 			pst.setInt(2, rsv.getRoom_id());
 			pst.setDate(3, rsv.getCheck_in());
@@ -292,16 +292,16 @@ public class ReservationDAO {
 	}
 	
 	//reservation success after detail
-	public int insertAfterRsv() {
-		
+	public int insertAfterRsv(String user_id) {
+		int rsvNo = 0;
 		conn = DBUtil.getConnection();
 		
 		try {
-			pst = conn.prepareStatement("select max(rsv_no) from reservation");
-			rs = pst.executeQuery();
-			
+			pst = conn.prepareStatement("select max(rsv_no) from reservation where user_id = ?");
+			pst.setString(1, user_id);
+			rs = pst.executeQuery();		
 			while(rs.next()) {
-				result = rs.getInt(1);
+				rsvNo = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -311,7 +311,7 @@ public class ReservationDAO {
 		}
 	
 		
-		return result;
+		return rsvNo;
 	}
 	
 	//reservation list(host)

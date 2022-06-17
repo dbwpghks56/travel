@@ -48,6 +48,7 @@ table{
 input{
 	background-color: white;
 	border:none;
+	border-radius: 5px;
 }
 input:hover{
 	background-color: blue;
@@ -55,6 +56,19 @@ input:hover{
 .value{
 	width:60%;
 }
+
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+
 #updateImg{
 	height: 300px;
 	vertical-align: top;
@@ -67,9 +81,12 @@ td{
 vertical-align: top;
 }
 
+
 </style>
 <body>
-<h1>숙소 관리</h1>
+
+<h1 class="title">Accommodation Management</h1>
+
 <br>
 <hr>
 <c:forEach items="${accoList}" var= "acco" varStatus="status">
@@ -77,21 +94,26 @@ vertical-align: top;
 		<tr id = "accoName">
 			<td class = "var">${status.index+1 }번 숙소</td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
+			<td class = "deleteBtn"><input type= button class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
 			<td class = "updateBtn"><input type= button class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name"value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">숙소 위치</td>
 			<td class = "value">${acco.get("address" )}</td>
 			<td class = "updateBtn"><input type= button class = "updateAcco" data-no = '${acco.get("accommodation_id") }'data-pro="address" value= "수정"></td>
+
 		</tr>
 		<tr>
 			<td class = "var">전화번호</td>
 			<td class = "value">${acco.get("phone")}</td>
+
 			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }'data-pro="phone" value= "수정"></td>
+
 		</tr>
 		<tr>
 			<td class = "var">옵션</td>
 			<td class = "value">${acco.get("a_option")}</td>
+
 			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }' data-pro="a_option"value= "수정"></td>
 		</tr>
 		<tr class = "Img">
@@ -114,6 +136,7 @@ vertical-align: top;
 			</div> -->
 			
 			<td class = "updateBtn"><input type= button class = "updateAccoImg"data-no = '${acco.get("accommodation_id") }' data-pro="a_image"value= "수정"></td>
+
 		</tr>
 	</table>
 	<c:forEach items="${rList.get(status.index) }" var = "room">
@@ -126,32 +149,32 @@ vertical-align: top;
 		<tr>
 			<td class = "var">방 옵션</td>
 			<td class = "value">${room.r_option}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}data-pro="r_option" value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="r_option" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">하루 숙박비</td>
 			<td class = "value">${room.price_by_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}data-pro="price_by_day" value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="price_by_day" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최소 숙박일</td>
 			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} data-pro="min_day"value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="min_day"value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최대 숙박일</td>
 			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} data-pro="max_day"value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="max_day"value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최소 인원</td>
 			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}data-pro="min_perssonel" value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="min_perssonel" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최대 인원</td>
 			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}data-pro="max_personnel" value= "수정"></td>
+			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="max_personnel" value= "수정"></td>
 		</tr>
 		<%-- <c:set var = "images" value = '${room.image_path.split(",") }'/>
 		<tr>
@@ -196,6 +219,31 @@ vertical-align: top;
 	     	}
 	     
 	     	
+
+	   	});  	
+	});
+	$('.deleteAcco').on('click',function(){
+		var cf = confirm("해당 숙소를 삭제하시겠습니까?");
+		if(!cf) return false;		
+		$.ajax({
+            type:"POST",
+        	 async:false,
+            url:"selectAccoHost.do",
+            data : {"user_id" : '${user.user_id}', "accommodation_id" : '$(this).attr("data-accid")}'},
+            success:function (data){
+            	if(data==0){
+            		alert("해당 숙소에 예약 정보가 있습니다");
+            	}else{
+            		alert("삭제되었습니다");
+            		
+            	}
+	     	}
+	     
+	     	
+	   	});  	
+	});
+	
+
 	   	});  //end ajax	
 	};
 	var modal = document.querySelector(".modal");
@@ -232,6 +280,7 @@ vertical-align: top;
         }
       }
 	
+
 </script>
 </body>
 </html>

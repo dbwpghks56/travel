@@ -35,7 +35,7 @@ public class InsertRoomController implements Command {
 		request.setAttribute("message", message);
 
 
-		return "/accommodation/confirmInsertRoom.jsp";
+		return "/user/myPageHost.do";
 
 	}
 	

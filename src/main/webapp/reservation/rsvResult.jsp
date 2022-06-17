@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <meta http-equiv="refresh" content="3; url=rsvdetail.do?rsv_no=${rsv_no }"> 
+<meta http-equiv="refresh" content="3; url=rsvdetail.do?rsv_no=${rsv_no }"> 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -19,15 +19,18 @@ min-height: 100vh;
 	
 }
 .messgae{
-font-size: 20px;
+font-size: 4em;
 font-family: 'Do Hyeon', sans-serif;
+text-shadow: 1px 1px 1px red;
+color: pink;
+
 }
 </style>
 </head>
 <body>
 <div class="box">
 <div class="messgae">
- ${message} <br>
+${message} <br>
 잠시만 기다려 주세요
 </div>
 </div>

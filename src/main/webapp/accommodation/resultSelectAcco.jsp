@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="selectAcco.jsp"%>
+<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,11 +58,29 @@ body{
 	float: right;
 	margin-left: 0;
 }
+.search {
+	margin-top: 12px;
+	clear: both;
+	width: 900px;
+	display: inline-block;
+}
+#wholecontainer {
+	clear: both;
+}
+
+#lobster {
+	left: 0;
+	margin: 0;
+}
+
+#dropscontainer {
+	margin: 0;
+}
 </style>
 
 </head>
 <body>
-	
+	<div id="wholecontainer">
 	<div id="map" ></div>
 	
 	<c:set var = "accommoList" value = "${accommoList }"/>
@@ -153,6 +172,7 @@ body{
 			});
 		}
 	</script>
+	</div>
 
 </body>
 </html>

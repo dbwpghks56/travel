@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,16 +111,22 @@ body {
 .review{
 	margin-right: 2px;
 }
+#sun {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	z-index: -99;
+}
+
 </style>
 </head>
 <body>
-
-
 	<div class="container-fluid mt-3">
 
 		<h1 class="title">MyPage</h1>
-		<br> 
-		<hr>
+		<br> <br>
+		<hr id="sun">
+		<br>
 		<p class="name"> <img alt="" src="${pageContext.request.contextPath}/uploads/${user.u_image_path}" id = "photo"> ${user.user_id}(${user.nickname})님 환영합니다.</p>
 	<span class="material-icons-outlined">person</span>
 
@@ -147,8 +154,9 @@ body {
 			</div>
 			<span  class="material-icons-outlined review">try</span>
 			<div class="col text-white">
-			
-				<input type="button" class="btn btn-secondary gain" value="리뷰관리">
+
+				<input type="button" class="btn btn-secondary gain" value="리뷰관리" onclick="location.href='/travel/review/listReview.do';">
+
 			</div>
 			
 			
@@ -161,6 +169,7 @@ body {
 			<div class="col text-white">
 				<input type="button" onclick="location.href='/travel/user/selectAccoHost.do';"  class="btn btn-secondary gain" value="숙소관리">
 			</div>
+	</div>
 	</div>
 
 </body>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +38,14 @@
 			border: none;
 			background-color: #F582A7;
 		}
+		.btn:focus {
+			border: none;
+			background-color: #F582A7;
+		}
 		
 		#map {
+			position: relative;
+			z-index: -99;
 			display: inline-block;
 			width: 50%; 
 			height: 680px; 
@@ -59,9 +66,16 @@
 			border-radius: 5px;
 			border: 3px solid pink;
 		}
+		#wholecontainer {
+			clear: both;
+		}
+		#dropsitem {
+			z-index: 99;
+		}
 	</style>
 </head>
 <body>
+<div id="wholecontainer">
 	<div id="formcontainer">
 		<form action="insertAcco.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="user_id" value="${user.user_id }"> 
@@ -241,5 +255,6 @@
 						});
 		}
 	</script>
+	</div>
 </body>
 </html>

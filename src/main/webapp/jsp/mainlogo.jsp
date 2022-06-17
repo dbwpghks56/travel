@@ -9,7 +9,6 @@
 	#lobster {
 		font-family: 'Lobster', cursive;	
 		margin-top: 10px;
-		position: fixed;
 		font-size: 4em;
 		left: 35.5%;
 		color: #FFE6E6;

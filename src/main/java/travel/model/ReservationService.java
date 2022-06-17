@@ -56,8 +56,8 @@ public class ReservationService {
 	}
 	
 	//예약 후 바로 상세보기
-	public int insertAfterRsv() {
-		return rDAO.insertAfterRsv();
+	public int insertAfterRsv(String user_id) {
+		return rDAO.insertAfterRsv(user_id);
 	}
 	
 	//host가 등록한 숙소에 예약된 list

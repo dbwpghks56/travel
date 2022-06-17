@@ -22,7 +22,7 @@ window.onload = function(){
 	var valueCheckIn = new Date(${check_in});
 	var valueCheckOut =  new Date(${check_out});
 	var valueDifDate = valueCheckIn-valueCheckOut;
-	console.log(valueCheckIn-valueCheckOut);
+	console.log((valueCheckOut)-valueCheckIn);
 	console.log(valueCheckOut.getYear());
 	document.getElementById("totalprice").value = (valueDifDate*${rsv.price_by_day}*${person})+"원";
 };
@@ -115,7 +115,7 @@ function count(type)  {
 				email : '${user.user_email}',
 				phone : '${user.user_phone}'
 			},
-			order_id : 'order_id1111288', 
+			order_id : '${rsv.rsv_no}', 
 			extra : {
 				vbank_result : 1, 
 				quota : '0,2,3', 
@@ -159,12 +159,21 @@ div.rsv_group{
 
 
 
-div.rsv_group_date{
-	width: 49%;
+ div.rsv_group_date{
+	width: 150px;
 	display: inline-block;
 	float: left;
 	margin-left: 1%;
 }
+div.rsv_group_personne{
+	width: 150px;
+	display: inline-block;
+	float: left;
+	margin-left: 1%;
+	
+
+	
+} 
 
 label{
 	display: block;
@@ -182,64 +191,80 @@ input, textarea{
   padding: 10px;
 }
 
-div.rsv_group_date input{
-	width: 95%;
+ div.rsv_group_date input{
+	width: 150px;
 	display: inline-block;
 	
-}
+} 
+
 
 div.rsv_group_personnel input{
 	width: 50px;
 	display: inline-block;
-}
+	text-align: center;
+	
+} 
+
 
 textarea{ height: 130px; resize: none;}
 
 hr{ border: 1px dotted #ccc;}
 
-
+.btnall{
+ padding-left:30%; 
+}
 
 .btn{
-  width: 100px;
+  width: 85px;
   height: 50px;
-  border: none;
-  font-size: 1.25em;
+  border:none;
+  font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+  background-color: #FDEBF7;
+  font-weight: bold;
+  color: gray;
+  
+}
+.btn:hover{
+	 border: 4px solid #FFC0D3;
+	 
 }
 
-#btn_submit{
- 	background: pink;
-    color: white;
-}
 
 #btn_reset{
- 	background: lightgray;
-    color: white;
+ 	background: #E6F8F9;
+    color: gray;
 }
+#btn_reset:hover{  border: 4px solid #B1E8ED;}
 
-.btn:hover{
-	border: 2px solid black;
-}
 
-#result{
-	width: 200px;
-	text-align: center;
-}
+
+
 #container {
 	width: 500px;
 	height: 450px;
 	
 	
 }
-h1{text-align: center; font-family: 'Lobster', cursive;}
-
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+#minus,#plus{ font-size: 1.3em; border: none; background-color:  #E6F8F9;}
 </style>
 </head>
 <body>
 <div id="reservation_form">
-	<div><h1>Lodging Reservations</h1></div>
+	<div><h1 class="title">Lodging Reservations</h1></div>
 	
 	<hr>
 		<div id="container">
@@ -265,32 +290,31 @@ h1{text-align: center; font-family: 'Lobster', cursive;}
 		<c:forEach items="${checkInOut}" var="check">
 		<p class="checkcal" data-checkin="${check.check_in }" data-checkout="${check.check_out}"></p>
 		</c:forEach>
-		
+	
 			<div class="rsv_group_date">
-				<label for="check_in">체크인</label>
+				<label for="check_in">체크인 </label>
 				<input type="date" name="check_in" id="check_in"  readonly="readonly" value="${check_in }">	
 			</div>
-		
 			<div class="rsv_group_date">
 				<label for="check_out">체크아웃</label>
 				<input type="date" name="check_out" id="check_out"  readonly="readonly" value="${check_out }">
-			</div>
-		
-	<br>
+			</div> 
 		
 
-			<div class="rsv_group_personnel">
+
+		
+
+			<div class="rsv_group_personnel">		
 				<label for="personnel">인원</label> 
-					<input class="btn" type='button' onclick='count("minus")' value='-' style="text-align: center;" > 
+					<input id="plus" class="btn" type='button' onclick='count("minus")' value='-' " > 
 					<c:if test="${person != null }">
 					<input type="number" name="personnel" min="1" id="result" value="${person }" readonly="readonly"  > 
 					</c:if>
 					<c:if test="${person == null }">
 					<input type="number" name="personnel" min="1" id="result" value="0" readonly="readonly"  > 
-					</c:if>
-					
-					<input class="btn" type='button' onclick='count("plus")' value='+' style="text-align: center;" >
-			</div>
+					</c:if>					
+					<input id="minus" class="btn" type='button' onclick='count("plus")' value='+'  >
+			</div> 
 
 
 			<div class="rsv_group">
@@ -306,10 +330,10 @@ h1{text-align: center; font-family: 'Lobster', cursive;}
 		
 	 <hr>
 		
-	
+		<div class="btnall">
 			<input class="btn" id="btn_submit" type="button" value="예약하기" onclick="pay();"> 
 			<input class="btn" id="btn_reset" type="reset" value="취소">
-		
+		</div>
 		
 		
 

@@ -53,4 +53,9 @@ public class AccommodationService {
 	public List<Map<String, String>> selectByUser(String user_id) {
 		return accommoDAO.selectByUser(user_id);
 	}
+	
+	public int updateAcco(String pro, String newValue, int id) {
+		// TODO Auto-generated method stub
+		return accommoDAO.updateAcco(pro, newValue,id);
+	}
 }

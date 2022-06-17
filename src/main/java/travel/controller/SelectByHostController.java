@@ -25,6 +25,7 @@ public class SelectByHostController implements Command{
 		for(int i = 0;i<accoIdList.length; i++) {
 			accoIdList[i] = Integer.parseInt(accoList.get(i).get("accommodation_id"));
 		}
+		
 		List<List<RoomDto>> rList = new ArrayList<>();
 		for(int i = 0; i<accoIdList.length; i++) {
 			rList.add(rService.selectByAcco(accoIdList[i]));

@@ -150,7 +150,10 @@ body {
 				<input type="button" class="btn btn-secondary gain" value="회원탈퇴" onclick="location.href='/travel/user/userDelete.jsp';">
 			</div>
 		</div>
-		
+		<div class = "third">
+			<div class="col text-white">
+				<input type="button" onclick="location.href='/travel/user/selectAccoHost.do';"  class="btn btn-secondary gain" value="숙소관리">
+			</div>
 	</div>
 
 </body>

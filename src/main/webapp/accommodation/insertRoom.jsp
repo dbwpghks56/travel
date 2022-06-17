@@ -58,6 +58,11 @@
 	color: pink;
 	
 }
+
+.title:hover {
+	cursor: pointer;
+}
+
 .line{
 	margin: auto;
 	width: 700px;
@@ -70,7 +75,7 @@
 </style>
 </head>
 <body>
-	<h1 class="title">Would You Travel</h1>
+	<h1 class="title" onclick="location.href='/travel/';">Would You Travel</h1>
 	<br>
 	<hr class = "line">
 
@@ -82,7 +87,7 @@
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">숙소번호 </span> <input type="number"
-					class="form-control" name="acco_id" id="acco_id"
+					class="form-control" name="acco_id" id="acco_id" value="${acco_id }"
 					required="required">
 			</div>
 

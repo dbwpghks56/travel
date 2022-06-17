@@ -4,6 +4,7 @@
     <%@ include file = "selectAcco.jsp" %>
     <%@ include file= "updateReviewReport.jsp" %>
     <%@ include file = "selectReview.jsp" %>
+    <%@ include file="/jsp/mainnav.jsp" %>
     <%@ page import = "travel.model.*" %>
 <!DOCTYPE html>
 <html>
@@ -23,8 +24,7 @@
 	box-sizing: border-box;
 	}
 	body {
-		margin-left:10%;
-		margin-right:10%;
+
 		position: relative;
 	}
 .w3-third{
@@ -91,10 +91,31 @@ a{
 	text-decoration: none;
 	color:black;
 }
+.search {
+	margin-top: 12px;
+	clear: both;
+	width: 900px;
+	display: inline-block;
+}
+#wholecontainer {
+	margin-left:10%;
+	margin-right:10%;
+	clear: both;
+}
+
+#lobster {
+	left: 0;
+	margin: 0;
+}
+
+#dropscontainer {
+	margin: 0;
+}
 
 </style>
 </head>
 <body>
+<div id="wholecontainer">
 	<h1>${accoName}</h1>
 	<!-- Photo Grid -->
 <div class="w3-row" id="myGrid">
@@ -120,7 +141,7 @@ a{
 	<h3>${nick_name}(${host_id})님이 호스팅하는 ${accoType}</h3>
 	<hr>
 		<div class = "detail">
-		<img src = "/travel/images/icons/inquiry.png"><a href = "/travel/accommodation/insertroomInquiry.jsp?accoId=${accoId }">문의하기</a><br>
+		<img src = "/travel/images/icons/inquiry.png"><a href = "/travel/accommodation/insertroomInquiry.jsp?accoId=${accoId }&acco_name=${param.acco_name}">문의하기</a><br>
 		<img src = "/travel/images/icons/phoneIcon.png">${phone}<br>
 		<img src = "/travel/images/icons/blackMaker.png">${address }<br>
 		<img src = "/travel/images/icons/homeIcon.png">${option }<br>
@@ -333,6 +354,6 @@ a{
 	}
 	
 	</script>
-	
+	</div>
 </body>
 </html>

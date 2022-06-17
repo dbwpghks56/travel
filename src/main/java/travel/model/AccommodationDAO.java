@@ -36,7 +36,7 @@ public class AccommodationDAO {
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?, ?, ?, ?)";
 	private static final String SQL_SELECT_BY_ID = "select * from accommodation where accommodation_id = ?";
 	private static final String SQL_UPDATE_STAR = "update accommodation set cleaning_stars = ?, location_stars = ?, satisfied_stars = ? where accommodation_id = ?";
-	private static final String SQL_ROOM_TO_ACCO = "select accommodation_id from room where room_id = ?";
+	private static final String SQL_ROOM_TO_ACCO = "select accommodation_id from join room using(accommodation_id) room where room_id = ?";
 	private static final String SQL_SELECT_USER = "select * from accommodation where user_id = ?";
 	Connection conn;
 	PreparedStatement pst;
@@ -189,7 +189,7 @@ public class AccommodationDAO {
 			pst.setString(1, user_id);
 			rs = pst.executeQuery();
 			while(rs.next()) {
-				Map<String, String> accommo = makeAMap(rs);
+				Map<String, String> accommo = makeAMap2(rs);
 				accoList.add(accommo);
 			}
 		} catch (SQLException e) {
@@ -240,6 +240,29 @@ public class AccommodationDAO {
 			aMap.put("x", rs.getString("x"));
 			aMap.put("y", rs.getString("y"));
 			aMap.put("room_id", rs.getString("room_id"));
+			aMap.put("phone", rs.getString("phone"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return aMap;
+		
+	}
+	private Map<String, String> makeAMap2(ResultSet rs){
+		Map<String, String> aMap = new HashMap<>();
+		try {
+			aMap.put("accommodation_id", rs.getString("accommodation_id"));
+			aMap.put("user_id", rs.getString("user_id"));
+			aMap.put("accommodation_name", rs.getString("accommodation_name"));
+			aMap.put("address", rs.getString("address"));
+			aMap.put("a_option", rs.getString("a_option"));
+			aMap.put("cleaning_stars", rs.getString("cleaning_stars"));
+			aMap.put("location_stars", rs.getString("location_stars"));
+			aMap.put("satisfied_stars", rs.getString("satisfied_stars"));
+			aMap.put("a_image_path", rs.getString("a_image_path"));
+			aMap.put("x", rs.getString("x"));
+			aMap.put("y", rs.getString("y"));
+			aMap.put("phone", rs.getString("phone"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -311,5 +334,21 @@ public class AccommodationDAO {
 	
 		
 		return result;
+	}
+
+	public int updateAcco(String pro, String newValue, int id) {
+		conn = DBUtil.getConnection();
+		String sql = "update accommodation set "+pro+" = '"+newValue+"' where accommodation_id = "+id;
+		int ret = 0;
+		try {
+			st = conn.createStatement();
+			ret = st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+		return ret;
 	}
 }

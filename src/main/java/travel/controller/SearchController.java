@@ -55,6 +55,9 @@ public class SearchController implements Command {
 				String[] arr = {""};
 				aImgs.add(arr);
 			}
+			for(int j = 0; j<aImgs.get(i).length; j++) {
+				aImgs.get(i)[j]= aImgs.get(i)[j].trim();
+			}
 			
 		}
 		List<Integer> stars = new ArrayList<>();

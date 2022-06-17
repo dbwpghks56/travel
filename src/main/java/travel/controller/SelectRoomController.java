@@ -80,13 +80,18 @@ public class SelectRoomController implements Command {
 			JSONObject jSight = new JSONObject(sights.get(i));
 			jSights.add(jSight);
 		}
+		String[] aImgs = accommo.getA_image_path().split(",");
+		for(int i = 0; i<aImgs.length; i++) {
+			aImgs[i] = aImgs[i].trim();
+		}
+		
 		request.setAttribute("accoName", accoName);
 		request.setAttribute("accoId", accoId);
 		request.setAttribute("address", accommo.getAddress());
 		request.setAttribute("host_id", accommo.getUser_id());
 		request.setAttribute("accoType", accommo.getAccommodation_type());
 		request.setAttribute("nick_name", nick_name);
-		request.setAttribute("a_image_path", accommo.getA_image_path().split(","));
+		request.setAttribute("a_image_path", aImgs);
 		request.setAttribute("roomList", roomList);
 		request.setAttribute("accoType", accommo.getAccommodation_type());
 		request.setAttribute("rImgs", rImgs);

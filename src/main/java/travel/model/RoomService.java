@@ -34,4 +34,9 @@ public class RoomService {
 		return roomdao.selectByAcco(accoId);
 	}
 
+	public int updateRoom(String pro, String newValue, int id) {
+		// TODO Auto-generated method stub
+		return roomdao.updateRoom(pro,newValue,id);
+	}
+
 }

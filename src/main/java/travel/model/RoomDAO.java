@@ -94,6 +94,9 @@ public class RoomDAO {
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				String[] arr = rs.getString("image_path").split(",");
+				for(int i = 0;i<arr.length; i++) {
+					arr[i] = arr[i].trim();
+				}
 				imgList.add(arr);
 			}
 		} catch (SQLException e) {
@@ -171,6 +174,23 @@ public class RoomDAO {
 		}
 
 		return result;
+	}
+
+
+	public int updateRoom(String pro, String newValue, int id) {
+		conn = DBUtil.getConnection();
+		String sql = "update room set "+pro+" = '"+newValue+"' where room_id = "+id;
+		int ret = 0;
+		try {
+			st = conn.createStatement();
+			ret = st.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, st, conn);
+		}
+		return ret;
 	}
 
 }

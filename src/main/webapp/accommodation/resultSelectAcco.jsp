@@ -95,30 +95,22 @@ body{
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../accoImages/${aImg[0]}" alt="숙소사진1" class="d-block w-100">
+				<img src="../accoImages/${aImg[0]}" alt="숙소사진1" class="d-block w-100"  height="260px">
 			</div>
 			<c:if test="${aImg[1] ne null }">
 			<div class="carousel-item">
-				<img src="../accoImages/${aImg[1]}" alt="숙소사진2" class="d-block w-100">
+				<img src="../accoImages/${aImg[1]}" alt="숙소사진2" class="d-block w-100"  height="260px">
 			</div>
 			</c:if>
 			<c:if test="${aImg[2] ne null }">
 			<div class="carousel-item">
-				<img src="../accoImages/${aImg[2]}" alt="숙소사진3" class="d-block w-100">
+				<img src="../accoImages/${aImg[2]}" alt="숙소사진3" class="d-block w-100" height="260px">
 			</div>
 			</c:if>
 			
 		</div>
 		
-		<!-- Left and right controls/icons -->
-		<button class="carousel-control-prev" type="button"
-			data-bs-target="#demo" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-		</button>
-		<button class="carousel-control-next" type="button"
-			data-bs-target="#demo" data-bs-slide="next">
-			<span class="carousel-control-next-icon"></span>
-		</button>
+		
 		<a href = "selectRoom.do?acco_name=${accommoList.get(status.index).get('accommodation_name') }&acco_id=${accommoList.get(status.index).get('accommodation_id') }">
 		<span>${accommoList.get(status.index).get('accommodation_name') }</span></a>
 		<div class = "score"><span class="material-icons">star</span><span>${stars.get(status.index)}</span></div>

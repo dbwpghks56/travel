@@ -20,7 +20,6 @@ public class RsvDeleteDetailController implements Command {
 			if(dRsvNo !=null) {
 				i_dRsvNO = Integer.parseInt(dRsvNo);
 			}
-			
 			ReservationService rService = new ReservationService();
 			ReservationDTO rsvdelete = rService.rsvDeleteAllDetail(i_dRsvNO);
 			reQuest.setAttribute("rsvdelete", rsvdelete);

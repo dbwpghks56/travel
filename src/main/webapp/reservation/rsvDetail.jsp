@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
+    <%@ include file="/jsp/mainnav.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@ $(function(){
 		}
 	});
 
-	$("#ajaxbtn").click(function(){
+	$("#updatebtn").click(function(){
 		$.ajax({
 			type:"POST",
 			url:"rsvdetail.do",
@@ -49,21 +50,23 @@ body {
 	margin: 0 auto;
 	padding: 50px;
 	text-align: center;
-	background-color: 
+	background-color: #FFE6E6;
 }
 table {
+
 	margin-left: auto;
 	margin-right: auto;
 	width:600px;
 	height: 100px;
-	border-top: 3px solid gray;
-	border-bottom: 3.5px solid gray;
+	border-top: 2px solid pink;
+	border-bottom: 2.5px solid pink;
 }
 td {
 	border-collapse: collapse;
 	padding: 10px;
 }
 textarea {
+border-radius : 8px;
 	width: 95%;
 	height: 6.25em;
     resize: none;
@@ -71,14 +74,18 @@ textarea {
 .btn{
   width: 80px;
   height: 50px;
-  border: none;
+  border: 0.5px solid #B1E8ED;
   font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+  background-color: #E6F8F9;
+  font-weight: bold;
+  
 }
 .btn:hover{
-	border: 2px solid black;
+	 border: 4px solid #B1E8ED;
+	 
 }
 .bold{
 font-weight: bold; 
@@ -100,12 +107,29 @@ padding-left: 50px;
 } */
 #revisit{
 color : blue;
-font-size: 1em;
+font-size: 0.9em;
 }
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+#updatebtn, #rsvList{
+ background-color: #FDEBF7;
+ border: 0.5px solid #FFC0D3;
+}
+#updatebtn:hover, #rsvList:hover{ border: 4px solid #FFC0D3;}
 </style>
 </head>
 <body>
-<h1>예약 상세보기</h1>	
+<h1 class="title">Reservation Details</h1>	
+<br>
 <table>					
 							<tr>
 							<td class="bold">예약번호</td>
@@ -117,15 +141,15 @@ font-size: 1em;
 								<td class="value">${rsv.accommodation_name }</td>
 							</tr>
 							<tr>
-								<td class="bold">룸이름</td>
+								<td class="bold">방이름</td>
 								<td class="value">${rsv.room_name }</td>
 							</tr>
 							<tr>
-								<td class="bold">숙소주소</td>
+								<td class="bold">주소</td>
 								<td class="value">${rsv.address }</td>
 							</tr>
 							<tr>
-								<td class="bold">숙소번호</td>
+								<td class="bold">번호</td>
 								<td class="value">${rsv.phone }</td>
 							</tr>
 							<tr>
@@ -144,23 +168,20 @@ font-size: 1em;
 								<td> ${rsv.rsv_status}</td>
 							</tr>	
 							<tr>
-							<td colspan="4" class="bold">요청사항</td>
-							</tr>	
+							<td class="bold">요청사항</td>
+							<td class="value" colspan="4"><textarea id="request" name="request">${rsv.request}</textarea> </td>
+				<%-- 			</tr>	
 							<tr id="requestTR" >
 							<td colspan="4"> <textarea id="request" name="request">${rsv.request}</textarea> </td>
-							</tr>	
-							<tr>
-							<td id="btnlist"><input class="btn" type="button" value="목록" id="rsvList"></td>
-							<td><input class="btn" type="submit" value="수정" id="ajaxbtn" data-no="${rsv.rsv_no}"></td>
-							<td id="btndelete">
-							<form action="rsvdelete.do" method="post">
+							</tr> --%>		
+						</table>
+					<div style="margin: 10px;">
+							<input class="btn" type="button" value="목록" id="rsvList">
+							<input class="btn" type="submit" value="수정" id="updatebtn" data-no="${rsv.rsv_no}">
+							<form action="rsvdelete.do" method="post" style="display: inline;">
 							<input type="hidden" name="rsv_no" value="${rsv.rsv_no}">
 							<input type="submit" value="예약취소" id="delete" class="btn"> 
 							</form>
-							</td>
-							
-							</tr>	
-						</table>	
-
+</div>
 </body>
 </html>

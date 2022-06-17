@@ -17,6 +17,7 @@
 <title>host가 등록한 숙소에 예약된 list</title>
 <style>
 body {
+	clear: both;
 	width: 100%;
 	text-align: center;
 }
@@ -28,24 +29,26 @@ table {
 	margin-right: auto;
 	width: 500px;
 	height: 100px;
-	border-top: 3px solid gray;
-	border-bottom: 3.5px solid gray;
+	border-top: 3px solid pink;
+	border-bottom: 3.5px solid pink;
 }
 td {
 	border-collapse: collapse;
 	padding: 10px;
 }
-textarea {
-	width: 95%;
-	height: 6.25em;
-    resize: none;
+tr:nth-child(odd) {
+	background-color: #FFE6E6;
+	color: black;
 }
 a {
 	text-decoration: none;
+	color: black;
 }
 
 a:hover {
-	text-decoration: underline;
+		text-decoration: underline;	
+	cursor: pointer;
+	color: gray;
 }
 
 td:not(#font_small, #atag) {
@@ -63,25 +66,32 @@ td:not(#font_small, #atag) {
 	font-size: 14px;
 	text-align: center;
 }
-.hr{
-	border-bottom: 1px solid gray;
-}
-h1{
-	font-family: 'Lobster', cursive;
-	margin-bottom: 20px;
-	}
-#acconame{ color: black;}
-#acconame:hover{ color: blue;}
+
+
 .nav-item{font-family: 'Do Hyeon', sans-serif;}
 .nav {
 	width: 500px;
 	margin: auto;
 }
+#detail{ background-color: white;}
+#detail:hover{background-color: #E6F8F9;}
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+
 </style>
 </head>
 <body>
 <div class="container mt-3">
-<h1>Incoming Reservations List</h1>
+<h1 class="title">Incoming Reservations List</h1> <br>
 
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
@@ -99,7 +109,7 @@ h1{
 		<tr>
 		<td class="font_small">예약번호</td>
 		<td class="font_small">인원</td>
-		<td rowspan="4"><a class="atag" href="hostrsvdetail.do?rsv_no=${host.rsv_no}">상세보기</a></td>
+		<td rowspan="4" id="detail"><a class="atag" href="hostrsvdetail.do?rsv_no=${host.rsv_no}">상세보기</a></td>
 		</tr>		
 		<tr>
 		<td>${host.rsv_no}</td>

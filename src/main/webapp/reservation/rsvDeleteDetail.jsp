@@ -20,14 +20,15 @@ body {
 	margin: 0 auto;
 	padding: 50px;
 	text-align: center;
+	background-color: #FFE6E6;
 }
 table {
 	margin-left: auto;
 	margin-right: auto;
 	width: 600px;
 	height: 100px;
-	border-top: 3px solid gray;
-	border-bottom: 3.5px solid gray;
+	border-top: 2px solid pink;
+	border-bottom: 2.5px solid pink;
 }
 td {
 	border-collapse: collapse;
@@ -39,16 +40,23 @@ textarea {
     resize: none;
 }
 .btn{
-  width: 100px;
+  width: 80px;
   height: 50px;
-  border: none;
-  font-size: 1.25em;
+ /*  border: 0.5px solid #B1E8ED; */
+  border: 0.5px solid #FFC0D3;
+  font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+   background-color: #FDEBF7;
+  /* background-color: #E6F8F9; */
+  font-weight: bold;
+  
 }
 .btn:hover{
-	border: 2px solid black;
+	 /*  border: 4px solid #B1E8ED; */
+	  border: 4px solid #FFC0D3;
+	 
 }
 .bold{
 font-weight: bold; 
@@ -63,10 +71,22 @@ text-decoration: underline;
 .value{
 text-align: left;
 }
+.title {
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
+#delete{ border: 0.5px solid #B1E8ED;  background-color: #E6F8F9;}
+#delete:hover{ border: 4px solid #B1E8ED;}
 </style>
 </head>
 <body>
-<h1>예약 취소 상세보기</h1>
+<h1 class="title">Cancellation Details</h1>
 <table>			
 							<tr>
 							<td class="bold">예약번호</td>
@@ -104,24 +124,20 @@ text-align: left;
 								<td> ${rsvdelete.personnel}</td>
 							</tr>	
 							<tr>
-							<td colspan="2" class="bold">요청사항</td>
-							<td rowspan="2"><a class="atag" href="reservation.do?room_id=${rsvdelete.room_id }">다시예약하기</a></td>
+							<td  class="bold">요청사항</td>
+							<td colspan="2" class="value">${rsvdelete.request} </td>
 							</tr>	
-							<tr id="requestTR" >
-							<td colspan="2">${rsvdelete.request} </td>
-							</tr>	
-							<tr>
-							<td><input class="btn" type="button" value="목록" id="rsvList"> </td>
-							<td></td>
-							<td >
-							<form action="rsvcancellremove.do" method="post">
-								<input type="hidden" name="d_rsv_no" value="${rsvdelete.d_rsv_no}">
-								<input class="btn" type="submit" value="삭제" id="delete"> <br>
-							</form>
-							</td>						
-							</tr>	
+							
 						</table>	
-
+						<div style="margin: 10px;">
+						<input class="btn" type="button" value="목록" id="rsvList"> 
+						<input class="btn" type="button" value="재예약" id="revisit" onclick="location.href='/travel/reservation/reservation.do?room_id=${rsvdelete.room_id }';">
+						<form action="rsvcancellremove.do" method="post" style="display: inline;">
+								<input type="hidden" name="d_rsv_no" value="${rsvdelete.d_rsv_no}">
+								<input class="btn" type="submit" value="삭제" id="delete"> 
+						</form>
+						
+</div>
 
 
 

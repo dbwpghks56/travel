@@ -35,7 +35,8 @@ input{
 	border:none;
 }
 input:hover{
-	background-color: blue;
+	cursor: pointer;
+	background-color: skyblue;
 }
 .value{
 	width:60%;

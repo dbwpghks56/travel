@@ -266,6 +266,7 @@ public class ReviewDAO {
 		review.setReport_number(rs2.getInt("report"));
 		review.setR_image_path(rs2.getString("r_image_path"));
 		review.setR_regdate(rs2.getDate("r_regdate"));
+		review.setHost_id(rs2.getString("host_id"));
 		review.setReport_user(rs2.getString("report_user")); 
 		review.setRsv_no(rs2.getInt("rsv_no"));
 		
@@ -285,6 +286,7 @@ public class ReviewDAO {
 			rMap.put("u_image_path",rs2.getString("u_image_path"));
 			rMap.put("report_user", rs2.getString("report_user"));
 			rMap.put("rsv_no", rs2.getString("rsv_no"));
+			rMap.put("host_id", rs2.getString("host_id"));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

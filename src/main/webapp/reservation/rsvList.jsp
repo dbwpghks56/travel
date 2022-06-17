@@ -143,7 +143,7 @@ td:not(#font_small, #atag) {
 	text-align: left;
 }
 .nav-tabs {
-	width: 500px;
+	width: 1200px;
 	margin: auto;
 }
 .reviewbtn {
@@ -276,8 +276,9 @@ td:not(.font_small, #atag) {
 		<div class="tab-content">
 			<div id="rsvlist" class="container tab-pane active">
 				<br>
+				<div class="d-flex flex-wrap justify-content-around mb-3">
 				<c:forEach items="${rsvlist }" var="rsv">
-					<div>
+					<div class="p-2">
 						<table>
 							<tr>
 								<td>${rsv.accommodation_name }</td>
@@ -316,12 +317,14 @@ td:not(.font_small, #atag) {
 					<br>
 					<br>
 				</c:forEach>
+				</div>
 			</div>
 
 			<div id="rsvdeletelist" class="container tab-pane fade">
 				<br> <br>
+				<div class="d-flex flex-wrap justify-content-around mb-3">
 				<c:forEach items="${rsvdeletelist }" var="delete">
-					<div>
+					<div class="p-2">
 						<table>
 							<tr>
 								<td>${delete.accommodation_name }</td>
@@ -353,6 +356,7 @@ td:not(.font_small, #atag) {
 					<br>
 					<br>
 				</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,16 +107,21 @@ body {
 	left :20px;
 	position: relative; 
 }
+#sun {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	z-index: -99;
+}
+
 </style>
 </head>
 <body>
-
-
 	<div class="container-fluid mt-3">
 
 		<h1 class="title">MyPage</h1>
 		<br> <br>
-		<hr>
+		<hr id="sun">
 		<br>
 		
 		<p class="name"> <img alt="" src="${pageContext.request.contextPath}/uploads/${user.u_image_path}" id = "photo"> ${user.user_id}(${user.nickname})님 환영합니다.</p>
@@ -144,7 +150,7 @@ body {
 					class="btn btn-secondary gain" value="고객센터"></a>
 			</div>
 			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="리뷰관리">
+				<input type="button" class="btn btn-secondary gain" value="리뷰관리" onclick="location.href='/travel/review/listReview.do';">
 			</div>
 			<div class="col text-white">
 				<input type="button" class="btn btn-secondary gain" value="회원탈퇴" onclick="location.href='/travel/user/userDelete.jsp';">

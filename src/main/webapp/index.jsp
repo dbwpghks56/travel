@@ -43,7 +43,8 @@
 
 .search{
 	position:fixed;
-
+	width: 863px;
+	text-align: center;
 	left:24%;
 	margin-top:7.3%;
 }
@@ -62,6 +63,11 @@
   	padding: 20px;
 	width: 30%;
 	margin-top:1%;
+}
+
+#lobster {
+	position: fixed;
+	text-align: center;
 }
 
 
@@ -105,10 +111,18 @@
 	                </c:if>
 	                <c:if test="${user != null }">
 		                <li class="nav-item">
+		                <c:if test="${user.host == 0 }">
 		                    <a class="hiper" href="user/myPageUser.jsp">
 		                        My Page
 		                        <i class="hiper2 hiper fa fa-user"></i>
 		                    </a>
+		                    </c:if>
+		                     <c:if test="${user.host == 1 }">
+		                    <a class="hiper" href="user/myPageHost.jsp">
+		                        My Page
+		                        <i class="hiper2 hiper fa fa-user"></i>
+		                    </a>
+		                    </c:if>
 		                </li>
 		                <li class="nav-item">
 		                    <a class="hiper" href="user/logOut.do">

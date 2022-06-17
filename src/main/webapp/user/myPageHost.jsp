@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,12 @@ body {
 	text-shadow: 1px 1px 1px;
 	color: hotpink;
 }
-
+#sun {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	z-index: -99;
+}
 
 </style>
 <script>
@@ -101,7 +107,7 @@ function setThumbnail(event) {
 		<h1 class="title">MyPage</h1>
 		<br>
 		<br>
-		<hr>
+		<hr id="sun">
 		<div class="row">
 			<div class="col text-white">
 				<input type="button" onclick="location.href='/travel/user/userUpdate.do';" class="btn btn-secondary gain" value ="개인정보조회" >

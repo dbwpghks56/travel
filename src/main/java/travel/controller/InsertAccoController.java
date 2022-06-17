@@ -23,16 +23,12 @@ public class InsertAccoController implements Command {
 
 		Map<String, Object> map = UploadFileHelper.uploadFile("uploads", request);
 		
-		int result = service.InsertAcco(insertAcco2(map));
-
-		//request.setAttribute("result", result);
-		String message = "�벑濡앹떎�뙣"; if(result>0) message = "�벑濡앹셿猷�";
-		request.setAttribute("message", message);
-
-
+		AccommodationDto acco = insertAcco2(map);
+		
+		int result = service.InsertAcco(acco);
 
 		//return insertAcco;
-		return "/accommodation/confirmInsertAcco.jsp";
+		return "/user/selectAccoHost.do";
 	
 	}
 

@@ -58,6 +58,11 @@
 	color: pink;
 	
 }
+
+.title:hover {
+	cursor: pointer;
+}
+
 .line{
 	margin: auto;
 	width: 700px;
@@ -70,7 +75,7 @@
 </style>
 </head>
 <body>
-	<h1 class="title">Would You Travel</h1>
+	<h1 class="title" onclick="location.href='/travel/';">Would You Travel</h1>
 	<br>
 	<hr class = "line">
 
@@ -82,7 +87,7 @@
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">숙소번호 </span> <input type="number"
-					class="form-control" name="acco_id" id="acco_id"
+					class="form-control" name="acco_id" id="acco_id" value="${acco_id }"
 					required="required">
 			</div>
 
@@ -113,8 +118,8 @@
 			</div>
 
 			<div class="input-group mb-3">
-				<span class="input-group-text">방 이름</span> <input type="date"
-					class="form-control" placeholder="Birth" name="birth"
+				<span class="input-group-text">방 이름</span> <input type="text"
+					class="form-control" placeholder="room_name" name="room_name"
 					required="required">
 
 			</div>
@@ -129,7 +134,7 @@
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">방옵션</span> <input type="text"
-					class="form-control" placeholder="Favorite" name="favorite"
+					class="form-control" placeholder="room_option" name="room_option"
 					required="required">
 			</div>
 

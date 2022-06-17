@@ -1,0 +1,124 @@
+@charset "UTF-8";
+body {
+	clear: both;
+}
+table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 500px;
+	height: 100px;
+	
+}
+table, td {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-collapse: collapse;
+	padding: 10px;
+}
+tr:nth-child(odd) {
+	background-color: #FFE6E6;
+	color: black;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Lobster', cursive;	
+	clear: both;
+}
+
+
+a {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+td:not(#font_small, #atag) {
+	font-weight: bold;
+}
+
+#atag {
+	font-size: 14px;
+	text-align: left;
+}
+.nav-tabs {
+	width: 1200px;
+	margin: auto;
+}
+.reviewbtn, .reviewbtn2 {
+	background-color: white;
+	color: black;
+	border: none;
+}
+.reviewbtn:hover, .reviewbtn2:hover {
+	background-color: pink;
+	border: none;
+}
+.modal-content {
+	text-align:center;
+	height: 500px;
+}
+	#content {
+		width: 250px;
+		height: 100px;
+		resize: none;
+	}
+	
+	#contentcontainer {
+		margin-top: -15px;
+	}
+	
+	h5 {
+		margin-top: 5px;
+	}
+	.photowidth {
+		width: 255px;
+		margin: auto;
+	}
+	
+	h6 {
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	
+	#goreview, #goreview:hover {
+		background-color: pink;
+		border: none;
+	}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+td:not(.font_small, #atag) {
+	font-weight: bold;
+}
+
+.font_small {
+	font-size: 12px;
+	text-align:center;
+	color: gray;
+}
+
+#atag {
+	font-size: 14px;
+	text-align: center;
+}
+.hr{
+	border-bottom: 1px solid gray;
+}
+#acconame{ color: black;}
+#acconame:hover{ color: blue;}
+#totalpricetext{text-align: center;}
+.nav-item{font-family: 'Do Hyeon', sans-serif;}
+
+#wholecontainer {
+	clear: both;
+}

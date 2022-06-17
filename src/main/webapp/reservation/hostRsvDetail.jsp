@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ include file="/jsp/mainnav.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,46 +22,61 @@ body {
 	margin: 0 auto;
 	padding: 50px;
 	text-align: center;
+	background-color: #FFE6E6;
 }
 table {
+
 	margin-left: auto;
 	margin-right: auto;
-	width: 500px;
+	width:600px;
 	height: 100px;
-	border-top: 3px solid gray;
-	border-bottom: 3.5px solid gray;
+	border-top: 2px solid pink;
+	border-bottom: 2.5px solid pink;
 }
 td {
 	border-collapse: collapse;
 	padding: 10px;
 }
-textarea {
-	width: 95%;
-	height: 6.25em;
-    resize: none;
-}
+
 .btn{
-  width: 100px;
+  width: 80px;
   height: 50px;
-  border: none;
-  font-size: 1.25em;
+  border: 0.5px solid #B1E8ED;
+  font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+   background-color: #E6F8F9;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 10px;
+  
 }
 .btn:hover{
-	border: 2px solid black;
+	  border: 4px solid #B1E8ED;
+	 
 }
 .bold{
 font-weight: bold; 
 }
 .textleft{
 text-align: left;}
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
 </style>
 </head>
 <body>
-<h1>host가 등록한 숙소에 예약된 정보</h1>
-
+<h1 class="title">Booker Information</h1>
+<br>
 <table>					
 							<tr>
 							<td class="bold">예약번호</td>
@@ -100,10 +116,11 @@ text-align: left;}
 							<td class="bold">요청사항</td>
 							<td class="textleft"> ${host.request}</td>
 							</tr>
-							<tr>
+					<!-- 		<tr>
 							<td colspan="2"><input class="btn" type="button" value="목록" id="hostlist"></td>						
-							</tr>	
-						</table>	
+							</tr> -->	
+						</table>
+						<input class="btn" type="button" value="목록" id="hostlist">	
 
 </body>
 </html>

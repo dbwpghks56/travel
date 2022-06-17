@@ -33,10 +33,12 @@ public class RsvController implements Command {
 		} else {
 
 			ReservationDTO rsv = makeRsv(reQuest);
+			HttpSession session = reQuest.getSession();
+			String user_id = (String)session.getAttribute("user_id");
 			ReservationService rService = new ReservationService();
 			System.out.println(rsv);
 			int result = rService.resevation(rsv);
-			int rsv_no = rService.insertAfterRsv();
+			int rsv_no = rService.insertAfterRsv(user_id);
 			if (result > 0) {
 				reQuest.setAttribute("message", "예약이 성공적으로 이루어 졌습니다");
 				reQuest.setAttribute("rsv_no", rsv_no);

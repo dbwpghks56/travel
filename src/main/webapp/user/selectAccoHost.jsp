@@ -33,6 +33,7 @@ table{
 input{
 	background-color: white;
 	border:none;
+	border-radius: 5px;
 }
 input:hover{
 	background-color: blue;
@@ -40,31 +41,46 @@ input:hover{
 .value{
 	width:60%;
 }
+.title {
+clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
 </style>
 <body>
-<h1>숙소 관리</h1>
+<h1 class="title">Accommodation Management</h1>
 <hr>
 <c:forEach items="${accoList}" var= "acco" varStatus="status">
 	<table>
 		<tr id = "accoName">
 			<td class = "var">숙소 이름</td>
-			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
+			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
+			<td class = "deleteBtn"><input type= button class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
+			
 		</tr>
 		<tr>
 			<td class = "var">숙소 위치</td>
-			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
 			<td class = "value">${acco.get("address" )}</td>
+			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td class = "var">전화번호</td>
-			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
 			<td class = "value">${acco.get("phone")}</td>
+			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>			
 		</tr>
 		<tr>
 			<td class = "var">옵션</td>
-			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>
 			<td class = "value">${acco.get("a_option")}</td>
+			<td class = "updateBtn"><input type= button id = "updateAcco" value= "수정"></td>			
+			<td></td>		
 		</tr>
 	</table>
 	<c:forEach items="${rList.get(status.index) }" var = "room">
@@ -140,6 +156,27 @@ input:hover{
 	     	
 	   	});  	
 	});
+	$('.deleteAcco').on('click',function(){
+		var cf = confirm("해당 숙소를 삭제하시겠습니까?");
+		if(!cf) return false;		
+		$.ajax({
+            type:"POST",
+        	 async:false,
+            url:"selectAccoHost.do",
+            data : {"user_id" : '${user.user_id}', "accommodation_id" : '$(this).attr("data-accid")}'},
+            success:function (data){
+            	if(data==0){
+            		alert("해당 숙소에 예약 정보가 있습니다");
+            	}else{
+            		alert("삭제되었습니다");
+            		
+            	}
+	     	}
+	     
+	     	
+	   	});  	
+	});
+	
 	 
 </script>
 </body>

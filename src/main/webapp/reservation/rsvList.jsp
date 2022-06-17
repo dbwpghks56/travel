@@ -141,7 +141,7 @@ a:hover {
 } */
 
 .nav-tabs {
-	width: 500px;
+	width: 1200px;
 	margin: auto;
 }
 .reviewbtn {
@@ -284,8 +284,9 @@ clear: both;
 		<div class="tab-content">
 			<div id="rsvlist" class="container tab-pane active">
 				<br>
+				<div class="d-flex flex-wrap justify-content-around mb-3">
 				<c:forEach items="${rsvlist }" var="rsv">
-					<div>
+					<div class="p-2">
 						<table>
 							<tr>
 								<td>${rsv.accommodation_name }</td>
@@ -324,12 +325,14 @@ clear: both;
 					<br>
 					<br>
 				</c:forEach>
+				</div>
 			</div>
 
 			<div id="rsvdeletelist" class="container tab-pane fade">
 				<br> <br>
+				<div class="d-flex flex-wrap justify-content-around mb-3">
 				<c:forEach items="${rsvdeletelist }" var="delete">
-					<div>
+					<div class="p-2">
 						<table>
 							<tr>
 								<td>${delete.accommodation_name }</td>
@@ -361,6 +364,7 @@ clear: both;
 					<br>
 					<br>
 				</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -51,7 +51,8 @@ input{
 	border-radius: 5px;
 }
 input:hover{
-	background-color: blue;
+	cursor: pointer;
+	background-color: skyblue;
 }
 .value{
 	width:60%;

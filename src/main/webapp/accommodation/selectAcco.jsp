@@ -24,14 +24,15 @@ input {
     padding: 10px 12px;
 }
 
-#search{
+#search, #submit{
 	vertical-align: middle;
-	background-color: rgba(255,255,255,0.8);
-	background-image:url("/images/icons/searchIcon.png");
+	background-color: rgba(255,255,255,0.6);
+	background-image:url("/travel/images/icons/searchIcon.png");
 	background-size: cover;
 	width : 40px;
 	height: 40px;
 	border : 1px solid pink;
+	background-size: 100% 100%;
 	
 }
 
@@ -39,7 +40,7 @@ input {
 	cursor: pointer;
 }
 
-#submit{
+/* #submit{
 	display:inline-block;
 	color:white;
 	background: url("/travel/images/icons/searchIcon.png");
@@ -49,7 +50,7 @@ input {
 	background-size: 100% 100%;
 	vertical-align: middle;
 
-}
+} */
 
 
 

@@ -40,6 +40,8 @@
 	#dropsitem {
 		margin-right: 20px;
 		visibility: hidden;
+		position: relative;
+		z-index: 99;
 		background-color: white;
 		box-shadow: 0px 0.5px 5px gray;
 		border-radius: 10px;
@@ -57,7 +59,7 @@
 	#dropsitem li {
 		margin-bottom: 10px;
 	}
-	#dropscontainer {
+	#dropscontainer#dropscontainer {
 		float: right;
 		margin-right: 20px;
 		margin-bottom: -300px;
@@ -148,7 +150,7 @@
 	  	<li><a class="runa" href="/travel/reservation/rsvlist.do">예약조회</a></li>
 	  	<li><a class="runa" href="/travel/user/userUpdate.do">개인 정보 조회</a></li>
 	  	<li><a class="runa" href="/travel/user/siteInquiry.do">고객센터</a></li>
-	  	<li><a class="runa" href="#">리뷰관리</a></li>
+	  	<li><a class="runa" href="/travel/review/listReview.do">리뷰관리</a></li>
 	  	<li><a class="runa" href="#">회원 탈퇴</a></li>
 	  	<li><a class="runa" href="/travel/user/logOut.do">로그아웃</a></li>
 	  	<li><div class="devideli"></div></li>

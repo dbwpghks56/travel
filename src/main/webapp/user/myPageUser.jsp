@@ -108,7 +108,7 @@ body {
 	color : gray;
 }
 .review{
-	margin-right: 1px;
+	margin-right: 2px;
 }
 </style>
 </head>

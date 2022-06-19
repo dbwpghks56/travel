@@ -41,7 +41,7 @@ public class UserUpdateController implements Command {
 		int host = Integer.parseInt(request.getParameter("host"));
 
 		user.setUser_pass(pass);
-		user.setUser_email(phone);
+		user.setUser_email(email);
 		user.setU_image_path(photos);
 		user.setNickname(nick);
 		user.setUser_phone(phone);
@@ -51,9 +51,13 @@ public class UserUpdateController implements Command {
 		user.setHost(host);
 		
 		result = service.updateUser(user, userSession.getUser_id());
+		session.setAttribute("user", user);
 		
-	   
-		return "user/userUpdate.do";
+	   if (user.getHost() == 1){
+		   return "/user/myPageHost.jsp";
+		   
+	   }
+		return "/user/myPageUser.jsp";
 	}
 		 
 	 

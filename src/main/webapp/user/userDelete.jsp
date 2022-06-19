@@ -48,7 +48,7 @@
 	<br>
 	<h1 class="title">회원 탈퇴</h1>
 	<br><br>
-	<form action="userDelete.do" method="post" enctype="multipart/form-data">
+	<form action="userDelete.do" method="post" >
 
 		<div class="input-group mb-3">
 			<span class="input-group-text">아이디</span> <input type="text"

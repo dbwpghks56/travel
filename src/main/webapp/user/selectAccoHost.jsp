@@ -20,14 +20,6 @@
 	text-align: center;
 }
 
-
-	
-body{
-	margin-top:3%;
-}
-#accoTable{
-	margin-top:5%;
-}
 #accoName{
 	background-color : pink;
 }
@@ -46,15 +38,23 @@ table{
 	display:inline-block;
 	width: 10%;	
 }
-input{
+input, #proom{
 	background-color: white;
 	border:none;
 	border-radius: 5px;
 }
-input:hover{
+input:hover, #proom:hover{
 	cursor: pointer;
 	background-color: skyblue;
+	color: black;
+	text-decoration: none;
 }
+a {
+	width: 100px;
+	text-decoration: none;
+	color: black;
+}
+
 .value{
 	width:60%;
 }
@@ -63,7 +63,6 @@ input:hover{
 clear: both;
 	width: 500px;
 	margin: auto;
-	margin-top: 30px;
 	text-align: center;
 	font-family: 'Lobster', cursive;
 	text-shadow: 1px 1px 1px red;
@@ -87,28 +86,33 @@ vertical-align: top;
 		<tr id = "accoName">
 			<td class = "var">${status.index+1 }번 숙소</td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
-			<td class = "deleteBtn"><input type= button class="deleteAcco" value= "삭제" data-accid="${acco.get('accommodation_id') }"></td>
-			<td class = "updateBtn"><input type= button class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name"value= "수정"></td>
+			<td class = "deleteBtn"><input type= "button" class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
+			<td class = "roomBtn"><a id="proom" type= "button" href="/travel/accommodation/insertRoom.jsp?acco_id=${acco.accommodation_id}" class = "deleteAcco"> 방추가 </a></td>
+			<td class = "updateBtn"><input type= "button" class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">숙소 위치</td>
 			<td class = "value">${acco.get("address" )}</td>
+			
 			<td></td>
-			<td class = "updateBtn"><input type= button class = "updateAcco" data-no = '${acco.get("accommodation_id") }'data-pro="address" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button"  class = "updateAcco" data-no = '${acco.get("accommodation_id") }'data-pro="address" value= "수정"></td>
 
 		</tr>
 		<tr>
 			<td class = "var">전화번호</td>
 			<td class = "value">${acco.get("phone")}</td>
+
 			<td></td>
-			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }'data-pro="phone" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "updateAcco"data-no = '${acco.get("accommodation_id") }'data-pro="phone" value= "수정"></td>
 
 		</tr>
 		<tr>
 			<td class = "var">옵션</td>
 			<td class = "value">${acco.get("a_option")}</td>
+
+			
 			<td></td>
-			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }' data-pro="a_option"value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "updateAcco"data-no = '${acco.get("accommodation_id") }' data-pro="a_option"value= "수정"></td>
 		</tr>
 
 	</table>
@@ -117,37 +121,37 @@ vertical-align: top;
 		<tr id = "roomName">
 			<td class = "var">방 이름</td>
 			<td class = "value">${room.room_name}</td>
-			<td class = "updateBtn"><input type= button data-no="${room.room_id}"class = "update"data-pro="room_name" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" data-no="${room.room_id}"class = "update"data-pro="room_name" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">방 옵션</td>
 			<td class = "value">${room.r_option}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="r_option" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id} "data-pro="r_option" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">하루 숙박비</td>
 			<td class = "value">${room.price_by_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="price_by_day" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id}"data-pro="price_by_day" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최소 숙박일</td>
 			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="min_day"value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id} "data-pro="min_day"value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최대 숙박일</td>
-			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id} "data-pro="max_day"value= "수정"></td>
+			<td class = "value">${room.max_day}</td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id} "data-pro="max_day"value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최소 인원</td>
-			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="min_perssonel" value= "수정"></td>
+			<td class = "value">${room.min_personnel}</td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id}"data-pro="min_perssonel" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최대 인원</td>
-			<td class = "value">${room.min_day}</td>
-			<td class = "updateBtn"><input type= button class = "update"data-no="${room.room_id}"data-pro="max_personnel" value= "수정"></td>
+			<td class = "value">${room.max_personnel}</td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id}"data-pro="max_personnel" value= "수정"></td>
 		</tr>
 		<%-- <c:set var = "images" value = '${room.image_path.split(",") }'/>
 		<tr>

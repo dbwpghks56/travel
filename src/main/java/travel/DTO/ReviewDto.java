@@ -17,6 +17,35 @@ public class ReviewDto {
 	private String report_user;
 	private int rsv_no;
 	
+	public ReviewDto() {
+		super();
+	}
+	public ReviewDto(int review_id, int accommodation_id, String user_id, String host_id, String content,
+			float cleaning_stars, float location_stars, float satisfied_stars, int report_number, String r_image_path,
+			Date r_regdate, String report_user, int rsv_no) {
+		super();
+		this.review_id = review_id;
+		this.accommodation_id = accommodation_id;
+		this.user_id = user_id;
+		this.host_id = host_id;
+		this.content = content;
+		this.cleaning_stars = cleaning_stars;
+		this.location_stars = location_stars;
+		this.satisfied_stars = satisfied_stars;
+		this.report_number = report_number;
+		this.r_image_path = r_image_path;
+		this.r_regdate = r_regdate;
+		this.report_user = report_user;
+		this.rsv_no = rsv_no;
+	}
+	@Override
+	public String toString() {
+		return "ReviewDto [review_id=" + review_id + ", accommodation_id=" + accommodation_id + ", user_id=" + user_id
+				+ ", host_id=" + host_id + ", content=" + content + ", cleaning_stars=" + cleaning_stars
+				+ ", location_stars=" + location_stars + ", satisfied_stars=" + satisfied_stars + ", report_number="
+				+ report_number + ", r_image_path=" + r_image_path + ", r_regdate=" + r_regdate + ", report_user="
+				+ report_user + ", rsv_no=" + rsv_no + "]";
+	}
 	public int getRsv_no() {
 		return rsv_no;
 	}

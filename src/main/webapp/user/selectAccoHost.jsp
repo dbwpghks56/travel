@@ -70,24 +70,15 @@ clear: both;
 	color: pink;
 }
 
-#updateImg{
-	height: 300px;
-	vertical-align: top;
-}
-.Img{
-	border: 0.3px solid gray;
-}
 
 td{
 vertical-align: top;
 }
 
-
 </style>
 <body>
-
+<div class = "here"></div>
 <h1 class="title">Accommodation Management</h1>
-
 <br>
 <hr>
 <c:forEach items="${accoList}" var= "acco" varStatus="status">
@@ -101,44 +92,24 @@ vertical-align: top;
 		<tr>
 			<td class = "var">숙소 위치</td>
 			<td class = "value">${acco.get("address" )}</td>
+			<td></td>
 			<td class = "updateBtn"><input type= button class = "updateAcco" data-no = '${acco.get("accommodation_id") }'data-pro="address" value= "수정"></td>
 
 		</tr>
 		<tr>
 			<td class = "var">전화번호</td>
 			<td class = "value">${acco.get("phone")}</td>
-
+			<td></td>
 			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }'data-pro="phone" value= "수정"></td>
 
 		</tr>
 		<tr>
 			<td class = "var">옵션</td>
 			<td class = "value">${acco.get("a_option")}</td>
-
+			<td></td>
 			<td class = "updateBtn"><input type= button class = "updateAcco"data-no = '${acco.get("accommodation_id") }' data-pro="a_option"value= "수정"></td>
 		</tr>
-		<tr class = "Img">
-			<td class = "var">숙소 사진</td>
-			<td id ="updateImg" >
-			<!-- <div class="input-group mb-3">
-				<span class="input-group-text">사진</span> <input type="file"
-					class="form-control" placeholder="Photo" name="photos" accept="image/*" onchange="setThumbnail(event);" multiple="multiple">
-					<div id="demo" class="carousel slide" data-bs-ride="carousel">
-						<div class="carousel-inner">
-							<div id="image_container"></div>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						</button>
-					</div>
-			</div> -->
-			
-			<td class = "updateBtn"><input type= button class = "updateAccoImg"data-no = '${acco.get("accommodation_id") }' data-pro="a_image"value= "수정"></td>
 
-		</tr>
 	</table>
 	<c:forEach items="${rList.get(status.index) }" var = "room">
 	<table>
@@ -188,6 +159,7 @@ vertical-align: top;
 	
 </c:forEach>
 
+
 <script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -219,10 +191,8 @@ vertical-align: top;
             	location.href = "selectAccoHost.do";
 	     	}
 	     
-	     	
-
-	   	});  	
-	});
+		});  	
+	};
 	$('.deleteAcco').on('click',function(){
 		var cf = confirm("해당 숙소를 삭제하시겠습니까?");
 		if(!cf) return false;		
@@ -245,8 +215,7 @@ vertical-align: top;
 	});
 	
 
-	   	});  //end ajax	
-	};
+	
 	var modal = document.querySelector(".modal");
 	var modalDialog = document.querySelector(".modal-dialog");
 	var close = document.querySelector("#modalClose");
@@ -257,31 +226,7 @@ vertical-align: top;
 			modal.style.display='none';
 		}
 	}) ;
-	function setThumbnail(event) {
-        for (var image of event.target.files) {
-          var reader = new FileReader();
-
-          reader.onload = function(event) {
-            var img = document.createElement("img");
-            img.style.width = "300px";
-            img.style.height="300px";
-            var div = document.createElement("div");
-            var div2 = document.createElement("div");
-            img.setAttribute("src", event.target.result);
-            div.class = 'carousel-item';
-            div2.class = 'image_container';
-            img.id = 'thumbnail';
-            document.querySelector("div.carousel-inner").appendChild(div);
-            div.appendChild(div2);
-            div2.appendChild(img);
-          };
-
-          console.log(image);
-          reader.readAsDataURL(image);
-        }
-      }
 	
-
 </script>
 </body>
 </html>

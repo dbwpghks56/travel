@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,11 @@ import org.apache.catalina.connector.Response;
  * Servlet implementation class FrontController
  */
 @WebServlet("*.do")
+@MultipartConfig(
+	    fileSizeThreshold = 1024*1024,
+	    maxFileSize = 1024*1024*50, //50메가
+	    maxRequestSize = 1024*1024*50*5 // 50메가 5개까지
+	)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -107,6 +113,8 @@ public class FrontServlet extends HttpServlet {
 		}else if(uri.equals("/user/updateAccoRoom.do")) {
 			command = new UpdateAccoRoomController();
 
+		}else if(uri.equals("/user/addImg.do")) {
+			command = new AddImgController();
 		}
 		
 		page = command.execute(req);

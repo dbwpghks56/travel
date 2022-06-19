@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ReviewDAO {
 	private static final String SQL_SELECT_NUMBER = "select count('review_id') from review where accommodation_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
+	Statement st = null;
 	ResultSet rs = null;
 	int result = 0;
 	

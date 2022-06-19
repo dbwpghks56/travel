@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+	
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
@@ -18,7 +20,12 @@
 .title {
 	text-align: center;
 	margin-top: 2%;
-	font-family: verdana;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 3.5em;
+	color: pink;
+	margin-right: 340px;
+	
 }
 .check {
 	width: 50px;
@@ -216,7 +223,7 @@ body {
 			<input type="radio" class="check" name="host"  value="0"  ${user.host==0?"checked":""}>아니오
 			<br> <br> <br>
 			
-			<button class="update" data-update="${user.user_id}">수정하기</button>
+			<button type="submit" class="update btn btn-primary" data-update="${user.user_id}">수정하기</button>
 		</form>
 
 	</div>

@@ -10,8 +10,9 @@
 <body>
 			
 <script type="text/javascript">
-	alert("삭제 하시겠습니까?");
 	
+	alert("삭제 하시겠습니까?");
+	history.back();	
 </script>
 	
 </body>

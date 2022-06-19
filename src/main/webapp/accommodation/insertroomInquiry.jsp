@@ -56,8 +56,8 @@
 			<label for="acco_id">숙소 id : </label>
 		</div>
 		<div class="form-floating mb-3 mt-3">
-		    <input type="text" class="form-control" placeholder="제목을 입력하세요" name="title" required="required" value="${param.acco_name }" readonly="readonly">
-	      	<label for="title">숙소이름 : </label>
+		    <input type="text" class="form-control" placeholder="제목을 입력하세요" name="name" required="required" value="${param.acco_name }" readonly="readonly">
+	      	<label for="name">숙소이름 : </label>
       	</div>
 	    <div class="form-floating mb-3 mt-3">
 		    <input type="text" class="form-control" placeholder="제목을 입력하세요" name="title" required="required">
@@ -67,7 +67,7 @@
 		    <input type="text" class="form-control" placeholder="내용을 입력하세요" name="content" required="required">
 	      	<label for="content">내용 : </label>
       	</div>
-	    <input type="submit" class="btn btn-success submitbtn" value="보내깅">
+	    <input type="submit" class="btn btn-success submitbtn" value="문의하기">
 	</form>
 	</div>
 </body>

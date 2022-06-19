@@ -115,7 +115,7 @@ function count(type)  {
 				email : '${user.user_email}',
 				phone : '${user.user_phone}'
 			},
-			order_id : '${rsv.rsv_no}', 
+			order_id : 'order_id1099', 
 			extra : {
 				vbank_result : 1, 
 				quota : '0,2,3', 

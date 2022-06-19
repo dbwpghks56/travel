@@ -87,7 +87,7 @@ vertical-align: top;
 			<td class = "var">${status.index+1 }번 숙소</td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
 			<td class = "deleteBtn"><input type= "button" class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
-			<td class = "roomBtn"><a id="proom" type= "button" href="/travel/accommodation/insertRoom.jsp?acco_id=${acco.accommodation_id}" class = "deleteAcco"> 방추가 </a></td>
+			<td class = "roomBtn"><a id="proom" type= "button" href="/travel/accommodation/insertRoom.jsp?acco_id=${acco.accommodation_id}"> 방추가 </a></td>
 			<td class = "updateBtn"><input type= "button" class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name" value= "수정"></td>
 		</tr>
 		<tr>

@@ -59,22 +59,19 @@ body {
 }
 /* 	background-color: white; */
 .row {
-	position : relative;
+	position: relative;
 	width: 900px;
 	height: 225px;
 	background-color: #FFE6E6;
-	margin-left: 330px;
 }
 
 .btn {
 	background-color: gray;
 	text-align: left;
-	
 }
 
 .btn.btn-secondary.gain {
-	
-	font-size : 17px;
+	font-size: 17px;
 	width: 250px;
 	height: 180px;
 	border-radius: 10%;
@@ -85,12 +82,12 @@ body {
 	background-color: white;
 	box-shadow: 1px 1px 1px;
 	cursor: pointer;
-	
 }
 
-.btn.btn-secondary.gain:hover{
+.btn.btn-secondary.gain:hover {
 	background-color: pink;
 }
+
 .name {
 	margin-left: 340px;
 	color: gray;
@@ -105,7 +102,7 @@ body {
 }
 
 .material-icons-outlined {
-	position: absolute; 
+	position: absolute;
 	/* margin-top: 60px; */
 	font-size: 45px;
 	color: gray;
@@ -131,13 +128,20 @@ body {
 	margin-left: 610px;
 	margin-top: 57px;
 }
-.support{
-	margin-left: 355px;
-	margin-top: 57px;	
+
+.support {
+
+	margin-top: 57px;
 }
-.forum{
-	margin-left: 355px;
-	margin-top: 60px;	
+
+.forum {
+
+	margin-top: 60px;
+}
+
+#chess {
+	width: 900px;
+	margin: auto;
 }
 
 /* #sun {
@@ -148,8 +152,7 @@ body {
 } */
 </style>
 <script type="text/javascript">
-
-
+	
 </script>
 </head>
 <body>
@@ -165,89 +168,97 @@ body {
 				src="${pageContext.request.contextPath}/uploads/${user.u_image_path}"
 				id="photo"> ${user.user_id}(${user.nickname})님 환영합니다.
 		</p>
+		<div id="chess">
+			<div class="row">
+				<span class="material-icons-outlined forum">forum</span>
 
-		<span class="material-icons-outlined forum">forum</span>
-		
-		<div class="row">
 
-			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain " value="
+
+				<div class="col text-white">
+					<input type="button" class="btn btn-secondary gain "
+						value="
 
  
 1:1문의	
 
 *궁금한 점을 물어보세요"
-					onclick="location.href='/travel/accommodation/listRoomInquiry.do';">
-			</div>
-			<span class="material-icons-outlined check">fact_check</span>
-			
-			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="
+						onclick="location.href='/travel/accommodation/listRoomInquiry.do';">
+				</div>
+				<span class="material-icons-outlined check">fact_check</span>
+
+				<div class="col text-white">
+					<input type="button" class="btn btn-secondary gain"
+						value="
 				
 
 예약조회
 
 *예약 한 숙소를 조회하세요"
-					onclick="location.href='/travel/reservation/rsvlist.do';">
-			</div>
-			
-			<span class="material-icons-outlined people">person</span>
-			
-			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="
+						onclick="location.href='/travel/reservation/rsvlist.do';">
+				</div>
+
+				<span class="material-icons-outlined people">person</span>
+
+				<div class="col text-white">
+					<input type="button" class="btn btn-secondary gain"
+						value="
 				
 				
 개인정보조회
 				
 *개인 정보 조회와 수정하세요"
-					onclick="location.href='/travel/user/userUpdate.do';">
+						onclick="location.href='/travel/user/userUpdate.do';">
+				</div>
+
 			</div>
+			<div class="row">
+				<span class="material-icons-outlined support">support_agent</span>
 
-		</div>
-		<span class="material-icons-outlined support">support_agent</span>
 
-		<div class="row">
 
-			<div class="col text-white">
-				<a href="siteInquiry.do"><input type="button"
-					class="btn btn-secondary gain" value="
+				<div class="col text-white">
+					<a href="siteInquiry.do"><input type="button"
+						class="btn btn-secondary gain" value="
 					
 
 고객센터
 
 *사이트 관련 기타 문의"></a>
-			</div>
+				</div>
 
-			<span class="material-icons-outlined review">try</span>
-			
-			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="
+				<span class="material-icons-outlined review">try</span>
+
+				<div class="col text-white">
+					<input type="button" class="btn btn-secondary gain"
+						value="
 				
 
 리뷰관리
 
 *숙소 리뷰를 달아주세요"
-					onclick="location.href='/travel/review/listReview.do';">
+						onclick="location.href='/travel/review/listReview.do';">
 
-			</div>
+				</div>
 
-			<span class="material-icons-outlined delete">delete_outline</span>
-			
-			<div class="col text-white">
-				<input type="button" class="btn btn-secondary gain" value="
+				<span class="material-icons-outlined delete">delete_outline</span>
+
+				<div class="col text-white">
+					<input type="button" class="btn btn-secondary gain"
+						value="
 				
 
 회원탈퇴
 
 *회원을 탈퇴 할 수 있어요"
-					onclick="location.href='/travel/user/userDelete.jsp';">
-			</div>
+						onclick="location.href='/travel/user/userDelete.jsp';">
+				</div>
 
-		</div>
-		<!-- <div class = "third">
+			</div>
+			<!-- <div class = "third">
 			<div class="col text-white">
 				<input type="button" onclick="location.href='/travel/user/selectAccoHost.do';"  class="btn btn-secondary gain" value="숙소관리">
 			</div> -->
+		</div>
 	</div>
 
 

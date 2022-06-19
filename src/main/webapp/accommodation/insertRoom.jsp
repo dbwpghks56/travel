@@ -37,6 +37,7 @@
 #thumbnail {
 	width: 200px;
 	height: 200px;
+	display: none;
 	border-radius: 5px;
 	border: 3px solid pink;
 }

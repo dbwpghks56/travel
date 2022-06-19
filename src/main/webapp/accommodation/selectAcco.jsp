@@ -13,7 +13,9 @@
     box-sizing: border-box;
 	}
 .search {
-	margin:0 auto;
+	width: 50%;
+	display: block;
+	margin: auto;
 	text-align: center;
 }
 input {

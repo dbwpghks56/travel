@@ -103,7 +103,7 @@
 	                </li>
 	                <c:if test="${user == null }">
 		                <li class="nav-item">
-		                    <a class="hiper" href="user/login.jsp">
+		                    <a class="hiper" href="/travel/user/login.jsp">
 		                        Login
 		                        <i class="hiper2 hiper fa fa-sign-in"></i>
 		                    </a>
@@ -112,20 +112,20 @@
 	                <c:if test="${user != null }">
 		                <li class="nav-item">
 		                <c:if test="${user.host == 0 }">
-		                    <a class="hiper" href="user/myPageUser.jsp">
+		                    <a class="hiper" href="/travel/user/myPageUser.jsp">
 		                        My Page
 		                        <i class="hiper2 hiper fa fa-user"></i>
 		                    </a>
 		                    </c:if>
 		                     <c:if test="${user.host == 1 }">
-		                    <a class="hiper" href="user/myPageHost.jsp">
+		                    <a class="hiper" href="/travel/user/myPageHost.jsp">
 		                        My Page
 		                        <i class="hiper2 hiper fa fa-user"></i>
 		                    </a>
 		                    </c:if>
 		                </li>
 		                <li class="nav-item">
-		                    <a class="hiper" href="user/logOut.do">
+		                    <a class="hiper" href="/travel/user/logOut.do">
 		                        LogOut
 		                        <i class="hiper2 hiper fa fa-power-off"></i>
 		                    </a>

@@ -123,9 +123,14 @@
 		margin-left: -45px;
 	}
 	
+	#ccontainer {
+		
+	}
+	
 </style>
 </head>
 <body>
+<div id="ccontainer">
 	<!-- <img id="airbnb" height="50" width="50" src="https://cdn.jsdelivr.net/npm/simple-icons@v6/icons/yourtraveldottv.svg" /> -->
 	<div id="dropscontainer">
 	  <button type="button" id="drops">
@@ -172,7 +177,7 @@
 		</c:if>
 	  </ul> 
 	</div>
-	
+	</div>
 </body>
 </html>
 

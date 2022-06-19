@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -87,13 +88,13 @@ vertical-align: top;
 			<td class = "var">${status.index+1 }번 숙소</td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
 			<td class = "deleteBtn"><input type= "button" class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
-			<td class = "roomBtn"><a id="proom" type= "button" href="/travel/accommodation/insertRoom.jsp?acco_id=${acco.accommodation_id}" class = "deleteAcco"> 방추가 </a></td>
+			<td class = "roomBtn"><a id="proom" type= "button" href="/travel/accommodation/insertRoom.jsp?acco_id=${acco.accommodation_id}"> 방추가 </a></td>
 			<td class = "updateBtn"><input type= "button" class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">숙소 위치</td>
 			<td class = "value">${acco.get("address" )}</td>
-			
+			<td></td>
 			<td></td>
 			<td class = "updateBtn"><input type= "button"  class = "updateAcco" data-no = '${acco.get("accommodation_id") }'data-pro="address" value= "수정"></td>
 
@@ -101,7 +102,7 @@ vertical-align: top;
 		<tr>
 			<td class = "var">전화번호</td>
 			<td class = "value">${acco.get("phone")}</td>
-
+			<td></td>
 			<td></td>
 			<td class = "updateBtn"><input type= "button" class = "updateAcco"data-no = '${acco.get("accommodation_id") }'data-pro="phone" value= "수정"></td>
 
@@ -109,8 +110,7 @@ vertical-align: top;
 		<tr>
 			<td class = "var">옵션</td>
 			<td class = "value">${acco.get("a_option")}</td>
-
-			
+			<td></td>
 			<td></td>
 			<td class = "updateBtn"><input type= "button" class = "updateAcco"data-no = '${acco.get("accommodation_id") }' data-pro="a_option"value= "수정"></td>
 		</tr>
@@ -146,7 +146,7 @@ vertical-align: top;
 		<tr>
 			<td class = "var">최소 인원</td>
 			<td class = "value">${room.min_personnel}</td>
-			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id}"data-pro="min_perssonel" value= "수정"></td>
+			<td class = "updateBtn"><input type= "button" class = "update"data-no="${room.room_id}"data-pro="min_personnel" value= "수정"></td>
 		</tr>
 		<tr>
 			<td class = "var">최대 인원</td>

@@ -271,7 +271,7 @@ function setThumbnail(event) {
 		<div class="row">
 		
 			<div class="col text-white">
-				<input type="button" onclick="location.href='/travel/user/userUpdate.do';" class="btn btn-secondary gain " value ="	
+				<input type="button" onclick="location.href='/travel/user/updateUser.jsp';" class="btn btn-secondary gain " value ="	
   
  
   개인정보조회
@@ -323,7 +323,7 @@ function setThumbnail(event) {
 			</div>
 			<span class="material-icons-outlined delete">delete_outline</span>
 			<div class="col text-white">
-				<input type="button"  onclick="location.href='/travel/user/userDelete.do';" class="btn btn-secondary gain " value="
+				<input type="button"  onclick="location.href='/travel/user/userDelete.jsp';" class="btn btn-secondary gain " value="
 				
   
   회원탈퇴

@@ -168,19 +168,18 @@ public class UserDAO {
 		conn = DBUtil.getConnection();
 	
 		try {
-			pst = conn.prepareStatement("update users set user_password = ?, user_name = ?, u_image_path = ?, user_email = ?, nickname = ?, "
+			pst = conn.prepareStatement("update users set user_password = ?, u_image_path = ?, user_email = ?, nickname = ?, "
 					+ "user_phone = ?, host = ?, birth = ?, favorite = ? where user_id = ?");
 			
 			pst.setString(1, user.getUser_pass());
-			pst.setString(2, user.getUser_name());
-			pst.setString(3, user.getU_image_path());
-			pst.setString(4, user.getUser_email());
-			pst.setString(5, user.getNickname());
-			pst.setString(6, user.getUser_phone());
-			pst.setInt(7, user.getHost());
-			pst.setDate(8, user.getBirth());
-			pst.setString(9, user.getFavorite());
-			pst.setString(10, user_id);
+			pst.setString(2, user.getU_image_path());
+			pst.setString(3, user.getUser_email());
+			pst.setString(4, user.getNickname());
+			pst.setString(5, user.getUser_phone());
+			pst.setInt(6, user.getHost());
+			pst.setDate(7, user.getBirth());
+			pst.setString(8, user.getFavorite());
+			pst.setString(9, user_id);
 			
 			result = pst.executeUpdate();
 			

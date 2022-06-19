@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <style type="text/css">
 .btn-primary {
 	width: 500px;
-	margin: auto;
+	margin-left :518px;
 	background-color: pink;
 	color: white;
 	border: pink;
@@ -20,12 +21,27 @@
 	width: 500px;
 	margin: auto;
 }
+
+.input-group-text {
+	width: 90px;
+	background-color: pink;
+	color: white;
+}
+
+.title{
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 3em;
+	color: pink;
+	margin-left: 600px;
+}
 </style>
 </head>
 <body>
-	<h1>회원을 탈퇴하시겠습니까?</h1>
-	<form action="userDelete.do" method="post"
-		enctype="multipart/form-data">
+	<br>
+	<h1 class="title">Would You Travel</h1>
+	<br><br>
+	<form action="userDelete.do" method="post" enctype="multipart/form-data">
 
 		<div class="input-group mb-3">
 			<span class="input-group-text">아이디</span> <input type="text"

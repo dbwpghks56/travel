@@ -14,7 +14,7 @@ public class InsertRoomInquiryController implements Command {
 		
 		request.setAttribute("message", riservice.insertRinquiry(makeRi(request)) >0 ? "성공" : "실패");
 		
-		return "/accommodation/confirmInsertri.jsp";
+		return "redirect:/travel/accommodation/listRoomInquiry.do";
 	}
 
 	private Room_InquiryDto makeRi(HttpServletRequest request) {

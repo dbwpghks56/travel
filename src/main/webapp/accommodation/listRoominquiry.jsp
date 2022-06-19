@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -168,12 +169,23 @@ td:not(.font_small, #atag) {
 #wholecontainer {
 	clear: both;
 }
+#title {
+	clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
+}
 </style>
 </head>
 <body>
 	<div id="wholecontainer">
 	<div class="container mt-3">
-		<h1>Inquiry List</h1>
+		<h1 id="title">Inquiry List</h1>
 		<br>
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link active"
@@ -209,9 +221,7 @@ td:not(.font_small, #atag) {
 
 							</tr>
 							<tr>
-								<td id="atag"><a class="btn btn-primary reviewbtn">
-										숙소로 가기
-									</a></td>
+								<td id="atag"></td>
 								<td id="atag">
 									<a class="btn btn-primary reviewbtn" data-rid="${inquiry.r_inquiry_id }">
 										문의 삭제
@@ -255,9 +265,7 @@ td:not(.font_small, #atag) {
 
 							</tr>
 							<tr>
-								<td id="atag"><a class="btn btn-primary reviewbtn">
-										숙소로 가기
-									</a></td>
+								<td id="atag"></td>
 								<td id="atag">
 									<a class="btn btn-primary reviewbtn" data-rid="${inquiry.r_inquiry_id }">
 										문의 삭제
@@ -293,11 +301,9 @@ td:not(.font_small, #atag) {
 
 							</tr>
 							<tr>
-								<td id="atag"><a class="btn btn-primary reviewbtn">
-										숙소로 가기
-									</a></td>
+								<td id="atag"></td>
 								<td id="atag">
-									<a href="answerInquiry.jsp?inquiry_id=${rinquiry.r_inquiry_id }"
+									<a href="answerInquiry.jsp?inquiry_id=${hostlist.r_inquiry_id }&content=${hostlist.content}"
 									 class="btn btn-primary reviewbtn2 confrim" >
 										답변하기
 									</a>

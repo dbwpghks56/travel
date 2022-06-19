@@ -43,11 +43,11 @@
 
 .search{
 	position:fixed;
-	width: 863px;
 	text-align: center;
 	left:24%;
 	margin-top:7.3%;
 }
+
 #calendar{
 	display:inline-block;
  	background-color: #fefefe;

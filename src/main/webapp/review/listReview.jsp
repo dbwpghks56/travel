@@ -15,6 +15,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/travel/css/goodcss.css">
 <title>Insert title here</title>
 <style type="text/css">
@@ -62,6 +63,17 @@
 }
 table {
 	width: 1200px;
+}
+#title {
+	clear: both;
+	width: 500px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	font-family: 'Lobster', cursive;
+	text-shadow: 1px 1px 1px red;
+	font-size: 4em;
+	color: pink;
 }
 </style>
 <script type="text/javascript">
@@ -135,7 +147,7 @@ table {
 <body>
 	<div id="wholecontainer">
 		<div class="container mt-3">
-			<h1>Review List</h1>
+			<h1 id="title">Review List</h1>
 			<br>
 			<ul class="nav nav-tabs">
 				<li class="nav-item"><a class="nav-link active"

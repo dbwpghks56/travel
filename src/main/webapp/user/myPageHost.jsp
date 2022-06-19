@@ -149,7 +149,7 @@ function setThumbnail(event) {
 					class="btn" value="고객센터"></a>
 			</div>
 			<div class="col">
-				<input type="button" class="btn" value="리뷰관리">
+				<input type="button" class="btn" value="리뷰관리" onclick="location.href='/travel/review/listReview.do';">
 			</div>
 			<div class="col">
 				<input type="button"  onclick="location.href='/travel/user/userDelete.do';" class= "btn" value="회원탈퇴">

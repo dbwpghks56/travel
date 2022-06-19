@@ -34,12 +34,16 @@ public class InsertReview implements Command {
 		double sStar = Integer.parseInt(request.getParameter("sati"));
 		int accoId = aService.roomToAcco(Integer.parseInt(request.getParameter("room_id")));
 		int totalNum = reviewservice.selectNumber(accoId);
+		if(totalNum == 0) {
+			aService.updateStar(cStar,lStar , sStar,accoId);
+		}else {
+			AccommodationDto acco = aService.selectById(accoId);
+			cStar = (acco.getCleaning_star()/totalNum)+(cStar/totalNum);
+			lStar = (acco.getLocation_star()/totalNum)+(lStar/totalNum);
+			sStar = (acco.getSatisfied_star()/totalNum)+(sStar/totalNum);
+			aService.updateStar(cStar, lStar, sStar, accoId);
+		}
 		
-		AccommodationDto acco = aService.selectById(accoId);
-		cStar = (acco.getCleaning_star()/totalNum)+(cStar/totalNum);
-		lStar = (acco.getLocation_star()/totalNum)+(lStar/totalNum);
-		sStar = (acco.getSatisfied_star()/totalNum)+(sStar/totalNum);
-		aService.updateStar(cStar, lStar, sStar, accoId);
 		
 		return "rest:" + result;
 	}

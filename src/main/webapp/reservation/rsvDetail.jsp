@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예약상세</title>
+<title>예약 상세</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -41,6 +41,7 @@
 			}
 		});
 
+	});
 	});
 </script>
 <style>

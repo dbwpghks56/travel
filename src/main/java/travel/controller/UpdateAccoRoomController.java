@@ -11,7 +11,7 @@ public class UpdateAccoRoomController implements Command {
 	public String execute(HttpServletRequest request) {
 		String pro = request.getParameter("pro");
 		String newValue = request.getParameter("newValue");
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id").trim());
 		int ret = 0;
 		if(pro.equals("accommodation_name")||pro.equals("address")||pro.equals("phone")||pro.equals("a_option")) {
 			AccommodationService aService = new AccommodationService();

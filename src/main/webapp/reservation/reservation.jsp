@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
 
@@ -115,7 +116,7 @@ function count(type)  {
 				email : '${user.user_email}',
 				phone : '${user.user_phone}'
 			},
-			order_id : '${rsv.rsv_no}', 
+			order_id :'${rsv.rsv_no}', 
 			extra : {
 				vbank_result : 1, 
 				quota : '0,2,3', 

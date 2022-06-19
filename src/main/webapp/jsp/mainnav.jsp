@@ -87,7 +87,7 @@
 		font-size: 2.2em;
 	}
 	
-	.profile {
+	.profile.profile {
 		display: inline-block;
 		width: 50px;
 		height: 50px;
@@ -156,7 +156,7 @@
 	  	<li><div class="devideli"></div></li>
 	  	<c:if test="${user.host == 0 }">
 	  		<li>
-				<a class="runa" href="#">호스트 되기</a>
+				<a class="runa" href="/travel/user/userUpdate.do">호스트 되기</a>
 			</li>
 		</c:if>
 		<c:if test="${user.host == 1 }">
@@ -165,6 +165,9 @@
 			</li>
 			<li>
 				<a class="runa" href="/travel/reservation/hostlist.do">예약 현황</a>
+			</li>
+			<li>
+				<a class="runa" href="/travel/user/selectAccoHost.do">숙소 관리</a>
 			</li>
 		</c:if>
 	  </ul> 

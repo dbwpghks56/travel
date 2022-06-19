@@ -307,7 +307,6 @@ function setThumbnail(event) {
 				<a href="siteInquiry.do"><input type="button"
 					class="btn btn-secondary gain " value="
 
-  
   고객센터
   
   *사이트 관련 기타 문의"></a>

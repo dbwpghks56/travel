@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/jsp/mainnav.jsp" %>
 <!DOCTYPE html>
 
 <html>
@@ -14,8 +15,8 @@
 <style type="text/css">
 #formcontainer {
 	width: 40%;
-	display: inline-block;
-	margin-left: 450px;
+	display: block;
+	margin: auto;
 	
 }
 
@@ -50,17 +51,12 @@
 	margin-left: 520px;
 	width: 450px;
 	margin: auto;
-	margin-top: 10px;
 	text-align: center;
 	font-family: 'Lobster', cursive;
 	text-shadow: 1px 1px 1px red;
 	font-size: 3em;
 	color: pink;
 	
-}
-
-.title:hover {
-	cursor: pointer;
 }
 
 .line{
@@ -72,14 +68,22 @@
 	text-shadow: 1px 1px 1px;
 	color : gray;
 }
+#wholecontainer {
+	clear: both;
+	margin: auto;
+}
+#containers {
+	margin: auto;
+}
 </style>
 </head>
 <body>
-	<h1 class="title" onclick="location.href='/travel/';">Would You Travel</h1>
+<div id="wholecontainer">
+	<h1 class="title">Insert Room</h1>
 	<br>
 	<hr class = "line">
-
-	<p class = "text">숙소번호를 입력 해 주세요</p>
+	<br>
+	<div id="containers">
 	<div id="formcontainer">
 
 		<form action="insertRoom.do" method="post"
@@ -87,8 +91,8 @@
 
 			<div class="input-group mb-3">
 				<span class="input-group-text">숙소번호 </span> <input type="number"
-					class="form-control" name="acco_id" id="acco_id" value="${acco_id }"
-					required="required">
+					class="form-control" name="acco_id" id="acco_id" value="${param.acco_id }"
+					required="required" readonly="readonly">
 			</div>
 
 			<div class="input-group mb-3">
@@ -142,7 +146,17 @@
 
 		</form>
 	</div>
-
-
+	</div>
+</div>
+<script type="text/javascript">
+function setThumbnail(event) {
+	var reader = new FileReader();
+	reader.onload = function(event) {
+		$("#thumbnail").attr("src", event.target.result);
+		$("#thumbnail").css("display", "inline-block");
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+</script>
 </body>
 </html>

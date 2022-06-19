@@ -35,7 +35,7 @@ public class InsertRoomController implements Command {
 		request.setAttribute("message", message);
 
 
-		return "/travel/user/myPageHost.do";
+		return "/user/myPageHost.jsp";
 
 	}
 	

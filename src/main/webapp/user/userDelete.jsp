@@ -11,11 +11,16 @@
 <title>Would You Travel?</title>
 <style type="text/css">
 .btn-primary {
+	display: block;
 	width: 500px;
-	margin-left :518px;
 	background-color: pink;
 	color: white;
 	border: pink;
+	margin: auto;
+}
+
+.btn-primary:hover {
+	background-color: #F582A7;
 }
 
 .input-group {
@@ -30,23 +35,24 @@
 }
 
 .title{
+	clear: both;
 	font-family: 'Lobster', cursive;
 	text-shadow: 1px 1px 1px red;
 	font-size: 3em;
 	color: pink;
-	margin-left: 600px;
+	text-align: center;
 }
 </style>
 </head>
 <body>
 	<br>
-	<h1 class="title">Would You Travel</h1>
+	<h1 class="title">회원 탈퇴</h1>
 	<br><br>
 	<form action="userDelete.do" method="post" >
 
 		<div class="input-group mb-3">
 			<span class="input-group-text">아이디</span> <input type="text"
-				class="form-control" placeholder="ID" name="id">
+				class="form-control" placeholder="ID" name="id" value="${user.user_id }">
 		</div>
 		
 		<div class="input-group mb-3">

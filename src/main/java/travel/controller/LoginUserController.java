@@ -30,8 +30,6 @@ public class LoginUserController implements Command {
 		UserDTO user = null;
 		
 		if(kakao_email.equals(null) || kakao_email.equals("")) {
-			System.out.println(kakao_email);
-			System.out.println("�솗�씤");
 			user = service.loginUser(user_id, user_pass);
 			session.setAttribute("user", user);
 			session.setAttribute("user_id", user_id);
@@ -39,8 +37,6 @@ public class LoginUserController implements Command {
 		
 		else {
 			user = service.loginKakaoUser(kakao_email);
-			System.out.println(kakao_email);
-			System.out.println("�솗�씤"+ user);
 			session.setAttribute("user", user);
 			session.setAttribute("user_id", user_id);
 			if(user == null) {

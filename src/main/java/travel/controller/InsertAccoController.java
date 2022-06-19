@@ -28,7 +28,7 @@ public class InsertAccoController implements Command {
 		int result = service.InsertAcco(acco);
 
 		//return insertAcco;
-		return "/user/selectAccoHost.do";
+		return "redirect:/travel/user/selectAccoHost.do";
 	
 	}
 

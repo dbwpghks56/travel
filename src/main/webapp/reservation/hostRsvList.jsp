@@ -20,7 +20,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
-<title>host가 등록한 숙소에 예약된 list</title>
+<title>예약 들어온 목록</title>
 <style>
 body {
 	clear: both;

@@ -165,8 +165,8 @@ a{
 			</div>
 			</c:if>
 		</div>
-		
-		<span><a href = "../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
+		<%-- href = "../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}" --%>
+		<span><a onclick="loginCheck()"><img src = "../images/icons/timeIcon.png" width="20%"height="20%">${roomList.get(status.index).getRoom_name() }방 예약하기</a></span>
 	</div>
 	</c:forEach>
 	</div>
@@ -214,6 +214,18 @@ a{
 		src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.2/proj4.js"
 		type="text/javascript"></script>
 	<script>
+	
+	function loginCheck(){
+		let signIn = "${user.user_id}";
+		if(signIn == ""){
+			alert("로그인 후 이용해 주세요");
+			location.href="../user/login.do"
+		}else{
+			location.href="../reservation/reservation.do?room_id=${roomList.get(status.index).getRoom_id()}" ;
+		}
+		
+	}
+	
 	var report = document.querySelector(".report");
 	$(".report").on("click", function(e) {
 		e.preventDefault();

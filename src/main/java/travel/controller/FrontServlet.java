@@ -101,7 +101,7 @@ public class FrontServlet extends HttpServlet {
 		}else if(uri.equals("/user/selectAccoHost.do")) {
 			command = new SelectByHostController();
 
-		}else if(uri.equals("/user/selectAccoHost.do")) {
+		}else if(uri.equals("/user/accoDelete.do")) {
 			command = new AccoDeleteController();
 
 		}else if(uri.equals("/user/updateAccoRoom.do")) {

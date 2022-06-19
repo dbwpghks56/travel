@@ -13,7 +13,7 @@ public class RsvCancellRemoveController implements Command {
 		ReservationService service = new ReservationService();
 		int result = service.dRsvNoDelete(dRsvNo);
 		request.setAttribute("message", result>0?"성공":"실패");
-		return "result.jsp";
+		return "/reservation/rsvList.jsp";
 	}
 
 }

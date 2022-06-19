@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -95,7 +96,7 @@ vertical-align: top;
 		<tr id = "accoName">
 			<td class = "var">${status.index+1 }번 숙소</td>
 			<td class = "value">${acco.get("accommodation_name")}</td>
-			<td class = "deleteBtn"><input type= button class = "deleteAcco" value= "삭제" data-accid="${acco.accommodation_id}"></td>
+			<td class = "deleteBtn"><input type= button class="deleteAcco" value= "삭제" data-accid="${acco.get('accommodation_id') }"></td>
 			<td class = "updateBtn"><input type= button class= "updateAcco" data-no = '${acco.get("accommodation_id") }' data-pro="accommodation_name"value= "수정"></td>
 		</tr>
 		<tr>
@@ -222,20 +223,22 @@ vertical-align: top;
 	     	
 
 	   	});  	
-	});
+	};
+	
 	$('.deleteAcco').on('click',function(){
 		var cf = confirm("해당 숙소를 삭제하시겠습니까?");
 		if(!cf) return false;		
 		$.ajax({
             type:"POST",
         	 async:false,
-            url:"selectAccoHost.do",
-            data : {"user_id" : '${user.user_id}', "accommodation_id" : '$(this).attr("data-accid")}'},
+            url:"accoDelete.do",
+            data : {"user_id" : '${user.user_id}', "accommodation_id" : $(this).attr("data-accid")},
             success:function (data){
             	if(data==0){
             		alert("해당 숙소에 예약 정보가 있습니다");
             	}else{
             		alert("삭제되었습니다");
+            		window.location.reload();
             		
             	}
 	     	}
@@ -245,8 +248,6 @@ vertical-align: top;
 	});
 	
 
-	   	});  //end ajax	
-	};
 	var modal = document.querySelector(".modal");
 	var modalDialog = document.querySelector(".modal-dialog");
 	var close = document.querySelector("#modalClose");

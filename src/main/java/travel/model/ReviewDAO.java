@@ -196,7 +196,6 @@ public class ReviewDAO {
 	public int updateReportUser(int review_id, String user_id) {
 		conn = DBUtil.getConnection();
 		int ret = 0;
-		
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_REPORT_USER);
 			pst.setInt(1, review_id);
@@ -212,8 +211,8 @@ public class ReviewDAO {
 			}else {
 				String[] arr = reportUser.split(",");
 				for(int i = 0; i<arr.length; i++) {
-					if(user_id.equals(arr[i])) {
-						ret =0;
+					if(user_id.equals(arr[i].trim())) {
+						return 0;
 					}else {
 						String str = reportUser+", "+user_id;
 						pst.close();
@@ -288,7 +287,7 @@ public class ReviewDAO {
 			rMap.put("u_image_path",rs2.getString("u_image_path"));
 			rMap.put("report_user", rs2.getString("report_user"));
 			rMap.put("rsv_no", rs2.getString("rsv_no"));
-			rMap.put("host_id", rs2.getString("host_id"));
+			rMap.put("host_id", rs2.getString("user_id"));
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

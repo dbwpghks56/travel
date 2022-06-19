@@ -31,13 +31,9 @@ public class SelectByHostController implements Command{
 		for(int i = 0; i<accoIdList.length; i++) {
 			rList.add(rService.selectByAcco(accoIdList[i]));
 		}
-		List<Integer> aImgList = new ArrayList<>();
-		for(int i = 0; i<accoList.size(); i++) {
-			aImgList.add(accoList.get(i).get("a_image_path").split(",").length);
-		}
+		
 		request.setAttribute("accoList", accoList);
 		request.setAttribute("rList", rList);
-		request.setAttribute("aImgList",aImgList);
 		
 		return "selectAccoHost.jsp";
 	}

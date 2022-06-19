@@ -37,7 +37,7 @@ public class AccommodationDAO {
 			+ "( seq_acc.nextval , ? , ? , ? , ? , ? , ? , ? , ?, ?, ?, ?)";
 	private static final String SQL_SELECT_BY_ID = "select * from accommodation where accommodation_id = ?";
 	private static final String SQL_UPDATE_STAR = "update accommodation set cleaning_stars = ?, location_stars = ?, satisfied_stars = ? where accommodation_id = ?";
-	private static final String SQL_ROOM_TO_ACCO = "select accommodation_id from join room using(accommodation_id) room where room_id = ?";
+	private static final String SQL_ROOM_TO_ACCO = "select accommodation_id from accommodation join room  using(accommodation_id) where room_id = ?";
 	private static final String SQL_SELECT_USER = "select * from accommodation where user_id = ?";
 	Connection conn;
 	PreparedStatement pst;

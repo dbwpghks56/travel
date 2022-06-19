@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&family=Oswald&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 <style>
 	.modal{
@@ -18,8 +19,6 @@
 	}
 	.modal-dialog{
 		position: absolute;
-		top:20%;
-		left: 38%;
 	}
 	
 	.modal-content{

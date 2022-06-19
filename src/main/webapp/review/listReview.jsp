@@ -126,6 +126,8 @@ table {
 			var review = $(this).attr("data-review");
 			if (confirm("정말 삭제 하시겠습니까?")) {
 				location.href = "deleteReview.do?reviewid=" + review;
+				window.location.reload();
+				
 			}
 		});
 	});

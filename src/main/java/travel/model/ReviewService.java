@@ -44,4 +44,5 @@ public class ReviewService {
 	public int selectNumber(int accoId) {
 		return reviewdao.selectNumber(accoId);
 	}
+	
 }

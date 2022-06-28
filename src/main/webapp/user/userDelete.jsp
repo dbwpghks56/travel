@@ -46,7 +46,7 @@
 </head>
 <body>
 	<br>
-	<h1 class="title">회원 탈퇴</h1>
+	<h1 class="title">Withdrawal</h1>
 	<br><br>
 	<form action="userDelete.do" method="post" >
 

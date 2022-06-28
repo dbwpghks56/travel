@@ -11,6 +11,7 @@ import travel.DTO.Room_InquiryDto;
 import travel.util.DBUtil;
 
 public class Room_InquiryDAO {
+	private static final String SQL_DEL_ALL = "delete room_inquiry where user_id = ?";
 	Connection conn = null;
 	PreparedStatement pst = null;
 	ResultSet rs = null;
@@ -163,7 +164,24 @@ public class Room_InquiryDAO {
 		
 		return rinquirylist;
 	}
-	
+	public int deleteAll(String userid) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		try {
+			pst = conn.prepareStatement(SQL_DEL_ALL);
+			pst.setString(1, userid);
+			pst.executeUpdate();
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return ret;
+	}
 	private Room_InquiryDto makeRinquiry2(ResultSet rs2) throws SQLException {
 		Room_InquiryDto rinquiry = new Room_InquiryDto();
 		

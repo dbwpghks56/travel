@@ -161,7 +161,6 @@ public class ReviewDAO {
 			pst = conn.prepareStatement(SQL_SELECT_BY_ACCOID);
 			pst.setInt(1, accoId);
 			rs = pst.executeQuery();
-			rs.next();
 			while(rs.next()) {
 				Map<String, String> rMap = makeMap(rs);
 				rlist.add(rMap);
@@ -253,6 +252,7 @@ public class ReviewDAO {
 		
 		return number;
 	}
+	
 
 	private ReviewDto makeReview(ResultSet rs2) throws SQLException {
 		ReviewDto review = new ReviewDto();

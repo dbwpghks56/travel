@@ -22,6 +22,7 @@ public class SiteInquiryDAO {
 	private static final String SQL_INSERT_BY_USER = "insert into site_inquiry values(s_seq.nextval,?,?,null,null,0)";
 	private static final String SQL_UPDATE_BY_MGR = "update site_inquiry set answer = ?, manager_id = ?, s_answer_confirm=1 where inquiry_id = ?";
 	private static final String SQL_SELECT_ALL = "select * from site_inquiry order by s_answer_confirm";
+	private static final String SQL_DEL_ALL = "delete site_inquiry where user_id =?";
 	public List<SiteInquiryDTO> selectAllReview(String userId) {
 		conn = DBUtil.getConnection();
 		List<SiteInquiryDTO> inquirys = new ArrayList<>();
@@ -96,6 +97,22 @@ public class SiteInquiryDAO {
 			pst.setInt(3, iId);
 			ret = pst.executeUpdate();
 			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return ret;
+	}
+	public int deleteAll(String userid) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		try {
+			pst = conn.prepareStatement(SQL_DEL_ALL);
+			pst.setString(1, userid);
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

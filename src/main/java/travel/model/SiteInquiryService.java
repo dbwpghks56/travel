@@ -1,9 +1,11 @@
 package travel.model;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import travel.DTO.SiteInquiryDTO;
+import travel.util.DBUtil;
 
 public class SiteInquiryService {
 	SiteInquiryDAO sDao  = new SiteInquiryDAO();
@@ -18,5 +20,8 @@ public class SiteInquiryService {
 	}
 	public List<SiteInquiryDTO> selectAll() {
 		return sDao.selectAll();
+	}
+	public int deleteAll(String userid) {
+		return sDao.deleteAll(userid);
 	}
 }

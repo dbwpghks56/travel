@@ -113,7 +113,6 @@ body{
 		
 		<a href = "selectRoom.do?acco_name=${accommoList.get(status.index).get('accommodation_name') }&acco_id=${accommoList.get(status.index).get('accommodation_id') }">
 		<span>${accommoList.get(status.index).get('accommodation_name') }</span></a>
-		<div class = "score"><span class="material-icons">star</span><span>${stars.get(status.index)}</span></div>
 	</div>
 	</c:forEach>
 	</div>

@@ -1,8 +1,10 @@
 package travel.model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import travel.DTO.Room_InquiryDto;
+import travel.util.DBUtil;
 
 public class Room_InquiryService {
 	Room_InquiryDAO rinquirydao = new Room_InquiryDAO();
@@ -34,5 +36,8 @@ public class Room_InquiryService {
 	}
 	public List<Room_InquiryDto> selectAUserRinquiry(String user_id) {
 		return rinquirydao.selectAUserRinquiry(user_id);
+	}
+	public int deleteAll(String userid) {
+		return rinquirydao.deleteAll(userid);
 	}
 }

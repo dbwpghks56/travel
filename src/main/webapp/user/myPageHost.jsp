@@ -273,10 +273,9 @@ body {
 				src="${pageContext.request.contextPath}/uploads/${user.u_image_path}"
 				id="photo"> ${user.user_id}(${user.nickname})님 환영합니다.</p>
 				
-				<span class="material-icons-outlined people">person</span>
 				<div id="chess">
 		<div class="row">
-		
+			<span class="material-icons-outlined people">person</span>
 			<div class="col text-white">
 				<input type="button" onclick="location.href='/travel/user/updateUser.jsp';" class="btn btn-secondary gain " value ="	
   

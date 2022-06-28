@@ -1,26 +1,28 @@
 package travel.model;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import travel.DTO.ReservationDTO;
+import travel.util.DBUtil;
 
 public class ReservationService {
 
 	ReservationDAO rDAO = new ReservationDAO();
 	
-	//¿¹¾àÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int resevation(ReservationDTO rsv) {
 		return rDAO.resevation(rsv);
 	}
 	
 	
-	//¿¹¾à ¼öÁ¤ÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int rsvUpdate(ReservationDTO rsv) {
 		return rDAO.rsvUpdate(rsv);
 	}
 	
 	
-	//¿¹¾àÃë¼ÒÇÏ±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	public int rsvDelete(int rsv_no) {
 		return rDAO.rsvDelete(rsv_no);
 	}
@@ -45,37 +47,44 @@ public class ReservationService {
 		return rDAO.rsvDeleteDetailHost(d_rsv_no);
 	}
 	
-	//¿¹¾à ¸ñ·Ï
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<ReservationDTO> rsvAll(String user_id){
 		return rDAO.rsvAll(user_id);
 	}
 	
-	//¿¹¾à »ó¼¼
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	public ReservationDTO selectByRsvNo(int rsv_no) {
 		return rDAO.selectByRsvNo(rsv_no);
 	}
 	
-	//¿¹¾à ÈÄ ¹Ù·Î »ó¼¼º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public int insertAfterRsv(String user_id) {
 		return rDAO.insertAfterRsv(user_id);
 	}
 	
-	//host°¡ µî·ÏÇÑ ¼÷¼Ò¿¡ ¿¹¾àµÈ list
+	//hostï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ list
 	public List<ReservationDTO> hostRsvAll(String user_id) {
 		return rDAO.hostRsvAll(user_id);
 	}
 	
-	//host°¡ µî·ÏÇÑ ¼÷¼Ò¿¡ ¿¹¾àµÈ detail
+	//hostï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ detail
 	public ReservationDTO selectByHostRsvNo(int rsv_no) {
 		return rDAO.selectByHostRsvNo(rsv_no);
 	}
 	
-	//¿¹¾àÇÒ ¶§ ³ª¿À´Â ÇØ´ç ¼÷¼Ò Á¤º¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ReservationDTO selectByRoomId(int room_id) {
 		return rDAO.selectByRoomId(room_id);
 	}
 	
 	public List<ReservationDTO> selectByCheckInOut(int room_id) {
 		return rDAO.selectByCheckInOut(room_id);
+	}
+	public int deleteAll(String userid) {
+		return rDAO.deleteAll(userid);
+	}
+	public int ddAll(String userid) {
+		
+		return rDAO.ddAll(userid);
 	}
 }

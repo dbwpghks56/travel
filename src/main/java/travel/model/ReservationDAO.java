@@ -14,7 +14,8 @@ import travel.util.DBUtil;
 
 
 public class ReservationDAO {
-
+	private static final String SQL_DELETE_ALL = "delete reservation where user_id = ?";
+	private static final String SQL_DD_ALL = "delete delete_reservation where user_id = ?";
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -431,7 +432,38 @@ public class ReservationDAO {
 		
 		return rsvlist;
 	}
-	
+	public int deleteAll(String userid) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		try {
+			pst = conn.prepareStatement(SQL_DELETE_ALL);
+			pst.setString(1, userid);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return ret;
+	}
+	public int ddAll(String userid) {
+		conn = DBUtil.getConnection();
+		int ret = 0;
+		try {
+			pst = conn.prepareStatement(SQL_DD_ALL);
+			pst.setString(1, userid);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+		
+		return ret;
+	}
 	private ReservationDTO makeRsv5(ResultSet rs) throws SQLException {
 		ReservationDTO rsv = new ReservationDTO();
 		rsv.setCheck_in(rs.getDate("Check_in"));

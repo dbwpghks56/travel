@@ -40,12 +40,12 @@ public class RsvController implements Command {
 			int result = rService.resevation(rsv);
 			int rsv_no = rService.insertAfterRsv(user_id);
 			if (result > 0) {
-				reQuest.setAttribute("message", "¿¹¾àÀÌ ¼º°øÀûÀ¸·Î ÀÌ·ç¾î Á³½À´Ï´Ù");
+				reQuest.setAttribute("message", "ì˜ˆì•½ì´ ì„±ê³µì ìœ¼ë¡œ ì´ë£¨ì–´ ì¡ŒìŠµë‹ˆë‹¤");
 				reQuest.setAttribute("rsv_no", rsv_no);
 
 				page = "/reservation/rsvResult.jsp";
 			} else {
-				reQuest.setAttribute("message", "¿¹¾à¿¡ ½ÇÆĞ ÇÏ¼Ì½À´Ï´Ù ´Ù½Ã ½ÃµµÇØ ÁÖ¼¼¿ä");
+				reQuest.setAttribute("message", "ì˜ˆì•½ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 				page = "/reservation/result.jsp";
 			}
 
